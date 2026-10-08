@@ -334,7 +334,7 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
   function mostraCandidati(ris, q) {
     var w = $("cands"); w.innerHTML = "";
     var s = document.createElement("span"); s.className = "muted"; s.style.fontSize = "14px"; s.style.marginRight = "4px";
-    s.textContent = ris.length ? ris.length + (ris.length === 12 ? "+" : "") + " risultati. Scegli la carta giusta:" : "Nessuna carta trovata per «" + q + "».";
+    s.textContent = !ris.length ? "Nessuna carta trovata per «" + q + "»." : ris.length === 1 ? "1 risultato:" : ris.length + (ris.length === 12 ? "+" : "") + " risultati. Scegli la carta giusta:";
     w.appendChild(s);
     ris.forEach(function (r, i) {
       var b = document.createElement("button");

@@ -115,6 +115,27 @@ def immagine(r):
     return img, img
 
 
+def pulisci(o):
+    """NaN e valori mancanti -> null: il JSON non accetta NaN (la pagina non leggerebbe il file)."""
+    if isinstance(o, dict):
+        return {k: pulisci(v) for k, v in o.items()}
+    if isinstance(o, (list, tuple)):
+        return [pulisci(v) for v in o]
+    if isinstance(o, float) and math.isnan(o):
+        return None
+    if isinstance(o, (np.floating,)):
+        return None if np.isnan(o) else float(o)
+    if isinstance(o, (np.integer,)):
+        return int(o)
+    if isinstance(o, (np.bool_,)):
+        return bool(o)
+    return o
+
+
+def scrivi_json(percorso, dati):
+    percorso.write_text(json.dumps(pulisci(dati), ensure_ascii=False, separators=(",", ":"), allow_nan=False), encoding="utf-8")
+
+
 def pesi_somiglianza(imp):
     w = {}
     for var, (nome_imp, _) in SOMIGLIANZA.items():
@@ -267,13 +288,11 @@ def main():
     for k, c in carte.items():
         gruppi.setdefault(gruppo(k), {})[k] = c
     for g, dati in gruppi.items():
-        (cartella / f"{g:03d}.json").write_text(json.dumps(dati, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        scrivi_json(cartella / f"{g:03d}.json", dati)
     dim = sum(f.stat().st_size for f in cartella.glob("*.json")) / 1e6
     print(f"schede/: {len(gruppi)} file, {dim:.1f} MB in tutto, {dim / len(gruppi) * 1000:.0f} KB in media")
     for nome, dati in (("indice.json", indice), ("modello.json", modello)):
-        (DOCS / nome).write_text(json.dumps(dati, ensure_ascii=False, separators=(",", ":"),
-                                            default=lambda o: None if (isinstance(o, float) and math.isnan(o)) else str(o)),
-                                 encoding="utf-8")
+        scrivi_json(DOCS / nome, dati)
         print(nome, f"{(DOCS / nome).stat().st_size / 1e6:.2f} MB")
     allentati = sum(1 for s in schede.values() if s["allentato"])
     pochi = sum(1 for s in schede.values() if len(s["comps"]) < 3)
