@@ -2,43 +2,560 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Valutatore</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Unbounded:wght@700;800&display=swap">
-<!-- Pagina provvisoria (blocco 2). La dashboard vera, secondo riferimenti/mockup-dashboard.html, arriva nel blocco 5. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Outfit:wght@500;600;700&display=swap">
+<!-- Dashboard del Valutatore. Riferimento: riferimenti/mockup-dashboard.html (approvato il 9/10/2026).
+     BOZZA del blocco 5 (notte del 9/10/2026), da rifinire con Giacomo. -->
 <style>
-:root {
-  --ground: #F3F5F9; --card: #FFFFFF; --ink: #101217; --ink-2: #3B4250; --muted: #5B6474;
-  --line: #DDE2EA; --accent: #2D5BFF; --here: #FFCB05; --here-ink: #1A1400;
-  --display: "Unbounded", "Arial Black", sans-serif;
-  --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
-  color-scheme: light;
+/* ===== Token di stile (dal mockup approvato il 9/10/2026) ===== */
+:root{
+  --ink:#000000; --muted:#5E5E5E; --line:#E6E6E6; --field:#8A8A8A; --soft:#F3F3F3; --track:#EDEDED;
+  --red:#C4161C; --red-ink:#A3141B; --red-soft:#FCEBEB; --green-ink:#126B42; --green-soft:#E8F4EE;
+  --yellow:#FFD12A;
+  --r-card:16px; --r-ctl:10px; --r-big:18px;
+  --display:'Outfit','Segoe UI',sans-serif;
+  --text:'Atkinson Hyperlegible','Segoe UI',system-ui,sans-serif;
 }
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.5; }
-main { max-width: 640px; margin: 0 auto; padding: 48px 16px; display: flex; flex-direction: column; gap: 20px; }
-.brand { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 22px; }
-.panel { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 10px; }
-.tag { align-self: flex-start; background: var(--here); color: var(--here-ink); font-weight: 700; font-size: 13.5px; padding: 3px 8px; border-radius: 6px; }
-p { margin: 0; color: var(--ink-2); }
-.small { font-size: 13.5px; color: var(--muted); }
+*{box-sizing:border-box}
+body{margin:0;background:#FFFFFF;color:var(--ink);font-family:var(--text);font-size:16px;line-height:1.5}
+a{color:var(--ink);text-underline-offset:3px}a:hover{text-decoration-thickness:2px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+h1,h2,h3{margin:0}
+.display{font-family:var(--display);font-weight:700}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.sr{position:absolute;left:-9999px}
+[hidden]{display:none!important}
+
+header{border-bottom:1px solid var(--line)}
+header .wrap{padding-top:14px;padding-bottom:14px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:19px}
+nav.tabs{display:flex;flex-wrap:wrap;gap:2px}
+nav.tabs button{min-height:44px;padding:0 16px;border-radius:var(--r-ctl);border:0;background:transparent;color:var(--ink);font:inherit;font-size:15px;font-weight:700;cursor:pointer}
+nav.tabs button[aria-selected="true"]{background:var(--ink);color:#FFFFFF}
+.meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:13.5px;color:var(--muted)}
+.flag{background:var(--yellow);color:var(--ink);font-weight:700;padding:2px 10px;border-radius:6px}
+
+main.wrap{padding-top:32px;padding-bottom:96px;display:flex;flex-direction:column;gap:36px}
+.h1{font-family:var(--display);font-weight:700;font-size:32px;line-height:1.15}
+.lead{font-size:14.5px;color:var(--muted);max-width:64ch}
+
+.input,.select{min-height:44px;padding:0 12px;border:1px solid var(--field);border-radius:var(--r-ctl);font:inherit;color:var(--ink);background:#FFFFFF}
+.btn{min-height:44px;padding:0 18px;border-radius:var(--r-ctl);border:1px solid var(--field);background:#FFFFFF;color:var(--ink);font:inherit;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;text-decoration:none}
+.btn.primary{background:var(--ink);color:#FFFFFF;border-color:var(--ink)}
+.btn[disabled]{cursor:not-allowed;opacity:.65}
+.card{border:1px solid var(--line);border-radius:var(--r-big);padding:24px}
+.chip{font-size:12.5px;font-weight:700;padding:2px 10px;border-radius:6px;white-space:nowrap}
+.ok{background:var(--green-soft);color:var(--green-ink)}
+.no{background:var(--red-soft);color:var(--red-ink)}
+.neutral{background:var(--soft);color:#333333}
+.warn{background:var(--yellow);color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+.search{display:flex;flex-wrap:wrap;gap:8px}
+.search .input{flex:999 1 320px;min-width:0;min-height:50px;padding:0 16px;border-radius:12px;font-size:17px}
+.search .btn{flex:1 1 auto;min-height:50px;border-radius:12px;justify-content:center}
+.cands button{display:flex;gap:10px;align-items:center;min-height:52px;padding:6px 14px 6px 8px;border-radius:12px;font:inherit;cursor:pointer;color:var(--ink);background:#FFFFFF;border:1px solid var(--field);text-align:left;max-width:100%}
+.cands button[aria-pressed="true"]{border:2px solid var(--ink)}
+.ph{background:var(--track);border-radius:6px;flex:none;object-fit:contain}
+
+.scheda{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.scheda .carta{flex:1 1 260px;min-width:0;max-width:320px;display:flex;flex-direction:column;gap:14px}
+.photo{aspect-ratio:63/88;border-radius:14px;background:var(--soft);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--muted);font-size:14px;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:contain}
+.tags{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px;font-size:13px}
+.tags li{padding:3px 10px;border-radius:999px;background:var(--soft)}
+.tags li.fam{background:transparent;border:1px solid var(--ink);font-weight:700}
+.giudizi{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:16px}
+.label{font-size:14px;font-weight:700;color:var(--muted)}
+.big{font-family:var(--display);font-weight:700;font-size:52px;line-height:1}
+.verdict{font-weight:700;font-size:18px;padding:4px 14px;border-radius:8px}
+.rangebar{position:relative;height:34px}
+.rangebar .track{position:absolute;left:0;right:0;top:15px;height:4px;border-radius:2px;background:var(--track)}
+.rangebar .band{position:absolute;top:11px;height:12px;border-radius:6px;background:#CFCFCF}
+.rangebar .tick{position:absolute;top:7px;width:2px;height:20px;background:var(--muted)}
+.rangebar .you{position:absolute;top:9px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 3px #FFFFFF}
+.split{display:flex;flex-wrap:wrap;gap:28px 40px}
+.split>div{flex:1 1 280px;min-width:0;display:flex;flex-direction:column;gap:14px}
+.h2{font-family:var(--display);font-weight:600;font-size:19px}
+
+.nmhead{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--line);padding-top:28px}
+.field{display:flex;flex-direction:column;gap:3px}
+.field label,.field .lab{font-size:12.5px;font-weight:700;color:var(--muted)}
+.yours{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;background:#F6F6F6;border-radius:14px;padding:14px 18px}
+.yours label{font-weight:700;flex:1 1 260px}
+.comp{border-bottom:1px solid var(--line);padding:16px 0;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.comp .info{flex:999 1 300px;min-width:0;display:flex;flex-direction:column;gap:6px}
+.comp .nums{flex:1 1 320px;min-width:0;display:grid;grid-template-columns:112px 70px minmax(96px,1fr);gap:12px;align-items:start}
+.comp .nums .input{width:100%;font-weight:700}
+.cmp{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px}
+.cmp .s{color:var(--green-ink)}.cmp .d{color:var(--red-ink)}
+.out{min-height:44px;display:flex;align-items:center}
+.adj{justify-content:flex-end;font-family:var(--display);font-weight:700;font-size:21px}
+.alert{margin:0;background:var(--red-soft);border-radius:12px;padding:12px 16px;color:#6E0D12}
+.note{margin:0;background:var(--soft);border-radius:12px;padding:12px 16px;font-size:14px}
+.notice{margin:0;background:var(--yellow);border-radius:12px;padding:12px 16px;font-size:14px}
+
+dl.stats{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+dl.stats div{padding:16px 4px;display:flex;flex-direction:column;gap:2px}
+dl.stats dt{font-size:13.5px;color:var(--muted)}
+dl.stats dd{margin:0;font-family:var(--display);font-weight:700;font-size:30px;line-height:1.15}
+.two{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start}
+.two>section{flex:1 1 440px;min-width:0;border:1px solid var(--line);border-radius:var(--r-card);padding:22px;display:flex;flex-direction:column;gap:12px}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th{font-size:13px;font-weight:700;color:var(--muted);padding:8px;text-align:left}
+td{padding:9px 8px;border-top:1px solid #EDEDED}
+.r{text-align:right}
+.tablewrap{overflow-x:auto}
+.prem{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,2fr) 64px;gap:12px;align-items:center;font-size:14px}
+.prem .t{position:relative;height:14px}
+.prem .t .base{position:absolute;left:0;right:0;top:6px;height:2px;background:var(--track)}
+.prem .t .zero{position:absolute;top:0;width:1px;height:14px;background:var(--field)}
+.prem .t .bar{position:absolute;top:2px;height:10px;background:var(--ink);border-radius:2px}
+.prem .t .ci{position:absolute;top:6px;height:2px;background:var(--field)}
+.steps{margin:0;padding:0;list-style:none}
+.steps li{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-top:1px solid #EDEDED;font-size:14.5px}
+.steps .chip{justify-self:start;align-self:start}
+@media (max-width:560px){.big{font-size:42px}.h1{font-size:27px}.comp .nums{grid-template-columns:1fr 70px 1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<main>
-  <div class="brand">
-    <svg width="28" height="38" viewBox="0 0 28 38" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="35" rx="4" fill="none" stroke="#101217" stroke-width="2.5"/><circle cx="14" cy="19" r="6" fill="none" stroke="#2D5BFF" stroke-width="2.5"/><line x1="1.5" y1="19" x2="8" y2="19" stroke="#101217" stroke-width="2.5"/><line x1="20" y1="19" x2="26.5" y2="19" stroke="#101217" stroke-width="2.5"/></svg>
-    Valutatore
+
+<header>
+  <div class="wrap">
+    <div class="brand"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="1.5" y="1.5" width="23" height="23" rx="6" fill="none" stroke="#000" stroke-width="2.5"/><circle cx="13" cy="13" r="4" fill="#C4161C"/></svg>Valutatore</div>
+    <nav class="tabs" aria-label="Sezioni" role="tablist">
+      <button type="button" role="tab" data-tab="valuta" aria-selected="true">Valuta una carta</button>
+      <button type="button" role="tab" data-tab="monitorate" aria-selected="false">Monitorate</button>
+      <button type="button" role="tab" data-tab="modello" aria-selected="false">Il modello</button>
+    </nav>
+    <div class="meta"><span id="settimana">Dati della settimana …</span><span class="flag">Bozza da rifinire</span></div>
   </div>
-  <section class="panel">
-    <span class="tag">In costruzione</span>
-    <p>Valutatore di carte Pokémon singole non gradate (Cardmarket, euro). La dashboard arriverà nei prossimi blocchi di lavoro.</p>
-    <p class="small">Intanto, ogni settimana, viene salvata in automatico una fotografia dei prezzi di mercato.</p>
+</header>
+
+<!-- ======================= VALUTA ======================= -->
+<main id="valuta" class="wrap">
+  <section aria-labelledby="t-cerca" style="display:flex;flex-direction:column;gap:14px">
+    <h1 id="t-cerca" class="h1">Valuta una carta</h1>
+    <form class="search" id="form-cerca">
+      <label for="cerca" class="sr">Cerca una carta per nome o incolla un link Cardmarket</label>
+      <input id="cerca" class="input" type="text" placeholder="Es. Pikachu 085, Umbreon ex giapponese, oppure un link Cardmarket" autocomplete="off">
+      <button type="submit" class="btn primary">Cerca</button>
+      <button type="button" class="btn" id="incolla">Incolla link Cardmarket</button>
+    </form>
+    <div class="row cands" id="cands" style="gap:8px" aria-live="polite"><span class="muted" style="font-size:14px" id="stato-indice">Carico l'elenco delle carte…</span></div>
   </section>
-  <p class="small">Valutazioni e giudizi sono stime statistiche con margine di errore, basate su dati di mercato e su carte simili: non sono certezze né consulenza finanziaria.</p>
+
+  <div id="vuoto" class="note">Cerca una carta: vedrai prezzo equo Near Mint, giudizio di prezzo e carte simili con cui confrontarla.</div>
+
+  <section class="scheda" aria-labelledby="t-scheda" id="scheda" hidden>
+    <div class="carta">
+      <div class="photo" id="foto">Foto ufficiale della carta</div>
+      <div><h2 id="t-scheda" class="display" style="font-size:26px;line-height:1.15"></h2><span class="muted" style="font-size:14px" id="sottotitolo"></span></div>
+      <ul class="tags" aria-label="Caratteristiche" id="tags"></ul>
+      <span class="muted num" style="font-size:13.5px" id="rif"></span>
+      <button type="button" class="btn" style="align-self:flex-start;font-size:14px" disabled title="In arrivo dopo la revisione">Correggi le caratteristiche</button>
+    </div>
+
+    <div class="giudizi">
+      <p class="alert" id="fuori" hidden>Carta fuori dal perimetro del modello: il prezzo equo e il giudizio non sono disponibili.</p>
+      <div class="card" style="display:flex;flex-direction:column;gap:18px" id="box-prezzo">
+        <div style="display:flex;flex-wrap:wrap;gap:16px 40px;align-items:flex-end;justify-content:space-between">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <span class="label">Prezzo equo Near Mint</span>
+            <span class="big num" id="fair">—</span>
+            <span class="muted" style="font-size:14px" id="npriced"></span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start">
+            <span class="label">Giudizio di prezzo</span>
+            <span class="verdict neutral" id="pv">—</span>
+            <span class="num" style="font-size:14px" id="pdiff"></span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="rangebar" role="img" id="rangebar" aria-label=""><div class="track"></div><div class="band" id="band"></div><div class="tick" id="tick"></div><div class="you" id="you"></div></div>
+          <div class="muted num" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;font-size:13px">
+            <span id="range"></span><span><b style="color:#000">●</b> La tua offerta: <span id="yourtxt"></span></span><span id="seconda"></span>
+          </div>
+        </div>
+        <p class="notice" id="avviso-modello" hidden></p>
+      </div>
+
+      <div class="card split">
+        <div>
+          <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px"><h3 class="h2">Investimento</h3><span class="muted" style="font-size:13px">Non ancora disponibile</span></div>
+          <div class="row" style="gap:14px"><span class="display num" style="font-size:44px;line-height:1">—<span class="muted" style="font-size:18px;font-weight:500">/100</span></span><span class="verdict neutral" style="font-size:15px;padding:3px 12px">In arrivo</span></div>
+          <span class="muted" style="font-size:14px">Il punteggio d'investimento (valutazione relativa, fattori strutturali, scarsità, andamento) arriva con il blocco 6.</span>
+          <span class="muted num" style="font-size:14px" id="andamento"></span>
+        </div>
+        <div>
+          <h3 class="h2">Perché</h3>
+          <span class="muted" style="font-size:14px">Pro e contro con i numeri arriveranno con il blocco 6.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-nm" style="display:flex;flex-direction:column;gap:16px" id="sez-nm" hidden>
+    <div class="nmhead">
+      <div style="display:flex;flex-direction:column;gap:6px;max-width:64ch">
+        <h2 id="t-nm" class="display" style="font-size:26px">Prezzi Near Mint</h2>
+        <span class="lead">Su Cardmarket filtra per Near Mint e lingua della carta, poi scrivi l'offerta più bassa. Il calcolo usa una fascia dal minimo al minimo +5% (ipotesi), perché il minimo spesso non è davvero Near Mint.</span>
+      </div>
+      <div class="field"><label for="tipo" style="font-size:13px">Tipo di prezzo</label>
+        <select id="tipo" class="select"><option value="cm">Minimo NM Cardmarket (+5%)</option><option value="ebay">Mediana ultime 3 vendite NM (eBay)</option></select></div>
+    </div>
+    <div class="yours">
+      <label for="tuo">La tua offerta: prezzo della copia che stai guardando</label>
+      <span class="row" style="gap:8px"><input id="tuo" class="input num" type="number" min="0" step="0.01" style="width:130px;min-height:48px;font-size:18px;font-weight:700"> <b>€</b></span>
+    </div>
+    <p class="note" id="nota-allentato" hidden></p>
+    <div id="comps"></div>
+    <p class="alert" id="warn" role="status" hidden></p>
+    <div class="row" style="justify-content:space-between;gap:16px;padding-top:8px">
+      <span class="muted" style="font-size:13.5px;max-width:62ch">Valutazioni e giudizi sono stime statistiche con margine di errore, basate su dati di mercato e su carte simili: non sono certezze né consulenza finanziaria. I prezzi che inserisci restano salvati solo su questo dispositivo.</span>
+      <button type="button" class="btn primary" style="min-height:50px;padding:0 24px;border-radius:12px" disabled title="In arrivo con il blocco 7">Aggiungi al monitoraggio</button>
+    </div>
+  </section>
 </main>
+
+<!-- ======================= MONITORATE ======================= -->
+<main id="monitorate" class="wrap" hidden style="gap:28px">
+  <div style="display:flex;flex-direction:column;gap:6px"><h1 class="h1">Carte monitorate</h1><span class="lead">Prezzo di riferimento Cardmarket dal giorno in cui hai aggiunto la carta. Condizione e lingua non filtrate.</span></div>
+  <p class="note">Il monitoraggio con grafici, obiettivi e notifiche su iPhone arriva con il blocco 7.</p>
+</main>
+
+<!-- ======================= MODELLO ======================= -->
+<main id="modello" class="wrap" hidden style="gap:28px">
+  <div style="display:flex;flex-direction:column;gap:6px"><h1 class="h1">Il modello</h1><span class="lead">Quanto è affidabile, cosa ha imparato e se i giudizi sono già stati verificati. Bozza: da rivedere insieme prima di usarlo.</span></div>
+  <dl class="stats" id="m-stats"></dl>
+  <div class="two">
+    <section aria-labelledby="t-err">
+      <h2 id="t-err" class="h2">Errore per tipo di carta</h2>
+      <span class="muted" style="font-size:14px">Soglia: ±15%. Oltre la soglia la scheda usa solo le carte simili con i tuoi prezzi NM.</span>
+      <div class="tablewrap"><table style="min-width:380px"><thead><tr><th scope="col" style="padding-left:0">Segmento</th><th scope="col" class="r">Carte</th><th scope="col" class="r">Errore</th><th scope="col">Esito</th></tr></thead><tbody id="segments"></tbody></table></div>
+    </section>
+    <section aria-labelledby="t-pesi">
+      <h2 id="t-pesi" class="h2">Quanto vale ogni caratteristica</h2>
+      <span class="muted" style="font-size:14px" id="rif-pesi"></span>
+      <div id="premiums" style="display:flex;flex-direction:column;gap:12px"></div>
+    </section>
+  </div>
+  <div class="two">
+    <section aria-labelledby="t-val">
+      <h2 id="t-val" class="h2">Il giudizio d'investimento è affidabile?</h2>
+      <ol class="steps">
+        <li><span class="chip warn">In arrivo</span><span>Pesi dichiarati 35 / 30 / 20 / 15: <b>non ancora validati</b>. Il punteggio arriva con il blocco 6.</span></li>
+        <li><span class="chip neutral">Blocco 6</span><span>Mini-storico a 30 giorni: test grezzo sulle medie Cardmarket.</span></li>
+        <li><span class="chip neutral">Gennaio</span><span>Prima verifica a 3 mesi sul registro dei giudizi.</span></li>
+      </ol>
+    </section>
+    <section aria-labelledby="t-mod">
+      <h2 id="t-mod" class="h2">Modelli confrontati</h2>
+      <span class="muted" style="font-size:14px">Errore tipico su carte non viste (validazione incrociata a 5 gruppi).</span>
+      <div class="tablewrap"><table style="min-width:380px;font-size:14px"><thead><tr><th scope="col" style="padding-left:0">Modello</th><th scope="col" class="r">Errore</th><th scope="col" class="r">Entro ±15%</th></tr></thead><tbody id="confronto"></tbody></table></div>
+    </section>
+  </div>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var BAND = 0.05;          /* fascia NM: dal minimo al minimo +5% (config.json, ipotesi dichiarata) */
+  var N_GRUPPI = 128;       /* uguale a src/comparabili.py */
+  var $ = function (id) { return document.getElementById(id); };
+  var eur = function (n) { return (n >= 100 ? Math.round(n).toLocaleString("it-IT") : n.toLocaleString("it-IT", { maximumFractionDigits: 2, minimumFractionDigits: n < 10 ? 2 : 0 })) + " €"; };
+  var esc = function (s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;"); };
+  var norm = function (s) { return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); };
+  var oggi = new Date();
+  var indice = [], cache = {}, attuale = null, modello = null;
+
+  /* ---------- schede (tab) ---------- */
+  var tabs = document.querySelectorAll("nav.tabs button");
+  function show(id) {
+    ["valuta", "monitorate", "modello"].forEach(function (t) { $(t).hidden = t !== id; });
+    tabs.forEach(function (b) { b.setAttribute("aria-selected", b.dataset.tab === id ? "true" : "false"); });
+    window.scrollTo(0, 0);
+  }
+  tabs.forEach(function (b) { b.addEventListener("click", function () { show(b.dataset.tab); }); });
+
+  /* ---------- memoria del browser (prezzi NM inseriti a mano) ---------- */
+  function leggi(k) { try { var v = localStorage.getItem("nm:" + k); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
+  function scrivi(k, v) { try { if (v) localStorage.setItem("nm:" + k, JSON.stringify(v)); else localStorage.removeItem("nm:" + k); } catch (e) {} }
+  function giorni(d) { return Math.floor((oggi - new Date(d)) / 86400000); }
+
+  /* ---------- link ---------- */
+  function linkCM(c) {
+    return "https://www.cardmarket.com/it/Pokemon/Products/Search?searchString=" + encodeURIComponent(c.nome_en || c.nome) +
+      "&language=" + (c.lingua === "ja" ? 7 : 1) + "&minCondition=2";
+  }
+  function linkEbay(c) {
+    var q = (c.nome_en || c.nome) + " " + (c.numero || "") + (c.lingua === "ja" ? " japanese" : "");
+    return "https://www.ebay.it/sch/i.html?_nkw=" + encodeURIComponent(q.trim()) + "&LH_Sold=1&LH_Complete=1";
+  }
+  function linkPSA(c) { return "https://www.psacard.com/pop/search?q=" + encodeURIComponent(c.nome_en || c.nome); }
+
+  /* ---------- dati ---------- */
+  function gruppo(k) { var h = 0; for (var i = 0; i < k.length; i++) { h = (h * 31 + k.charCodeAt(i)) % 4294967296; } return h % N_GRUPPI; }
+  function pad(n) { return ("00" + n).slice(-3); }
+  function carica(url) { return fetch(url, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+
+  carica("data/indice.json").then(function (d) {
+    indice = d.map(function (r) { return { k: r[0], nome: r[1], nome_en: r[2], set: r[3], numero: r[4], lingua: r[5], img: r[6], perimetro: r[7], extra: r[8], trend: r[9],
+      testo: norm([r[1], r[2], r[3], r[4], r[5] === "ja" ? "giapponese japanese jp" : "inglese english en", r[8]].join(" ")) }; });
+    $("stato-indice").textContent = indice.length.toLocaleString("it-IT") + " carte disponibili. Cerca per nome, set o numero.";
+  }).catch(function () { $("stato-indice").textContent = "Non riesco a caricare l'elenco delle carte. Riprova più tardi."; });
+
+  carica("data/modello.json").then(function (m) { modello = m; disegnaModello(m); }).catch(function () {});
+
+  /* ---------- ricerca ---------- */
+  function cerca(q) {
+    var parole = norm(q).split(/\s+/).filter(Boolean);
+    if (!parole.length) return [];
+    var ris = indice.filter(function (r) { return parole.every(function (p) { return r.testo.indexOf(p) >= 0; }); });
+    ris.sort(function (a, b) { return (a.perimetro === "dentro" ? 0 : 1) - (b.perimetro === "dentro" ? 0 : 1) || (b.trend || 0) - (a.trend || 0); });
+    return ris.slice(0, 12);
+  }
+  function daLink(url) {
+    /* ricava set e nome DAL TESTO del link, senza aprire la pagina */
+    var m = String(url).match(/Products\/Singles\/([^/?#]+)\/([^/?#]+)/i);
+    if (!m) return null;
+    var nome = m[2].replace(/-V\d+(?=-|$)/i, "").replace(/-/g, " ");
+    var num = (nome.match(/[A-Za-z]*(\d+)\s*$/) || [])[1];
+    nome = nome.replace(/\s+[A-Za-z]*\d+\s*$/, "");
+    return { set: m[1].replace(/-/g, " "), q: nome + (num ? " " + String(parseInt(num, 10)) : "") };
+  }
+  function mostraCandidati(ris, q) {
+    var w = $("cands"); w.innerHTML = "";
+    var s = document.createElement("span"); s.className = "muted"; s.style.fontSize = "14px"; s.style.marginRight = "4px";
+    s.textContent = ris.length ? ris.length + (ris.length === 12 ? "+" : "") + " risultati. Scegli la carta giusta:" : "Nessuna carta trovata per «" + q + "».";
+    w.appendChild(s);
+    ris.forEach(function (r, i) {
+      var b = document.createElement("button");
+      b.type = "button"; b.setAttribute("aria-pressed", "false");
+      b.innerHTML = (r.img ? '<img class="ph" src="' + esc(r.img) + '" alt="" width="26" height="36" loading="lazy">' : '<span class="ph" style="width:26px;height:36px"></span>') +
+        '<span style="display:flex;flex-direction:column;min-width:0"><b style="font-size:14px">' + esc(r.nome) + (r.nome_en ? ' <span class="muted" style="font-weight:400">· ' + esc(r.nome_en) + '</span>' : '') + '</b>' +
+        '<span class="muted" style="font-size:12.5px">' + esc(r.set) + ", " + esc(r.numero) + ", " + (r.lingua === "ja" ? "JA" : "EN") + (r.extra ? ", " + esc(r.extra) : "") + (r.perimetro !== "dentro" ? ", fuori perimetro" : "") + '</span></span>';
+      b.addEventListener("click", function () {
+        w.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+        apri(r);
+      });
+      w.appendChild(b);
+    });
+  }
+  $("form-cerca").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var q = $("cerca").value.trim();
+    if (/cardmarket\.com/i.test(q)) { var l = daLink(q); if (l) q = l.q; }
+    mostraCandidati(cerca(q), q);
+  });
+  $("incolla").addEventListener("click", function () {
+    if (navigator.clipboard && navigator.clipboard.readText) {
+      navigator.clipboard.readText().then(function (t) { $("cerca").value = t; $("form-cerca").requestSubmit(); }).catch(function () { $("cerca").focus(); });
+    } else { $("cerca").focus(); }
+  });
+
+  /* ---------- scheda ---------- */
+  function apri(r) {
+    $("vuoto").hidden = true;
+    if (r.perimetro !== "dentro") { mostraFuori(r); return; }
+    var g = gruppo(r.k);
+    var p = cache[g] ? Promise.resolve(cache[g]) : carica("data/schede/" + pad(g) + ".json").then(function (d) { cache[g] = d; return d; });
+    p.then(function (d) { var c = d[r.k]; if (c) mostra(c); else mostraFuori(r); }).catch(function () { mostraFuori(r); });
+  }
+  function intestazione(c) {
+    $("scheda").hidden = false;
+    $("t-scheda").textContent = c.nome + (c.nome_en && c.nome_en !== c.nome ? " · " + c.nome_en : "");
+    $("sottotitolo").textContent = [c.set, c.numero, c.lingua === "ja" ? "giapponese" : "internazionale", c.anno].filter(Boolean).join(", ");
+    var img = c.img ? c.img.replace("/low.webp", "/high.webp") : "";
+    $("foto").innerHTML = img ? '<img src="' + esc(img) + '" alt="Foto ufficiale di ' + esc(c.nome) + '">' : "Foto non disponibile";
+  }
+  function mostraFuori(r) {
+    attuale = null;
+    intestazione({ nome: r.nome, nome_en: r.nome_en, set: r.set, numero: r.numero, lingua: r.lingua, img: r.img });
+    $("tags").innerHTML = "";
+    $("rif").textContent = r.trend ? "Prezzo di riferimento Cardmarket: " + eur(r.trend) + " (condizione e lingua non filtrate)" : "";
+    $("fuori").hidden = false; $("box-prezzo").hidden = true; $("sez-nm").hidden = true;
+  }
+  function mostra(c) {
+    attuale = c;
+    intestazione(c);
+    $("fuori").hidden = true; $("box-prezzo").hidden = false; $("sez-nm").hidden = false;
+    var t = ['<li class="fam">' + (c.famiglia === "carta da busta" ? "Carta da busta" : "Promo e rilascio speciale") + "</li>"];
+    if (c.rilascio && c.rilascio !== "busta") t.push("<li>" + esc(c.rilascio === "da classificare" ? "Rilascio da classificare" : c.rilascio) + "</li>");
+    t.push("<li>" + esc(c.rarita) + "</li>");
+    t.push("<li>Iconicità " + esc(c.iconicita) + "</li>");
+    if (c.esclusiva && c.esclusiva !== "entrambe") t.push("<li>" + esc(c.esclusiva === "incerta" ? "Esclusiva da verificare" : c.esclusiva.charAt(0).toUpperCase() + c.esclusiva.slice(1)) + "</li>");
+    if (c.stamped) t.push("<li>Stamped" + (c.timbro ? " (" + esc(c.timbro) + ")" : "") + "</li>");
+    if (c.alternate_art) t.push("<li>Alternate art</li>");
+    if (c.meccanica && c.meccanica !== "nessuna") t.push("<li>" + esc(c.meccanica) + "</li>");
+    if (c.generazione) t.push("<li>" + c.generazione + "ª generazione</li>");
+    $("tags").innerHTML = t.join("");
+    $("rif").textContent = c.trend ? "Prezzo di riferimento Cardmarket: " + eur(c.trend) + " (condizione e lingua non filtrate)" : (c.fonte === "catalogo TCGCSV" ? "Nessun prezzo Cardmarket disponibile: carta dal catalogo TCGplayer." : "Nessun prezzo Cardmarket disponibile.");
+    $("andamento").textContent = c.trend && c.avg30 ? "Ultimo mese: trend " + eur(c.trend) + " contro media a 30 giorni " + eur(c.avg30) + " (" + segno((c.trend / c.avg30 - 1) * 100) + ")." : "";
+    var n = $("nota-allentato");
+    n.hidden = !c.allentato;
+    n.textContent = c.allentato ? "Poche carte simili con lo stesso livello di iconicità: il filtro sull'iconicità è stato allentato. Famiglia e " + (c.famiglia === "carta da busta" ? "rarità" : "modalità di rilascio") + " restano uguali." : "";
+    var tuo = leggi(c.k);
+    $("tuo").value = tuo && tuo.proprio ? tuo.min : "";
+    disegnaComps(c);
+    recalc();
+    $("scheda").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  function segno(x) { return (x >= 0 ? "+" : "−") + Math.abs(Math.round(x)) + "%"; }
+
+  function precompila(comp) {
+    /* prezzo NM salvato: si aggiorna con il trend di oggi tramite il rapporto NM / trend (CLAUDE.md 7.0.6) */
+    var s = leggi(comp.k);
+    if (!s) return { v: "", nota: "" };
+    var g = giorni(s.data), nota = "";
+    var v = s.min;
+    if (s.trend && comp.c.trend && Math.abs(comp.c.trend - s.trend) > 0.005) {
+      v = Math.round(s.min / s.trend * comp.c.trend * 100) / 100;
+      nota = "Aggiornato con il trend (originale " + eur(s.min) + " del " + new Date(s.data).toLocaleDateString("it-IT") + ")";
+    } else { nota = "Inserito il " + new Date(s.data).toLocaleDateString("it-IT"); }
+    if (g > 90) nota += ". Più vecchio di 90 giorni: reinseriscilo";
+    else if (g > 30 && !(s.trend && comp.c.trend)) nota += ". Più vecchio di 30 giorni: controllalo";
+    return { v: v, nota: nota, tipo: s.tipo };
+  }
+
+  function disegnaComps(c) {
+    var box = $("comps"); box.innerHTML = "";
+    c.comps.forEach(function (comp, i) {
+      var p = precompila(comp), cc = comp.c;
+      var d = document.createElement("div");
+      d.className = "comp";
+      d.innerHTML =
+        (cc.img ? '<img class="ph" src="' + esc(cc.img) + '" alt="" width="48" height="67" loading="lazy">' : '<span class="ph" style="width:48px;height:67px"></span>') +
+        '<div class="info"><div class="row" style="gap:2px 12px;align-items:baseline"><b style="font-size:15.5px">' + esc(cc.nome) + (cc.nome_en && cc.nome_en !== cc.nome ? ' · ' + esc(cc.nome_en) : '') + '</b><span class="muted" style="font-size:13px">' + esc([cc.set, cc.numero, cc.lingua === "ja" ? "giapponese" : "internazionale", cc.anno].filter(Boolean).join(", ")) + '</span><span class="num" style="font-size:13px;font-weight:700">Simile al ' + comp.sim + '%</span></div>' +
+        '<ul class="cmp" aria-label="Confronto con la tua carta">' + comp.uguali.map(function (s) { return '<li class="s">✓ ' + esc(s) + '</li>'; }).join("") + comp.diverse.map(function (s) { return '<li class="d">✗ ' + esc(s) + '</li>'; }).join("") + '</ul>' +
+        '<div class="row" style="gap:4px 16px;font-size:13.5px"><a href="' + linkCM(cc) + '" target="_blank" rel="noopener">Cerca su Cardmarket</a><a href="' + linkEbay(cc) + '" target="_blank" rel="noopener">Vendite concluse su eBay</a>' +
+        (cc.trend ? '<span class="muted num">Riferimento ' + eur(cc.trend) + '</span>' : '') + '<span class="muted" id="n-' + i + '">' + esc(p.nota) + '</span></div></div>' +
+        '<div class="nums">' +
+          '<div class="field"><label for="p-' + i + '">Minimo NM (€)</label><input id="p-' + i + '" class="input num" type="number" min="0" step="0.01" placeholder="—" value="' + p.v + '"><span class="muted num" style="font-size:12.5px" id="f-' + i + '"></span></div>' +
+          '<div class="field"><span class="lab">Rettifica</span><span class="out num" style="font-size:15px">' + (comp.fattore ? "× " + comp.fattore.toFixed(2).replace(".", ",") : "—") + '</span></div>' +
+          '<div class="field" style="text-align:right"><span class="lab">Per la tua carta</span><b class="out adj num" id="a-' + i + '">—</b><span class="muted num" style="font-size:12.5px" id="b-' + i + '"></span></div>' +
+        '</div>';
+      box.appendChild(d);
+      var inp = d.querySelector("input");
+      inp.dataset.tipo = p.tipo || "";
+      inp.addEventListener("change", function () {
+        var v = parseFloat(inp.value);
+        scrivi(comp.k, !isNaN(v) && v > 0 ? { min: v, trend: cc.trend, data: new Date().toISOString(), tipo: $("tipo").value } : null);
+        inp.dataset.tipo = $("tipo").value;
+        $("n-" + i).textContent = !isNaN(v) && v > 0 ? "Salvato su questo dispositivo" : "";
+      });
+      inp.addEventListener("input", recalc);
+    });
+  }
+  $("tuo").addEventListener("input", recalc);
+  $("tuo").addEventListener("change", function () {
+    if (!attuale) return;
+    var v = parseFloat($("tuo").value);
+    scrivi(attuale.k, !isNaN(v) && v > 0 ? { min: v, trend: attuale.trend, data: new Date().toISOString(), tipo: $("tipo").value, proprio: true } : null);
+  });
+  $("tipo").addEventListener("change", recalc);
+
+  function mediana(a) { var s = a.slice().sort(function (x, y) { return x - y; }), n = s.length; return n ? (n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2) : null; }
+
+  function recalc() {
+    var c = attuale; if (!c) return;
+    var banda = $("tipo").value === "cm" ? BAND : 0;   /* le vendite eBay concluse non ricevono la fascia (4.5c) */
+    var mids = [], lows = [], highs = [], tipi = {};
+    c.comps.forEach(function (comp, i) {
+      var inp = $("p-" + i), v = parseFloat(inp.value);
+      if (!isNaN(v) && v > 0 && comp.fattore) {
+        var lo = v * comp.fattore, hi = v * (1 + banda) * comp.fattore, m = (lo + hi) / 2;
+        mids.push(m); lows.push(lo); highs.push(hi);
+        if (inp.dataset.tipo) tipi[inp.dataset.tipo] = 1;
+        $("f-" + i).textContent = banda ? "Fascia " + eur(v) + "–" + eur(v * (1 + banda)) : "";
+        $("a-" + i).textContent = eur(m);
+        $("b-" + i).textContent = eur(lo) + "–" + eur(hi);
+      } else { $("f-" + i).textContent = ""; $("a-" + i).textContent = "—"; $("b-" + i).textContent = ""; }
+    });
+    var n = mids.length, med = mediana(mids);
+    var spread = n ? Math.max(Math.max.apply(null, mids) / med - 1, 1 - Math.min.apply(null, mids) / med) : 1;
+    var lo = n ? Math.min.apply(null, lows) : null, hi = n ? Math.max.apply(null, highs) : null;
+    var enough = n >= 3, ok = enough && spread <= 0.15;
+    var your = parseFloat($("tuo").value), hasYour = !isNaN(your) && your > 0;
+    var diff = ok && hasYour ? (your / med - 1) * 100 : null;
+
+    $("fair").textContent = ok ? eur(med) : "—";
+    $("npriced").textContent = "Mediana di " + n + " carte simili, rettificate";
+    $("range").textContent = ok ? "Intervallo " + eur(lo) + " – " + eur(hi) : "Intervallo non disponibile";
+    $("yourtxt").textContent = hasYour ? eur(your) : "—";
+    var pv = $("pv");
+    if (!ok || !hasYour) { pv.textContent = "Dati insufficienti"; pv.className = "verdict neutral"; }
+    else if (your < lo) { pv.textContent = "↓ Sottovalutata"; pv.className = "verdict ok"; }
+    else if (your > hi) { pv.textContent = "↑ Sopravvalutata"; pv.className = "verdict no"; }
+    else { pv.textContent = "= In linea"; pv.className = "verdict neutral"; }
+    $("pdiff").textContent = !enough ? "Inserisci almeno 3 prezzi delle carte simili" : diff === null ? (ok ? "Inserisci la tua offerta" : "") : "La tua offerta è il " + Math.abs(Math.round(diff)) + "% " + (diff < 0 ? "sotto" : "sopra") + " il prezzo equo";
+
+    /* barra dell'intervallo: fascia, tacca della mediana, pallino della tua offerta */
+    var pts = [lo, hi, hasYour ? your : null].filter(function (v) { return v !== null && !isNaN(v); });
+    var sMin = pts.length ? Math.min.apply(null, pts) * 0.85 : 0, sMax = pts.length ? Math.max.apply(null, pts) * 1.1 : 1;
+    var pos = function (v) { return Math.max(0, Math.min(100, (v - sMin) / (sMax - sMin) * 100)); };
+    $("band").style.display = $("tick").style.display = ok ? "" : "none";
+    $("you").style.display = ok && hasYour ? "" : "none";
+    if (ok) { $("band").style.left = pos(lo) + "%"; $("band").style.width = (pos(hi) - pos(lo)) + "%"; $("tick").style.left = pos(med) + "%"; if (hasYour) $("you").style.left = pos(your) + "%"; }
+    $("rangebar").setAttribute("aria-label", ok ? "Intervallo da " + eur(lo) + " a " + eur(hi) + ", mediana " + eur(med) + (hasYour ? ", la tua offerta " + eur(your) : "") : "Intervallo non disponibile");
+
+    /* seconda opinione del modello (prezzo di riferimento, NON Near Mint) */
+    var avv = [];
+    if (c.stima) {
+      $("seconda").textContent = "Seconda opinione del modello: " + eur(c.stima) + " (sul prezzo di riferimento)";
+      avv.push("Modello poco affidabile per questo tipo di carta (errore tipico molto oltre ±15%): il giudizio si basa solo sulle carte simili con i tuoi prezzi NM.");
+      if (ok && Math.abs(c.stima / med - 1) > 0.30) avv.push("Modello e carte simili differiscono di oltre il 30%: qualcosa non è catturato dalle variabili.");
+    } else { $("seconda").textContent = ""; }
+    if (!c.nel_modello && c.trend && c.trend < 3) avv.push("Carta sotto la soglia del modello (3 €).");
+    if (Object.keys(tipi).length > 1) avv.push("Attenzione: stai mescolando tipi di prezzo diversi (Cardmarket ed eBay) nella stessa valutazione.");
+    $("avviso-modello").hidden = !avv.length;
+    $("avviso-modello").textContent = avv.join(" ");
+
+    var w = $("warn");
+    w.hidden = ok;
+    w.textContent = !enough ? "Servono almeno 3 carte simili con prezzo NM per dare un giudizio. Inserisci altri prezzi qui sopra." : "Le carte simili danno prezzi troppo diversi tra loro (oltre ±15% dalla mediana). Controlla i prezzi inseriti o aggiungi altre carte.";
+  }
+
+  /* ---------- pagina "Il modello" ---------- */
+  var NOMI = { "rarita_armonizzata": "", "iconicita": "Iconicità ", "meccanica": "", "era": "Era ", "fascia_eta": "Età del set ", "tipo_set": "Set ", "rilascio": "Rilascio ", "esclusiva": "", "lingua": "Lingua ", "variante": "Variante " };
+  function etichetta(n) {
+    var p = n.split("=");
+    if (p.length === 1) return { gen1: "1ª generazione", leggendario: "Leggendario o misterioso", stamped: "Stamped", standard: "Giocabile in Standard", alternate_art: "Alternate art", promo_fam: "Famiglia promo", diluizione_log: "Diluizione (per raddoppio)" }[n] || n;
+    var v = p[1]; v = v.charAt(0).toUpperCase() + v.slice(1);
+    return (NOMI[p[0]] || "") + (NOMI[p[0]] ? p[1] : v);
+  }
+  function disegnaModello(m) {
+    $("settimana").textContent = "Dati della settimana " + m.settimana.split("-W")[1];
+    var tot = m.segmenti.filter(function (s) { return s.gruppo !== "famiglia × lingua"; });
+    var entro = tot.filter(function (s) { return s.entro_15; }).length;
+    var migliore = m.confronto.filter(function (x) { return x.modello === m.scelto; })[0] || m.confronto[0];
+    $("m-stats").innerHTML = '<div><dt>Carte nel pool</dt><dd class="num">' + m.carte.toLocaleString("it-IT") + '</dd></div>' +
+      '<div><dt>Errore tipico</dt><dd class="num">±' + Math.round(migliore["errore_tipico_%"]) + '%</dd></div>' +
+      '<div><dt>Segmenti entro ±15%</dt><dd class="num">' + entro + ' su ' + tot.length + '</dd></div>' +
+      '<div><dt>Pesi di questa settimana</dt><dd>Bozza</dd></div>';
+    $("segments").innerHTML = tot.map(function (s) {
+      return '<tr><td style="padding-left:0">' + esc(s.segmento.charAt(0).toUpperCase() + s.segmento.slice(1)) + '</td><td class="r num muted">' + s.carte.toLocaleString("it-IT") + '</td><td class="r num"><b>±' + Math.round(s.errore_tipico) + '%</b></td><td><span class="chip ' + (s.entro_15 ? "ok" : "no") + '">' + (s.entro_15 ? "Entro soglia" : "Solo carte simili") + '</span></td></tr>';
+    }).join("");
+    $("confronto").innerHTML = m.confronto.map(function (x) {
+      return '<tr><td style="padding-left:0">' + esc(x.modello) + (x.modello === m.scelto ? " <b>(scelto)</b>" : "") + '</td><td class="r num">±' + Math.round(x["errore_tipico_%"]) + '%</td><td class="r num">' + Math.round(x["entro_±15%_quota"]) + '%</td></tr>';
+    }).join("");
+    $("rif-pesi").textContent = "Sovrapprezzo rispetto a una illustration rare da busta, internazionale, iconicità bassa. Barra = sovrapprezzo, linea sottile = intervallo al 90%. Scala ±300%.";
+    var scelti = m.pesi.filter(function (p) { return p.carte_con_la_caratteristica >= 20 && p.caratteristica.indexOf("fascia_eta") !== 0 && p.caratteristica.indexOf("variante") !== 0; })
+      .sort(function (a, b) { return b["sovrapprezzo_%"] - a["sovrapprezzo_%"]; });
+    var sc = function (v) { return Math.max(0, Math.min(100, 50 + v / 300 * 50)); };
+    $("premiums").innerHTML = scelti.map(function (p) {
+      var v = p["sovrapprezzo_%"], a = sc(Math.min(0, v)), b = sc(Math.max(0, v));
+      return '<div class="prem"><span>' + esc(etichetta(p.caratteristica)) + '</span><div class="t"><div class="base"></div><div class="zero" style="left:50%"></div><div class="bar" style="left:' + a.toFixed(1) + '%;width:' + (b - a).toFixed(1) + '%"></div><div class="ci" style="left:' + sc(p["ic_basso_%"]).toFixed(1) + '%;width:' + (sc(p["ic_alto_%"]) - sc(p["ic_basso_%"])).toFixed(1) + '%"></div></div><b class="r num">' + (v >= 0 ? "+" : "−") + Math.abs(Math.round(v)) + '%</b></div>';
+    }).join("");
+  }
+})();
+</script>
 </body>
 </html>
