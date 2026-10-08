@@ -1,0 +1,19 @@
+{
+  "user_agent": "pokemon-price-tracker/0.1 (progetto personale amatoriale)",
+  "richieste_parallele": 3,
+  "pausa_secondi": 0.3,
+  "tentativi": 3,
+
+  "lingue": ["en", "ja"],
+  "serie_moderne": {
+    "en": ["sm", "swsh", "sv", "me"],
+    "ja": ["SM", "S", "SV", "M"]
+  },
+  "serie_escluse": ["tcgp"],
+  "data_inizio_altre_serie": "2016-12-01",
+
+  "soglia_bulk_eur": 3,
+
+  "fascia_nm_da_pct": 0,
+  "fascia_nm_a_pct": 5
+}

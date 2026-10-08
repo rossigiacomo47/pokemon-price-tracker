@@ -1,0 +1,10 @@
+# Ambiente virtuale Python (si ricrea con: python -m venv .venv)
+.venv/
+
+# Copie locali delle risposte delle API (si riscaricano)
+cache/
+
+# File di sistema
+.DS_Store
+Thumbs.db
+__pycache__/

@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Scheda del Valutatore Pokémon</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&family=Unbounded:wght@600;700;800&display=swap">
+<style>
+/* Layout: manuale di riferimento a colonna singola con indice fisso in alto; ogni sezione è una "scheda" numerata come le sezioni di CLAUDE.md. */
+:root {
+  --ground: #F3F5F9;
+  --card: #FFFFFF;
+  --ink: #101217;
+  --ink-2: #3B4250;
+  --muted: #5B6474;
+  --line: #DDE2EA;
+  --soft: #EEF1F6;
+  --accent: #2D5BFF;
+  --accent-soft: #EAF0FF;
+  --here: #FFCB05;
+  --here-ink: #1A1400;
+  --ok: #0B6A40;
+  --ok-soft: #E5F4EC;
+  --no: #B42318;
+  --no-soft: #FDEDEB;
+  --c1: #2D5BFF;
+  --c2: #0E7A4B;
+  --c3: #C2410C;
+  --c4: #7C3AED;
+  --display: "Unbounded", "Arial Black", sans-serif;
+  --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0E1116; --card: #161B23; --ink: #E9EDF3; --ink-2: #C3CAD5; --muted: #98A2B2; --line: #2A3240; --soft: #1D2430;
+    --accent: #8AA8FF; --accent-soft: #1B2644; --here: #F2C21B; --here-ink: #1A1400;
+    --ok: #4CC38A; --ok-soft: #12291F; --no: #FF8F85; --no-soft: #331817;
+    --c1: #8AA8FF; --c2: #4CC38A; --c3: #FB923C; --c4: #B794F6;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #0E1116; --card: #161B23; --ink: #E9EDF3; --ink-2: #C3CAD5; --muted: #98A2B2; --line: #2A3240; --soft: #1D2430;
+  --accent: #8AA8FF; --accent-soft: #1B2644; --here: #F2C21B; --here-ink: #1A1400;
+  --ok: #4CC38A; --ok-soft: #12291F; --no: #FF8F85; --no-soft: #331817;
+  --c1: #8AA8FF; --c2: #4CC38A; --c3: #FB923C; --c4: #B794F6;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--ground); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--display); margin: 0; line-height: 1.15; text-wrap: balance; }
+h1 { font-weight: 800; font-size: clamp(30px, 5vw, 48px); letter-spacing: -0.01em; }
+h2 { font-weight: 700; font-size: clamp(22px, 3vw, 28px); }
+h3 { font-weight: 700; font-size: 17px; }
+p { margin: 0; }
+code { font-family: var(--mono); font-size: 0.86em; background: var(--soft); padding: 0.05em 0.35em; border-radius: 4px; }
+ul, ol { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+
+.wrap { max-width: 1040px; margin: 0 auto; padding-inline: 18px; padding-block: 40px 96px; display: flex; flex-direction: column; gap: 28px; }
+.eyebrow { font-weight: 700; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.lead { color: var(--ink-2); max-width: 66ch; }
+.muted { color: var(--muted); }
+
+/* Testata */
+.hero { display: flex; flex-direction: column; gap: 14px; }
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 8px; }
+@media (max-width: 760px) { .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.fact { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.fact b { font-family: var(--display); font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.fact span { font-size: 14px; color: var(--muted); }
+
+/* Indice */
+.toc { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--ground); padding-block: 10px; border-bottom: 1px solid var(--line); }
+.toc-inner { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: thin; padding-bottom: 2px; }
+.toc a { flex: none; text-decoration: none; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 99px; padding: 6px 12px; font-size: 14px; font-weight: 700; white-space: nowrap; }
+.toc a:hover { border-color: var(--accent); color: var(--accent); }
+.toc a span { color: var(--muted); font-variant-numeric: tabular-nums; margin-right: 4px; }
+
+/* Sezioni */
+section { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 18px; scroll-margin-top: 70px; min-width: 0; }
+@media (max-width: 520px) { section { padding: 20px 16px; } }
+.sec-head { display: flex; gap: 14px; align-items: baseline; }
+.sec-num { font-family: var(--display); font-weight: 800; font-size: 14px; color: var(--accent); font-variant-numeric: tabular-nums; flex: none; }
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 760px) { .cols { grid-template-columns: 1fr; } }
+.box { background: var(--soft); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.box.ok { background: var(--ok-soft); }
+.box.no { background: var(--no-soft); }
+.box.warn { background: var(--no-soft); }
+.box.info { background: var(--accent-soft); }
+.box h3 { font-size: 15px; }
+.tag { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 6px; background: var(--soft); color: var(--ink-2); }
+.tag.auto { background: var(--accent-soft); color: var(--accent); }
+.tag.man { background: var(--here); color: var(--here-ink); }
+
+/* Tabelle */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 640px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); background: var(--soft); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--muted); }
+.group-row td { background: var(--soft); font-weight: 700; font-size: 13px; letter-spacing: 0.04em; color: var(--ink-2); }
+.up { color: var(--ok); font-weight: 700; }
+.down { color: var(--no); font-weight: 700; }
+.q { color: var(--muted); font-weight: 700; }
+
+/* Flussi */
+.lanes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 860px) { .lanes { grid-template-columns: 1fr; } }
+.lane { border: 1px solid var(--line); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.lane-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
+.steps { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
+.steps li { display: grid; grid-template-columns: 30px 1fr; gap: 12px; position: relative; padding-bottom: 14px; }
+.steps li:last-child { padding-bottom: 0; }
+.steps li::before { content: ""; position: absolute; left: 14px; top: 30px; bottom: 0; width: 2px; background: var(--line); }
+.steps li:last-child::before { display: none; }
+.dot { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 700; font-size: 12.5px; background: var(--accent); color: #FFFFFF; position: relative; z-index: 1; }
+.lane.you .dot { background: var(--here); color: var(--here-ink); }
+.steps b { display: block; }
+.steps span { color: var(--ink-2); font-size: 14.5px; }
+
+/* Esempio numerico */
+.calc { font-family: var(--mono); font-size: 13.5px; background: var(--soft); border-radius: 12px; padding: 14px; white-space: pre-wrap; word-break: break-word; line-height: 1.6; }
+.note { font-size: 13.5px; color: var(--muted); }
+
+/* Barra dei pesi */
+.weights { display: flex; height: 44px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+.weights div { display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-weight: 700; font-size: 13.5px; font-variant-numeric: tabular-nums; min-width: 0; padding: 0 4px; text-align: center; }
+:root[data-theme="dark"] .weights div { color: #0E1116; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .weights div { color: #0E1116; } }
+.w1 { background: var(--c1); width: 35%; }
+.w2 { background: var(--c2); width: 30%; }
+.w3 { background: var(--c3); width: 20%; }
+.w4 { background: var(--c4); width: 15%; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.verdicts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 680px) { .verdicts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.verdict { border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 2px; }
+.verdict b { font-size: 15px; }
+.verdict span { font-size: 13.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Soglia */
+.gauge { display: flex; flex-direction: column; gap: 8px; }
+.gauge-bar { position: relative; height: 14px; border-radius: 99px; background: linear-gradient(90deg, var(--no-soft) 0 35%, var(--ok-soft) 35% 65%, var(--no-soft) 65% 100%); border: 1px solid var(--line); }
+.gauge-labels { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.gauge-mid { position: absolute; left: 50%; top: -5px; width: 2px; height: 24px; background: var(--ink); }
+
+/* Fasi */
+.phases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 760px) { .phases { grid-template-columns: 1fr; } }
+.phase { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: start; border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+.phase-n { width: 44px; height: 60px; border-radius: 8px; background: var(--soft); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 700; font-size: 13px; font-variant-numeric: tabular-nums; }
+.phase b { display: block; }
+.phase span { font-size: 14px; color: var(--ink-2); }
+.phase small { display: block; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+
+/* Decisioni */
+.decisions { list-style: none; padding: 0; gap: 0; }
+.decisions li { display: grid; grid-template-columns: minmax(150px, 220px) 1fr; gap: 6px 16px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.decisions li:last-child { border-bottom: 0; }
+.decisions b { font-size: 14.5px; }
+.decisions span { color: var(--ink-2); font-size: 14.5px; }
+@media (max-width: 560px) { .decisions li { grid-template-columns: 1fr; } }
+
+footer { font-size: 14px; color: var(--muted); display: flex; flex-direction: column; gap: 8px; padding-inline: 4px; }
+footer .links { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+</style>
+<style>body{margin:0}</style>
+</head>
+<body>
+
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Pokémon Price Tracker · scheda di riferimento · versione 2 · 8 ottobre 2026</div>
+    <h1>Scheda del Valutatore Pokémon</h1>
+    <p class="lead">Riassunto visivo di come funziona lo strumento e di tutte le decisioni prese. Il testo completo, che Claude Code segue, è in <code>CLAUDE.md</code>. Se le due cose non coincidono, vale CLAUDE.md.</p>
+    <div class="facts">
+      <div class="fact"><b>Dal 2017</b><span>promo e rarità speciali, internazionali e giapponesi</span></div>
+      <div class="fact"><b>18</b><span>variabili + combinazioni chiave</span></div>
+      <div class="fact"><b>±15%</b><span>errore massimo accettato</span></div>
+      <div class="fact"><b>5–8</b><span>comparabili con prezzo Near Mint inserito da te</span></div>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Indice">
+    <div class="toc-inner">
+      <a href="#funziona"><span>1</span>Come funziona</a>
+      <a href="#perimetro"><span>2</span>Perimetro</a>
+      <a href="#fonti"><span>3</span>Fonti</a>
+      <a href="#variabili"><span>4</span>Variabili</a>
+      <a href="#combinazioni"><span>5</span>Combinazioni</a>
+      <a href="#comparabili"><span>6</span>Comparabili</a>
+      <a href="#affidabilita"><span>7</span>Affidabilità</a>
+      <a href="#investimento"><span>8</span>Investimento</a>
+      <a href="#nearmint"><span>9</span>Near Mint</a>
+      <a href="#fasi"><span>10</span>Fasi</a>
+      <a href="#decisioni"><span>11</span>Decisioni</a>
+    </div>
+  </nav>
+
+  <!-- 1 -->
+  <section id="funziona">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Come funziona</h2></div>
+    <p class="lead">Due binari: il sistema lavora da solo ogni settimana sul mercato intero; tu intervieni solo quando valuti una carta.</p>
+    <div class="lanes">
+      <div class="lane">
+        <div class="lane-head"><h3>In automatico, ogni settimana</h3><span class="tag auto">nessun intervento</span></div>
+        <ol class="steps">
+          <li><span class="dot">1</span><div><b>Scarica il pool</b><span>Migliaia di carte del perimetro da TCGdex (e TCGCSV per le giapponesi), con prezzo di riferimento e caratteristiche.</span></div></li>
+          <li><span class="dot">2</span><div><b>Calcola le variabili</b><span>Le 18 variabili per ogni carta, con le tabelle di conversione.</span></div></li>
+          <li><span class="dot">3</span><div><b>Addestra il modello</b><span>Regressione sul logaritmo del prezzo, combinazioni, freno sui pesi incerti, confronto con un modello flessibile.</span></div></li>
+          <li><span class="dot">4</span><div><b>Controlla la qualità</b><span>Errore su carte mai viste, carte di controllo, pesi stabili. Se qualcosa peggiora: non pubblica e ti avvisa.</span></div></li>
+          <li><span class="dot">5</span><div><b>Pubblica e salva</b><span>Nuovi pesi per la dashboard e una fotografia del mercato per verificare i giudizi nel tempo.</span></div></li>
+        </ol>
+      </div>
+      <div class="lane you">
+        <div class="lane-head"><h3>Quando valuti una carta</h3><span class="tag man">5–10 minuti</span></div>
+        <ol class="steps">
+          <li><span class="dot">1</span><div><b>Inserisci la carta</b><span>Ricerca per nome con foto, o link Cardmarket. Controlli le caratteristiche riconosciute.</span></div></li>
+          <li><span class="dot">2</span><div><b>Ricevi 5–8 comparabili</b><span>Scelti con i filtri per famiglia, con link a Cardmarket ed eBay venduti.</span></div></li>
+          <li><span class="dot">3</span><div><b>Inserisci i prezzi Near Mint</b><span>Della tua carta e dei comparabili, stessa lingua. Le caselle già note sono precompilate.</span></div></li>
+          <li><span class="dot">4</span><div><b>Il sistema rettifica e calcola</b><span>Ogni comparabile corretto verso la tua carta con pesi e combinazioni; la mediana è il prezzo equo NM.</span></div></li>
+          <li><span class="dot">5</span><div><b>Leggi la scheda</b><span>Giudizio di prezzo, giudizio d'investimento, affidabilità. Se vuoi, aggiungi al monitoraggio.</span></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section id="perimetro">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Perimetro della prima versione</h2></div>
+    <p class="lead">Carte singole, non gradate, solo carte Pokémon, da Sole e Luna (2017) in poi, internazionali e giapponesi.</p>
+    <div class="cols">
+      <div class="box ok">
+        <h3>Incluse</h3>
+        <ul>
+          <li><b>Tutte le promo</b>: Black Star, SM-P, S-P, SV-P, Pokémon Center, premi di eventi e tornei, promo in box e collezioni.</li>
+          <li><b>Illustration rare, special illustration rare, character rare</b> (giapp. AR, SAR, CHR, CSR).</li>
+          <li><b>Gold, hyper, rainbow</b> (giapp. UR, HR).</li>
+          <li><b>Shiny</b> e carte Pokémon delle <b>gallerie</b> (Trainer Gallery, Galarian Gallery).</li>
+        </ul>
+      </div>
+      <div class="box no">
+        <h3>Escluse (per ora)</h3>
+        <ul>
+          <li>Full art "normali" (V, GX, ex, EX), holo rare, comuni, non comuni.</li>
+          <li>Carte Allenatore ed Energia.</li>
+          <li>Vintage (prima del 2017), sigillati, gradate.</li>
+          <li>Prezzi per italiano e cinese.</li>
+        </ul>
+        <p class="note">Una carta fuori perimetro viene segnalata: "carta fuori dal perimetro del modello".</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section id="fonti">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Fonti dei dati</h2></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Fonte</th><th>Cosa fornisce</th><th>Uso</th><th>Costo</th></tr></thead>
+        <tbody>
+          <tr><td><b>TCGdex</b></td><td>Elenco carte e set, foto, rarità, Pokémon, illustratore; prezzo di riferimento Cardmarket in euro (<code>trend</code>, medie a 1, 7, 30 giorni)</td><td>Fonte principale del pool e delle variabili</td><td>Gratis</td></tr>
+          <tr><td><b>TCGCSV</b></td><td>Prezzi TCGplayer di oggi (USA, dollari), set inglesi e giapponesi</td><td>Riserva per le giapponesi, esclusive linguistiche. <b>L'archivio storico non è più scaricabile.</b></td><td>Gratis</td></tr>
+          <tr><td><b>PokéAPI</b></td><td>Leggendario, misterioso, generazione</td><td>Variabili del soggetto</td><td>Gratis</td></tr>
+          <tr><td><b>Tu, a mano</b></td><td>Prezzi Near Mint, popolazione PSA 10 e totale, copie in vendita (filtri NM + lingua)</td><td>Valutazione della singola carta e scarsità</td><td>—</td></tr>
+          <tr><td>eBay</td><td>Vendite concluse (solo come link)</td><td>Non nei modelli: il contratto per sviluppatori lo vieta</td><td>—</td></tr>
+          <tr><td>A pagamento</td><td>PokemonPriceTracker (storico), Scrydex e GemRate (popolazioni PSA)</td><td>Solo con il tuo ok</td><td>da verificare</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Nessuno scraping di Cardmarket, eBay o PSA.</p>
+  </section>
+
+  <!-- 4 -->
+  <section id="variabili">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Le 18 variabili del prezzo equo</h2></div>
+    <p class="lead">I pesi non li decidiamo noi: li calcola la regressione sul pool. La colonna "effetto atteso" è solo l'ipotesi di controllo: se il modello trova il contrario, ci si ferma e si indaga.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Variabile</th><th>Valori</th><th>Effetto atteso</th></tr></thead>
+        <tbody>
+          <tr class="group-row"><td colspan="4">Il soggetto</td></tr>
+          <tr><td class="num">1</td><td>Pokémon raffigurato</td><td>~30 più frequenti, altri in "altro"</td><td><span class="up">↑</span> Charizard, Pikachu, Umbreon…</td></tr>
+          <tr><td class="num">2</td><td>Iconicità</td><td>bassa · media · alta (dati + tua lista)</td><td><span class="up">↑ forte</span></td></tr>
+          <tr><td class="num">3</td><td>Generazione</td><td>1–9</td><td><span class="up">↑</span> per la 1ª</td></tr>
+          <tr><td class="num">4</td><td>Leggendario / misterioso</td><td>sì · no</td><td><span class="up">↑</span></td></tr>
+          <tr class="group-row"><td colspan="4">Rarità e stampa</td></tr>
+          <tr><td class="num">5</td><td>Rarità armonizzata</td><td>IR · SIR · CHR · gold · hyper/rainbow · shiny · galleria · promo</td><td><span class="up">↑ molto forte</span> per SIR e gold</td></tr>
+          <tr><td class="num">6</td><td>Meccanica</td><td>ex · EX · GX · V · VMAX · VSTAR · Mega · nessuna</td><td><span class="q">da scoprire</span></td></tr>
+          <tr><td class="num">7</td><td>Variante</td><td>normale · holo · reverse</td><td><span class="q">da scoprire</span></td></tr>
+          <tr class="group-row"><td colspan="4">Set, età e rilascio (indizi della tiratura)</td></tr>
+          <tr><td class="num">8</td><td>Era</td><td>Sole e Luna · Spada e Scudo · Scarlatto e Violetto · Mega</td><td><span class="up">↑</span> per le più vecchie</td></tr>
+          <tr><td class="num">9</td><td>Età del set</td><td>fasce: 0–3, 3–6, 6–12, 12–24, 24+ mesi</td><td>forse a "U"</td></tr>
+          <tr><td class="num">10</td><td>Tipo di set</td><td>principale · speciale · sottoset · promo</td><td><span class="q">da scoprire</span></td></tr>
+          <tr><td class="num">11</td><td>Modalità di rilascio</td><td>busta · prodotto speciale · evento/torneo · Pokémon Center</td><td><span class="up">↑</span> evento e Pokémon Center · importanza medio-alta</td></tr>
+          <tr><td class="num">12</td><td>Diluizione</td><td>n. carte della stessa rarità nel set</td><td><span class="down">↓</span></td></tr>
+          <tr><td class="num">13</td><td>Stamped</td><td>sì · no</td><td><span class="up">↑</span></td></tr>
+          <tr class="group-row"><td colspan="4">Altre</td></tr>
+          <tr><td class="num">14</td><td>Esclusiva linguistica</td><td>entrambe · solo giapponese · solo internazionale</td><td><span class="up">↑</span> per le esclusive di Pokémon iconici</td></tr>
+          <tr><td class="num">15</td><td>Illustratore</td><td>~20 più frequenti, altri in "altro"</td><td><span class="q">da scoprire</span></td></tr>
+          <tr><td class="num">16</td><td>Giocabile in Standard</td><td>sì · no</td><td><span class="up">↑ lieve</span></td></tr>
+          <tr><td class="num">17</td><td>Famiglia</td><td>carta da busta · promo e rilascio speciale</td><td>cambia il peso della rarità</td></tr>
+          <tr><td class="num">18</td><td>Lingua</td><td>internazionale · giapponese</td><td>solo se stessa fonte di prezzo</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cols">
+      <div class="box">
+        <h3>Come nasce un peso</h3>
+        <p>Il modello confronta migliaia di carte che differiscono per una caratteristica e trova i pesi che sbagliano meno. Con il logaritmo, ogni peso è un sovrapprezzo:</p>
+        <div class="calc">sovrapprezzo % = (e^b − 1) × 100
+b = 0,47  →  +60%</div>
+      </div>
+      <div class="box">
+        <h3>Fuori dalla regressione</h3>
+        <ul>
+          <li>Popolazione PSA e copie in vendita: non disponibili per tutte le carte. Entrano in comparabili e investimento.</li>
+          <li>Tiratura ufficiale: non pubblica, sostituita dagli indizi 9–12.</li>
+          <li>Qualsiasi dato derivato dal prezzo.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section id="combinazioni">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Combinazioni (interazioni)</h2></div>
+    <p class="lead">Un Pikachu promo esclusiva giapponese vale più della somma delle sue parti. L'interazione è un peso in più che si attiva solo quando le caratteristiche sono presenti insieme.</p>
+    <div class="cols">
+      <div class="box info">
+        <h3>Combinazioni chiave</h3>
+        <ul>
+          <li><b>iconicità × famiglia × esclusiva linguistica</b> (sempre nel modello se ≥ 15 carte)</li>
+          <li>famiglia × rarità</li>
+          <li>famiglia × iconicità</li>
+          <li>iconicità × rarità · iconicità × stamped · iconicità × rilascio</li>
+          <li>era × rarità</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Come si gestiscono</h3>
+        <ol>
+          <li>Conteggio delle carte per combinazione.</li>
+          <li>Peso diretto se ci sono 15–20 carte o più.</li>
+          <li>"Freno" (regolarizzazione) se sono poche.</li>
+          <li>Confronto con un modello flessibile che le trova da solo.</li>
+          <li>Rete di sicurezza: comparabili con la stessa combinazione.</li>
+          <li>Poche carte = affidabilità più bassa, dichiarata.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="box">
+      <h3>Esempio calcolato (10 carte inventate)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Carta</th><th>Prezzo reale</th><th>Senza interazione</th><th>Con interazione Pikachu × promo</th></tr></thead>
+          <tbody>
+            <tr><td>Pikachu promo A</td><td>58 €</td><td>48,60 € · sembra cara del 19% ❌</td><td>60 € · in linea ✅</td></tr>
+            <tr><td>Pikachu promo B</td><td>62 €</td><td>48,60 € · sembra cara del 28% ❌</td><td>60 € · in linea ✅</td></tr>
+            <tr><td>Gengar promo</td><td>14 €</td><td>17,90 € · sembra un affare ❌</td><td>14,50 € · in linea ✅</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Il modello ha trovato da solo un peso di combinazione di ×2,09 (+109%).</p>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section id="comparabili">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Comparabili e rettifica</h2></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Famiglia</th><th>Devono essere uguali</th><th>Se ce ne sono pochi</th></tr></thead>
+        <tbody>
+          <tr><td><b>Carte da busta</b></td><td>fascia di rarità + livello di iconicità</td><td>si allenta solo l'iconicità; la rarità mai</td></tr>
+          <tr><td><b>Promo e rilasci speciali</b></td><td>modalità di rilascio + livello di iconicità</td><td>si allenta solo l'iconicità; il rilascio mai</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cols">
+      <div class="box">
+        <h3>Scelta</h3>
+        <ul>
+          <li>Somiglianza 0–100% su tutte le altre variabili (distanza di Gower), pesata con l'importanza stimata dal modello.</li>
+          <li>Era ed età pesano poco: la differenza la corregge la rettifica.</li>
+          <li>Si mostrano le 5–8 più simili; servono almeno 3 sopra il 70%.</li>
+          <li>La famiglia non cambia mai.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Rettifica (numeri inventati)</h3>
+        <div class="calc">Pikachu promo         40 € × 1,5 × 1,8 × 1,2 = 130 €
+Pikachu promo escl.   70 € × 1,8 × 1,2       = 151 €
+Eevee promo escl. FA  85 € × 1,6             = 136 €
+Prezzo equo NM = mediana ≈ 136 € (130–151 €)</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="box">
+        <h3>Regole sui prezzi che inserisci</h3>
+        <ul>
+          <li>Stesso tipo di prezzo per tutte le carte di una valutazione.</li>
+          <li>Meglio la mediana delle ultime 3 vendite NM nella stessa lingua.</li>
+          <li>Prezzi oltre 30 giorni: avviso.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Prezzi che non invecchiano</h3>
+        <p>Si salva il <b>rapporto NM / riferimento</b> del giorno. La volta dopo la casella si precompila con rapporto × riferimento di oggi.</p>
+        <div class="calc">oggi: NM 46 € / rif. 40 € → +15%
+tra 2 mesi: rif. 50 € → 50 × 1,15 = 57,50 €</div>
+        <p class="note">Dopo 90 giorni chiede di reinserirlo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section id="affidabilita">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Affidabilità: errore massimo ±15%</h2></div>
+    <div class="gauge" aria-label="Fascia di errore accettata">
+      <div class="gauge-bar"><span class="gauge-mid"></span></div>
+      <div class="gauge-labels"><span>−30%</span><span>−15%</span><span>prezzo stimato</span><span>+15%</span><span>+30%</span></div>
+    </div>
+    <div class="cols">
+      <div class="box">
+        <h3>Come si misura</h3>
+        <ul>
+          <li>Validazione incrociata: il modello stima carte che non ha visto.</li>
+          <li>Separata per famiglia, lingua e fascia di prezzo (&lt;10 €, 10–50 €, 50–200 €, &gt;200 €).</li>
+          <li>Esempio: su una carta da 20 € l'errore tipico non deve superare ±3 €.</li>
+        </ul>
+      </div>
+      <div class="box warn">
+        <h3>Se la soglia non è rispettata</h3>
+        <ul>
+          <li>Modello oltre il 15%: la scheda usa solo i comparabili con prezzi NM.</li>
+          <li>Comparabili troppo dispersi (oltre ±15%): "❔ Dati insufficienti".</li>
+          <li>Meglio nessun giudizio che uno sbagliato.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section id="investimento">
+    <div class="sec-head"><span class="sec-num">08</span><h2>Giudizio d'investimento</h2></div>
+    <p class="lead">Pesi iniziali dichiarati, <b>non ancora validati</b>. Verranno sostituiti da pesi stimati sui dati dopo 3–6 mesi di fotografie del mercato.</p>
+    <div class="weights" role="img" aria-label="Pesi: valutazione relativa 35%, fattori strutturali 30%, scarsità 20%, andamento 15%">
+      <div class="w1">35%</div><div class="w2">30%</div><div class="w3">20%</div><div class="w4">15%</div>
+    </div>
+    <div class="legend">
+      <span><i style="background: var(--c1)"></i>Valutazione relativa</span>
+      <span><i style="background: var(--c2)"></i>Fattori strutturali</span>
+      <span><i style="background: var(--c3)"></i>Scarsità (dati manuali)</span>
+      <span><i style="background: var(--c4)"></i>Andamento ultimo mese</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Componente</th><th>Peso</th><th>Cosa contiene</th></tr></thead>
+        <tbody>
+          <tr><td>Valutazione relativa</td><td>35%</td><td>sconto rispetto al prezzo equo e ai comparabili</td></tr>
+          <tr><td>Fattori strutturali</td><td>30%</td><td>età e fuori stampa 7,5% · iconicità 7,5% · rilascio limitato 7,5% · diluizione bassa 7,5%</td></tr>
+          <tr><td>Scarsità</td><td>20%</td><td>PSA 10 rispetto ai comparabili 10% · copie in vendita 10% (se mancano, il 20% si ridistribuisce)</td></tr>
+          <tr><td>Andamento</td><td>15%</td><td>salita moderata = positivo · picco improvviso = prudenza</td></tr>
+          <tr><td>Rischio</td><td>fino a −15 punti</td><td>prezzi dispersi, pochi comparabili, set di meno di 3 mesi</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="verdicts">
+      <div class="verdict"><b>🟢 Interessante</b><span>65 punti o più</span></div>
+      <div class="verdict"><b>⚪ Neutro</b><span>da 40 a 64</span></div>
+      <div class="verdict"><b>🔴 Sconsigliato</b><span>sotto 40</span></div>
+      <div class="verdict"><b>❔ Insufficienti</b><span>mancano dati</span></div>
+    </div>
+    <div class="box info">
+      <h3>Tre livelli di verifica</h3>
+      <ol>
+        <li><b>Subito</b>: mini-storico a 30 giorni dalle medie Cardmarket (test grezzo, dichiarato).</li>
+        <li><b>Nel tempo</b>: registro dei giudizi confrontato con i prezzi reali a 3, 6 e 12 mesi.</li>
+        <li><b>Opzionale</b>: storico a pagamento per un backtest immediato, solo con il tuo ok.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section id="nearmint">
+    <div class="sec-head"><span class="sec-num">09</span><h2>Near Mint e lingua</h2></div>
+    <div class="cols">
+      <div class="box warn">
+        <h3>Il limite</h3>
+        <p>Il prezzo di riferimento automatico è unico per prodotto: non si può filtrare per condizione o lingua (API Cardmarket chiusa, scraping escluso). Come Cardmarket calcola il "trend" va verificato nel blocco 1.</p>
+      </div>
+      <div class="box ok">
+        <h3>La soluzione</h3>
+        <ul>
+          <li>Il modello usa lo stesso riferimento per tutte le carte: il confronto relativo resta coerente.</li>
+          <li>La valutazione usa i <b>tuoi prezzi NM</b> nella lingua giusta.</li>
+          <li>Calibrazione con le carte di controllo e con i rapporti NM salvati.</li>
+          <li>Copie in vendita contate con filtri NM + lingua.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section id="fasi">
+    <div class="sec-head"><span class="sec-num">10</span><h2>Fasi di lavoro</h2></div>
+    <div class="phases">
+      <div class="phase"><div class="phase-n">0</div><div><b>Prima di iniziare</b><span>Cartella, app Claude, GitHub, 15–20 carte di controllo con l'offerta minima NM su Cardmarket (fascia +5% calcolata).</span><small>Principiante</small></div></div>
+      <div class="phase"><div class="phase-n">1</div><div><b>Fotografia del mercato</b><span>Scarica il pool, conta le carte per rarità, verifica le giapponesi e il "trend".</span><small>Intermedio</small></div></div>
+      <div class="phase"><div class="phase-n">2</div><div><b>Online e raccolta automatica</b><span>GitHub, Pages, fotografia settimanale. Da fare presto.</span><small>Intermedio</small></div></div>
+      <div class="phase"><div class="phase-n">3</div><div><b>Caratteristiche</b><span>Le 18 variabili e le tabelle di rarità, set, rilasci, iconici.</span><small>Intermedio / Avanzato</small></div></div>
+      <div class="phase"><div class="phase-n">4</div><div><b>Prezzo equo</b><span>Regressione, combinazioni, validazione, soglia ±15%.</span><small>Avanzato</small></div></div>
+      <div class="phase"><div class="phase-n">5</div><div><b>Comparabili e scheda</b><span>Valuta una carta, prezzi NM, rettifica.</span><small>Avanzato</small></div></div>
+      <div class="phase"><div class="phase-n">6</div><div><b>Giudizio d'investimento</b><span>Punteggio, pro e contro, mini-storico, registro.</span><small>Avanzato</small></div></div>
+      <div class="phase"><div class="phase-n">7</div><div><b>Monitoraggio e notifiche</b><span>Watchlist, iPhone, avvisi ntfy.</span><small>Intermedio</small></div></div>
+      <div class="phase"><div class="phase-n">8</div><div><b>Verifica nel tempo</b><span>Dopo 3–6 mesi: i giudizi hanno funzionato? Pesi dai dati.</span><small>Avanzato</small></div></div>
+      <div class="phase"><div class="phase-n">9</div><div><b>Estensioni</b><span>Full art, Allenatori, vintage, sigillati, gradate, lingue, portfolio.</span><small>più avanti</small></div></div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section id="decisioni">
+    <div class="sec-head"><span class="sec-num">11</span><h2>Registro delle decisioni</h2></div>
+    <p class="lead">Tutte prese l'8 ottobre 2026.</p>
+    <ul class="decisions">
+      <li><b>Impostazione</b><span>Da monitoraggio con storico a valutatore basato su carte simili: l'archivio storico non è più scaricabile.</span></li>
+      <li><b>Mercato di riferimento</b><span>Cardmarket in euro; TCGplayer solo come riserva per le giapponesi.</span></li>
+      <li><b>Perimetro</b><span>Promo e rarità speciali (IR, SIR, CHR, gold, hyper, shiny, gallerie) dal 2017, solo carte Pokémon.</span></li>
+      <li><b>Giapponesi</b><span>Incluse; fonte da verificare nel blocco 1.</span></li>
+      <li><b>Famiglie</b><span>Carte da busta e promo e rilasci speciali, con filtri diversi.</span></li>
+      <li><b>Iconicità</b><span>Calcolata dai dati e confrontata con la tua lista.</span></li>
+      <li><b>Combinazioni</b><span>Fondamentali; iconicità × famiglia × esclusiva sempre nel modello.</span></li>
+      <li><b>Near Mint</b><span>Prezzi NM inseriti a mano per la carta e i comparabili; rapporto NM / riferimento salvato.</span></li>
+      <li><b>Soglia di errore</b><span>±15% massimo.</span></li>
+      <li><b>Investimento</b><span>Pesi 35 / 30 / 20 / 15, non validati, da rivedere.</span></li>
+      <li><b>Scraping</b><span>Escluso. Eventuale "lettura assistita" da valutare dopo aver letto le condizioni di Cardmarket.</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p><b>Consigli e valutazioni sono stime statistiche con margine di errore, non certezze né consulenza finanziaria.</b></p>
+    <div class="links">
+      <a href="https://tcgdex.dev/markets-prices" target="_blank" rel="noopener">TCGdex</a>
+      <a href="https://tcgcsv.com/faq" target="_blank" rel="noopener">TCGCSV</a>
+      <a href="https://pokeapi.co" target="_blank" rel="noopener">PokéAPI</a>
+      <a href="https://www.cardmarket.com" target="_blank" rel="noopener">Cardmarket</a>
+      <a href="https://www.psacard.com/pop" target="_blank" rel="noopener">PSA Population</a>
+    </div>
+    <p>Riferimento completo: CLAUDE.md, versione 2.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

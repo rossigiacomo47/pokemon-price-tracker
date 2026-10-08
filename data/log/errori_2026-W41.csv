@@ -1,0 +1,10 @@
+data,url,errore
+2026-10-08,https://api.tcgdex.net/v2/en/cards/swsh1-121,HTTP 503
+2026-10-08,https://api.tcgdex.net/v2/en/cards/swsh1-122,HTTP 503
+2026-10-08,https://api.tcgdex.net/v2/en/cards/swsh1-123,HTTP 503
+2026-10-08,https://api.tcgdex.net/v2/ja/cards/M1S-083,HTTP 503
+2026-10-08,https://api.tcgdex.net/v2/ja/cards/M1S-081,HTTP 503
+2026-10-08,https://api.tcgdex.net/v2/ja/cards/M1S-082,HTTP 503
+2026-10-08,https://api.tcgdex.net/v2/ja/cards/MC-641,HTTP 503
+2026-10-08,https://api.tcgdex.net/v2/ja/cards/MC-642,HTTP 503
+2026-10-08,https://api.tcgdex.net/v2/ja/cards/MC-643,HTTP 503

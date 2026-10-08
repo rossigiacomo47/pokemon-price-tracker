@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Bussola Pokémon Price Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600&family=Unbounded:wght@500;700;800&display=swap">
+<style>
+:root {
+  --ground: #F3F5F9;
+  --card: #FFFFFF;
+  --ink: #101217;
+  --ink-2: #3B4250;
+  --muted: #5B6474;
+  --line: #DDE2EA;
+  --accent: #2D5BFF;
+  --accent-soft: #EAF0FF;
+  --here: #FFCB05;
+  --here-ink: #1A1400;
+  --ok: #0B6A40;
+  --ok-soft: #E5F4EC;
+  --ok-line: #BFE3CF;
+  --warn: #B42318;
+  --warn-soft: #FDEDEB;
+  --code: #EEF1F6;
+  --rare: #A57F00;
+  --common: #6B7484;
+  --binder: #E6EAF1;
+  --display: "Unbounded", "Arial Black", sans-serif;
+  --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .bar span { transition: none; } }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.55;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+a { color: var(--accent); }
+a:hover { color: #1A3FCC; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--display); margin: 0; line-height: 1.15; text-wrap: balance; }
+h1 { font-weight: 800; font-size: clamp(32px, 5vw, 54px); line-height: 1.08; letter-spacing: -0.01em; }
+h2 { font-weight: 700; font-size: clamp(24px, 3.4vw, 30px); }
+h3 { font-weight: 700; font-size: clamp(20px, 2.6vw, 24px); line-height: 1.2; }
+p { margin: 0; }
+b { font-weight: 700; }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; padding-block: 48px 96px; display: flex; flex-direction: column; gap: 64px; }
+.eyebrow { font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.lead { color: var(--ink-2); max-width: 64ch; }
+.stack { display: flex; flex-direction: column; gap: 10px; }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 18px; }
+
+/* Testata */
+.hero { display: flex; flex-wrap: wrap; gap: 32px; align-items: stretch; }
+.hero-text { flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 18px; justify-content: center; }
+.hero-text .lead { font-size: 18px; max-width: 58ch; }
+.progress { flex: 1 1 300px; min-width: 0; border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 16px; }
+.pct-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.pct { font-family: var(--display); font-weight: 800; font-size: 56px; line-height: 1; font-variant-numeric: tabular-nums; }
+.count { color: var(--muted); font-variant-numeric: tabular-nums; }
+.bar { height: 12px; border-radius: 99px; background: var(--code); overflow: hidden; }
+.bar span { display: block; height: 100%; width: 0%; border-radius: 99px; background: var(--accent); transition: width .3s ease; }
+.here-chip { align-self: flex-start; background: var(--here); color: var(--here-ink); font-weight: 700; font-size: 14px; padding: 6px 12px; border-radius: 8px; }
+.go { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 20px; border-radius: 12px; background: var(--ink); color: #FFFFFF; font-weight: 700; text-decoration: none; }
+.go:hover { color: #FFFFFF; background: #262A33; }
+
+/* Raccoglitore */
+.binder-row { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; }
+.binder { flex: 1 1 520px; min-width: 0; max-width: 620px; position: relative; background: var(--binder); border: 1px solid #D3D9E3; border-radius: 22px; padding: 20px 20px 20px 52px; }
+.rings { position: absolute; left: 16px; top: 24px; bottom: 24px; display: flex; flex-direction: column; justify-content: space-around; }
+.rings span { display: block; width: 18px; height: 18px; border-radius: 50%; background: var(--ground); border: 1px solid #C3CAD6; }
+.pockets { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.pocket { display: flex; flex-direction: column; justify-content: space-between; gap: 8px; aspect-ratio: 63 / 88; max-width: 100%; padding: 12px; border-radius: 12px; text-decoration: none; color: var(--ink); min-width: 0; background: var(--card); border: 1px solid #D3D9E3; transition: transform .15s ease; }
+.pocket:hover { color: var(--ink); transform: translateY(-2px); }
+.pocket.current { background: var(--here); border-color: #E5B700; box-shadow: 0 8px 20px rgba(229, 183, 0, 0.35); }
+.pocket.done { background: var(--ok-soft); border-color: var(--ok-line); }
+.pocket-top { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+.pocket-num { font-family: var(--display); font-weight: 700; font-size: 13px; font-variant-numeric: tabular-nums; }
+.pocket-name { font-weight: 700; font-size: 15px; line-height: 1.25; }
+.pocket-status { font-size: 12.5px; font-weight: 700; color: var(--muted); }
+.pocket.current .pocket-status, .pocket.current .sym { color: var(--here-ink); }
+.pocket.done .pocket-status { color: var(--ok); }
+.binder-side { flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.legend { display: flex; flex-direction: column; gap: 8px; font-size: 15px; }
+.sym { font-weight: 700; }
+.sym-common { color: var(--common); }
+.sym-uncommon { color: var(--accent); }
+.sym-rare { color: var(--rare); }
+.sym-mixed { color: var(--ink); }
+@media (max-width: 420px) {
+  .binder { padding: 14px 14px 14px 40px; }
+  .rings { left: 11px; }
+  .rings span { width: 14px; height: 14px; }
+  .pockets { gap: 8px; }
+  .pocket { padding: 8px; }
+  .pocket-name { font-size: 13px; }
+  .pocket-status { font-size: 11px; }
+}
+
+/* Avvio */
+.tiles { display: flex; flex-wrap: wrap; gap: 16px; }
+.tile { flex: 1 1 220px; min-width: 0; padding: 22px; display: flex; flex-direction: column; gap: 10px; }
+.tile-num { width: 40px; height: 40px; border-radius: 12px; background: var(--accent); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 700; }
+.tile b { font-size: 17px; }
+.tile span:last-child { color: var(--ink-2); }
+.note { background: var(--accent-soft); border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; color: #1F2A44; }
+.note small { font-size: 14px; color: #4A5672; }
+
+/* Ritmo */
+.moves { display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch; }
+.move { flex: 1 1 300px; min-width: 0; padding: 22px; display: flex; flex-direction: column; gap: 12px; }
+.move-title { font-family: var(--display); font-weight: 700; font-size: 18px; color: var(--accent); }
+.move ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; color: var(--ink-2); }
+
+/* Messaggi da copiare */
+.prompt { background: var(--code); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.prompt.row { flex-direction: row; flex-wrap: wrap; align-items: flex-start; padding: 14px 16px; gap: 12px; }
+.prompt-text { flex: 999 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.prompt pre { margin: 0; font-family: var(--mono); font-size: 13.5px; line-height: 1.55; white-space: pre-wrap; word-break: break-word; }
+.copy { align-self: flex-start; flex: none; min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #C9D1DD; background: var(--card); color: var(--ink); font: inherit; font-weight: 700; cursor: pointer; }
+.copy:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Blocchi */
+.phases { display: flex; flex-direction: column; gap: 20px; }
+.phase { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 22px; scroll-margin-top: 24px; }
+.phase.current { border: 2px solid var(--here); box-shadow: 0 0 0 5px #FFF3BF; }
+.phase.done { border-color: var(--ok-line); }
+.phase-head { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+.badge { width: 64px; height: 89px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 700; font-size: 16px; font-variant-numeric: tabular-nums; flex: none; background: var(--ground); border: 1px solid var(--line); }
+.phase.current .badge { background: var(--here); color: var(--here-ink); border-color: #E5B700; }
+.phase.done .badge { background: var(--ok-soft); color: var(--ok); border-color: var(--ok-line); }
+.phase-title { flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.tag { align-self: flex-start; font-weight: 700; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; }
+.tag-here { background: var(--here); color: var(--here-ink); }
+.tag-done { background: var(--ok-soft); color: var(--ok); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px; }
+.chip { background: var(--ground); border: 1px solid var(--line); border-radius: 99px; padding: 4px 12px; }
+.goal { font-size: 18px; max-width: 64ch; }
+.cols { display: flex; flex-wrap: wrap; gap: 28px; }
+.col { flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.col ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; color: var(--ink-2); }
+.check { display: flex; gap: 12px; align-items: flex-start; min-height: 44px; padding: 8px 10px; border-radius: 10px; background: #F7F9FC; cursor: pointer; }
+.check input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: #0E7A4B; flex: none; cursor: pointer; }
+.check input:checked + span { color: var(--muted); text-decoration: line-through; text-decoration-color: #0E7A4B; }
+.warn { background: var(--warn-soft); border-radius: 12px; padding: 14px 16px; color: #3A1210; }
+.warn b { color: var(--warn); }
+
+/* Se ti blocchi */
+.trouble-row { display: flex; flex-wrap: wrap; gap: 40px; }
+.trouble { flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+.trouble-list { padding: 8px 22px; display: flex; flex-direction: column; }
+.trouble-item { padding: 14px 0; border-bottom: 1px solid #E6EAF0; display: flex; flex-direction: column; gap: 2px; }
+.trouble-item:last-child { border-bottom: 0; }
+.trouble-item span { color: var(--ink-2); }
+.trouble-side { flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; }
+.trouble-side .prompt { border-radius: 18px; padding: 20px; gap: 12px; }
+
+/* Regole */
+.rules { background: var(--ink); color: #F3F5F9; border-radius: 24px; padding: 36px 28px; display: flex; flex-direction: column; gap: 22px; }
+.rules .eyebrow { color: var(--here); }
+.rules h2 { color: #FFFFFF; }
+.rules ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 12px; font-size: 17px; color: #D9DEE7; max-width: 70ch; }
+.rules ol b { color: #FFFFFF; }
+
+/* Piede */
+footer { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: flex-end; border-top: 1px solid var(--line); padding-top: 24px; font-size: 15px; color: var(--muted); }
+footer .links { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.reset { min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #C9D1DD; background: transparent; color: var(--ink-2); font: inherit; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TESTATA -->
+  <header class="hero">
+    <div class="hero-text">
+      <div class="eyebrow">Pokémon Price Tracker · valutatore di carte · guida di lavoro</div>
+      <h1>La tua bussola, blocco per blocco</h1>
+      <p class="lead">Ti dice dove sei, cosa fare adesso e quando un blocco è finito. I dettagli tecnici li ha Claude Code, che legge da solo il file CLAUDE.md. Spunta le caselle man mano: il progresso resta salvato su questo dispositivo.</p>
+    </div>
+    <div class="panel progress">
+      <div class="eyebrow">Avanzamento</div>
+      <div class="pct-row">
+        <span class="pct" id="pct">0%</span>
+        <span class="count" id="count">0 di 0 passaggi</span>
+      </div>
+      <div class="bar" role="progressbar" aria-label="Avanzamento del progetto" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar"><span id="bar-fill"></span></div>
+      <span class="here-chip" id="here-chip">Sei qui: Prima di iniziare</span>
+      <a class="go" id="go" href="#f0">Vai al blocco</a>
+    </div>
+  </header>
+
+  <!-- RACCOGLITORE -->
+  <section class="binder-row">
+    <div class="binder">
+      <div class="rings" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="pockets" id="pockets"></div>
+    </div>
+    <div class="binder-side">
+      <div class="eyebrow">Il percorso</div>
+      <h2>Nove blocchi, come una pagina di raccoglitore</h2>
+      <p class="lead">Si completano in ordine. Il blocco giallo è quello in cui ti trovi; quelli verdi sono finiti. Tocca un blocco per andare ai dettagli.</p>
+      <div class="legend">
+        <span><span class="sym sym-common">●</span> <b>Principiante</b></span>
+        <span><span class="sym sym-uncommon">◆</span> <b>Intermedio</b></span>
+        <span><span class="sym sym-rare">★</span> <b>Avanzato</b></span>
+        <span style="color: var(--muted)">Gli stessi simboli della rarità sulle carte.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVVIO -->
+  <section class="stack" style="gap: 24px">
+    <div class="stack">
+      <div class="eyebrow">Ogni volta che inizi · <span class="sym-common">●</span> Principiante</div>
+      <h2>Aprire Claude Code nell'app</h2>
+      <p class="lead">Niente terminale: l'app Claude per computer include già Claude Code. I passaggi sono uguali su PC Windows e Mac.</p>
+    </div>
+    <div class="tiles">
+      <div class="panel tile"><span class="tile-num">1</span><b>Apri la scheda Code</b><span>Avvia l'app Claude e fai clic su <b>Code</b>, in alto al centro.</span></div>
+      <div class="panel tile"><span class="tile-num">2</span><b>Scegli la cartella</b><span>Seleziona <b>Local</b>, poi <b>Select folder</b> e scegli la cartella pokemon-price-tracker.</span></div>
+      <div class="panel tile"><span class="tile-num">3</span><b>Scegli la modalità</b><span>Nel selettore accanto al pulsante di invio: <b>Plan</b> per vedere solo il piano, <b>Manual</b> per approvare ogni modifica.</span></div>
+      <div class="panel tile"><span class="tile-num">4</span><b>Incolla il messaggio</b><span>Copia dalla guida il messaggio del blocco in cui ti trovi e invialo.</span></div>
+    </div>
+    <div class="note">
+      <span><b>Buono a sapersi.</b> La scheda Code richiede un piano Pro o superiore: il Pro basta. Se su Windows compare «Git is required», installa Git for Windows oppure aggiorna l'app. Dal blocco 2 Git servirà comunque: Claude Code ti guida nell'installazione.</span>
+      <small>Fonte: <a href="https://code.claude.com/docs/en/desktop-quickstart" target="_blank" rel="noopener">documentazione ufficiale di Claude Code Desktop</a>, verificata l'8 ottobre 2026.</small>
+    </div>
+  </section>
+
+  <!-- RITMO -->
+  <section class="stack" style="gap: 24px">
+    <div class="stack">
+      <div class="eyebrow">Ritmo di lavoro</div>
+      <h2>Ogni sessione in tre mosse</h2>
+      <p class="lead">Sessioni brevi, un blocco alla volta: non perdi il filo e consumi meno il tuo piano Claude.</p>
+    </div>
+    <div class="moves">
+      <div class="panel move">
+        <span class="move-title">Inizio</span>
+        <span style="color: var(--ink-2)">Fai dire a Claude Code a che punto siete.</span>
+        <div class="prompt"><pre>Leggi CLAUDE.md e il README. Dimmi a che punto siamo e riprendiamo dal blocco in corso, dal punto in cui ci siamo fermati.</pre><button class="copy" type="button">Copia</button></div>
+      </div>
+      <div class="panel move">
+        <span class="move-title">Durante</span>
+        <ul>
+          <li>Nei blocchi grandi usa la modalità <b>Plan</b>: Claude propone il piano senza toccare i file. Quando sei d'accordo, passa a <b>Manual</b>.</li>
+          <li>Prima di approvare una modifica, leggi cosa fa.</li>
+          <li>Se un termine non è chiaro, chiedi: «Spiegamelo con un esempio».</li>
+        </ul>
+      </div>
+      <div class="panel move">
+        <span class="move-title">Fine</span>
+        <span style="color: var(--ink-2)">Salva e prepara la ripartenza.</span>
+        <div class="prompt"><pre>Prima di chiudere: salva il lavoro (anche su GitHub, se è già collegato) e aggiorna il README con cosa abbiamo fatto, cosa manca e il primo passo della prossima sessione.</pre><button class="copy" type="button">Copia</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCCHI -->
+  <section class="stack" style="gap: 24px">
+    <div class="stack">
+      <div class="eyebrow">Dettaglio dei blocchi</div>
+      <h2>Cosa fare, blocco per blocco</h2>
+      <p class="lead">Un blocco è finito quando tutte le caselle «Fatto quando» sono spuntate.</p>
+    </div>
+    <div class="phases" id="phases"></div>
+  </section>
+
+  <!-- SE TI BLOCCHI -->
+  <section class="trouble-row">
+    <div class="trouble">
+      <div class="eyebrow">Imprevisti</div>
+      <h2>Se ti blocchi</h2>
+      <div class="panel trouble-list">
+        <div class="trouble-item"><b>La scheda Code chiede di passare a un piano a pagamento</b><span>Serve il piano Pro o superiore. Il Pro è sufficiente per questo progetto.</span></div>
+        <div class="trouble-item"><b>Compare «Git is required»</b><span>Su Windows installa Git for Windows, oppure aggiorna l'app Claude.</span></div>
+        <div class="trouble-item"><b>Compare un errore</b><span>Copialo tutto e usa il messaggio per gli errori. Non provare soluzioni trovate online.</span></div>
+        <div class="trouble-item"><b>Hai raggiunto il limite di utilizzo</b><span>Fermati e riprendi più tardi con il messaggio di «Inizio». Il lavoro salvato non si perde.</span></div>
+        <div class="trouble-item"><b>Cambi computer (PC e Mac)</b><span>Dal blocco 2 in poi chiedi: «Sincronizza il progetto con GitHub prima di iniziare».</span></div>
+        <div class="trouble-item"><b>Claude Code propone qualcosa di diverso da CLAUDE.md</b><span>Chiedi perché. Se ti convince, fagli aggiornare CLAUDE.md; se no, digli di seguire il file.</span></div>
+      </div>
+    </div>
+    <div class="trouble-side">
+      <div class="prompt">
+        <span class="eyebrow">Messaggio per gli errori</span>
+        <pre>Ho questo errore: [incolla qui l'errore]. Spiegami cosa significa e come risolverlo, un passo alla volta.</pre>
+        <button class="copy" type="button">Copia</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGOLE -->
+  <section class="rules">
+    <div class="eyebrow">Da tenere a mente</div>
+    <h2>Cinque regole d'oro</h2>
+    <ol>
+      <li><b>Un blocco alla volta.</b> Si passa al successivo solo con tutte le caselle spuntate.</li>
+      <li><b>Prima il piano, poi il codice.</b> Se il piano non ti è chiaro, non dare l'ok.</li>
+      <li><b>Chiavi e token solo nei posti sicuri:</b> Secrets di GitHub o Comando Rapido. Mai in chat, mai nei file.</li>
+      <li><b>Verifica con i tuoi occhi:</b> controlla sempre le tue carte di controllo e apri 2–3 comparabili sui link.</li>
+      <li><b>Chiudi sempre salvando:</b> usa il messaggio di «Fine» a ogni sessione.</li>
+    </ol>
+  </section>
+
+  <!-- PIEDE -->
+  <footer>
+    <div class="stack" style="gap: 8px; min-width: 0">
+      <b style="color: var(--ink)">Link utili</b>
+      <div class="links">
+        <a href="https://code.claude.com/docs/en/desktop" target="_blank" rel="noopener">Claude Code Desktop</a>
+        <a href="https://tcgdex.dev/markets-prices" target="_blank" rel="noopener">TCGdex</a>
+        <a href="https://tcgcsv.com/faq" target="_blank" rel="noopener">TCGCSV</a>
+        <a href="https://www.psacard.com/pop" target="_blank" rel="noopener">PSA Population Report</a>
+        <a href="https://ntfy.sh" target="_blank" rel="noopener">ntfy</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <span>Informazioni verificate l'8 ottobre 2026. Il riferimento completo resta CLAUDE.md (versione 2).</span>
+    </div>
+    <button class="reset" type="button" id="reset">Azzera le spunte</button>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var PHASES = [
+    { id: 0, short: "Prima di iniziare", name: "Prima di iniziare", sym: "●", level: "Principiante", time: "15 minuti",
+      goal: "preparare cartella, app e account prima del primo blocco.",
+      you: [
+        "Crea la cartella pokemon-price-tracker nei Documenti e mettici dentro la nuova versione di CLAUDE.md (versione 2).",
+        "Installa l'app Claude per computer dal sito ufficiale e accedi con il tuo account.",
+        "Crea l'account GitHub: servirà dal blocco 2.",
+        "Prepara 15–20 carte di controllo che conosci bene, con link e l'offerta minima Near Mint nella lingua giusta su Cardmarket (la fascia +5% la calcola il sistema). Includi promo giapponesi di Pokémon iconici: servono a verificare il modello, non ad addestrarlo."
+      ],
+      items: [["v0-1", "Cartella creata, con CLAUDE.md versione 2 dentro"], ["v0-2", "L'app Claude si apre e la scheda Code funziona"], ["v0-3", "Account GitHub creato"], ["v0-4", "Lista di 15–20 carte di controllo pronta, con l'offerta minima NM"]],
+      warn: "", prompt: "" },
+    { id: 1, short: "Fotografia del mercato", name: "Fotografia del mercato", sym: "◆", level: "Intermedio", time: "1–2 ore",
+      goal: "scaricare prezzi e caratteristiche di migliaia di carte internazionali e giapponesi, come sono oggi.",
+      you: ["Leggi il piano e dai l'ok.", "Se manca Python, lo installi seguendo le istruzioni passo passo.", "Scegli con Claude Code la soglia sotto cui una carta è \"bulk\" ed esce dal modello.", "Controlli il riepilogo: quante carte, quali set, come si distribuiscono i prezzi."],
+      items: [["v1-1", "Il file con la fotografia del mercato esiste"], ["v1-2", "Il riepilogo ha numeri sensati, anche per famiglia e per lingua"], ["v1-3", "Le tue carte di controllo ci sono, con il prezzo giusto"], ["v1-4", "Sai se le carte giapponesi hanno prezzi Cardmarket e avete scelto la fonte"]],
+      warn: "",
+      prompt: "Leggi CLAUDE.md. Iniziamo dalla Fase 1. Prima di scrivere codice spiegami il piano e cosa devo preparare io, un passo alla volta." },
+    { id: 2, short: "Online", name: "Online e raccolta automatica", sym: "◆", level: "Intermedio", time: "1–3 ore",
+      goal: "progetto su GitHub e fotografia del mercato salvata da sola ogni settimana.",
+      you: ["Accedi a GitHub quando Claude Code te lo chiede.", "Confermi la creazione del repository, l'archivio online del progetto.", "Attivi GitHub Pages seguendo le istruzioni.", "Aggiungi il link della dashboard alla schermata Home dell'iPhone."],
+      items: [["v2-1", "La raccolta settimanale ha girato almeno una volta"], ["v2-2", "La pagina online si apre dall'iPhone"], ["v2-3", "Il progetto si apre anche dall'altro computer"]],
+      warn: "non rimandare questo blocco: ogni settimana senza raccolta è una fotografia in meno per verificare i giudizi d'investimento. Il repository è pubblico: mai password, chiavi o token dentro i file.",
+      prompt: "Passiamo alla Fase 2 di CLAUDE.md. Mostrami prima il piano e cosa devo fare io, un passo alla volta." },
+    { id: 3, short: "Caratteristiche", name: "Caratteristiche delle carte", sym: "◆ ★", level: "Intermedio / Avanzato", time: "3–5 ore",
+      goal: "dare a ogni carta le sue variabili: iconicità, promo, stamped, esclusiva linguistica, rarità, rilascio, età.",
+      you: ["Rivedi la lista dei Pokémon iconici e la tabella delle rarità tra le ere.", "Controlli i casi incerti che Claude Code ti mostra.", "Compili con lui la tabella delle modalità di rilascio, dove serve."],
+      items: [["v3-1", "Ogni carta del modello ha tutte le variabili"], ["v3-2", "Le esclusive giapponesi sono riconosciute"], ["v3-3", "Sulle tue carte di controllo le caratteristiche sono giuste"]],
+      warn: "",
+      prompt: "Passiamo alla Fase 3 di CLAUDE.md. Per ogni variabile spiegami da dove la ricavi e quanto è affidabile, poi mostrami il piano." },
+    { id: 4, short: "Prezzo equo", name: "Modello del prezzo equo", sym: "★", level: "Avanzato", time: "4–8 ore",
+      goal: "la regressione che dice a quanto dovrebbe essere una carta, con il suo margine di errore.",
+      you: ["Ti fai spiegare il modello con un esempio su una carta.", "Leggi l'errore tipico misurato con la validazione incrociata.", "Controlli i sovrapprezzi: hanno senso per quello che sai del mercato?"],
+      items: [["v4-1", "Conosci l'errore tipico del modello (es. ±25%)"], ["v4-2", "Vedi il sovrapprezzo di ogni caratteristica"], ["v4-3", "Le carte di controllo hanno un prezzo equo plausibile"]],
+      warn: "",
+      prompt: "Passiamo alla Fase 4 di CLAUDE.md. Spiegami con un esempio semplice come funziona la regressione sul logaritmo del prezzo, poi mostrami il piano." },
+    { id: 5, short: "Comparabili", name: "Comparabili e scheda di valutazione", sym: "★", level: "Avanzato", time: "4–6 ore",
+      goal: "cerchi una carta o incolli un link Cardmarket e vedi subito prezzo equo, giudizio e carte simili.",
+      you: ["Provi \"Valuta una carta\" con le tue carte di controllo.", "Verifichi a mano 2–3 comparabili sui link.", "Inserisci per prova popolazione PSA 10 e copie in vendita."],
+      items: [["v5-1", "La scheda si apre anche da iPhone"], ["v5-2", "Ogni carta mostra 5–10 comparabili rettificati con link"], ["v5-3", "Il giudizio \"in linea / sotto / sopra\" ti sembra sensato"]],
+      warn: "",
+      prompt: "Passiamo alla Fase 5 di CLAUDE.md. Mostrami il piano per comparabili rettificati e scheda di valutazione." },
+    { id: 6, short: "Investimento", name: "Giudizio d'investimento", sym: "★", level: "Avanzato", time: "4–6 ore",
+      goal: "punteggio d'investimento con pro, contro e stato di validazione sempre visibile.",
+      you: ["Concordi l'orizzonte del giudizio (es. 6–12 mesi).", "Leggi il risultato del test sul mini-storico a 30 giorni.", "Decidi con Claude Code i pesi iniziali, dichiarati come \"non ancora validati\"."],
+      items: [["v6-1", "Ogni scheda mostra punteggio, pro e contro"], ["v6-2", "Lo stato di validazione è visibile"], ["v6-3", "Ogni giudizio finisce nel registro dei giudizi"]],
+      warn: "un giudizio non validato è un'ipotesi ragionata, non una previsione. Non usarlo da solo per spese importanti.",
+      prompt: "Passiamo alla Fase 6 di CLAUDE.md. Spiegami come testiamo il giudizio sul mini-storico a 30 giorni e quali limiti ha, poi mostrami il piano." },
+    { id: 7, short: "Monitoraggio", name: "Monitoraggio e notifiche", sym: "◆", level: "Intermedio", time: "2–4 ore",
+      goal: "aggiungere una carta al monitoraggio e ricevere avvisi sull'iPhone.",
+      you: ["Installi l'app ntfy sull'iPhone e ti iscrivi al canale indicato.", "Prepari il Comando Rapido \"Valuta carta\" con la guida di Claude Code.", "Fai una prova con una carta vera."],
+      items: [["v7-1", "\"Aggiungi al monitoraggio\" funziona da dashboard e da iPhone"], ["v7-2", "Il grafico parte dal giorno di inserimento"], ["v7-3", "Arriva una notifica di prova"]],
+      warn: "se usi un token per il Comando Rapido, resta solo sull'iPhone. Fatti spiegare subito come revocarlo.",
+      prompt: "Passiamo alla Fase 7 di CLAUDE.md. Proponimi il modo più semplice e sicuro per aggiungere carte al monitoraggio dalla dashboard e dall'iPhone." },
+    { id: 8, short: "Verifica", name: "Verifica nel tempo", sym: "★", level: "Avanzato", time: "dopo 3–6 mesi",
+      goal: "controllare sui dati reali se i giudizi d'investimento hanno funzionato, e correggere i pesi.",
+      you: ["Ogni 3 mesi lanci la verifica.", "Leggi se le carte \"Interessanti\" hanno fatto meglio delle altre.", "Approvi i nuovi pesi stimati dai dati."],
+      items: [["v8-1", "Prima verifica fatta (3 mesi)"], ["v8-2", "Il punteggio usa pesi stimati dai dati"]],
+      warn: "",
+      prompt: "Passiamo alla Fase 8 di CLAUDE.md. Confronta i giudizi del registro con i prezzi reali e dimmi, con numeri, se hanno funzionato." },
+    { id: 9, short: "Estensioni", name: "Estensioni", sym: "◆", level: "Intermedio", time: "più avanti",
+      goal: "sigillati, gradate, carte Allenatore, vintage, lingue italiana e cinese e versione da portfolio.",
+      you: ["Scegli quale estensione ti serve di più.", "Decidi se vale la pena uno storico a pagamento per un backtest."],
+      items: [["v9-1", "Scelta la prima estensione"], ["v9-2", "README e pagina \"Il modello\" pronti per il portfolio"]],
+      warn: "",
+      prompt: "Passiamo alla Fase 9 di CLAUDE.md. Confrontami le estensioni possibili per utilità e costo." }
+  ];
+
+  var KEY = "bussola-ppt-v3";
+  var checked = {};
+  try {
+    var raw = localStorage.getItem(KEY);
+    if (raw) {
+      var parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === "object") checked = parsed;
+    }
+  } catch (e) { /* senza memoria del browser la pagina funziona lo stesso */ }
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(checked)); } catch (e) {}
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  function symClass(sym) {
+    if (sym === "●") return "sym-common";
+    if (sym === "◆") return "sym-uncommon";
+    if (sym === "★") return "sym-rare";
+    return "sym-mixed";
+  }
+
+  // Costruzione delle tasche del raccoglitore
+  var pocketsEl = document.getElementById("pockets");
+  pocketsEl.innerHTML = PHASES.filter(function (p) { return p.id > 0; }).map(function (p) {
+    return '<a class="pocket" id="pk' + p.id + '" href="#f' + p.id + '">' +
+      '<div class="pocket-top"><span class="pocket-num">' + p.id + '/9</span><span class="sym ' + symClass(p.sym) + '">' + p.sym + '</span></div>' +
+      '<div class="stack" style="gap: 6px"><span class="pocket-name">' + esc(p.short) + '</span><span class="pocket-status" data-time="' + esc(p.time) + '"></span></div>' +
+      '</a>';
+  }).join("");
+
+  // Costruzione delle schede dei blocchi
+  var phasesEl = document.getElementById("phases");
+  phasesEl.innerHTML = PHASES.map(function (p) {
+    var you = p.you.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("");
+    var items = p.items.map(function (it) {
+      return '<label class="check"><input type="checkbox" id="' + it[0] + '"><span>' + esc(it[1]) + '</span></label>';
+    }).join("");
+    var warn = p.warn ? '<div class="warn"><b>Attenzione:</b> ' + esc(p.warn) + '</div>' : "";
+    var prompt = p.prompt
+      ? '<div class="prompt row"><div class="prompt-text"><span class="eyebrow">Messaggio per Claude Code</span><pre>' + esc(p.prompt) + '</pre></div><button class="copy" type="button">Copia</button></div>'
+      : "";
+    return '<article class="phase" id="f' + p.id + '">' +
+      '<div class="phase-head">' +
+        '<div class="badge" aria-hidden="true">' + p.id + '/9</div>' +
+        '<div class="phase-title">' +
+          '<span class="tag tag-here" hidden>Sei qui</span>' +
+          '<span class="tag tag-done" hidden>Completato</span>' +
+          '<h3>' + esc(p.name) + '</h3>' +
+          '<div class="chips"><span class="chip"><span class="sym ' + symClass(p.sym) + '">' + p.sym + '</span> ' + esc(p.level) + '</span><span class="chip">' + esc(p.time) + '</span></div>' +
+        '</div>' +
+      '</div>' +
+      '<p class="goal"><b>Obiettivo:</b> ' + esc(p.goal) + '</p>' +
+      '<div class="cols">' +
+        '<div class="col"><span class="eyebrow">Cosa fai tu</span><ul>' + you + '</ul></div>' +
+        '<div class="col"><span class="eyebrow" style="margin-bottom: 4px">Fatto quando</span>' + items + '</div>' +
+      '</div>' +
+      warn + prompt +
+    '</article>';
+  }).join("");
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.check input[type="checkbox"]'));
+
+  function refresh() {
+    var total = boxes.length;
+    var done = boxes.filter(function (b) { return b.checked; }).length;
+    var pct = total ? Math.round(done / total * 100) : 0;
+    document.getElementById("pct").textContent = pct + "%";
+    document.getElementById("count").textContent = done + " di " + total + " passaggi";
+    document.getElementById("bar-fill").style.width = pct + "%";
+    document.getElementById("bar").setAttribute("aria-valuenow", String(pct));
+
+    var currentId = null;
+    PHASES.forEach(function (p) {
+      var all = p.items.every(function (it) { return !!checked[it[0]]; });
+      var status = all ? "done" : (currentId === null ? "current" : "todo");
+      if (!all && currentId === null) currentId = p.id;
+
+      var card = document.getElementById("f" + p.id);
+      card.classList.toggle("done", status === "done");
+      card.classList.toggle("current", status === "current");
+      card.querySelector(".tag-here").hidden = status !== "current";
+      card.querySelector(".tag-done").hidden = status !== "done";
+
+      var pocket = document.getElementById("pk" + p.id);
+      if (pocket) {
+        pocket.classList.toggle("done", status === "done");
+        pocket.classList.toggle("current", status === "current");
+        var st = pocket.querySelector(".pocket-status");
+        st.textContent = status === "done" ? "Completato" : status === "current" ? "Sei qui" : st.getAttribute("data-time");
+      }
+    });
+
+    var chip = document.getElementById("here-chip");
+    var go = document.getElementById("go");
+    if (currentId === null) {
+      chip.textContent = "Progetto completato";
+      go.setAttribute("href", "#f9");
+    } else {
+      var here = PHASES[currentId];
+      chip.textContent = "Sei qui: " + here.name;
+      go.setAttribute("href", "#f" + here.id);
+    }
+  }
+
+  boxes.forEach(function (b) {
+    b.checked = !!checked[b.id];
+    b.addEventListener("change", function () {
+      if (b.checked) checked[b.id] = true; else delete checked[b.id];
+      save();
+      refresh();
+    });
+  });
+  refresh();
+
+  document.getElementById("reset").addEventListener("click", function () {
+    checked = {};
+    boxes.forEach(function (b) { b.checked = false; });
+    save();
+    refresh();
+  });
+
+  // Pulsanti "Copia"
+  function selectText(el) {
+    try {
+      var range = document.createRange();
+      range.selectNodeContents(el);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    } catch (e) {}
+  }
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var pre = btn.closest(".prompt").querySelector("pre");
+      var text = pre.textContent;
+      var back = function () { setTimeout(function () { btn.textContent = "Copia"; }, 2000); };
+      var fallback = function () { selectText(pre); btn.textContent = "Selezionato: copia a mano"; back(); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { btn.textContent = "Copiato"; back(); }, fallback);
+      } else {
+        fallback();
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
