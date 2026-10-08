@@ -21,6 +21,38 @@ I prezzi che inserisci restano **solo sul tuo telefono**: il salvataggio su GitH
 
 ## 2. Le cose importanti (in ordine di importanza)
 
+### 2.0 ⚠️⚠️ La scoperta più importante: la soglia ±15% sembra irraggiungibile, anche con i comparabili
+
+Prima di chiudere ho fatto due prove in più, sul prezzo di riferimento Cardmarket, l'unico disponibile per tutte le carte.
+
+**Prova A: cambiare il prezzo o la soglia del modello**
+
+| Prova | Errore tipico, lineare | Errore tipico, flessibile |
+|---|---|---|
+| Attuale: trend, carte ≥ 3 € | ±50% | ±44% |
+| Media a 30 giorni, ≥ 3 € | ±49% | ±43% |
+| Trend, ≥ 10 € | ±51% | ±42% |
+| Media a 30 giorni, ≥ 10 € | ±48% | ±40% |
+| Trend, ≥ 10 €, solo carte da busta | ±47% | ±42% |
+
+**Prova B: il metodo dei comparabili**, simulato usando il trend al posto dei tuoi prezzi NM
+
+| Regola | Carte in cui i comparabili "concordano" | Errore tipico, tutte le carte | Errore tipico quando concordano |
+|---|---|---|---|
+| 8 più simili, dispersione massima ±15% (regola attuale) | **0%** (2 carte su 3.428) | ±48% | ±20% |
+| 3 più simili, dispersione massima ±15% | 4% | ±48% | ±32% |
+| 3 più simili, dispersione "interquartile" ±15% | 21% | ±48% | ±35% |
+
+**Cosa vuol dire:** due carte con le stesse caratteristiche (stessa rarità, stesso Pokémon, stesso tipo di rilascio…) possono costare l'una il doppio dell'altra, per l'illustrazione, la popolarità o la storia della carta. Né il modello né i comparabili riescono a scendere sotto il ±40%. Con la regola attuale (8 comparabili entro ±15%) la scheda direbbe **quasi sempre "Dati insufficienti"**.
+
+**Attenzione:** con i tuoi prezzi NM le cose potrebbero andare un po' meglio, perché il trend è "sporco" (gradate, lingue). Lo vedremo solo provando su qualche carta vera. L'eterogeneità tra le carte però resta.
+
+**Da decidere insieme (è il punto principale di stamattina):**
+- **A.** Tenere ±15% come obiettivo, ma mostrare sempre un intervallo **onesto** (per esempio ±40%) e il giudizio solo quando la tua offerta è chiaramente fuori dall'intervallo;
+- **B.** Cambiare la regola di dispersione dei comparabili: le 3–5 più simili, con una misura meno severa, accettando che l'errore sia di ±30–35%;
+- **C.** Investire su variabili che catturino il fascino della carta (illustratore, tipo di scena, Pokémon "in coppia", popolarità su Google Trends…), poi rimisurare;
+- **D.** Usare il valutatore soprattutto come **confronto relativo** ("questa carta costa più o meno delle sue simili") più che come prezzo esatto.
+
 ### 2.1 ⚠️ Il modello sbaglia molto più del ±15%
 
 | Modello (stima su carte mai viste) | Errore tipico |
