@@ -455,20 +455,26 @@ Il prezzo di riferimento automatico non distingue condizione e lingua (4.5b). Pe
 
 ## 10. Dashboard (`docs/index.html`, su GitHub Pages)
 
-**Riferimento obbligatorio: `riferimenti/mockup-dashboard.html`.** È il mockup approvato da me (8 ottobre 2026, aggiornato lo stesso giorno con la fascia NM calcolata dal minimo). La dashboard vera deve seguirlo:
+**Riferimento obbligatorio: `riferimenti/mockup-dashboard.html`, versione approvata il 9 ottobre 2026** (stile minimal, fascia NM calcolata dal minimo). Sostituisce la versione dell'8 ottobre. La dashboard vera deve seguirlo:
 - **stessa struttura**: barra in alto con le tre sezioni "Valuta una carta", "Monitorate", "Il modello";
-- **stesse sezioni e stesso ordine** dentro ogni schermata. In "Valuta una carta": ricerca con candidati → scheda carta con caratteristiche → tre riquadri (prezzo equo NM, giudizio di prezzo, investimento) → componenti e "Perché" → prezzi Near Mint con la mia carta e i comparabili → avvertenza e "Aggiungi al monitoraggio";
-- **stesso stile**: colori, caratteri (Unbounded per titoli e numeri grandi, Atkinson Hyperlegible per il testo), angoli arrotondati, chip, badge dei giudizi, etichetta gialla per avvisi importanti;
+- **stesse sezioni e stesso ordine** dentro ogni schermata. In "Valuta una carta": ricerca con candidati → scheda carta con caratteristiche → **riquadro del prezzo equo NM** con il giudizio di prezzo e la **barra dell'intervallo** (fascia, tacca della mediana, pallino della mia offerta) → sotto, **riquadro investimento** con componenti e "Perché" → prezzi Near Mint con la mia carta e i comparabili → avvertenza e "Aggiungi al monitoraggio";
+- **stesso stile**:
+  - token di stile (colori, raggi, caratteri) in `:root`, in cima al file;
+  - sfondo bianco, testo nero;
+  - **Outfit** per titoli e numeri grandi, **Atkinson Hyperlegible** per il testo;
+  - angoli medi: riquadri 16–18 px, pulsanti e caselle 10–12 px; solo le etichette delle caratteristiche sono a pillola;
+- **regola dei colori**: nero per tutto ciò che è neutro (barre, grafici, pulsanti principali); verde e rosso solo per gli esiti; giallo solo per gli avvisi da notare. Barre e grafici sempre in un solo colore. **Eccezione (9/10/2026):** il pallino rosso del logo resta (è il marchio); i link al passaggio del mouse non diventano rossi;
+- **accessibilità**: testo con contrasto almeno 4,5:1; bordi di caselle e pulsanti almeno 3:1; contorno nero visibile quando si usa la tastiera; pulsanti alti almeno 44 px;
 - **stesso comportamento** del calcolo nella scheda: si aggiorna appena inserisco o cambio un prezzo NM, con le regole delle sezioni 6 e 7 (almeno 3 comparabili, dispersione massima ±15%).
 
 Nel mockup:
 - **tutti i numeri sono dati di esempio inventati**: vanno sostituiti con i dati reali, e l'etichetta "Dati di esempio" va tolta;
-- i **riquadri a righe** sono segnaposto per le **foto ufficiali** delle carte (TCGdex);
+- i **riquadri grigi** sono segnaposto per le **foto ufficiali** delle carte (TCGdex);
 - i link a Cardmarket ed eBay sono generici: nel sito vero devono aprire la ricerca della carta specifica (4.5b punto 5).
 
 Puoi migliorare dettagli tecnici (accessibilità, prestazioni, versione mobile), ma **ogni cambiamento visibile di struttura o stile va proposto e approvato da me prima**.
 
-- **Stile**: sfondo chiaro, testo nero; colori e grassetto solo come accenti. Foto reali delle carte.
+- **Stile**: vedi sopra (sfondo bianco, testo nero, regola dei colori). Foto reali delle carte.
 - **Mobile first**: deve funzionare bene su iPhone.
 - **Non indicizzata** dai motori di ricerca.
 - **Valutazione istantanea**: ogni settimana precalcola per tutte le carte del modello prezzo equo, intervallo, comparabili e componenti del giudizio, in un file JSON compresso. La dashboard li legge senza server: cerco una carta e vedo subito la scheda, anche da iPhone. I dati manuali che inserisco si applicano nel browser.

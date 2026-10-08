@@ -2,423 +2,459 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex">
-<title>Mockup dashboard Valutatore</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Valutatore – mockup della dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600&family=Unbounded:wght@600;700;800&display=swap">
-<!--
-  MOCKUP DI RIFERIMENTO per la dashboard (docs/index.html).
-  Claude Code: segui struttura, sezioni, gerarchia visiva, colori e caratteri di questo file.
-  Tutti i numeri sono DATI DI ESEMPIO inventati: nel sito vero vanno sostituiti con i dati reali.
-  I riquadri a righe sono segnaposto per le foto ufficiali delle carte (TCGdex).
--->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Outfit:wght@500;600;700&display=swap">
 <style>
-:root {
-  --ground: #F3F5F9; --card: #FFFFFF; --ink: #101217; --ink-2: #3B4250; --muted: #5B6474;
-  --line: #DDE2EA; --line-2: #C9D1DD; --soft: #EEF1F6; --accent: #2D5BFF; --accent-ink: #1F3BB3;
-  --accent-soft: #EAF0FF; --here: #FFCB05; --here-ink: #1A1400; --here-soft: #FFF8D6;
-  --ok: #0B6A40; --ok-soft: #E5F4EC; --no: #9A1C12; --no-soft: #FDEDEB;
-  --c1: #2D5BFF; --c2: #0E7A4B; --c3: #C2410C; --c4: #7C3AED;
-  --display: "Unbounded", "Arial Black", sans-serif;
-  --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
-  color-scheme: light;
+/* ===== Token di stile (mockup approvato il 9/10/2026) ===== */
+:root{
+  --ink:#000000;        /* testo e elementi neutri */
+  --muted:#5E5E5E;      /* testo secondario (6,5:1 su bianco) */
+  --line:#E6E6E6;       /* bordi decorativi */
+  --field:#8A8A8A;      /* bordi di input e pulsanti (3,45:1) */
+  --soft:#F3F3F3;       /* fondi neutri */
+  --track:#EDEDED;      /* binari delle barre */
+  --red:#C4161C;        /* logo e valori negativi */
+  --red-ink:#A3141B; --red-soft:#FCEBEB;
+  --green-ink:#126B42; --green-soft:#E8F4EE;
+  --yellow:#FFD12A;     /* solo avvisi da notare */
+  --r-card:16px; --r-ctl:10px; --r-big:18px;
+  --display:'Outfit','Segoe UI',sans-serif;
+  --text:'Atkinson Hyperlegible','Segoe UI',system-ui,sans-serif;
 }
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.5; }
-a { color: var(--accent); } a:hover { color: #1A3FCC; }
-a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-h1, h2, h3 { margin: 0; line-height: 1.2; }
-.display { font-family: var(--display); }
-.sr { position: absolute; left: -9999px; }
+*{box-sizing:border-box}
+body{margin:0;background:#FFFFFF;color:var(--ink);font-family:var(--text);font-size:16px;line-height:1.5}
+a{color:var(--ink);text-underline-offset:3px}a:hover{color:var(--red)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+h1,h2,h3{margin:0}
+.display{font-family:var(--display);font-weight:700}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.sr{position:absolute;left:-9999px}
 
-header.top { background: var(--card); border-bottom: 1px solid var(--line); }
-.bar { max-width: 1180px; margin: 0 auto; padding: 14px 20px; display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; }
-.brand { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 18px; }
-nav.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
-nav.tabs button { font: inherit; font-weight: 700; padding: 10px 16px; border-radius: 10px; border: 0; background: transparent; color: var(--ink); cursor: pointer; min-height: 44px; }
-nav.tabs button[aria-selected="true"] { background: var(--ink); color: #FFFFFF; }
-.meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 13.5px; color: var(--muted); }
-.example { background: var(--here); color: var(--here-ink); font-weight: 700; padding: 3px 8px; border-radius: 6px; }
+/* barra superiore */
+header{border-bottom:1px solid var(--line)}
+header .wrap{padding-top:14px;padding-bottom:14px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:19px}
+nav.tabs{display:flex;flex-wrap:wrap;gap:2px}
+nav.tabs button{min-height:44px;padding:0 16px;border-radius:var(--r-ctl);border:0;background:transparent;color:var(--ink);font:inherit;font-size:15px;font-weight:700;cursor:pointer}
+nav.tabs button[aria-selected="true"]{background:var(--ink);color:#FFFFFF}
+.meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:13.5px;color:var(--muted)}
+.flag{background:var(--yellow);color:var(--ink);font-weight:700;padding:2px 10px;border-radius:6px}
 
-main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 80px; display: flex; flex-direction: column; gap: 24px; }
-.panel { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-.label { font-size: 12.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-.small { font-size: 13.5px; color: var(--muted); }
-.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-.chip { font-size: 13px; padding: 4px 10px; border-radius: 99px; background: var(--soft); }
-.chip.fam { background: var(--accent-soft); color: var(--accent-ink); font-weight: 700; }
-.btn { min-height: 48px; padding: 0 20px; border-radius: 12px; font: inherit; font-weight: 700; cursor: pointer; border: 1px solid var(--line-2); background: var(--card); color: var(--ink); }
-.btn.primary { background: var(--accent); color: #FFFFFF; border-color: var(--accent); }
-.btn.dark { background: var(--ink); color: #FFFFFF; border-color: var(--ink); }
-input[type=text], input[type=number], select { min-height: 48px; padding: 0 14px; border: 1px solid var(--line-2); border-radius: 12px; font: inherit; color: var(--ink); background: var(--card); }
-.ph { border-radius: 6px; background: repeating-linear-gradient(135deg, var(--soft) 0 10px, #E6EAF1 10px 20px); border: 1px solid var(--line); flex: none; }
+main.wrap{padding-top:32px;padding-bottom:96px;display:flex;flex-direction:column;gap:36px}
+main[hidden]{display:none}
+.h1{font-family:var(--display);font-weight:700;font-size:32px;line-height:1.15}
+.lead{font-size:14.5px;color:var(--muted);max-width:64ch}
 
-/* Valuta */
-.cands button { display: flex; gap: 10px; align-items: center; min-height: 52px; padding: 6px 12px; border-radius: 12px; font: inherit; cursor: pointer; color: var(--ink); background: var(--card); border: 1px solid var(--line-2); text-align: left; }
-.cands button[aria-pressed="true"] { background: var(--accent-soft); border: 2px solid var(--accent); }
-.scheda { display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch; }
-.cardcol { flex: 1 1 280px; max-width: 360px; }
-.cardimg { aspect-ratio: 63 / 88; max-width: 100%; border-radius: 12px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; color: var(--muted); font-size: 14px; }
-.verdcol { flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
-.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-@media (max-width: 760px) { .tiles { grid-template-columns: 1fr; } }
-.tile { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.big { font-family: var(--display); font-weight: 800; font-size: 32px; font-variant-numeric: tabular-nums; }
-.verdict { align-self: flex-start; font-weight: 700; font-size: 18px; padding: 4px 12px; border-radius: 8px; background: var(--soft); }
-.v-ok { background: var(--ok-soft); color: var(--ok); } .v-no { background: var(--no-soft); color: var(--no); }
-.split { display: flex; flex-wrap: wrap; gap: 24px; }
-.split > div { flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
-.meter { height: 8px; border-radius: 99px; background: var(--soft); overflow: hidden; }
-.meter i { display: block; height: 100%; border-radius: 99px; }
-ul.why { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 14.5px; color: var(--ink-2); }
-.pro { color: var(--ok); } .con { color: var(--no); }
-.yours { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; background: var(--here-soft); border: 1px solid #F2D86B; border-radius: 14px; padding: 14px 16px; }
-.comp { border: 1px solid var(--line); border-radius: 14px; padding: 14px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
-.comp .info { flex: 999 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
-.comp .nums { flex: 1 1 280px; min-width: 0; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: flex-end; }
-.same { padding: 2px 8px; border-radius: 99px; background: var(--ok-soft); color: var(--ok); font-size: 12.5px; }
-.diff { padding: 2px 8px; border-radius: 99px; background: var(--no-soft); color: var(--no); font-size: 12.5px; }
-.field { display: flex; flex-direction: column; gap: 2px; }
-.field span, .field label { font-size: 12px; font-weight: 700; color: var(--muted); }
-.warnbox { background: var(--no-soft); border-radius: 12px; padding: 14px 16px; color: #3A1210; }
+/* controlli */
+.input,.select{min-height:44px;padding:0 12px;border:1px solid var(--field);border-radius:var(--r-ctl);font:inherit;color:var(--ink);background:#FFFFFF}
+.btn{min-height:44px;padding:0 18px;border-radius:var(--r-ctl);border:1px solid var(--field);background:#FFFFFF;color:var(--ink);font:inherit;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;text-decoration:none}
+.btn.primary{background:var(--ink);color:#FFFFFF;border-color:var(--ink)}
+.card{border:1px solid var(--line);border-radius:var(--r-big);padding:24px}
+.chip{font-size:12.5px;font-weight:700;padding:2px 10px;border-radius:6px;white-space:nowrap}
+.ok{background:var(--green-soft);color:var(--green-ink)}
+.no{background:var(--red-soft);color:var(--red-ink)}
+.neutral{background:var(--soft);color:#333333}
+.warn{background:var(--yellow);color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 
-/* Monitorate e modello */
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
-@media (max-width: 760px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.stat { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 2px; }
-.stat b { font-family: var(--display); font-size: 26px; font-variant-numeric: tabular-nums; }
-.filters button { min-height: 44px; padding: 0 14px; border-radius: 99px; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; background: var(--card); color: var(--ink); border: 1px solid var(--line-2); }
-.filters button[aria-pressed="true"] { background: var(--ink); color: #FFFFFF; border-color: var(--ink); }
-.watch { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
-.sig { font-size: 12.5px; font-weight: 700; padding: 3px 9px; border-radius: 99px; }
-.s-ok { background: var(--ok-soft); color: var(--ok); } .s-down { background: var(--no-soft); color: var(--no); } .s-up { background: var(--accent-soft); color: var(--accent-ink); } .s-info { background: var(--soft); color: var(--ink-2); }
-.two { display: flex; flex-wrap: wrap; gap: 22px; align-items: flex-start; }
-.two > .panel { flex: 1 1 440px; }
-.tablewrap { overflow-x: auto; }
-table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 380px; }
-th { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); font-size: 12.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-td { padding: 8px; border-bottom: 1px solid var(--soft); }
-td.r, th.r { text-align: right; font-variant-numeric: tabular-nums; }
-.prem { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 2fr) 64px; gap: 10px; align-items: center; font-size: 14px; }
-.prem .track { position: relative; height: 16px; background: var(--soft); border-radius: 4px; }
-.prem .fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); border-radius: 4px; }
-.prem .ci { position: absolute; top: 7px; height: 2px; background: var(--ink); }
-.step { display: flex; gap: 12px; align-items: flex-start; padding: 12px; border-radius: 12px; background: var(--soft); }
-.step b { flex: none; font-size: 13px; padding: 2px 8px; border-radius: 6px; background: var(--card); }
-.step.now { background: var(--here-soft); } .step.now b { background: var(--here); color: var(--here-ink); }
-[hidden] { display: none !important; }
+/* ricerca */
+.search{display:flex;flex-wrap:wrap;gap:8px}
+.search .input{flex:999 1 320px;min-width:0;min-height:50px;padding:0 16px;border-radius:12px;font-size:17px}
+.search .btn{flex:1 1 auto;min-height:50px;border-radius:12px;justify-content:center}
+.cands button{display:flex;gap:10px;align-items:center;min-height:52px;padding:6px 14px 6px 8px;border-radius:12px;font:inherit;cursor:pointer;color:var(--ink);background:#FFFFFF;border:1px solid #C4C4C4}
+.cands button[aria-pressed="true"]{border:2px solid var(--ink)}
+.ph{background:var(--track);border-radius:6px;flex:none}
+
+/* scheda */
+.scheda{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.scheda .carta{flex:1 1 260px;min-width:0;max-width:320px;display:flex;flex-direction:column;gap:14px}
+.photo{aspect-ratio:63/88;border-radius:14px;background:var(--soft);display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:var(--muted);font-size:14px}
+.tags{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px;font-size:13px}
+.tags li{padding:3px 10px;border-radius:999px;background:var(--soft)}
+.tags li.fam{background:transparent;border:1px solid var(--ink);font-weight:700}
+.giudizi{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:16px}
+.label{font-size:14px;font-weight:700;color:var(--muted)}
+.big{font-family:var(--display);font-weight:700;font-size:52px;line-height:1}
+.verdict{font-weight:700;font-size:18px;padding:4px 14px;border-radius:8px}
+.rangebar{position:relative;height:34px}
+.rangebar .track{position:absolute;left:0;right:0;top:15px;height:4px;border-radius:2px;background:var(--track)}
+.rangebar .band{position:absolute;top:11px;height:12px;border-radius:6px;background:#CFCFCF}
+.rangebar .tick{position:absolute;top:7px;width:2px;height:20px;background:var(--muted)}
+.rangebar .you{position:absolute;top:9px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 3px #FFFFFF}
+.split{display:flex;flex-wrap:wrap;gap:28px 40px}
+.split>div{flex:1 1 280px;min-width:0;display:flex;flex-direction:column;gap:14px}
+.meter{height:6px;border-radius:3px;background:var(--track);overflow:hidden}
+.meter i{display:block;height:100%;border-radius:3px;background:var(--ink)}
+.why{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px}
+.why li{display:flex;gap:10px;align-items:baseline}
+.why .chip{flex:none;width:58px;text-align:center}
+
+/* prezzi NM */
+.nmhead{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--line);padding-top:28px}
+.field{display:flex;flex-direction:column;gap:3px}
+.field label,.field .lab{font-size:12.5px;font-weight:700;color:var(--muted)}
+.yours{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;background:#F6F6F6;border-radius:14px;padding:14px 18px}
+.yours label{font-weight:700;flex:1 1 260px}
+.comp{border-bottom:1px solid var(--line);padding:16px 0;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.comp .info{flex:999 1 300px;min-width:0;display:flex;flex-direction:column;gap:6px}
+.comp .nums{flex:1 1 320px;min-width:0;display:grid;grid-template-columns:112px 70px minmax(96px,1fr);gap:12px;align-items:start}
+.comp .nums .input{width:100%;font-weight:700}
+.cmp{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px}
+.cmp .s{color:var(--green-ink)}.cmp .d{color:var(--red-ink)}
+.out{min-height:44px;display:flex;align-items:center}
+.adj{justify-content:flex-end;font-family:var(--display);font-weight:700;font-size:21px}
+.alert{margin:0;background:var(--red-soft);border-radius:12px;padding:12px 16px;color:#6E0D12}
+
+/* monitorate / modello */
+dl.stats{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+dl.stats div{padding:16px 4px;display:flex;flex-direction:column;gap:2px}
+dl.stats dt{font-size:13.5px;color:var(--muted)}
+dl.stats dd{margin:0;font-family:var(--display);font-weight:700;font-size:30px;line-height:1.15}
+.filters button{min-height:44px;padding:0 16px;border-radius:var(--r-ctl);font:inherit;font-size:14px;font-weight:700;cursor:pointer;background:#FFFFFF;color:var(--ink);border:1px solid #C4C4C4}
+.filters button[aria-pressed="true"]{background:var(--ink);color:#FFFFFF;border-color:var(--ink)}
+.watch{border:1px solid var(--line);border-radius:var(--r-card);padding:18px 20px;display:flex;flex-wrap:wrap;gap:20px;align-items:center}
+.two{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start}
+.two>section{flex:1 1 440px;min-width:0;border:1px solid var(--line);border-radius:var(--r-card);padding:22px;display:flex;flex-direction:column;gap:12px}
+.h2{font-family:var(--display);font-weight:600;font-size:19px}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th{font-size:13px;font-weight:700;color:var(--muted);padding:8px;text-align:left}
+td{padding:9px 8px;border-top:1px solid #EDEDED}
+.r{text-align:right}
+.tablewrap{overflow-x:auto}
+.prem{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,2fr) 56px;gap:12px;align-items:center;font-size:14px}
+.prem .t{position:relative;height:14px}
+.prem .t .base{position:absolute;left:0;right:0;top:6px;height:2px;background:var(--track)}
+.prem .t .bar{position:absolute;left:0;top:2px;height:10px;background:var(--ink);border-radius:0 4px 4px 0}
+.prem .t .ci{position:absolute;top:6px;height:2px;background:var(--field)}
+.steps{margin:0;padding:0;list-style:none}
+.steps li{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-top:1px solid #EDEDED;font-size:14.5px}
+.steps .chip{justify-self:start;align-self:start}
+@media (max-width:560px){.big{font-size:42px}.h1{font-size:27px}.comp .nums{grid-template-columns:1fr 70px 1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="bar">
-    <div class="brand">
-      <svg width="28" height="38" viewBox="0 0 28 38" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="35" rx="4" fill="none" stroke="#101217" stroke-width="2.5"/><circle cx="14" cy="19" r="6" fill="none" stroke="#2D5BFF" stroke-width="2.5"/><line x1="1.5" y1="19" x2="8" y2="19" stroke="#101217" stroke-width="2.5"/><line x1="20" y1="19" x2="26.5" y2="19" stroke="#101217" stroke-width="2.5"/></svg>
-      Valutatore
-    </div>
-    <nav class="tabs" role="tablist" aria-label="Sezioni">
-      <button role="tab" aria-selected="true" data-tab="valuta">Valuta una carta</button>
-      <button role="tab" aria-selected="false" data-tab="monitorate">Monitorate</button>
-      <button role="tab" aria-selected="false" data-tab="modello">Il modello</button>
+<header>
+  <div class="wrap">
+    <div class="brand"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="1.5" y="1.5" width="23" height="23" rx="6" fill="none" stroke="#000" stroke-width="2.5"/><circle cx="13" cy="13" r="4" fill="#C4161C"/></svg>Valutatore</div>
+    <nav class="tabs" aria-label="Sezioni" role="tablist">
+      <button type="button" role="tab" data-tab="valuta" aria-selected="true">Valuta una carta</button>
+      <button type="button" role="tab" data-tab="monitorate" aria-selected="false">Monitorate</button>
+      <button type="button" role="tab" data-tab="modello" aria-selected="false">Il modello</button>
     </nav>
-    <div class="meta"><span>Pesi aggiornati: settimana 41</span><span class="example">Dati di esempio</span></div>
+    <div class="meta"><span>Pesi della settimana 41</span><span class="flag">Dati di esempio</span></div>
   </div>
 </header>
 
 <!-- ======================= VALUTA ======================= -->
-<main id="valuta">
-  <section class="panel">
-    <h1 class="display" style="font-size: 22px">Valuta una carta</h1>
-    <div class="row">
+<main id="valuta" class="wrap">
+  <section aria-labelledby="t-cerca" style="display:flex;flex-direction:column;gap:14px">
+    <h1 id="t-cerca" class="h1">Valuta una carta</h1>
+    <div class="search">
       <label for="cerca" class="sr">Cerca una carta per nome o incolla un link Cardmarket</label>
-      <input id="cerca" type="text" value="Pikachu promo Pokémon Center" style="flex: 999 1 320px; min-width: 0">
-      <button class="btn primary" type="button">Cerca</button>
-      <button class="btn" type="button">Incolla link Cardmarket</button>
+      <input id="cerca" class="input" type="text" value="Pikachu promo Pokémon Center">
+      <button type="button" class="btn primary">Cerca</button>
+      <button type="button" class="btn">Incolla link Cardmarket</button>
     </div>
-    <div class="row cands" id="cands"><span class="small">3 risultati, scegli quella giusta:</span></div>
+    <div class="row cands" id="cands" style="gap:8px"><span class="muted" style="font-size:14px;margin-right:4px">3 risultati. Scegli la carta giusta:</span></div>
   </section>
 
-  <section class="scheda">
-    <div class="panel cardcol">
-      <div class="ph cardimg">Foto ufficiale della carta<br>(da TCGdex)</div>
-      <div><h2 class="display" style="font-size: 20px">Pikachu</h2><span class="small">Promo Pokémon Center · giapponese · 2023</span></div>
-      <div class="row" style="gap: 6px">
-        <span class="chip fam">Promo e rilascio speciale</span><span class="chip">Pokémon Center</span><span class="chip">Iconicità alta</span><span class="chip">Solo giapponese</span><span class="chip">Full art</span><span class="chip">1ª generazione</span>
-      </div>
-      <button class="btn" type="button" style="align-self: flex-start; min-height: 44px; font-size: 14px">Correggi le caratteristiche</button>
+  <section class="scheda" aria-labelledby="t-scheda">
+    <div class="carta">
+      <div class="photo">Foto ufficiale della carta (TCGdex)</div>
+      <div><h2 id="t-scheda" class="display" style="font-size:26px;line-height:1.15">Pikachu</h2><span class="muted" style="font-size:14px">Promo Pokémon Center, giapponese, 2023</span></div>
+      <ul class="tags" aria-label="Caratteristiche"><li class="fam">Promo e rilascio speciale</li><li>Pokémon Center</li><li>Iconicità alta</li><li>Solo giapponese</li><li>Full art</li><li>1ª generazione</li></ul>
+      <button type="button" class="btn" style="align-self:flex-start;font-size:14px">Correggi le caratteristiche</button>
     </div>
 
-    <div class="verdcol">
-      <div class="tiles">
-        <div class="tile"><span class="label">Prezzo equo NM</span><span class="big" id="fair">—</span><span id="range" style="font-size: 14px; color: var(--ink-2)"></span><span class="small" id="npriced"></span></div>
-        <div class="tile"><span class="label">Giudizio di prezzo</span><span class="verdict" id="pv">—</span><span id="pdiff" style="font-size: 14px; color: var(--ink-2)"></span><span class="small">Seconda opinione del modello: 141 €</span></div>
-        <div class="tile"><span class="label">Investimento</span><span><span class="big" id="score">—</span> <span class="small">/100</span></span><span class="verdict" id="iv" style="font-size: 15px">—</span><span class="small">Pesi non ancora validati</span></div>
+    <div class="giudizi">
+      <div class="card" style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;flex-wrap:wrap;gap:16px 40px;align-items:flex-end;justify-content:space-between">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <span class="label">Prezzo equo Near Mint</span>
+            <span class="big num" id="fair">—</span>
+            <span class="muted" style="font-size:14px" id="npriced"></span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start">
+            <span class="label">Giudizio di prezzo</span>
+            <span class="verdict" id="pv">—</span>
+            <span class="num" style="font-size:14px" id="pdiff"></span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="rangebar" role="img" id="rangebar" aria-label=""><div class="track"></div><div class="band" id="band"></div><div class="tick" id="tick"></div><div class="you" id="you"></div></div>
+          <div class="muted num" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;font-size:13px">
+            <span id="range"></span><span><b style="color:#000">●</b> La tua offerta: <span id="yourtxt"></span></span><span>Seconda opinione del modello: 141 €</span>
+          </div>
+        </div>
       </div>
-      <div class="panel" style="padding: 20px">
-        <div class="split">
-          <div>
-            <h3 style="font-size: 16px">Componenti del punteggio</h3>
-            <div id="components" style="display: flex; flex-direction: column; gap: 12px"></div>
-            <span style="font-size: 13.5px; color: var(--no)">Rischio: −4 punti (combinazione con 23 carte nel pool)</span>
-          </div>
-          <div>
-            <h3 style="font-size: 16px">Perché</h3>
-            <ul class="why">
-              <li><b class="pro">Pro:</b> <span id="proline"></span></li>
-              <li><b class="pro">Pro:</b> combinazione Pikachu + promo + esclusiva giapponese, tra le più apprezzate dal modello.</li>
-              <li><b class="pro">Pro:</b> PSA 10: 120 copie contro una mediana di 480 dei comparabili.</li>
-              <li><b class="con">Contro:</b> prezzo salito del 9% nell'ultimo mese.</li>
-              <li><b class="con">Contro:</b> poche carte con questa combinazione: affidabilità media.</li>
-            </ul>
-            <div class="row" style="gap: 8px; font-size: 13px"><span class="chip">Orizzonte 6–12 mesi</span><span class="chip" style="background: #FFF3BF; color: var(--here-ink)">Affidabilità media</span></div>
-          </div>
+
+      <div class="card split">
+        <div>
+          <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px"><h3 class="h2">Investimento</h3><span class="muted" style="font-size:13px">Pesi non ancora validati</span></div>
+          <div class="row" style="gap:14px"><span class="display num" style="font-size:44px;line-height:1"><span id="score">—</span><span class="muted" style="font-size:18px;font-weight:500">/100</span></span><span class="verdict" style="font-size:15px;padding:3px 12px" id="iv">—</span></div>
+          <div id="components" style="display:flex;flex-direction:column;gap:14px"></div>
+          <span class="muted num" style="font-size:14px">Penalità di rischio: <b style="color:var(--red)">−4 punti</b> (solo 23 carte con questa combinazione)</span>
+        </div>
+        <div>
+          <h3 class="h2">Perché</h3>
+          <ul class="why">
+            <li><span class="chip ok">Pro</span><span id="proline"></span></li>
+            <li><span class="chip ok">Pro</span><span>Pikachu + promo + esclusiva giapponese: combinazione tra le più apprezzate dal modello.</span></li>
+            <li><span class="chip ok">Pro</span><span>PSA 10: 120 copie, contro una mediana di 480 delle carte simili.</span></li>
+            <li><span class="chip no">Contro</span><span>Prezzo salito del 9% nell'ultimo mese.</span></li>
+            <li><span class="chip no">Contro</span><span>Poche carte con questa combinazione: affidabilità media.</span></li>
+          </ul>
+          <span class="muted" style="font-size:13.5px">Orizzonte 6–12 mesi. Affidabilità media.</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="panel">
-    <div class="row" style="justify-content: space-between; align-items: flex-end; gap: 10px 20px">
-      <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
-        <h2 class="display" style="font-size: 20px">Prezzi Near Mint</h2>
-        <span class="small">Stesso tipo di prezzo per tutte le carte. Filtri: Near Mint + lingua della carta. Inserisci l'offerta minima NM: il minimo spesso non è davvero NM, quindi il calcolo usa una fascia stimata dal minimo al minimo +5% (ipotesi) e il suo punto centrale.</span>
+  <section aria-labelledby="t-nm" style="display:flex;flex-direction:column;gap:16px">
+    <div class="nmhead">
+      <div style="display:flex;flex-direction:column;gap:6px;max-width:64ch">
+        <h2 id="t-nm" class="display" style="font-size:26px">Prezzi Near Mint</h2>
+        <span class="lead">Su Cardmarket filtra per Near Mint e lingua della carta, poi scrivi l'offerta più bassa. Il calcolo usa una fascia dal minimo al minimo +5%, perché il minimo spesso non è davvero Near Mint.</span>
       </div>
-      <div class="field"><label for="tipo">Tipo di prezzo</label>
-        <select id="tipo"><option>Minimo NM Cardmarket (+5%)</option><option>Mediana ultime 3 vendite NM (eBay)</option></select>
-      </div>
+      <div class="field"><label for="tipo" style="font-size:13px">Tipo di prezzo</label>
+        <select id="tipo" class="select"><option>Minimo NM Cardmarket (+5%)</option><option>Mediana ultime 3 vendite NM (eBay)</option></select></div>
     </div>
     <div class="yours">
-      <label for="tuo" style="font-weight: 700; flex: 1 1 260px">Prezzo NM della tua carta (l'offerta che stai guardando)</label>
-      <span class="row" style="gap: 8px"><input id="tuo" type="number" min="0" step="1" value="110" style="width: 130px; font-size: 18px; font-weight: 700"> <b>€</b></span>
+      <label for="tuo">La tua offerta: prezzo della copia che stai guardando</label>
+      <span class="row" style="gap:8px"><input id="tuo" class="input num" type="number" min="0" step="1" value="110" style="width:130px;min-height:48px;font-size:18px;font-weight:700"> <b>€</b></span>
     </div>
-    <div id="comps" style="display: flex; flex-direction: column; gap: 12px"></div>
-    <div class="warnbox" id="warn" hidden></div>
-    <div class="row" style="justify-content: space-between; border-top: 1px solid #E6EAF0; padding-top: 16px">
-      <span class="small" style="max-width: 62ch">Valutazioni e giudizi sono stime statistiche con margine di errore, basate su dati di mercato e su carte simili: non sono certezze né consulenza finanziaria.</span>
-      <button class="btn dark" type="button" data-goto="monitorate">Aggiungi al monitoraggio</button>
+    <div id="comps"></div>
+    <p class="alert" id="warn" role="status" hidden></p>
+    <div class="row" style="justify-content:space-between;gap:16px;padding-top:8px">
+      <span class="muted" style="font-size:13.5px;max-width:62ch">Valutazioni e giudizi sono stime statistiche con margine di errore, basate su dati di mercato e su carte simili: non sono certezze né consulenza finanziaria.</span>
+      <button type="button" class="btn primary" style="min-height:50px;padding:0 24px;border-radius:12px" data-goto="monitorate">Aggiungi al monitoraggio</button>
     </div>
   </section>
 </main>
 
 <!-- ======================= MONITORATE ======================= -->
-<main id="monitorate" hidden>
-  <div class="row" style="justify-content: space-between; align-items: flex-end; gap: 12px 24px">
-    <div style="display: flex; flex-direction: column; gap: 4px">
-      <h1 class="display" style="font-size: 24px">Carte monitorate</h1>
-      <span class="small" style="font-size: 14.5px">Prezzo di riferimento Cardmarket dal giorno in cui le hai aggiunte. Condizione e lingua non filtrate.</span>
-    </div>
-    <div class="row filters" id="filters" role="group" aria-label="Filtra" style="gap: 6px"></div>
-  </div>
-  <div class="stats">
-    <div class="stat"><span class="small">Carte monitorate</span><b>4</b></div>
-    <div class="stat"><span class="small">Obiettivi raggiunti</span><b style="color: var(--ok)">1</b></div>
-    <div class="stat"><span class="small">In ribasso questa settimana</span><b style="color: var(--no)">1</b></div>
-    <div class="stat"><span class="small">Notifiche iPhone</span><b>Attive</b></div>
-  </div>
-  <div id="watch" style="display: flex; flex-direction: column; gap: 14px"></div>
+<main id="monitorate" class="wrap" hidden style="gap:28px">
+  <div style="display:flex;flex-direction:column;gap:6px"><h1 class="h1">Carte monitorate</h1><span class="lead">Prezzo di riferimento Cardmarket dal giorno in cui hai aggiunto la carta. Condizione e lingua non filtrate.</span></div>
+  <dl class="stats">
+    <div><dt>Carte monitorate</dt><dd>4</dd></div>
+    <div><dt>Obiettivi raggiunti</dt><dd>1</dd></div>
+    <div><dt>In ribasso questa settimana</dt><dd>1</dd></div>
+    <div><dt>Notifiche su iPhone</dt><dd>Attive</dd></div>
+  </dl>
+  <div class="row filters" id="filters" role="group" aria-label="Filtra le carte" style="gap:6px"></div>
+  <div id="watch" style="display:flex;flex-direction:column;gap:12px"></div>
 </main>
 
 <!-- ======================= MODELLO ======================= -->
-<main id="modello" hidden>
-  <div style="display: flex; flex-direction: column; gap: 4px">
-    <h1 class="display" style="font-size: 24px">Il modello</h1>
-    <span class="small" style="font-size: 14.5px">Quanto è affidabile, cosa ha imparato e se i giudizi sono già stati verificati.</span>
-  </div>
-  <div class="stats">
-    <div class="stat"><span class="small">Carte nel pool</span><b>3.420</b></div>
-    <div class="stat"><span class="small">Errore tipico complessivo</span><b>±12%</b></div>
-    <div class="stat"><span class="small">Segmenti entro ±15%</span><b>5 su 7</b></div>
-    <div class="stat"><span class="small">Pesi di questa settimana</span><b style="font-size: 22px; color: var(--ok)">Pubblicati</b></div>
-  </div>
+<main id="modello" class="wrap" hidden style="gap:28px">
+  <div style="display:flex;flex-direction:column;gap:6px"><h1 class="h1">Il modello</h1><span class="lead">Quanto è affidabile, cosa ha imparato e se i giudizi sono già stati verificati.</span></div>
+  <dl class="stats">
+    <div><dt>Carte nel pool</dt><dd class="num">3.420</dd></div>
+    <div><dt>Errore tipico</dt><dd class="num">±12%</dd></div>
+    <div><dt>Segmenti entro ±15%</dt><dd class="num">5 su 7</dd></div>
+    <div><dt>Pesi di questa settimana</dt><dd>Pubblicati</dd></div>
+  </dl>
   <div class="two">
-    <section class="panel">
-      <h2 style="font-size: 17px">Errore per tipo di carta (soglia ±15%)</h2>
-      <div class="tablewrap"><table><thead><tr><th>Segmento</th><th class="r">Carte</th><th class="r">Errore</th><th>Esito</th></tr></thead><tbody id="segments"></tbody></table></div>
-      <span class="small">Nei segmenti oltre soglia la scheda usa solo i comparabili con i tuoi prezzi NM.</span>
+    <section aria-labelledby="t-err">
+      <h2 id="t-err" class="h2">Errore per tipo di carta</h2>
+      <span class="muted" style="font-size:14px">Soglia: ±15%. Oltre la soglia la scheda usa solo le carte simili con i tuoi prezzi NM.</span>
+      <div class="tablewrap"><table style="min-width:380px"><thead><tr><th scope="col" style="padding-left:0">Segmento</th><th scope="col" class="r">Carte</th><th scope="col" class="r">Errore</th><th scope="col">Esito</th></tr></thead><tbody id="segments"></tbody></table></div>
     </section>
-    <section class="panel">
-      <div class="row" style="justify-content: space-between; align-items: baseline"><h2 style="font-size: 17px">Cosa vale ogni caratteristica</h2><span class="small" style="font-size: 12.5px">barra = sovrapprezzo · linea = intervallo di confidenza</span></div>
-      <div id="premiums" style="display: flex; flex-direction: column; gap: 10px"></div>
-      <span class="small">Rispetto alla base: carta da busta, iconicità bassa, nessuna esclusiva. Scala fino a +400%.</span>
+    <section aria-labelledby="t-pesi">
+      <h2 id="t-pesi" class="h2">Quanto vale ogni caratteristica</h2>
+      <span class="muted" style="font-size:14px">Sovrapprezzo rispetto a una carta da busta con iconicità bassa e senza esclusiva. La linea sottile è l'intervallo di confidenza.</span>
+      <div id="premiums" style="display:flex;flex-direction:column;gap:12px"></div>
     </section>
   </div>
   <div class="two">
-    <section class="panel">
-      <h2 style="font-size: 17px">Il giudizio d'investimento è affidabile?</h2>
-      <div class="step now"><b>In corso</b><span>Pesi dichiarati 35 / 30 / 20 / 15: <b style="background: none; padding: 0">non ancora validati</b>.</span></div>
-      <div class="step"><b>Fatto</b><span>Mini-storico a 30 giorni: le carte "sottovalutate" sono salite in media del 4% contro l'1% delle altre (test grezzo, 1 solo mese).</span></div>
-      <div class="step"><b>Gennaio</b><span>Prima verifica a 3 mesi sul registro dei giudizi: 14 giudizi salvati finora.</span></div>
+    <section aria-labelledby="t-val">
+      <h2 id="t-val" class="h2">Il giudizio d'investimento è affidabile?</h2>
+      <ol class="steps">
+        <li><span class="chip warn">In corso</span><span>Pesi dichiarati 35 / 30 / 20 / 15: <b>non ancora validati</b>.</span></li>
+        <li><span class="chip ok">Fatto</span><span>Mini-storico a 30 giorni: le carte "sottovalutate" sono salite in media del 4%, le altre dell'1%. Test grezzo, su un solo mese.</span></li>
+        <li><span class="chip neutral">Gennaio</span><span>Prima verifica a 3 mesi sul registro dei giudizi. Giudizi salvati finora: 14.</span></li>
+      </ol>
     </section>
-    <section class="panel">
-      <h2 style="font-size: 17px">Carte di controllo</h2>
-      <div class="tablewrap"><table><thead><tr><th>Carta</th><th class="r">Prezzo NM</th><th class="r">Modello</th><th class="r">Scarto</th></tr></thead><tbody id="controls"></tbody></table></div>
+    <section aria-labelledby="t-ctrl">
+      <h2 id="t-ctrl" class="h2">Carte di controllo</h2>
+      <span class="muted" style="font-size:14px">Scarto tra la stima del modello e il punto centrale della fascia NM (minimo +2,5%).</span>
+      <div class="tablewrap"><table style="min-width:420px;font-size:14px"><thead><tr><th scope="col" style="padding-left:0">Carta</th><th scope="col" class="r">Fascia NM</th><th scope="col" class="r">Modello</th><th scope="col" class="r">Scarto</th></tr></thead><tbody id="controls"></tbody></table></div>
     </section>
   </div>
 </main>
 
 <script>
 (function () {
+  "use strict";
+  var BAND = 0.05; /* fascia NM: dal minimo al minimo +5% (nel sito vero da config.json) */
   var eur = function (n) { return Math.round(n).toLocaleString("it-IT") + " €"; };
   var esc = function (s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); };
+  var $ = function (id) { return document.getElementById(id); };
 
-  /* ---------- Schede ---------- */
+  /* ---------- schede ---------- */
   var tabs = document.querySelectorAll("nav.tabs button");
   function show(id) {
-    ["valuta", "monitorate", "modello"].forEach(function (t) { document.getElementById(t).hidden = t !== id; });
+    ["valuta", "monitorate", "modello"].forEach(function (t) { $(t).hidden = t !== id; });
     tabs.forEach(function (b) { b.setAttribute("aria-selected", b.dataset.tab === id ? "true" : "false"); });
     window.scrollTo(0, 0);
   }
   tabs.forEach(function (b) { b.addEventListener("click", function () { show(b.dataset.tab); }); });
   document.querySelectorAll("[data-goto]").forEach(function (b) { b.addEventListener("click", function () { show(b.dataset.goto); }); });
 
-  /* ---------- Candidati ---------- */
-  var cands = [["Pikachu", "Promo PC · JA · full art"], ["Pikachu", "Promo PC · JA"], ["Pikachu", "Promo PC · EN · full art"]];
-  var cWrap = document.getElementById("cands");
-  cands.forEach(function (c, i) {
+  /* ---------- candidati ---------- */
+  [["Pikachu", "Promo PC, JA, full art"], ["Pikachu", "Promo PC, JA"], ["Pikachu", "Promo PC, EN, full art"]].forEach(function (c, i) {
     var b = document.createElement("button");
     b.type = "button"; b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
-    b.innerHTML = '<span class="ph" style="width: 28px; height: 39px; border-radius: 4px"></span><span style="display: flex; flex-direction: column"><b style="font-size: 14px">' + c[0] + '</b><span style="font-size: 12.5px; color: var(--muted)">' + c[1] + '</span></span>';
-    b.addEventListener("click", function () { cWrap.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); }); });
-    cWrap.appendChild(b);
+    b.innerHTML = '<span class="ph" style="width:26px;height:36px;border-radius:4px"></span><span style="text-align:left;display:flex;flex-direction:column"><b style="font-size:14px">' + c[0] + '</b><span class="muted" style="font-size:12.5px">' + c[1] + '</span></span>';
+    b.addEventListener("click", function () { $("cands").querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); }); });
+    $("cands").appendChild(b);
   });
 
-  /* ---------- Comparabili (dati di esempio) ---------- */
+  /* ---------- comparabili (dati di esempio) ---------- */
   var comps = [
-    { id: "c1", name: "Pikachu promo Pokémon Center", meta: "giapponese · 2022", sim: 91, factor: 1.80, price: 70, same: ["promo Pokémon Center", "iconicità alta", "solo giapponese"], diff: ["non full art"], note: "precompilato: rapporto NM salvato il 12/9" },
-    { id: "c2", name: "Pikachu promo Pokémon Center full art", meta: "internazionale · 2023", sim: 88, factor: 1.45, price: 89, same: ["promo Pokémon Center", "iconicità alta", "full art"], diff: ["non esclusiva"], note: "" },
-    { id: "c3", name: "Eevee promo Pokémon Center full art", meta: "giapponese · 2023", sim: 84, factor: 1.60, price: 79, same: ["promo Pokémon Center", "solo giapponese", "full art"], diff: ["Eevee invece di Pikachu"], note: "" },
-    { id: "c4", name: "Pikachu promo Pokémon Center full art stamped", meta: "giapponese · 2024", sim: 82, factor: 0.85, price: 155, same: ["promo Pokémon Center", "iconicità alta", "solo giapponese", "full art"], diff: ["stamped"], note: "" },
-    { id: "c5", name: "Charizard promo Pokémon Center full art", meta: "giapponese · 2022", sim: 79, factor: 0.92, price: 140, same: ["promo Pokémon Center", "iconicità alta", "solo giapponese", "full art"], diff: ["Charizard invece di Pikachu"], note: "" },
-    { id: "c6", name: "Umbreon promo Pokémon Center full art", meta: "giapponese · 2023", sim: 76, factor: 1.10, price: "", same: ["promo Pokémon Center", "iconicità alta", "solo giapponese"], diff: ["Umbreon invece di Pikachu"], note: "da inserire" }
+    { id: "c1", name: "Pikachu promo Pokémon Center", meta: "Giapponese, 2022", sim: 91, factor: 1.80, price: 72, same: ["promo Pokémon Center", "iconicità alta", "solo giapponese"], diff: ["non full art"], note: "Prezzo aggiornato con il trend (originale del 12/9)" },
+    { id: "c2", name: "Pikachu promo Pokémon Center full art", meta: "Internazionale, 2023", sim: 88, factor: 1.45, price: 92, same: ["promo Pokémon Center", "iconicità alta", "full art"], diff: ["non esclusiva"], note: "" },
+    { id: "c3", name: "Eevee promo Pokémon Center full art", meta: "Giapponese, 2023", sim: 84, factor: 1.60, price: 82, same: ["promo Pokémon Center", "solo giapponese", "full art"], diff: ["Eevee invece di Pikachu"], note: "" },
+    { id: "c4", name: "Pikachu promo Pokémon Center full art stamped", meta: "Giapponese, 2024", sim: 82, factor: 0.85, price: 160, same: ["promo Pokémon Center", "iconicità alta", "solo giapponese", "full art"], diff: ["stamped"], note: "" },
+    { id: "c5", name: "Charizard promo Pokémon Center full art", meta: "Giapponese, 2022", sim: 79, factor: 0.92, price: 145, same: ["promo Pokémon Center", "iconicità alta", "solo giapponese", "full art"], diff: ["Charizard invece di Pikachu"], note: "" },
+    { id: "c6", name: "Umbreon promo Pokémon Center full art", meta: "Giapponese, 2023", sim: 76, factor: 1.10, price: "", same: ["promo Pokémon Center", "iconicità alta", "solo giapponese"], diff: ["Umbreon invece di Pikachu"], note: "Prezzo da inserire" }
   ];
-  var compsEl = document.getElementById("comps");
   comps.forEach(function (c) {
     var d = document.createElement("div");
     d.className = "comp";
     d.innerHTML =
-      '<span class="ph" style="width: 52px; height: 72px"></span>' +
-      '<div class="info"><div class="row" style="gap: 6px 12px; align-items: baseline"><b style="font-size: 15.5px">' + esc(c.name) + '</b><span class="small" style="font-size: 13px">' + esc(c.meta) + '</span><span style="font-size: 13px; font-weight: 700; color: var(--accent-ink)">Somiglianza ' + c.sim + '%</span></div>' +
-      '<div class="row" style="gap: 6px">' + c.same.map(function (s) { return '<span class="same">✓ ' + esc(s) + '</span>'; }).join("") + c.diff.map(function (s) { return '<span class="diff">✗ ' + esc(s) + '</span>'; }).join("") + '</div>' +
-      '<div class="row" style="gap: 14px; font-size: 13.5px"><a href="https://www.cardmarket.com/it/Pokemon" target="_blank" rel="noopener">Cerca su Cardmarket</a><a href="https://www.ebay.it" target="_blank" rel="noopener">Vendite concluse su eBay</a><span class="small">' + esc(c.note) + '</span></div></div>' +
-      '<div class="nums"><div class="field"><label for="p-' + c.id + '">Minimo NM</label><input id="p-' + c.id + '" type="number" min="0" step="1" placeholder="—" value="' + c.price + '" style="width: 100px; min-height: 44px; font-weight: 700"><span id="f-' + c.id + '" style="font-weight: 400">&nbsp;</span></div>' +
-      '<div class="field" style="min-width: 64px"><span>Rettifica</span><span style="font-family: var(--mono); font-size: 14px; color: var(--ink); font-weight: 400">× ' + c.factor.toFixed(2).replace(".", ",") + '</span></div>' +
-      '<div class="field" style="min-width: 92px"><span>Per la tua carta</span><b style="font-size: 17px" id="a-' + c.id + '">—</b><span id="b-' + c.id + '" style="font-weight: 400">&nbsp;</span></div></div>';
-    compsEl.appendChild(d);
-    d.querySelectorAll("input").forEach(function (inp) { inp.addEventListener("input", recalc); });
+      '<span class="ph" style="width:48px;height:67px"></span>' +
+      '<div class="info"><div class="row" style="gap:2px 12px;align-items:baseline"><b style="font-size:15.5px">' + esc(c.name) + '</b><span class="muted" style="font-size:13px">' + esc(c.meta) + '</span><span class="num" style="font-size:13px;font-weight:700">Simile al ' + c.sim + '%</span></div>' +
+      '<ul class="cmp" aria-label="Confronto con la tua carta">' + c.same.map(function (s) { return '<li class="s">✓ ' + esc(s) + '</li>'; }).join("") + c.diff.map(function (s) { return '<li class="d">✗ ' + esc(s) + '</li>'; }).join("") + '</ul>' +
+      '<div class="row" style="gap:4px 16px;font-size:13.5px"><a href="https://www.cardmarket.com/it/Pokemon" target="_blank" rel="noopener">Cerca su Cardmarket</a><a href="https://www.ebay.it" target="_blank" rel="noopener">Vendite concluse su eBay</a><span class="muted">' + esc(c.note) + '</span></div></div>' +
+      '<div class="nums">' +
+        '<div class="field"><label for="p-' + c.id + '">Minimo NM (€)</label><input id="p-' + c.id + '" class="input num" type="number" min="0" step="1" placeholder="—" value="' + c.price + '"><span class="muted num" style="font-size:12.5px" id="f-' + c.id + '"></span></div>' +
+        '<div class="field"><span class="lab">Rettifica</span><span class="out num" style="font-size:15px">× ' + c.factor.toFixed(2).replace(".", ",") + '</span></div>' +
+        '<div class="field" style="text-align:right"><span class="lab">Per la tua carta</span><b class="out adj num" id="a-' + c.id + '">—</b><span class="muted num" style="font-size:12.5px" id="b-' + c.id + '"></span></div>' +
+      '</div>';
+    $("comps").appendChild(d);
+    d.querySelector("input").addEventListener("input", recalc);
   });
-  document.getElementById("tuo").addEventListener("input", recalc);
+  $("tuo").addEventListener("input", recalc);
 
   function recalc() {
-    /* fascia NM stimata dal minimo: dal minimo a +5% (ipotesi; nel sito vero in config.json) */
-    var DA = 0, A = 0.05;
-    var adj = [], los = [], his = [];
+    var mids = [], lows = [], highs = [];
     comps.forEach(function (c) {
-      var v = parseFloat(document.getElementById("p-" + c.id).value);
-      var out = document.getElementById("a-" + c.id), band = document.getElementById("b-" + c.id), fas = document.getElementById("f-" + c.id);
+      var v = parseFloat($("p-" + c.id).value);
       if (!isNaN(v) && v > 0) {
-        var f1 = v * (1 + DA), f2 = v * (1 + A);
-        var l = f1 * c.factor, h = f2 * c.factor, m = (l + h) / 2;
-        adj.push(m); los.push(l); his.push(h);
-        fas.textContent = "fascia " + Math.round(f1) + "–" + Math.round(f2) + " €";
-        out.textContent = eur(m);
-        band.textContent = "fascia " + Math.round(l) + "–" + Math.round(h) + " €";
-      } else { out.textContent = "—"; band.innerHTML = "&nbsp;"; fas.innerHTML = "&nbsp;"; }
+        var lo = v * c.factor, hi = v * (1 + BAND) * c.factor, m = (lo + hi) / 2;
+        mids.push(m); lows.push(lo); highs.push(hi);
+        $("f-" + c.id).textContent = "Fascia " + Math.round(v) + "–" + Math.round(v * (1 + BAND)) + " €";
+        $("a-" + c.id).textContent = eur(m);
+        $("b-" + c.id).textContent = Math.round(lo) + "–" + Math.round(hi) + " €";
+      } else { $("f-" + c.id).textContent = "Fascia —"; $("a-" + c.id).textContent = "—"; $("b-" + c.id).textContent = ""; }
     });
-    adj.sort(function (x, y) { return x - y; });
-    var n = adj.length;
-    var med = n ? (n % 2 ? adj[(n - 1) / 2] : (adj[n / 2 - 1] + adj[n / 2]) / 2) : null;
-    var spread = n ? Math.max(adj[n - 1] / med - 1, 1 - adj[0] / med) : 1;
-    var lo = n ? Math.min.apply(null, los) : null, hi = n ? Math.max.apply(null, his) : null;
-    var ok = n >= 3 && spread <= 0.15;
-    var your = parseFloat(document.getElementById("tuo").value);
-    var hasYour = !isNaN(your) && your > 0;
+    mids.sort(function (x, y) { return x - y; });
+    var n = mids.length;
+    var med = n ? (n % 2 ? mids[(n - 1) / 2] : (mids[n / 2 - 1] + mids[n / 2]) / 2) : null;
+    var spread = n ? Math.max(mids[n - 1] / med - 1, 1 - mids[0] / med) : 1;
+    var lo = n ? Math.min.apply(null, lows) : null, hi = n ? Math.max.apply(null, highs) : null;
+    var enough = n >= 3, ok = enough && spread <= 0.15;
+    var your = parseFloat($("tuo").value), hasYour = !isNaN(your) && your > 0;
     var diff = ok && hasYour ? (your / med - 1) * 100 : null;
 
-    document.getElementById("fair").textContent = ok ? eur(med) : "—";
-    document.getElementById("range").textContent = ok ? "Intervallo " + eur(lo) + " – " + eur(hi) : "Intervallo non disponibile";
-    document.getElementById("npriced").textContent = "Mediana di " + n + " comparabili rettificati";
+    $("fair").textContent = ok ? eur(med) : "—";
+    $("npriced").textContent = "Mediana di " + n + " carte simili, rettificate";
+    $("range").textContent = ok ? "Intervallo " + eur(lo) + " – " + eur(hi) : "Intervallo non disponibile";
+    $("yourtxt").textContent = hasYour ? eur(your) : "—";
 
-    var pv = document.getElementById("pv");
-    pv.className = "verdict";
-    if (!ok || !hasYour) { pv.textContent = "❔ Dati insufficienti"; }
-    else if (your < lo) { pv.textContent = "🟢 Sottovalutata"; pv.classList.add("v-ok"); }
-    else if (your > hi) { pv.textContent = "🔴 Sopravvalutata"; pv.classList.add("v-no"); }
-    else { pv.textContent = "⚪ In linea"; }
-    document.getElementById("pdiff").textContent = "Tuo prezzo " + (hasYour ? eur(your) : "—") + " · " + (diff === null ? "—" : (diff > 0 ? "+" : "−") + Math.abs(Math.round(diff)) + "% sul prezzo equo");
+    var pv = $("pv");
+    if (!ok || !hasYour) { pv.textContent = "Dati insufficienti"; pv.className = "verdict neutral"; }
+    else if (your < lo) { pv.textContent = "↓ Sottovalutata"; pv.className = "verdict ok"; }
+    else if (your > hi) { pv.textContent = "↑ Sopravvalutata"; pv.className = "verdict no"; }
+    else { pv.textContent = "= In linea"; pv.className = "verdict neutral"; }
+    $("pdiff").textContent = diff === null ? "Inserisci almeno 3 prezzi" : "La tua offerta è il " + Math.abs(Math.round(diff)) + "% " + (diff < 0 ? "sotto" : "sopra") + " il prezzo equo";
 
+    /* barra intervallo */
+    var pts = [lo, hi, your].filter(function (v) { return v !== null && !isNaN(v); });
+    var sMin = pts.length ? Math.min.apply(null, pts) * 0.85 : 0, sMax = pts.length ? Math.max.apply(null, pts) * 1.1 : 1;
+    var pos = function (v) { return Math.max(0, Math.min(100, (v - sMin) / (sMax - sMin) * 100)); };
+    $("band").style.display = $("tick").style.display = ok ? "" : "none";
+    $("you").style.display = ok && hasYour ? "" : "none";
+    if (ok) {
+      $("band").style.left = pos(lo) + "%"; $("band").style.width = (pos(hi) - pos(lo)) + "%";
+      $("tick").style.left = pos(med) + "%";
+      if (hasYour) $("you").style.left = pos(your) + "%";
+    }
+    $("rangebar").setAttribute("aria-label", ok && hasYour ? "Intervallo da " + eur(lo) + " a " + eur(hi) + ", mediana " + eur(med) + ", la tua offerta " + eur(your) : "Intervallo non disponibile");
+
+    /* investimento */
     var rel = diff === null ? 50 : Math.max(0, Math.min(100, 50 - diff * 50 / 30));
-    var parts = [["Valutazione relativa", "35%", rel, 0.35, "var(--c1)"], ["Fattori strutturali", "30%", 72, 0.30, "var(--c2)"], ["Scarsità", "20%", 64, 0.20, "var(--c3)"], ["Andamento ultimo mese", "15%", 55, 0.15, "var(--c4)"]];
+    var parts = [["Valutazione relativa", "35%", rel, 0.35], ["Fattori strutturali", "30%", 72, 0.30], ["Scarsità", "20%", 64, 0.20], ["Andamento ultimo mese", "15%", 55, 0.15]];
     var score = Math.round(parts.reduce(function (s, p) { return s + p[2] * p[3]; }, 0) - 4);
-    document.getElementById("score").textContent = ok ? score : "—";
-    var iv = document.getElementById("iv");
-    iv.className = "verdict"; iv.style.fontSize = "15px";
-    if (!ok) iv.textContent = "❔ Dati insufficienti";
-    else if (score >= 65) { iv.textContent = "🟢 Interessante"; iv.classList.add("v-ok"); }
-    else if (score >= 40) iv.textContent = "⚪ Neutro";
-    else { iv.textContent = "🔴 Sconsigliato"; iv.classList.add("v-no"); }
-
-    document.getElementById("components").innerHTML = parts.map(function (p) {
-      return '<div style="display: flex; flex-direction: column; gap: 4px"><div style="display: flex; justify-content: space-between; gap: 8px; font-size: 14px"><span>' + p[0] + ' <span class="small">· peso ' + p[1] + '</span></span><b>' + Math.round(p[2]) + '</b></div><div class="meter"><i style="width: ' + Math.round(p[2]) + '%; background: ' + p[4] + '"></i></div></div>';
+    $("score").textContent = ok ? score : "—";
+    var iv = $("iv");
+    if (!ok) { iv.textContent = "Dati insufficienti"; iv.className = "verdict neutral"; }
+    else if (score >= 65) { iv.textContent = "Interessante"; iv.className = "verdict ok"; }
+    else if (score >= 40) { iv.textContent = "Neutro"; iv.className = "verdict neutral"; }
+    else { iv.textContent = "Sconsigliato"; iv.className = "verdict no"; }
+    iv.style.fontSize = "15px"; iv.style.padding = "3px 12px";
+    $("components").innerHTML = parts.map(function (p) {
+      return '<div style="display:flex;flex-direction:column;gap:5px"><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px"><span>' + p[0] + ' <span class="muted">(peso ' + p[1] + ')</span></span><b class="num">' + Math.round(p[2]) + '</b></div><div class="meter"><i style="width:' + Math.round(p[2]) + '%"></i></div></div>';
     }).join("");
-    document.getElementById("proline").textContent = diff === null ? "prezzo equo non disponibile." : (diff < 0 ? "prezzo del " + Math.abs(Math.round(diff)) + "% sotto il prezzo equo NM." : "prezzo del " + Math.round(diff) + "% sopra il prezzo equo NM: non è uno sconto.");
+    $("proline").textContent = diff === null ? "Prezzo equo non disponibile." : (diff < 0 ? "Prezzo del " + Math.abs(Math.round(diff)) + "% sotto il prezzo equo Near Mint." : "Prezzo del " + Math.round(diff) + "% sopra il prezzo equo Near Mint: non è uno sconto.");
 
-    var w = document.getElementById("warn");
+    var w = $("warn");
     w.hidden = ok;
-    w.textContent = n < 3 ? "Servono almeno 3 comparabili con prezzo NM per dare un giudizio." : "I comparabili rettificati sono troppo dispersi (oltre ±15% dalla mediana): controlla i prezzi inseriti o aggiungi comparabili.";
+    w.textContent = !enough ? "Servono almeno 3 carte simili con prezzo NM per dare un giudizio. Inserisci altri prezzi qui sopra." : "Le carte simili danno prezzi troppo diversi tra loro (oltre ±15% dalla mediana). Controlla i prezzi inseriti o aggiungi altre carte.";
   }
   recalc();
 
-  /* ---------- Monitorate (dati di esempio) ---------- */
+  /* ---------- monitorate (dati di esempio) ---------- */
   var watch = [
-    { name: "Pikachu promo Pokémon Center full art", meta: "giapponese · aggiunta il 8/10", s: [110, 112, 111, 115, 118, 117, 121, 124, 122, 126], t: 115, tags: ["obiettivo"], sig: [["📈 +3% in 7 giorni", "s-up"]] },
-    { name: "Umbreon special illustration rare", meta: "internazionale · aggiunta il 2/9", s: [420, 415, 418, 405, 398, 392, 388, 380, 377, 371], t: 380, tags: ["obiettivo", "ribasso"], sig: [["🎯 Obiettivo raggiunto", "s-ok"], ["📉 −5% in 7 giorni", "s-down"]] },
-    { name: "Charizard gold rare", meta: "internazionale · aggiunta il 20/8", s: [210, 212, 211, 213, 212, 212, 213, 212, 214, 213], t: 180, tags: ["stabile"], sig: [["⏸️ Fermo da 21 giorni", "s-info"]] },
-    { name: "Mew promo stamped", meta: "giapponese · aggiunta il 15/9", s: [64, 66, 69, 70, 74, 77, 79, 83, 86, 90], t: 60, tags: ["rialzo"], sig: [["📈 +8% in 7 giorni", "s-up"]] }
+    { name: "Pikachu promo Pokémon Center full art", meta: "Giapponese, aggiunta l'8/10", s: [110, 112, 111, 115, 118, 117, 121, 124, 122, 126], t: 115, tags: ["obiettivo"], sig: [["Obiettivo raggiunto", "ok"]] },
+    { name: "Umbreon special illustration rare", meta: "Internazionale, aggiunta il 2/9", s: [420, 415, 418, 405, 398, 392, 388, 380, 377, 371], t: 380, tags: ["ribasso"], sig: [["In ribasso", "no"]] },
+    { name: "Charizard gold rare", meta: "Internazionale, aggiunta il 20/8", s: [210, 212, 211, 213, 212, 212, 213, 212, 214, 213], t: 180, tags: ["stabile"], sig: [["Fermo da 21 giorni", "neutral"]] },
+    { name: "Mew promo stamped", meta: "Giapponese, aggiunta il 15/9", s: [64, 66, 69, 70, 74, 77, 79, 83, 86, 90], t: 60, tags: ["rialzo"], sig: [["In rialzo", "neutral"]] }
   ];
   var filt = "tutte";
-  var fl = [["tutte", "Tutte"], ["obiettivo", "Obiettivi"], ["ribasso", "In ribasso"], ["rialzo", "In rialzo"], ["stabile", "Stabili"]];
-  var fEl = document.getElementById("filters");
-  fl.forEach(function (f) {
+  [["tutte", "Tutte"], ["obiettivo", "Obiettivo raggiunto"], ["ribasso", "In ribasso"], ["rialzo", "In rialzo"], ["stabile", "Stabili"]].forEach(function (f) {
     var b = document.createElement("button"); b.type = "button"; b.textContent = f[1];
     b.setAttribute("aria-pressed", f[0] === filt ? "true" : "false");
-    b.addEventListener("click", function () { filt = f[0]; fEl.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); }); drawWatch(); });
-    fEl.appendChild(b);
+    b.addEventListener("click", function () { filt = f[0]; $("filters").querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); }); drawWatch(); });
+    $("filters").appendChild(b);
   });
   function drawWatch() {
-    document.getElementById("watch").innerHTML = watch.filter(function (d) { return filt === "tutte" || d.tags.indexOf(filt) >= 0; }).map(function (d) {
+    $("watch").innerHTML = watch.filter(function (d) { return filt === "tutte" || d.tags.indexOf(filt) >= 0; }).map(function (d) {
       var all = d.s.concat([d.t]); var mn = Math.min.apply(null, all) * 0.97, mx = Math.max.apply(null, all) * 1.03;
-      var y = function (v) { return (66 - (v - mn) / (mx - mn) * 62).toFixed(1); };
-      var pts = d.s.map(function (v, i) { return (i * 300 / (d.s.length - 1)).toFixed(1) + "," + y(v); }).join(" ");
+      var y = function (v) { return (64 - (v - mn) / (mx - mn) * 58).toFixed(1); };
+      var pts = d.s.map(function (v, i) { return (4 + i * 292 / (d.s.length - 1)).toFixed(1) + "," + y(v); }).join(" ");
       var last = d.s[d.s.length - 1], c7 = (last / d.s[d.s.length - 4] - 1) * 100, c30 = (last / d.s[0] - 1) * 100;
       var f = function (x) { return (x >= 0 ? "+" : "−") + Math.abs(x).toFixed(0) + "%"; };
-      return '<article class="watch"><span class="ph" style="width: 60px; height: 84px"></span>' +
-        '<div style="flex: 1 1 230px; min-width: 0; display: flex; flex-direction: column; gap: 6px"><b style="font-size: 16px">' + esc(d.name) + '</b><span class="small">' + esc(d.meta) + '</span><div class="row" style="gap: 6px">' + d.sig.map(function (s) { return '<span class="sig ' + s[1] + '">' + s[0] + '</span>'; }).join("") + '</div></div>' +
-        '<div style="flex: 2 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 4px"><svg viewBox="0 0 300 70" width="100%" height="70" preserveAspectRatio="none" role="img" aria-label="Andamento dal giorno di inserimento"><line x1="0" y1="' + y(d.t) + '" x2="300" y2="' + y(d.t) + '" stroke="#C2410C" stroke-width="1" stroke-dasharray="4 4"/><polyline points="' + pts + '" fill="none" stroke="#2D5BFF" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="300" cy="' + y(last) + '" r="4" fill="#2D5BFF"/></svg><div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--muted)"><span>dal giorno di inserimento</span><span>tratteggio: obiettivo ' + d.t + ' €</span></div></div>' +
-        '<div style="flex: 1 1 170px; min-width: 0; display: flex; flex-direction: column; gap: 2px; align-items: flex-end; text-align: right"><b class="display" style="font-size: 22px">' + last + ' €</b><span style="font-size: 14px; font-weight: 700; color: ' + (c7 >= 0 ? "var(--ok)" : "var(--no)") + '">' + f(c7) + ' in 7 giorni</span><span class="small" style="font-size: 13px">' + f(c30) + ' in 30 giorni</span><a href="#" data-goto-link="valuta" style="font-size: 13.5px; margin-top: 4px">Rivaluta</a></div></article>';
+      return '<article class="watch"><span class="ph" style="width:56px;height:78px"></span>' +
+        '<div style="flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:6px"><h2 style="font-size:16px">' + esc(d.name) + '</h2><span class="muted" style="font-size:13.5px">' + esc(d.meta) + '</span><div class="row" style="gap:6px">' + d.sig.map(function (s) { return '<span class="chip ' + s[1] + '">' + s[0] + '</span>'; }).join("") + '</div></div>' +
+        '<div style="flex:2 1 300px;min-width:0;display:flex;flex-direction:column;gap:4px"><svg viewBox="0 0 300 70" width="100%" height="70" preserveAspectRatio="none" role="img" aria-label="Prezzo di ' + esc(d.name) + ' da ' + d.s[0] + ' a ' + last + ' euro, obiettivo ' + d.t + ' euro"><line x1="0" y1="' + y(d.t) + '" x2="300" y2="' + y(d.t) + '" stroke="#8A8A8A" stroke-width="1" stroke-dasharray="4 4"/><polyline points="' + pts + '" fill="none" stroke="#000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="296" cy="' + y(last) + '" r="4" fill="#000" stroke="#fff" stroke-width="2"/></svg>' +
+        '<div class="muted" style="display:flex;justify-content:space-between;font-size:12.5px"><span>Dal giorno di inserimento</span><span>Tratteggio: obiettivo ' + d.t + ' €</span></div></div>' +
+        '<div style="flex:1 1 160px;min-width:0;display:flex;flex-direction:column;gap:2px;align-items:flex-end;text-align:right"><b class="display num" style="font-size:26px;line-height:1.15">' + last + ' €</b><span class="num" style="font-size:14px;font-weight:700;color:' + (c7 >= 0 ? "var(--green-ink)" : "var(--red-ink)") + '">' + f(c7) + ' in 7 giorni</span><span class="muted num" style="font-size:13px">' + f(c30) + ' in 30 giorni</span><a href="#" data-goto="valuta" style="display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:700">Rivaluta</a></div></article>';
     }).join("");
-    document.querySelectorAll("[data-goto-link]").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); show("valuta"); }); });
+    $("watch").querySelectorAll("[data-goto]").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); show("valuta"); }); });
   }
   drawWatch();
 
-  /* ---------- Modello (dati di esempio) ---------- */
-  var seg = [["Carte da busta · internazionali", 1480, 10], ["Carte da busta · giapponesi", 860, 12], ["Promo · internazionali", 410, 14], ["Promo · giapponesi", 520, 18], ["Fascia < 10 €", 640, 13], ["Fascia 50–200 €", 590, 11], ["Fascia > 200 €", 150, 21]];
-  document.getElementById("segments").innerHTML = seg.map(function (s) {
+  /* ---------- modello (dati di esempio) ---------- */
+  $("segments").innerHTML = [["Carte da busta, internazionali", 1480, 10], ["Carte da busta, giapponesi", 860, 12], ["Promo, internazionali", 410, 14], ["Promo, giapponesi", 520, 18], ["Sotto 10 €", 640, 13], ["Da 50 a 200 €", 590, 11], ["Oltre 200 €", 150, 21]].map(function (s) {
     var ok = s[2] <= 15;
-    return '<tr><td>' + s[0] + '</td><td class="r">' + s[1].toLocaleString("it-IT") + '</td><td class="r"><b>±' + s[2] + '%</b></td><td><span class="sig ' + (ok ? "s-ok" : "s-down") + '">' + (ok ? "Entro soglia" : "Solo comparabili") + '</span></td></tr>';
+    return '<tr><td style="padding-left:0">' + s[0] + '</td><td class="r num muted">' + s[1].toLocaleString("it-IT") + '</td><td class="r num"><b>±' + s[2] + '%</b></td><td><span class="chip ' + (ok ? "ok" : "no") + '">' + (ok ? "Entro soglia" : "Solo carte simili") + '</span></td></tr>';
   }).join("");
-  var prem = [["Special illustration rare", 340, 300, 385], ["Gold / hyper", 210, 180, 245], ["Iconicità alta", 85, 70, 100], ["Pikachu × promo × solo giapponese", 70, 35, 110], ["Rilascio Pokémon Center", 45, 30, 60], ["Solo giapponese", 25, 15, 35], ["Stamped", 22, 10, 34], ["1ª generazione", 15, 8, 22]];
-  document.getElementById("premiums").innerHTML = prem.map(function (p) {
+  $("premiums").innerHTML = [["Special illustration rare", 340, 300, 385], ["Gold / hyper", 210, 180, 245], ["Iconicità alta", 85, 70, 100], ["Pikachu × promo × solo giapponese", 70, 35, 110], ["Rilascio Pokémon Center", 45, 30, 60], ["Solo giapponese", 25, 15, 35], ["Stamped", 22, 10, 34], ["1ª generazione", 15, 8, 22]].map(function (p) {
     var sc = function (v) { return Math.min(100, v / 400 * 100).toFixed(1); };
-    return '<div class="prem"><span>' + p[0] + '</span><div class="track"><div class="fill" style="width: ' + sc(p[1]) + '%"></div><div class="ci" style="left: ' + sc(p[2]) + '%; width: ' + (sc(p[3]) - sc(p[2])).toFixed(1) + '%"></div></div><b style="text-align: right">+' + p[1] + '%</b></div>';
+    return '<div class="prem"><span>' + p[0] + '</span><div class="t"><div class="base"></div><div class="bar" style="width:' + sc(p[1]) + '%"></div><div class="ci" style="left:' + sc(p[2]) + '%;width:' + (sc(p[3]) - sc(p[2])).toFixed(1) + '%"></div></div><b class="r num">+' + p[1] + '%</b></div>';
   }).join("");
-  var ctrl = [["Pikachu promo PC (JA)", 120, 126], ["Umbreon SIR", 380, 364], ["Charizard gold", 210, 198], ["Mew promo stamped", 85, 98], ["Eevee illustration rare", 34, 33]];
-  document.getElementById("controls").innerHTML = ctrl.map(function (c) {
-    var d = (c[2] / c[1] - 1) * 100, ok = Math.abs(d) <= 15;
-    return '<tr><td>' + c[0] + '</td><td class="r">' + c[1] + ' €</td><td class="r">' + c[2] + ' €</td><td class="r"><span class="sig ' + (ok ? "s-ok" : "s-down") + '">' + (d >= 0 ? "+" : "−") + Math.abs(d).toFixed(0) + '%</span></td></tr>';
+  $("controls").innerHTML = [["Pikachu promo PC (JA)", 118, 126], ["Umbreon SIR", 372, 364], ["Charizard gold", 205, 198], ["Mew promo stamped", 83, 98], ["Eevee illustration rare", 33, 33]].map(function (c) {
+    var d = (c[2] / (c[1] * 1.025) - 1) * 100, ok = Math.abs(d) <= 15;
+    return '<tr><td style="padding-left:0">' + c[0] + '</td><td class="r num">' + c[1] + '–' + Math.round(c[1] * 1.05) + ' €</td><td class="r num">' + c[2] + ' €</td><td class="r"><span class="chip ' + (ok ? "ok" : "no") + '">' + (d >= 0 ? "+" : "−") + Math.abs(d).toFixed(0) + '%</span></td></tr>';
   }).join("");
 })();
 </script>
