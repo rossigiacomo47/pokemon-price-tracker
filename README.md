@@ -10,7 +10,7 @@ Pagina: https://rossigiacomo47.github.io/pokemon-price-tracker/ (provvisoria, no
 
 | Blocco | Stato |
 |---|---|
-| 0 · Prima di iniziare | Mac pronto (Python 3.13, Git). Da fare: Python e Git sul PC Windows, account GitHub da verificare |
+| 0 · Prima di iniziare | Mac pronto (Python 3.13, Git, GitHub CLI in ~/.local/bin), account GitHub collegato. Da fare: Python e Git sul PC Windows |
 | 1 · Fotografia del mercato | Prima fotografia salvata l'8/10/2026 (`data/mercato/2026-W41.parquet`). Decisioni D3–D6 prese: soglia 3 €, prezzi ambigui divisi normale/foil, stamped dentro, modello unico en+ja. Perimetro provvisorio: 3.173 varianti con prezzo ≥ 3 € |
 | 2 · Online e raccolta automatica | Repository pubblico, pagina su GitHub Pages, workflow settimanale (lunedì 11:00 UTC) provato a mano l'8/10/2026. Da verificare: prima esecuzione automatica lunedì 12/10 (2026-W42) |
 | 3–9 | Da iniziare |
