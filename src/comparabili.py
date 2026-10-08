@@ -63,7 +63,7 @@ ETICHETTE = {
     "generazione": lambda v: f"{int(v)}ª generazione" if not pd.isna(v) else "generazione ?",
     "leggendario": lambda v: "leggendario" if v else "non leggendario",
     "illustratore": lambda v: f"illustratore {v}", "lingua": lambda v: "giapponese" if v == "ja" else "internazionale",
-    "iconicita": lambda v: f"iconicità {v}", "finitura_holo": lambda v: "holo" if v else "non holo",
+    "iconicita": lambda v: "iconicità " + {"alto": "alta", "medio": "media", "basso": "bassa"}.get(v, str(v)), "finitura_holo": lambda v: "holo" if v else "non holo",
     "rilascio": lambda v: f"rilascio {v}", "tipo_set": lambda v: f"set {v}", "stamped": lambda v: "stamped" if v else "non stamped",
     "esclusiva": lambda v: f"esclusiva: {v}", "standard": lambda v: "in Standard" if v else "fuori Standard",
     "alternate_art": lambda v: "alternate art" if v else "non alternate art", "era": lambda v: f"era {v}",
@@ -92,7 +92,7 @@ def nome_inglese(r):
     if r.lingua == "en":
         return str(r.nome)
     n = str(r.nomi_tcgp).split(" | ")[0] if isinstance(r.nomi_tcgp, str) else ""
-    n = re.sub(r"\s-\s[^-]*$", "", n)
+    n = re.sub(r"\s-\s\S+$", "", n)
     n = re.sub(r"\s*\(.*?\)", "", n)
     return n or (str(r.pokemon) if isinstance(r.pokemon, str) else str(r.nome))
 

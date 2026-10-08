@@ -279,7 +279,7 @@ def catalogo_ja(sets, data_foto):
             righe.append({
                 "data_fotografia": data_foto.date().isoformat(), "fonte_riga": "catalogo TCGCSV",
                 "fonte": "TCGCSV", "lingua": "ja", "id": f"tcgcsv-{p.prodotto_id}",
-                "numero": p.numero, "num": norm_numero(p.numero), "nome": re.sub(r"\s-\s[^-]*$", "", str(p.nome)),
+                "numero": p.numero, "num": norm_numero(p.numero), "nome": re.sub(r"\s-\s\S+$", "", str(p.nome)),
                 "categoria": "Trainer" if tipo.startswith("Trainer") else ("Energy" if "Energy" in tipo else "Pokemon"),
                 "rarita_tcgdex": None, "rarita_tcgp": p.rarita, "nomi_tcgp": p.nome, "alt_art": False,
                 "prodotto_tcgp": p.prodotto_id,

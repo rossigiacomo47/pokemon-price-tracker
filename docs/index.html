@@ -390,7 +390,7 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
     var t = ['<li class="fam">' + (c.famiglia === "carta da busta" ? "Carta da busta" : "Promo e rilascio speciale") + "</li>"];
     if (c.rilascio && c.rilascio !== "busta") t.push("<li>" + esc(c.rilascio === "da classificare" ? "Rilascio da classificare" : c.rilascio) + "</li>");
     t.push("<li>" + esc(c.rarita) + "</li>");
-    t.push("<li>Iconicità " + esc(c.iconicita) + "</li>");
+    t.push("<li>Iconicità " + esc({ alto: "alta", medio: "media", basso: "bassa" }[c.iconicita] || c.iconicita) + "</li>");
     if (c.esclusiva && c.esclusiva !== "entrambe") t.push("<li>" + esc(c.esclusiva === "incerta" ? "Esclusiva da verificare" : c.esclusiva.charAt(0).toUpperCase() + c.esclusiva.slice(1)) + "</li>");
     if (c.stamped) t.push("<li>Stamped" + (c.timbro ? " (" + esc(c.timbro) + ")" : "") + "</li>");
     if (c.alternate_art) t.push("<li>Alternate art</li>");
