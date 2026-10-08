@@ -4,13 +4,16 @@ Strumento personale che stima il prezzo equo Near Mint di carte Pokémon singole
 (Cardmarket, EUR), con comparabili rettificati e giudizio d'investimento.
 Le istruzioni complete e le decisioni sono in [CLAUDE.md](CLAUDE.md) (fonte di verità).
 
+Pagina: https://rossigiacomo47.github.io/pokemon-price-tracker/ (provvisoria, non indicizzata)
+
 ## A che punto siamo
 
 | Blocco | Stato |
 |---|---|
 | 0 · Prima di iniziare | Mac pronto (Python 3.13, Git). Da fare: Python e Git sul PC Windows, account GitHub da verificare |
 | 1 · Fotografia del mercato | Prima fotografia salvata l'8/10/2026 (`data/mercato/2026-W41.parquet`). Decisioni D3–D6 prese: soglia 3 €, prezzi ambigui divisi normale/foil, stamped dentro, modello unico en+ja. Perimetro provvisorio: 3.173 varianti con prezzo ≥ 3 € |
-| 2–9 | Da iniziare |
+| 2 · Online e raccolta automatica | Repository pubblico, pagina su GitHub Pages, workflow settimanale (lunedì 11:00 UTC) provato a mano l'8/10/2026. Da verificare: prima esecuzione automatica lunedì 12/10 (2026-W42) |
+| 3–9 | Da iniziare |
 
 Riepilogo del blocco 1: [riepiloghi/blocco1_2026-W41.md](riepiloghi/blocco1_2026-W41.md)
 
@@ -47,7 +50,7 @@ Cardmarket tramite TCGdex: `trend` oppure `trend-holo` secondo la regola di CLAU
 
 ## Prossimo passo
 
-Blocco 2: GitHub, Pages e raccolta settimanale automatica (serve l'account GitHub).
+Controllare lunedì 12/10 che la fotografia 2026-W42 sia stata salvata da sola. Poi blocco 3: caratteristiche delle carte (rarita.csv con la rarità giapponese da TCGCSV, set.csv, rilasci.csv, iconici.csv).
 Da recuperare nella prossima fotografia: le 9 carte fallite con errore 503 (`data/log/`).
 
 *Valutazioni e giudizi sono stime statistiche con margine di errore, basate su dati di mercato
