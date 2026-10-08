@@ -175,6 +175,7 @@ Costo di funzionamento previsto: **0 €**. Eventuali fonti a pagamento solo con
 5. **Corrispondenza tra versioni:** la stessa illustrazione può esistere in giapponese e in inglese con set e numeri diversi. Crea una tabella di corrispondenza e **segnalami i casi incerti** invece di indovinare.
 6. **Decisione D6 (8/10/2026, dopo il blocco 1):** le giapponesi da busta hanno prezzo Cardmarket su TCGdex nel 65–80% dei casi → **modello unico** internazionali + giapponesi, con la variabile lingua. Le promo giapponesi sono poche anche su TCGplayer (SM-P e S-P mancano su TCGdex): quelle con prezzo Cardmarket entrano nel modello unico; per quelle senza (es. SM-P, S-P, Pikachu Munch) la valutazione usa **solo i comparabili con i prezzi NM inseriti da Giacomo**, e la scheda lo dichiara. Niente modello separato su TCGplayer.
 7. **Prezzi ambigui (D4) e stamped (D5), 8/10/2026:** se `trend` e `trend-holo` sono entrambi pieni, la variante si divide in due righe, "normale" (`trend`) e "foil" (`trend-holo`), quando si leggono i dati (`src/prezzi.py`), senza modificare la fotografia. Le varianti stamped di carte da busta entrano nel perimetro come "promo e rilascio speciale".
+8. **Catalogo giapponese da TCGCSV (decisione del 9/10/2026):** 23 set giapponesi esistono su TCGdex ma senza carte (es. Shiny Star V, Eevee Heroes, VMAX Rising, 25th Anniversary Collection, Pokémon GO, Time Gazer). Le loro carte, e le promo SM-P, S-P e s8a-P, si prendono da TCGCSV (nome, numero, rarità, foto): **senza prezzo Cardmarket**, quindi fuori dall'addestramento, ma cercabili nella dashboard e usabili come comparabili con i prezzi NM inseriti a mano.
 
 ## 5. Variabili del modello del prezzo equo (lista decisa)
 
@@ -217,7 +218,7 @@ Perimetro: **carte Pokémon moderne (dal 2017), singole, non gradate, internazio
 **Iconicità (variabile 2), come la calcoliamo:**
 1. Il modello stima il **sovrapprezzo di ogni Pokémon** a parità delle altre caratteristiche (regolarizzato, così i Pokémon con poche carte non ottengono pesi estremi).
 2. Dividiamo i Pokémon in tre livelli (alto / medio / basso) in base a quel sovrapprezzo.
-3. Confrontiamo il risultato con la **mia lista** (`iconici.csv`). Mostrami le differenze e decido io i casi dubbi.
+3. Confrontiamo il risultato con la **mia lista** (`iconici.csv`). Mostrami le differenze e decido io i casi dubbi. **Fino alla conferma (9/10/2026)** si usa `iconici.csv` così com'è, in via provvisoria (gli 8 "da confermare" = alto).
 4. Attenzione a non contare due volte lo stesso effetto: "Pokémon raffigurato" e "iconicità" sono collegate. Prova le due versioni (solo Pokémon, solo iconicità) e tieni quella che sbaglia meno.
 
 ### 5.5 Interazioni (combinazioni): sono fondamentali
@@ -269,7 +270,7 @@ Non sono pesi: sono le **direzioni che mi aspetto**. Se il modello trova il cont
    - escludi le carte "bulk": **soglia decisa l'8/10/2026: 3 €** (decisione D3; con 15 € restavano solo ~900 varianti, sotto il minimo di 1.500–2.500) sul prezzo di riferimento (`soglia_bulk_eur` in `config.json`). Le carte sotto soglia restano nella fotografia ma non entrano nell'addestramento; la scheda di una carta sotto soglia deve dirlo ("sotto la soglia del modello");
    - escludi i prezzi palesemente anomali, segnalandoli.
 2. **Modello base**: regressione multipla su `log(prezzo)`, con le variabili della sezione 5 e le interazioni della 5.5.
-   - Le variabili a categorie si codificano con una **categoria di riferimento** (es. rarità "holo rara"); dimmi sempre quale è.
+   - Le variabili a categorie si codificano con una **categoria di riferimento**; dimmi sempre quale è. **Rarità: riferimento "illustration rare"** (decisione del 9/10/2026: la holo rara da busta è fuori perimetro; i sovrapprezzi di rarità si leggono rispetto a una IR).
    - Peso → sovrapprezzo: `(e^b − 1) × 100`. Mostra ogni sovrapprezzo con il suo **intervallo di confidenza**.
    - Circa **10–20 carte per ogni peso** stimato: accorpa in "altro" le categorie con meno di ~30 carte.
    - Usa la **regolarizzazione** (es. ridge) per stabilizzare i pesi delle categorie con poche carte, e una **versione robusta** meno sensibile ai prezzi anomali. Confronta i risultati.
@@ -354,6 +355,7 @@ Il prezzo di riferimento automatico non distingue condizione e lingua (4.5b). Pe
 2. **Punteggio di somiglianza 0–100%** su tutte le altre variabili della sezione 5, con la distanza di Gower: categorie uguali = 1, diverse = 0; numeri più vicini = più simili.
    - Pesi della somiglianza = **importanza delle variabili stimata dal modello**. Per ora nessun peso imposto a mano: rivediamo più avanti, guardando i risultati, se la modalità di rilascio deve contare di più.
    - **Era ed età del set: peso basso.** Una carta recente può essere molto simile a una di qualche era fa. La differenza di prezzo dovuta all'età la corregge la **rettifica** (7.3); il suo effetto nel tempo lo valuta il giudizio d'investimento.
+   - **Finitura holo (decisione del 9/10/2026):** holo / non holo conta nel punteggio di somiglianza con un peso alto, ma **non è un filtro obbligatorio**.
 3. Si confronta con **tutte** le carte che passano i filtri e si mostrano le **5–8 più simili** (sono io a inserirne i prezzi, quindi non troppe).
 4. **Se i filtri lasciano meno di 3 comparabili** sopra il 70% di somiglianza:
    - allenta **solo il livello di iconicità**. La famiglia non cambia mai, e restano fissi la rarità per le carte da busta e la modalità di rilascio per le promo;

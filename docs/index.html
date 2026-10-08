@@ -525,7 +525,14 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
 
   /* ---------- pagina "Il modello" ---------- */
   var NOMI = { "rarita_armonizzata": "", "iconicita": "Iconicità ", "meccanica": "", "era": "Era ", "fascia_eta": "Età del set ", "tipo_set": "Set ", "rilascio": "Rilascio ", "esclusiva": "", "lingua": "Lingua ", "variante": "Variante " };
+  var SPECIALI = { "iconicita=alto": "Iconicità alta", "iconicita=medio": "Iconicità media", "esclusiva=incerta": "Esclusiva incerta",
+    "esclusiva=solo giapponese": "Solo giapponese", "esclusiva=solo internazionale": "Solo internazionale", "lingua=ja": "Giapponese",
+    "meccanica=ex": "Meccanica ex", "meccanica=EX": "Meccanica EX", "meccanica=V": "Meccanica V", "meccanica=GX": "Meccanica GX",
+    "meccanica=VMAX": "Meccanica VMAX", "meccanica=VSTAR": "Meccanica VSTAR", "meccanica=Mega": "Meccanica Mega",
+    "rarita_armonizzata=promo": "Promo (rispetto a IR)", "rarita_armonizzata=gold-hyper-rainbow": "Gold, hyper, rainbow" };
+  var SEGMENTI = { en: "Internazionali", ja: "Giapponesi" };
   function etichetta(n) {
+    if (SPECIALI[n]) return SPECIALI[n];
     var p = n.split("=");
     if (p.length === 1) return { gen1: "1ª generazione", leggendario: "Leggendario o misterioso", stamped: "Stamped", standard: "Giocabile in Standard", alternate_art: "Alternate art", promo_fam: "Famiglia promo", diluizione_log: "Diluizione (per raddoppio)" }[n] || n;
     var v = p[1]; v = v.charAt(0).toUpperCase() + v.slice(1);
@@ -541,7 +548,7 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
       '<div><dt>Segmenti entro ±15%</dt><dd class="num">' + entro + ' su ' + tot.length + '</dd></div>' +
       '<div><dt>Pesi di questa settimana</dt><dd>Bozza</dd></div>';
     $("segments").innerHTML = tot.map(function (s) {
-      return '<tr><td style="padding-left:0">' + esc(s.segmento.charAt(0).toUpperCase() + s.segmento.slice(1)) + '</td><td class="r num muted">' + s.carte.toLocaleString("it-IT") + '</td><td class="r num"><b>±' + Math.round(s.errore_tipico) + '%</b></td><td><span class="chip ' + (s.entro_15 ? "ok" : "no") + '">' + (s.entro_15 ? "Entro soglia" : "Solo carte simili") + '</span></td></tr>';
+      return '<tr><td style="padding-left:0">' + esc(SEGMENTI[s.segmento] || s.segmento.charAt(0).toUpperCase() + s.segmento.slice(1)) + '</td><td class="r num muted">' + s.carte.toLocaleString("it-IT") + '</td><td class="r num"><b>±' + Math.round(s.errore_tipico) + '%</b></td><td><span class="chip ' + (s.entro_15 ? "ok" : "no") + '">' + (s.entro_15 ? "Entro soglia" : "Solo carte simili") + '</span></td></tr>';
     }).join("");
     $("confronto").innerHTML = m.confronto.map(function (x) {
       return '<tr><td style="padding-left:0">' + esc(x.modello) + (x.modello === m.scelto ? " <b>(scelto)</b>" : "") + '</td><td class="r num">±' + Math.round(x["errore_tipico_%"]) + '%</td><td class="r num">' + Math.round(x["entro_±15%_quota"]) + '%</td></tr>';
