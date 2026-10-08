@@ -1,0 +1,113 @@
+fonte,lingua,rarita_originale,varianti_o_prodotti,rarita_armonizzata,perimetro,nota,stato
+TCGdex,en,Common,5198,fuori,fuori,,proposta
+TCGdex,en,Uncommon,2795,fuori,fuori,,proposta
+TCGdex,en,Rare,2430,fuori,fuori,,proposta
+TCGdex,en,Promo,1116,promo,dentro,,proposta
+TCGdex,en,Ultra Rare,802,fuori,fuori,"full art normale (fuori), tranne le alternate art di Spada e Scudo -> SIR",proposta
+TCGdex,en,Holo Rare,525,fuori,fuori,,proposta
+TCGdex,en,Illustration rare,515,illustration rare,dentro,,proposta
+TCGdex,en,Double rare,440,fuori,fuori,,proposta
+TCGdex,en,Secret Rare,312,gold-hyper-rainbow,dentro,SM/SWSH: arcobaleno e dorate (alternate art riconosciute a parte),proposta
+TCGdex,en,Shiny rare,304,shiny,dentro,,proposta
+TCGdex,en,Holo Rare V,254,fuori,fuori,,proposta
+TCGdex,en,None,202,fuori,fuori,,proposta
+TCGdex,en,Special illustration rare,168,special illustration rare,dentro,,proposta
+TCGdex,en,Holo Rare VMAX,99,fuori,fuori,,proposta
+TCGdex,en,Hyper rare,45,gold-hyper-rainbow,dentro,SV: carte dorate,proposta
+TCGdex,en,Holo Rare VSTAR,40,fuori,fuori,,proposta
+TCGdex,en,Pikachu Rare,30,fuori,fuori,,proposta
+TCGdex,en,Classic Collection,22,promo,dentro,ristampe Classic Collection,proposta
+TCGdex,en,Radiant Rare,15,fuori,fuori,,proposta
+TCGdex,en,Shiny Ultra Rare,12,shiny,dentro,,proposta
+TCGdex,en,Amazing Rare,9,fuori,fuori,,proposta
+TCGdex,en,Shiny rare V,9,shiny,dentro,,proposta
+TCGdex,en,Mega Hyper Rare,8,gold-hyper-rainbow,dentro,,proposta
+TCGdex,en,Mega Attack Rare,7,da verificare,da verificare,rarita' nuova (era Mega),proposta
+TCGdex,en,Shiny rare VMAX,7,shiny,dentro,,proposta
+TCGdex,en,Black White Rare,4,da verificare,da verificare,rarita' nuova (Black Bolt / White Flare),proposta
+TCGdex,en,RGB Rare,3,da verificare,da verificare,rarita' nuova,proposta
+TCGdex,en,Futuristic Rare,2,da verificare,da verificare,rarita' nuova,proposta
+TCGdex,ja,Common,2703,fuori,fuori,,proposta
+TCGdex,ja,None,2214,fuori,fuori,,proposta
+TCGdex,ja,Uncommon,1355,fuori,fuori,,proposta
+TCGdex,ja,Rare,664,fuori,fuori,,proposta
+TCGdex,ja,Double rare,635,fuori,fuori,,proposta
+TCGdex,ja,(vuota),611,mancante,vedi nota,rarita' assente: si cerca in TCGplayer (set + numero),proposta
+TCGdex,ja,Ultra Rare,468,gold-hyper-rainbow,dentro,giapponese: UR = dorata -> gold-hyper-rainbow,proposta
+TCGdex,ja,Illustration rare,395,illustration rare,dentro,,proposta
+TCGdex,ja,Promo,213,promo,dentro,,proposta
+TCGdex,ja,Hyper rare,171,gold-hyper-rainbow,dentro,SV: carte dorate,proposta
+TCGdex,ja,Special illustration rare,115,special illustration rare,dentro,,proposta
+TCGdex,ja,Triple Rare,65,fuori,fuori,,proposta
+TCGdex,ja,Character Rare,52,character rare,dentro,CHR giapponese,proposta
+TCGdex,ja,Mega Hyper Rare,48,gold-hyper-rainbow,dentro,,proposta
+TCGdex,ja,Character Super Rare,46,character rare,dentro,CSR giapponese,proposta
+TCGdex,ja,Secret Rare,46,da verificare,da verificare,Secret Rare giapponese su TCGdex: controllare caso per caso,proposta
+TCGdex,ja,Classic Collection,28,promo,dentro,ristampe Classic Collection,proposta
+TCGdex,ja,Rare Holo,28,fuori,fuori,,proposta
+TCGdex,ja,Holo Rare,13,fuori,fuori,,proposta
+TCGdex,ja,Radiant Rare,12,fuori,fuori,,proposta
+TCGdex,ja,Shiny Ultra Rare,8,shiny,dentro,,proposta
+TCGdex,ja,RGB Rare,3,da verificare,da verificare,rarita' nuova,proposta
+TCGdex,ja,Black White Rare,2,da verificare,da verificare,rarita' nuova (Black Bolt / White Flare),proposta
+TCGdex,ja,Futuristic Rare,2,da verificare,da verificare,rarita' nuova,proposta
+TCGplayer,en,Uncommon,4123,fuori,fuori,,proposta
+TCGplayer,en,Common,3917,fuori,fuori,,proposta
+TCGplayer,en,Promo,2242,promo,dentro,,proposta
+TCGplayer,en,Ultra Rare,1923,fuori,fuori,"full art normale (fuori), tranne le alternate art di Spada e Scudo -> SIR",proposta
+TCGplayer,en,Rare,1815,fuori,fuori,,proposta
+TCGplayer,en,Holo Rare,626,fuori,fuori,,proposta
+TCGplayer,en,Illustration Rare,517,illustration rare,dentro,,proposta
+TCGplayer,en,Secret Rare,497,gold-hyper-rainbow,dentro,SM/SWSH: arcobaleno e dorate (alternate art riconosciute a parte),proposta
+TCGplayer,en,Double Rare,484,fuori,fuori,,proposta
+TCGplayer,en,Special Illustration Rare,232,special illustration rare,dentro,,proposta
+TCGplayer,en,Shiny Holo Rare,223,shiny,dentro,Shiny Vault,proposta
+TCGplayer,en,Classic Collection,158,promo,dentro,ristampe Classic Collection,proposta
+TCGplayer,en,Shiny Rare,120,shiny,dentro,,proposta
+TCGplayer,en,Hyper Rare,74,gold-hyper-rainbow,dentro,HR giapponese (arcobaleno) o hyper SV,proposta
+TCGplayer,en,ACE SPEC Rare,58,fuori,fuori,,proposta
+TCGplayer,en,Rainbow Rare,36,gold-hyper-rainbow,dentro,,proposta
+TCGplayer,en,Radiant Rare,33,fuori,fuori,,proposta
+TCGplayer,en,Prism Rare,33,fuori,fuori,,proposta
+TCGplayer,en,Pikachu Rare,30,fuori,fuori,,proposta
+TCGplayer,en,Unconfirmed,18,fuori,fuori,,proposta
+TCGplayer,en,Shiny Ultra Rare,12,shiny,dentro,,proposta
+TCGplayer,en,Futuristic Rare,10,da verificare,da verificare,rarita' nuova,proposta
+TCGplayer,en,Amazing Rare,9,fuori,fuori,,proposta
+TCGplayer,en,Mega Hyper Rare,8,gold-hyper-rainbow,dentro,,proposta
+TCGplayer,en,Mega Attack Rare,7,da verificare,da verificare,rarita' nuova (era Mega),proposta
+TCGplayer,en,Rare BREAK,6,fuori,fuori,,proposta
+TCGplayer,en,Black White Rare,4,da verificare,da verificare,rarita' nuova (Black Bolt / White Flare),proposta
+TCGplayer,en,RGB Rare,3,da verificare,da verificare,rarita' nuova,proposta
+TCGplayer,en,Rare Ace,1,fuori,fuori,,proposta
+TCGplayer,ja,Common,5161,fuori,fuori,,proposta
+TCGplayer,ja,None,4466,fuori,fuori,,proposta
+TCGplayer,ja,Uncommon,2402,fuori,fuori,,proposta
+TCGplayer,ja,(vuota),1748,mancante,vedi nota,rarita' assente: si cerca in TCGplayer (set + numero),proposta
+TCGplayer,ja,Super Rare,1005,fuori,fuori,,proposta
+TCGplayer,ja,Rare,822,fuori,fuori,,proposta
+TCGplayer,ja,Double Rare,758,fuori,fuori,,proposta
+TCGplayer,ja,Art Rare,569,illustration rare,dentro,AR giapponese,proposta
+TCGplayer,ja,Hyper Rare,332,gold-hyper-rainbow,dentro,HR giapponese (arcobaleno) o hyper SV,proposta
+TCGplayer,ja,Ultra Rare,284,gold-hyper-rainbow,dentro,giapponese: UR = dorata -> gold-hyper-rainbow,proposta
+TCGplayer,ja,Shiny Rare,278,shiny,dentro,,proposta
+TCGplayer,ja,Special Art Rare,270,special illustration rare,dentro,SAR giapponese,proposta
+TCGplayer,ja,Promo,213,promo,dentro,,proposta
+TCGplayer,ja,Triple Rare,134,fuori,fuori,,proposta
+TCGplayer,ja,Shiny Secret Rare,79,shiny,dentro,SSR giapponese,proposta
+TCGplayer,ja,Character Rare,58,character rare,dentro,CHR giapponese,proposta
+TCGplayer,ja,Prism Rare,49,fuori,fuori,,proposta
+TCGplayer,ja,Character Super Rare,48,character rare,dentro,CSR giapponese,proposta
+TCGplayer,ja,Trainer Rare,36,fuori,fuori,,proposta
+TCGplayer,ja,ACE Rare,33,fuori,fuori,,proposta
+TCGplayer,ja,Pikachu Rare,30,fuori,fuori,,proposta
+TCGplayer,ja,Classic Collection,25,promo,dentro,ristampe Classic Collection,proposta
+TCGplayer,ja,Kagayaku,19,fuori,fuori,,proposta
+TCGplayer,ja,Futuristic Rare,10,da verificare,da verificare,rarita' nuova,proposta
+TCGplayer,ja,Mega Attack Rare,10,da verificare,da verificare,rarita' nuova (era Mega),proposta
+TCGplayer,ja,Amazing Rare,9,fuori,fuori,,proposta
+TCGplayer,ja,Shining,9,fuori,fuori,,proposta
+TCGplayer,ja,Mega Ultra Rare,8,gold-hyper-rainbow,dentro,,proposta
+TCGplayer,ja,RGB Rare,3,da verificare,da verificare,rarita' nuova,proposta
+TCGplayer,ja,Black White Rare,2,da verificare,da verificare,rarita' nuova (Black Bolt / White Flare),proposta
+TCGplayer,ja,Holo Rare,2,fuori,fuori,,proposta

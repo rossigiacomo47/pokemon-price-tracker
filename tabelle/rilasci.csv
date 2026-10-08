@@ -1,0 +1,27 @@
+indizio,valore,modalita_rilascio,nota,stato
+famiglia,carta da busta,busta,,proposta
+set,cel25cc,prodotto speciale,Celebrations Classic Collection (CLAUDE.md sezione 2),proposta
+set,30th-c,prodotto speciale,30th Classic Collection,proposta
+set,McDonald's,altro,promozione McDonald's (Happy Meal),proposta
+timbro,pokemon-center,Pokemon Center,,proposta
+timbro,staff,evento o torneo,copie per lo staff di eventi,proposta
+timbro,regional-championships,evento o torneo,,proposta
+timbro,worlds-*,evento o torneo,Campionati mondiali,proposta
+timbro,player-rewards-program,evento o torneo,premi Play! Pokemon,proposta
+timbro,professor-program,evento o torneo,,proposta
+timbro,gym-challenge,evento o torneo,,proposta
+timbro,pre-release,evento o torneo,prerelease,proposta
+timbro,prerelease,evento o torneo,prerelease,proposta
+timbro,league,evento o torneo,Pokemon League,proposta
+timbro,ultra-ball-league,evento o torneo,,proposta
+timbro,illustration-contest-*,evento o torneo,concorso di illustrazione,proposta
+timbro,set-logo,prodotto speciale,"carte timbrate in box, poster e collezioni",proposta
+timbro,25th-celebration,prodotto speciale,,proposta
+timbro,30th-anniversary,prodotto speciale,,proposta
+timbro,snowflake,prodotto speciale,calendario dell'Avvento,proposta
+timbro,trick-or-trade,prodotto speciale,buste di Halloween,proposta
+timbro,eb-games,prodotto speciale,esclusiva di un negozio,proposta
+timbro,gamestop,prodotto speciale,esclusiva di un negozio,proposta
+timbro,bulbasaur|charmander|squirtle|pikachu,prodotto speciale,timbri delle collezioni,proposta
+timbro,(altro timbro),altro,timbro non riconosciuto: da classificare,proposta
+promo senza timbro,*,da classificare,nessun indizio automatico: revisione manuale sopra 20 €,proposta
