@@ -364,6 +364,9 @@ Il prezzo di riferimento automatico non distingue condizione e lingua (4.5b). Pe
 2. **Punteggio di somiglianza 0–100%** su tutte le altre variabili della sezione 5, con la distanza di Gower: categorie uguali = 1, diverse = 0; numeri più vicini = più simili.
    - Pesi della somiglianza = **importanza delle variabili stimata dal modello**. Per ora nessun peso imposto a mano: rivediamo più avanti, guardando i risultati, se la modalità di rilascio deve contare di più.
    - **Era ed età del set: peso basso.** Una carta recente può essere molto simile a una di qualche era fa. La differenza di prezzo dovuta all'età la corregge la **rettifica** (7.3); il suo effetto nel tempo lo valuta il giudizio d'investimento.
+   - **Stessa lingua (decisione del 9/10/2026):** la lingua è un **filtro obbligatorio**. Solo se nella stessa lingua restano meno di 3 comparabili si usano carte dell'altra lingua, **convertite con lo spread misurato** tra inglese e giapponese (coppie con stessa specie, illustratore e rarità; al 9/10: la giapponese costa circa il 47% dell'inglese, IR 41%, SIR 64%, gold 73%, promo ×2,25), e la scheda lo dichiara.
+   - **Espansione (decisione del 9/10/2026):** l'espansione è una variabile del modello (set con almeno 15 carte) e conta nella somiglianza ("stessa espansione"), con il peso stimato dal modello come le altre variabili.
+   - **Gemella nell'altra lingua:** se la stessa illustrazione esiste nell'altra lingua, la scheda mostra il suo prezzo e lo confronta con lo spread tipico (indizio di potenziale).
    - **Finitura holo (decisione del 9/10/2026):** holo / non holo conta nel punteggio di somiglianza con un peso alto, ma **non è un filtro obbligatorio**.
 3. Si confronta con **tutte** le carte che passano i filtri e si mostrano le **5–8 più simili** (sono io a inserirne i prezzi, quindi non troppe).
 4. **Se i filtri lasciano meno di 3 comparabili** sopra il 70% di somiglianza:
