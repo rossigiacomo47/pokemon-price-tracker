@@ -135,7 +135,7 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
       <button type="button" role="tab" data-tab="monitorate" aria-selected="false">Monitorate</button>
       <button type="button" role="tab" data-tab="modello" aria-selected="false">Il modello</button>
     </nav>
-    <div class="meta"><span id="settimana">Dati della settimana …</span><span>Versione 09/10 16:37</span><span class="flag">Bozza da rifinire</span></div>
+    <div class="meta"><span id="settimana">Dati della settimana …</span><span>Versione 09/10 16:38</span><span class="flag">Bozza da rifinire</span></div>
   </div>
 </header>
 
@@ -311,9 +311,12 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
   carica("data/indice.json").then(function (d) {
     indice = d.map(function (r) { return { k: r[0], nome: r[1], nome_en: r[2], set: r[3], numero: r[4], lingua: r[5], img: r[6], perimetro: r[7], extra: r[8], trend: r[9],
       testo: norm([r[1], r[2], r[3], r[4], /☆/.test(r[1]) ? "gold star" : "", r[5] === "ja" ? "giapponese japanese jp" : "inglese english en", r[8]].join(" ")) }; });
-    $("stato-indice").textContent = indice.length.toLocaleString("it-IT") + " carte disponibili. Cerca per nome, set o numero.";
+    var st = $("stato-indice");
+    if (st) st.textContent = indice.length.toLocaleString("it-IT") + " carte disponibili. Cerca per nome, set o numero.";
     if (inAttesa) { inAttesa = false; eseguiRicerca(); }
-  }).catch(function () { $("stato-indice").textContent = "Non riesco a caricare l'elenco delle carte. Riprova più tardi."; });
+  }).catch(function () {
+    $("cands").innerHTML = '<span class="muted" style="font-size:14px">Non riesco a caricare l\'elenco delle carte. Controlla la connessione e ricarica la pagina.</span>';
+  });
 
   carica("data/modello.json").then(function (m) { modello = m; disegnaModello(m); recalc(); }).catch(function () {});
 
