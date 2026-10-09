@@ -135,7 +135,7 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
       <button type="button" role="tab" data-tab="monitorate" aria-selected="false">Monitorate</button>
       <button type="button" role="tab" data-tab="modello" aria-selected="false">Il modello</button>
     </nav>
-    <div class="meta"><span id="settimana">Dati della settimana …</span><span class="flag">Bozza da rifinire</span></div>
+    <div class="meta"><span id="settimana">Dati della settimana …</span><span>Versione 09/10 16:37</span><span class="flag">Bozza da rifinire</span></div>
   </div>
 </header>
 
@@ -276,7 +276,7 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
   var esc = function (s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;"); };
   var norm = function (s) { return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/['’]/g, ""); };
   var oggi = new Date();
-  var indice = [], cache = {}, attuale = null, modello = null;
+  var indice = [], cache = {}, attuale = null, modello = null, inAttesa = false;
 
   /* ---------- schede (tab) ---------- */
   var tabs = document.querySelectorAll("nav.tabs button");
@@ -312,6 +312,7 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
     indice = d.map(function (r) { return { k: r[0], nome: r[1], nome_en: r[2], set: r[3], numero: r[4], lingua: r[5], img: r[6], perimetro: r[7], extra: r[8], trend: r[9],
       testo: norm([r[1], r[2], r[3], r[4], /☆/.test(r[1]) ? "gold star" : "", r[5] === "ja" ? "giapponese japanese jp" : "inglese english en", r[8]].join(" ")) }; });
     $("stato-indice").textContent = indice.length.toLocaleString("it-IT") + " carte disponibili. Cerca per nome, set o numero.";
+    if (inAttesa) { inAttesa = false; eseguiRicerca(); }
   }).catch(function () { $("stato-indice").textContent = "Non riesco a caricare l'elenco delle carte. Riprova più tardi."; });
 
   carica("data/modello.json").then(function (m) { modello = m; disegnaModello(m); recalc(); }).catch(function () {});
@@ -378,9 +379,14 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
       w.appendChild(b);
     });
   }
-  $("form-cerca").addEventListener("submit", function (e) {
-    e.preventDefault();
+  function eseguiRicerca() {
     var q = $("cerca").value.trim();
+    if (!q) return;
+    if (!indice.length) {   /* elenco ancora in caricamento: la ricerca parte appena e' pronto */
+      inAttesa = true;
+      $("cands").innerHTML = '<span class="muted" style="font-size:14px">Carico l\'elenco delle carte, un attimo…</span>';
+      return;
+    }
     if (/cardmarket\.com/i.test(q)) {
       var l = daLink(q);
       if (!l) { mostraCandidati([], q); return; }
@@ -392,11 +398,18 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
       return;
     }
     mostraCandidati(cerca(q), q);
-  });
+  }
+  $("form-cerca").addEventListener("submit", function (e) { e.preventDefault(); $("cerca").blur(); eseguiRicerca(); });
+  /* incollando un link Cardmarket nella casella, la ricerca parte da sola */
+  $("cerca").addEventListener("input", function () { if (/cardmarket\.com\/.+\/Products\/Singles\/[^/]+\/[^/?#\s]+/i.test($("cerca").value)) { $("cerca").blur(); eseguiRicerca(); } });
   $("incolla").addEventListener("click", function () {
+    var blocco = function () {
+      $("cands").innerHTML = '<span class="muted" style="font-size:14px">Il telefono non permette di leggere gli appunti da qui. Tieni premuto nella casella di ricerca e scegli «Incolla»: la ricerca parte da sola.</span>';
+      $("cerca").focus();
+    };
     if (navigator.clipboard && navigator.clipboard.readText) {
-      navigator.clipboard.readText().then(function (t) { $("cerca").value = t; $("form-cerca").requestSubmit(); }).catch(function () { $("cerca").focus(); });
-    } else { $("cerca").focus(); }
+      navigator.clipboard.readText().then(function (t) { $("cerca").value = t; eseguiRicerca(); }).catch(blocco);
+    } else { blocco(); }
   });
 
   /* ---------- scheda ---------- */
