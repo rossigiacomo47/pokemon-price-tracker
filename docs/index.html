@@ -135,7 +135,7 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
       <button type="button" role="tab" data-tab="monitorate" aria-selected="false">Monitorate</button>
       <button type="button" role="tab" data-tab="modello" aria-selected="false">Il modello</button>
     </nav>
-    <div class="meta"><span id="settimana">Dati della settimana …</span><span>Versione 10/10 00:31</span><span class="flag">Bozza da rifinire</span></div>
+    <div class="meta"><span id="settimana">Dati della settimana …</span><span>Versione 10/10 01:00</span><span class="flag">Bozza da rifinire</span></div>
   </div>
 </header>
 
@@ -176,6 +176,7 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
             <span class="label">Il minimo NM di oggi è…</span>
             <span class="verdict neutral" id="pv">—</span>
             <span class="num" style="font-size:14px" id="pdiff"></span>
+            <span class="flag" id="poco-aff" hidden>Poco affidabile</span>
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:6px">
@@ -605,6 +606,11 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
     $("seconda").textContent = c.stima && R ? "Seconda opinione del modello: " + eur(c.stima * R.tipico) + (hasTuo ? " (" + segno((centroTuo / (c.stima * R.tipico) - 1) * 100) + ")" : "") : "";
 
     var avv = [], T = modello && modello.test30;
+    var A = c.affidabilita, motivi = (A && A.poco_affidabile) ? A.motivi.slice() : [];
+    /* scarto estremo: oltre il 10° o il 90° percentile del mercato, spesso la carta ha qualcosa che il confronto non vede */
+    if (pc !== null && (pc < 10 || pc > 90)) motivi.push("lo scarto dalle simili è più grande di quello di 9 carte su 10 del mercato: spesso vuol dire che la carta ha qualcosa di speciale che il confronto non vede (es. collaborazione con un museo, ristampa celebrativa)");
+    $("poco-aff").hidden = !(ok && motivi.length);
+    if (ok && motivi.length) avv.push("Giudizio poco affidabile: " + motivi.join("; ") + ". Controlla a mano le carte simili qui sotto prima di fidarti del risultato.");
     if (T) avv.push("Validazione (test a 30 giorni, " + T.carte.toLocaleString("it-IT") + " carte): le carte più sottovalutate rispetto alle simili sono salite in media del " + segno(T.sottovalutate_media_pct) + " contro " + segno(T.mercato_media_pct) + " del mercato, ma la crescita tipica è stata " + segno(T.sottovalutate_mediana_pct) + ". Segnale debole e non validato: un indizio, non una previsione.");
     if (nStime >= Math.max(3, n - 1) && ok) avv.push("Quasi tutte le carte simili sono stime dal trend: scrivi il minimo NM vero di 2–3 di loro per un confronto più preciso.");
     if (Object.keys(tipi).length > 1) avv.push("Stai mescolando tipi di prezzo diversi (Cardmarket ed eBay) nella stessa valutazione.");

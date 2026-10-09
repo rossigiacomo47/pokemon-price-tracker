@@ -1,6 +1,6 @@
 # Pokémon Price Tracker (valutatore di carte) — istruzioni del progetto per Claude Code
 
-> Versione 2.5 (9 ottobre 2026: la valutazione confronta il minimo NM della carta con il valore delle carte simili, per il potenziale di crescita; test a 30 giorni). Versione 2.3 (8 ottobre 2026, dopo il blocco 1: soglia bulk 3 €, prezzi ambigui divisi normale/foil, stamped nel perimetro, modello unico en+ja, verifica del trend). Versione 2.2: promo di ogni finitura, regola del prezzo di riferimento per variante, era Sole e Luna da dicembre 2016. Versione 2.1: fascia Near Mint, carte di controllo, perimetro ampliato. Sostituisce l'impostazione precedente basata sull'archivio storico TCGCSV, che non è più scaricabile (i file d'archivio rispondono "403").
+> Versione 2.6 (10 ottobre 2026: iconicità fuori dal modello e usata solo nei comparabili, ricalcolata dai dati; diluizione tolta dal modello; character super rare (CSR) separata dalla character rare; tabelle `set.csv`, `rarita.csv`, `rilasci.csv` approvate; avviso "poco affidabile" nella scheda). Versione 2.5 (9 ottobre 2026: la valutazione confronta il minimo NM della carta con il valore delle carte simili, per il potenziale di crescita; test a 30 giorni). Versione 2.3 (8 ottobre 2026, dopo il blocco 1: soglia bulk 3 €, prezzi ambigui divisi normale/foil, stamped nel perimetro, modello unico en+ja, verifica del trend). Versione 2.2: promo di ogni finitura, regola del prezzo di riferimento per variante, era Sole e Luna da dicembre 2016. Versione 2.1: fascia Near Mint, carte di controllo, perimetro ampliato. Sostituisce l'impostazione precedente basata sull'archivio storico TCGCSV, che non è più scaricabile (i file d'archivio rispondono "403").
 
 ## 1. Chi sono e come devi lavorare con me
 
@@ -59,7 +59,7 @@ Lo uso sia per **collezionare** sia per **rivendere**.
 - solo **ere moderne, dal 2017**: Sole e Luna, Spada e Scudo, Scarlatto e Violetto, Mega, e i periodi giapponesi corrispondenti;
 - **solo queste carte** (deciso l'8 ottobre 2026):
   1. **tutte le promo** Pokémon da Sole e Luna in poi (Black Star Promos internazionali, promo giapponesi come SM-P, S-P, SV-P, promo Pokémon Center, premi di eventi e tornei, promo in box e collezioni), comprese le carte Pokémon della **Celebrations Classic Collection** (ristampe del 2021, famiglia "promo e rilascio speciale", modalità di rilascio "prodotto speciale");
-  2. dai set da Sole e Luna in poi, solo le carte Pokémon con rarità **illustration rare, special illustration rare, character rare** (giapponesi AR, SAR, CHR, CSR) e, per Spada e Scudo, le **alternate art** (le "full art alternative" di V, VMAX e VSTAR), trattate come equivalente delle special illustration rare;
+  2. dai set da Sole e Luna in poi, solo le carte Pokémon con rarità **illustration rare, special illustration rare, character rare** (giapponesi AR, SAR, CHR, CSR; dal 10/10/2026 la CSR è una rarità a sé, "character super rare", separata dalla CHR) e, per Spada e Scudo, le **alternate art** (le "full art alternative" di V, VMAX e VSTAR), trattate come equivalente delle special illustration rare;
   3. **gold, hyper e rainbow rare** (giapponesi UR, HR);
   4. **shiny** (Shiny Vault, shiny rare) e carte Pokémon delle **gallerie** (Trainer Gallery, Galarian Gallery e simili).
 - **Escluse:** full art V/GX/ex/EX "normali" (non alternate art), holo rare, comuni, non comuni e tutte le altre rarità.
@@ -203,7 +203,7 @@ Perimetro: **carte Pokémon moderne (dal 2017), singole, non gradate, internazio
 | 9 | Età del set | mesi dall'uscita, a fasce (es. 0–3, 3–6, 6–12, 12–24, 24+): l'effetto non è lineare | data di uscita del set |
 | 10 | Tipo di set | principale / speciale / sottoset (es. Trainer Gallery) / promo | TCGdex + tabella `set.csv` |
 | 11 | Modalità di rilascio | busta / prodotto speciale (box, collezione) / evento o torneo / Pokémon Center / altro | tabella `rilasci.csv`, compilata in parte a mano |
-| 12 | Diluizione | numero di carte della stessa rarità nel set (in logaritmo) | calcolata |
+| 12 | Diluizione | numero di carte della stessa rarità nel set (in logaritmo). **Tolta dal modello il 10/10/2026**: il peso usciva contrario alle attese e non riduceva l'errore in validazione. Resta calcolata nei dati | calcolata |
 | 13 | Stamped | sì / no | nome e variante, `variants.wPromo` |
 
 ### 5.4 Altre variabili
@@ -220,6 +220,7 @@ Perimetro: **carte Pokémon moderne (dal 2017), singole, non gradate, internazio
 2. Dividiamo i Pokémon in tre livelli (alto / medio / basso) in base a quel sovrapprezzo.
 3. Confrontiamo il risultato con la **mia lista** (`iconici.csv`). Mostrami le differenze e decido io i casi dubbi. **Fino alla conferma (9/10/2026)** si usa `iconici.csv` così com'è, in via provvisoria (gli 8 "da confermare" = alto).
 4. Attenzione a non contare due volte lo stesso effetto: "Pokémon raffigurato" e "iconicità" sono collegate. Prova le due versioni (solo Pokémon, solo iconicità) e tieni quella che sbaglia meno.
+5. **Decisione del 10 ottobre 2026:** nella regressione resta solo il **Pokémon raffigurato** (l'iconicità contava due volte lo stesso effetto). L'iconicità si usa **solo come filtro dei comparabili** (7.2) e nel giudizio d'investimento. I livelli si ricalcolano dai dati con `src/iconicita_dati.py` (sovrapprezzo del Pokémon rispetto al Pokémon medio: **alto ≥ +200%**, **medio da +75% a +200%**, almeno 8 carte) e li confermo io in `iconici.csv`.
 
 ### 5.5 Interazioni (combinazioni): sono fondamentali
 Per me le **combinazioni** contano quanto le singole variabili: un **Pikachu promo esclusiva giapponese** vale più della somma di "Pikachu" + "promo" + "esclusiva". Un'interazione è un peso in più che si attiva solo quando due o tre caratteristiche sono presenti **insieme**.
@@ -388,6 +389,13 @@ Il prezzo di riferimento automatico non distingue condizione e lingua (4.5b). Pe
 - prezzo originale e rettificato;
 - foto e link.
 
+**Avviso "Poco affidabile" (deciso il 10 ottobre 2026).** Accanto al giudizio compare l'etichetta gialla "Poco affidabile", con il motivo, quando:
+- le carte simili vanno corrette in media più di **×2** (o ÷2): sono troppo diverse dalla carta valutata;
+- ci sono meno di 3 carte simili con una correzione calcolabile;
+- servono carte dell'altra lingua, convertite con lo spread medio.
+- lo scarto tra il minimo NM e il valore delle simili è più grande di quello di 9 carte su 10 del mercato (oltre il 10° o il 90° percentile): spesso la carta ha qualcosa di speciale che le variabili non vedono (es. Pikachu Van Gogh, Umbreon Gold Star).
+Un tetto alle correzioni è stato provato (×5, ×3, ×2, ×1,5) e non migliorava i risultati: per questo si avvisa invece di correggere.
+
 ### 7.5 Dati di scarsità dei comparabili
 - Quando valuto una carta, la pagina **mi chiede** popolazione PSA 10, popolazione PSA totale e copie in vendita su Cardmarket **anche per i comparabili**:
   - mostra per ognuno i **link di ricerca PSA e Cardmarket**;
@@ -552,7 +560,7 @@ Puoi migliorare dettagli tecnici (accessibilità, prestazioni, versione mobile),
 2. **Online e raccolta automatica** (Intermedio): GitHub, GitHub Pages, workflow settimanale della fotografia. **Va fatto presto**: ogni settimana di ritardo è una fotografia in meno per la validazione.
 3. **Caratteristiche delle carte** (Intermedio/Avanzato):
    - tutte le variabili della sezione 5, documentate in `variabili.md`;
-   - tabelle `rarita.csv`, `set.csv`, `rilasci.csv`, `iconici.csv`: mostrami ognuna prima di usarla;
+   - tabelle `rarita.csv`, `set.csv`, `rilasci.csv`, `iconici.csv`: mostrami ognuna prima di usarla (le prime tre **approvate il 10/10/2026**);
    - mostrami i casi incerti e quante carte ci sono per ogni valore di ogni variabile.
 4. **Modello del prezzo equo** (Avanzato): regressione, interazioni, validazione incrociata, confronto con un modello flessibile, sovrapprezzi per caratteristica. Mostrami i risultati prima di andare avanti.
 5. **Comparabili e scheda di valutazione** (Avanzato): comparabili rettificati, "Valuta una carta" (ricerca con foto, link Cardmarket), dati manuali, precalcolo settimanale.

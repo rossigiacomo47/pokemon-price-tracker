@@ -34,6 +34,8 @@ RADICE = Path(__file__).resolve().parent.parent
 DOCS = RADICE / "docs" / "data"
 N_COMP = 8
 SOGLIA_SIM = 70
+# avviso "poco affidabile": le simili sono troppo diverse se la correzione tipica supera x2 (o /2)
+SOGLIA_CORREZIONE = 2.0
 
 # variabile -> (nome dell'importanza nel modello, tipo)
 SOMIGLIANZA = {
@@ -253,7 +255,18 @@ def main():
             gem = {"nome": str(gr.nome), "set": str(gr.set_nome), "numero": str(gr.numero), "lingua": altra,
                    "trend": round(float(gr.prezzo_rif_eur), 2), "k": gr.k,
                    "spread_tipico": round(spread.get(rar[i], spread["tutte"]), 3)}
-        schede[per.at[i, "k"]] = {"comps": comps, "allentato": allentato, "altra_lingua": altra_lingua, "gemella": gem}
+        motivi = []
+        fatt = [abs(math.log(c["fattore"])) for c in comps if c["fattore"]]
+        corr = float(np.exp(np.median(fatt))) if fatt else None
+        if len(fatt) < 3:
+            motivi.append("meno di 3 carte simili con una correzione calcolabile")
+        elif corr > SOGLIA_CORREZIONE:
+            motivi.append(f"le carte simili vanno corrette in media di ×{corr:.1f}: sono molto diverse dalla tua")
+        if altra_lingua:
+            motivi.append("servono carte dell'altra lingua, convertite con lo spread medio")
+        schede[per.at[i, "k"]] = {"comps": comps, "allentato": allentato, "altra_lingua": altra_lingua, "gemella": gem,
+                                  "affidabilita": {"poco_affidabile": bool(motivi), "motivi": motivi,
+                                                   "correzione_tipica": round(corr, 2) if corr else None}}
 
     # --- dati di ogni carta
     def info(r):
@@ -377,6 +390,8 @@ def main():
     allentati = sum(1 for s in schede.values() if s["allentato"])
     pochi = sum(1 for s in schede.values() if len(s["comps"]) < 3)
     print(f"schede: {len(schede)} | iconicità allentata: {allentati} | meno di 3 comparabili: {pochi}")
+    poco = sum(1 for s in schede.values() if s["affidabilita"]["poco_affidabile"])
+    print(f"schede con avviso 'poco affidabile': {poco} ({poco / len(schede) * 100:.1f}%)")
 
 
 if __name__ == "__main__":

@@ -11,7 +11,7 @@ non il prezzo Cardmarket: serve per la ricerca e come comparabile con i prezzi N
 | # | Variabile (colonna) | Definizione | Fonte | Note e casi incerti |
 |---|---|---|---|---|
 | 1 | Pokémon (`pokemon_cat`) | Primo Pokémon raffigurato; i 30 più frequenti nel modello come categorie proprie, gli altri "altro" | TCGdex `dexId`; se manca, nome della carta confrontato con i nomi PokéAPI (en/ja) | Carte con più Pokémon (TAG TEAM): conta il primo (`n_pokemon` > 1) |
-| 2 | Iconicità (`iconicita`) | alto / medio / basso | **Provvisoria**: `iconici.csv` così com'è; non in lista = basso | Nel blocco 4 si calcola anche dai dati e si confrontano le due versioni |
+| 2 | Iconicità (`iconicita`) | alto / medio / basso | `iconici.csv` (non in lista = basso); proposta dai dati in `riepiloghi/iconicita_proposta.csv` (`src/iconicita_dati.py`) | **Fuori dal modello dal 10/10/2026** (doppio conteggio con il Pokémon raffigurato): usata solo come filtro dei comparabili |
 | 3 | Generazione (`generazione`) | 1–9 | PokéAPI `generation_id` | |
 | 4 | Leggendario/misterioso (`leggendario`) | sì / no | PokéAPI `is_legendary` o `is_mythical` | |
 | 5 | Rarità armonizzata (`rarita_armonizzata`) | illustration rare · special illustration rare · character rare · gold-hyper-rainbow · shiny · galleria · promo | `tabelle/rarita.csv`; rarità mancanti su TCGdex completate da TCGplayer (set + numero) | **Riferimento del modello: illustration rare** (decisione 9/10). Gold, hyper e rainbow uniti: le fonti non le distinguono in modo affidabile. "Secret Rare" giapponesi e rarità nuove (Black White, Mega Attack, RGB, Futuristic) = da verificare |
@@ -22,7 +22,7 @@ non il prezzo Cardmarket: serve per la ricerca e come comparabile con i prezzi N
 | 9 | Età del set (`fascia_eta`) | 0–3 · 3–6 · 6–12 · 12–24 · 24–48 · 48+ mesi | Data di uscita del set | **Proposta**: aggiunte 24–48 e 48+ perché "24+" metteva insieme 2017–2024 |
 | 10 | Tipo di set (`tipo_set`) | principale · speciale · sottoset · promo | `tabelle/set.csv` (regole + elenco) | Speciale = set ".5", high class pack giapponesi, mazzi, McDonald's |
 | 11 | Modalità di rilascio (`rilascio`) | busta · prodotto speciale · evento o torneo · Pokémon Center · altro · da classificare | `tabelle/rilasci.csv`: timbri TCGdex, set | **Molte promo senza timbro restano "da classificare"**: elenco sopra 20 € in `riepiloghi/blocco3_rilasci_da_classificare.csv` |
-| 12 | Diluizione (`diluizione_log`) | log del numero di carte della stessa rarità armonizzata nel set | Calcolata | |
+| 12 | Diluizione (`diluizione_log`) | log del numero di carte della stessa rarità armonizzata nel set | Calcolata | **Tolta dal modello il 10/10/2026** (peso contrario alle attese, nessun beneficio in validazione) |
 | 13 | Stamped (`stamped`) | sì / no | Timbro della variante TCGdex | |
 | 14 | Esclusiva linguistica (`esclusiva`) | entrambe · solo giapponese · solo internazionale · incerta | Stessa specie + stesso illustratore nell'altra lingua, tra carte rare, full art o promo | **Proposta grezza**: "incerta" se manca l'illustratore o se la gemella potrebbe stare nei set giapponesi vuoti su TCGdex. Da migliorare (CLAUDE.md 4.7.5) |
 | 15 | Illustratore (`illustratore_cat`) | Illustratori con almeno 30 carte nel modello; altri "altro"; mancante "sconosciuto" | TCGdex `illustrator` | |

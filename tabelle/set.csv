@@ -1,196 +1,196 @@
 lingua,set_id,set_nome,serie_id,era,data_uscita,carte_ufficiali,carte_su_tcgdex,tipo_set,tcgcsv_gruppo_id,collegamento,nome_tcgcsv,note,stato
-en,sm1,Sun & Moon,sm,Sole e Luna,2017-02-03,149,172,principale,1863.0,manuale,SM Base Set,,proposta
-en,smp,SM Black Star Promos,sm,Sole e Luna,2017-02-03,248,248,promo,1861.0,manuale,SM Promos,,proposta
-en,tk-sm-l,SM trainer Kit (Lycanroc),tk,Sole e Luna,2017-04-21,30,18,speciale,2069.0,manuale,SM Trainer Kit: Lycanroc & Alolan Raichu,,proposta
-en,tk-sm-r,SM trainer Kit (Alolan Raichu),tk,Sole e Luna,2017-04-21,30,30,speciale,2069.0,manuale,SM Trainer Kit: Lycanroc & Alolan Raichu,,proposta
-en,sm2,Guardians Rising,sm,Sole e Luna,2017-05-05,145,169,principale,1919.0,manuale,SM - Guardians Rising,,proposta
-en,2017sm,McDonald's Collection 2017,mc,Sole e Luna,2017-08-03,12,12,speciale,2148.0,manuale,McDonald's Promos 2017,,proposta
-en,sm3,Burning Shadows,sm,Sole e Luna,2017-08-04,147,169,principale,1957.0,manuale,SM - Burning Shadows,,proposta
-en,sm3.5,Shining Legends,sm,Sole e Luna,2017-10-06,73,78,speciale,2054.0,sigla o nome,Shining Legends,,proposta
-en,sm4,Crimson Invasion,sm,Sole e Luna,2017-11-03,111,125,principale,2071.0,manuale,SM - Crimson Invasion,,proposta
-en,sm5,Ultra Prism,sm,Sole e Luna,2018-02-02,156,173,principale,2178.0,manuale,SM - Ultra Prism,,proposta
-en,sm6,Forbidden Light,sm,Sole e Luna,2018-05-04,131,146,principale,2209.0,manuale,SM - Forbidden Light,,proposta
-en,sm7,Celestial Storm,sm,Sole e Luna,2018-08-03,168,183,principale,2278.0,sigla o nome,SM - Celestial Storm,,proposta
-en,sm7.5,Dragon Majesty,sm,Sole e Luna,2018-09-07,70,78,speciale,2295.0,sigla o nome,Dragon Majesty,,proposta
-en,2018sm,McDonald's Collection 2018,mc,Sole e Luna,2018-10-19,12,12,speciale,2364.0,manuale,McDonald's Promos 2018,,proposta
-en,sm8,Lost Thunder,sm,Sole e Luna,2018-11-02,214,236,principale,2328.0,manuale,SM - Lost Thunder,,proposta
-en,sm9,Team Up,sm,Sole e Luna,2019-01-31,181,196,principale,2377.0,manuale,SM - Team Up,,proposta
-en,det1,Detective Pikachu,sm,Sole e Luna,2019-03-29,18,18,speciale,2409.0,sigla o nome,Detective Pikachu,,proposta
-en,sm10,Unbroken Bonds,sm,Sole e Luna,2019-05-03,214,234,principale,2420.0,manuale,SM - Unbroken Bonds,,proposta
-en,sm11,Unified Minds,sm,Sole e Luna,2019-08-02,236,258,principale,2464.0,manuale,SM - Unified Minds,,proposta
-en,sm115,Hidden Fates,sm,Sole e Luna,2019-08-23,68,69,speciale,2480.0,sigla o nome,Hidden Fates,,proposta
-en,sma,Hidden Fates Shiny Vault,sm,Sole e Luna,2019-08-23,94,94,sottoset,2594.0,manuale,Hidden Fates: Shiny Vault,,proposta
-en,2019sm,McDonald's Collection 2019,mc,Sole e Luna,2019-10-15,12,12,speciale,2555.0,manuale,McDonald's Promos 2019,,proposta
-en,sm12,Cosmic Eclipse,sm,Sole e Luna,2019-11-01,236,271,principale,2534.0,manuale,SM - Cosmic Eclipse,,proposta
-en,swshp,SWSH Black Star Promos,swsh,Spada e Scudo,2019-11-15,307,307,promo,2545.0,manuale,SWSH: Sword & Shield Promo Cards,,proposta
-en,swsh1,Sword & Shield,swsh,Spada e Scudo,2020-02-07,202,216,principale,2585.0,manuale,SWSH01: Sword & Shield Base Set,,proposta
-en,swsh2,Rebel Clash,swsh,Spada e Scudo,2020-05-01,192,209,principale,2626.0,sigla o nome,SWSH02: Rebel Clash,,proposta
-en,swsh3,Darkness Ablaze,swsh,Spada e Scudo,2020-08-14,189,201,principale,2675.0,sigla o nome,SWSH03: Darkness Ablaze,,proposta
-en,fut2020,Pokémon Futsal 2020,swsh,Spada e Scudo,2020-09-11,5,5,speciale,,nessuno,,,proposta
-en,swsh3.5,Champion's Path,swsh,Spada e Scudo,2020-09-25,73,80,speciale,2685.0,sigla o nome,Champion's Path,,proposta
-en,swsh4,Vivid Voltage,swsh,Spada e Scudo,2020-11-13,185,203,principale,2701.0,sigla o nome,SWSH04: Vivid Voltage,,proposta
-en,2021swsh,McDonald's Collection 2021,mc,Spada e Scudo,2021-02-09,25,25,speciale,2782.0,manuale,McDonald's 25th Anniversary Promos,,proposta
-en,swsh4.5,Shining Fates,swsh,Spada e Scudo,2021-02-19,72,73,speciale,2754.0,sigla o nome,Shining Fates,,proposta
-en,swsh4.5sv,Shining Fates Shiny Vault,swsh,Spada e Scudo,2021-02-19,122,122,sottoset,2781.0,manuale,Shining Fates: Shiny Vault,,proposta
-en,swsh5,Battle Styles,swsh,Spada e Scudo,2021-03-19,163,183,principale,2765.0,sigla o nome,SWSH05: Battle Styles,,proposta
-en,swsh6,Chilling Reign,swsh,Spada e Scudo,2021-06-18,198,233,principale,2807.0,sigla o nome,SWSH06: Chilling Reign,,proposta
-en,swsh7,Evolving Skies,swsh,Spada e Scudo,2021-08-27,203,237,principale,2848.0,sigla o nome,SWSH07: Evolving Skies,,proposta
-en,cel25,Celebrations,swsh,Spada e Scudo,2021-10-08,25,25,speciale,2867.0,sigla o nome,Celebrations,,proposta
-en,cel25cc,Celebrations Classic Collection,swsh,Spada e Scudo,2021-10-08,25,25,sottoset,2931.0,manuale,Celebrations: Classic Collection,,proposta
-en,swsh8,Fusion Strike,swsh,Spada e Scudo,2021-11-12,264,284,principale,2906.0,sigla o nome,SWSH08: Fusion Strike,,proposta
-en,swsh9,Brilliant Stars,swsh,Spada e Scudo,2022-02-25,172,186,principale,2948.0,sigla o nome,SWSH09: Brilliant Stars,,proposta
-en,swsh9tg,Brilliant Stars Trainer Gallery,swsh,Spada e Scudo,2022-02-25,30,30,sottoset,3020.0,sigla o nome,SWSH09: Brilliant Stars Trainer Gallery,,proposta
-en,swsh10,Astral Radiance,swsh,Spada e Scudo,2022-05-27,189,216,principale,3040.0,sigla o nome,SWSH10: Astral Radiance,,proposta
-en,swsh10tg,Astral Radiance Trainer Gallery,swsh,Spada e Scudo,2022-05-27,30,30,sottoset,3068.0,sigla o nome,SWSH10: Astral Radiance Trainer Gallery,,proposta
-en,swsh10.5,Pokémon GO,swsh,Spada e Scudo,2022-07-01,78,88,speciale,3064.0,sigla o nome,Pokemon GO,,proposta
-en,2022swsh,McDonald's Collection 2022,mc,Spada e Scudo,2022-08-03,15,15,speciale,3150.0,manuale,McDonald's Promos 2022,,proposta
-en,swsh11,Lost Origin,swsh,Spada e Scudo,2022-09-09,196,217,principale,3118.0,sigla o nome,SWSH11: Lost Origin,,proposta
-en,swsh11tg,Lost Origin Trainer Gallery,swsh,Spada e Scudo,2022-09-09,30,30,sottoset,3172.0,sigla o nome,SWSH11: Lost Origin Trainer Gallery,,proposta
-en,swsh12,Silver Tempest,swsh,Spada e Scudo,2022-11-11,195,215,principale,3170.0,sigla o nome,SWSH12: Silver Tempest,,proposta
-en,swsh12tg,Silver Tempest Trainer Gallery,swsh,Spada e Scudo,2022-11-11,30,30,sottoset,17674.0,sigla o nome,SWSH12: Silver Tempest Trainer Gallery,,proposta
-en,swsh12.5,Crown Zenith,swsh,Spada e Scudo,2023-01-20,159,160,speciale,17688.0,sigla o nome,SWSH: Crown Zenith,,proposta
-en,swsh12.5gg,Crown Zenith Galarian Gallery,swsh,Spada e Scudo,2023-01-20,70,70,sottoset,17689.0,sigla o nome,SWSH: Crown Zenith: Galarian Gallery,,proposta
-en,sv01,Scarlet & Violet,sv,Scarlatto e Violetto,2023-03-31,198,258,principale,22873.0,sigla o nome,SV01: Scarlet & Violet Base Set,,proposta
-en,sve,Scarlet & Violet Energy,sv,Scarlatto e Violetto,2023-03-31,24,24,speciale,24382.0,sigla o nome,SVE: Scarlet & Violet Energies,,proposta
-en,svp,SVP Black Star Promos,sv,Scarlatto e Violetto,2023-03-31,225,226,promo,22872.0,sigla o nome,SV: Scarlet & Violet Promo Cards,,proposta
-en,sv02,Paldea Evolved,sv,Scarlatto e Violetto,2023-06-09,193,279,principale,23120.0,sigla o nome,SV02: Paldea Evolved,,proposta
-en,2023sv,McDonald's Collection 2023,mc,Scarlatto e Violetto,2023-08-01,15,15,speciale,23306.0,manuale,McDonald's Promos 2023,,proposta
-en,sv03,Obsidian Flames,sv,Scarlatto e Violetto,2023-08-11,197,230,principale,23228.0,sigla o nome,SV03: Obsidian Flames,,proposta
-en,sv03.5,151,sv,Scarlatto e Violetto,2023-09-22,165,207,speciale,23237.0,sigla o nome,SV: Scarlet & Violet 151,,proposta
-en,mfb,My First Battle,sv,Scarlatto e Violetto,2023-09-29,48,34,speciale,23330.0,sigla o nome,My First Battle,,proposta
-en,sv04,Paradox Rift,sv,Scarlatto e Violetto,2023-11-03,182,266,principale,23286.0,sigla o nome,SV04: Paradox Rift,,proposta
-en,sv04.5,Paldean Fates,sv,Scarlatto e Violetto,2024-01-26,91,245,speciale,23353.0,sigla o nome,SV: Paldean Fates,,proposta
-en,sv05,Temporal Forces,sv,Scarlatto e Violetto,2024-03-22,162,218,principale,23381.0,sigla o nome,SV05: Temporal Forces,,proposta
-en,sv06,Twilight Masquerade,sv,Scarlatto e Violetto,2024-05-24,167,226,principale,23473.0,sigla o nome,SV06: Twilight Masquerade,,proposta
-en,sv06.5,Shrouded Fable,sv,Scarlatto e Violetto,2024-08-02,64,99,speciale,23529.0,sigla o nome,SV: Shrouded Fable,,proposta
-en,sv07,Stellar Crown,sv,Scarlatto e Violetto,2024-09-13,142,175,principale,23537.0,sigla o nome,SV07: Stellar Crown,,proposta
-en,sv08,Surging Sparks,sv,Scarlatto e Violetto,2024-11-08,191,252,principale,23651.0,sigla o nome,SV08: Surging Sparks,,proposta
-en,2024sv,McDonald's Collection 2024,mc,Scarlatto e Violetto,2024-12-04,15,15,speciale,24163.0,manuale,McDonald's Promos 2024,,proposta
-en,sv08.5,Prismatic Evolutions,sv,Scarlatto e Violetto,2025-01-17,131,180,speciale,23821.0,sigla o nome,SV: Prismatic Evolutions,,proposta
-en,sv09,Journey Together,sv,Scarlatto e Violetto,2025-03-28,159,190,principale,24073.0,sigla o nome,SV09: Journey Together,,proposta
-en,sv10,Destined Rivals,sv,Scarlatto e Violetto,2025-05-30,182,244,principale,24269.0,sigla o nome,SV10: Destined Rivals,,proposta
-en,sv10.5b,Black Bolt,sv,Scarlatto e Violetto,2025-07-17,86,172,speciale,24325.0,sigla o nome,SV: Black Bolt,,proposta
-en,sv10.5w,White Flare,sv,Scarlatto e Violetto,2025-07-17,86,173,speciale,24326.0,sigla o nome,SV: White Flare,,proposta
-en,mee,Mega Evolution Energy,me,Mega,2025-09-25,16,16,speciale,24461.0,sigla o nome,MEE: Mega Evolution Energies,,proposta
-en,me01,Mega Evolution,me,Mega,2025-09-26,132,188,principale,24380.0,sigla o nome,ME01: Mega Evolution,,proposta
-en,mep,MEP Black Star Promos,me,Mega,2025-09-26,0,112,promo,24451.0,sigla o nome,ME: Mega Evolution Promo,,proposta
-en,me02,Phantasmal Flames,me,Mega,2025-11-14,94,130,principale,24448.0,sigla o nome,ME02: Phantasmal Flames,,proposta
-en,me02.5,Ascended Heroes,me,Mega,2026-01-30,217,295,speciale,24541.0,sigla o nome,ME: Ascended Heroes,,proposta
-en,me03,Perfect Order,me,Mega,2026-03-27,88,124,principale,24587.0,sigla o nome,ME03: Perfect Order,,proposta
-en,me04,Chaos Rising,me,Mega,2026-05-22,86,122,principale,24655.0,sigla o nome,ME04: Chaos Rising,,proposta
-en,me05,Pitch Black,me,Mega,2026-07-17,84,120,principale,24688.0,sigla o nome,ME05: Pitch Black,,proposta
-en,30th,30th Celebration,me,Mega,2026-09-16,128,161,speciale,24722.0,sigla o nome,ME: 30th Celebration,,proposta
-en,30th-c,30th Classic Collection,me,Mega,2026-09-16,30,30,sottoset,24837.0,manuale,ME: 30th Celebration Classic Collection,,proposta
-ja,SM0,ピカチュウと新しい仲間たち,SM,Sole e Luna,2016-11-18,4,0,speciale,23674.0,sigla o nome,SM0: Pikachu's New Friends,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,SM1M,コレクションムーン,SM,Sole e Luna,2016-12-09,60,73,principale,23676.0,sigla o nome,SM1M: Collection Moon,,proposta
-ja,SM1S,コレクションサン,SM,Sole e Luna,2016-12-09,60,73,principale,23675.0,sigla o nome,SM1S: Collection Sun,,proposta
-ja,SM1+,サン＆ムーン,SM,Sole e Luna,2017-01-27,51,0,principale,,nessuno,,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,SM1p,サン＆ムーン,SM,Sole e Luna,2017-01-27,51,68,principale,23692.0,manuale,SM1+: Sun & Moon,,proposta
-ja,SM2K,キミを待つ島々,SM,Sole e Luna,2017-03-17,50,61,principale,23677.0,sigla o nome,SM2K: Islands Await You,,proposta
-ja,SM2L,アローラの月光,SM,Sole e Luna,2017-03-17,50,62,principale,23678.0,sigla o nome,SM2L: Alolan Moonlight,,proposta
-ja,SM2p,新たなる試練の向こう,SM,Sole e Luna,2017-04-21,49,65,principale,23693.0,manuale,SM2+: Facing a New Trial,,proposta
-ja,sm2+,新たなる試練の向こう,SM,Sole e Luna,2017-04-21,49,0,principale,23693.0,sigla o nome,SM2+: Facing a New Trial,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,SM3H,闘う虹を見たか,SM,Sole e Luna,2017-06-16,51,64,principale,23679.0,sigla o nome,SM3H: To Have Seen the Battle Rainbow,,proposta
-ja,SM3N,光を喰らう闇,SM,Sole e Luna,2017-06-16,51,64,principale,23680.0,sigla o nome,SM3N: Darkness that Consumes Light,,proposta
-ja,SM3+,ひかる伝説,SM,Sole e Luna,2017-07-15,72,0,principale,23694.0,sigla o nome,SM3+: Shining Legends,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,SM3p,ひかる伝説,SM,Sole e Luna,2017-07-15,72,82,principale,23694.0,manuale,SM3+: Shining Legends,,proposta
-ja,SM4A,超次元の暴獣,SM,Sole e Luna,2017-09-15,50,61,principale,23682.0,sigla o nome,SM4A: Ultradimensional Beasts,,proposta
-ja,SM4S,覚醒の勇者,SM,Sole e Luna,2017-09-15,50,62,principale,23681.0,sigla o nome,SM4S: Awakened Heroes,,proposta
-ja,SM4+,GXバトルブースト,SM,Sole e Luna,2017-10-20,114,0,principale,23707.0,sigla o nome,SM4+: GX Battle Boost,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,SM4p,GXバトルブースト,SM,Sole e Luna,2017-10-20,114,125,principale,23707.0,manuale,SM4+: GX Battle Boost,,proposta
-ja,SM5M,ウルトラムーン,SM,Sole e Luna,2017-12-08,66,78,principale,23684.0,sigla o nome,SM5M: Ultra Moon,,proposta
-ja,SM5S,ウルトラサン,SM,Sole e Luna,2017-12-08,66,78,principale,23683.0,sigla o nome,SM5S: Ultra Sun,,proposta
-ja,SM5+,ウルトラフォース,SM,Sole e Luna,2018-01-19,50,0,principale,23695.0,sigla o nome,SM5+: Ultra Force,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,SM5p,ウルトラフォース,SM,Sole e Luna,2018-01-19,50,63,principale,23695.0,manuale,SM5+: Ultra Force,,proposta
-ja,SM6,禁断の光,SM,Sole e Luna,2018-03-02,94,110,principale,23685.0,sigla o nome,SM6: Forbidden Light,,proposta
-ja,SM6a,ドラゴンストーム,SM,Sole e Luna,2018-04-06,53,66,principale,23696.0,sigla o nome,SM6a: Dragon Storm,,proposta
-ja,SM6b,チャンピオンロード,SM,Sole e Luna,2018-05-30,66,86,principale,23697.0,sigla o nome,SM6b: Champion Road,,proposta
-ja,SM7,裂空のカリスマ,SM,Sole e Luna,2018-06-01,96,112,principale,23686.0,sigla o nome,SM7: Sky-Splitting Charisma,,proposta
-ja,SM7a,迅雷スパーク,SM,Sole e Luna,2018-08-03,50,73,principale,23698.0,sigla o nome,SM7a: Thunderclap Spark,,proposta
-ja,SM7b,フェアリーライズ,SM,Sole e Luna,2018-08-03,50,63,principale,23699.0,sigla o nome,SM7b: Fairy Rise,,proposta
-ja,SM8,超爆インパクト,SM,Sole e Luna,2018-09-07,95,111,principale,23687.0,sigla o nome,SM8: Super-Burst Impact,,proposta
-ja,SM8a,ダークオーダー,SM,Sole e Luna,2018-10-05,52,65,principale,23700.0,sigla o nome,SM8a: Dark Order,,proposta
-ja,SM8b,GXウルトラシャイニー,SM,Sole e Luna,2018-10-05,150,250,speciale,23708.0,sigla o nome,SM8b: GX Ultra Shiny,,proposta
-ja,SM9,タッグボルト,SM,Sole e Luna,2018-12-07,95,118,principale,23688.0,sigla o nome,SM9: Tag Bolt,,proposta
-ja,SM9a,ナイトユニゾン,SM,Sole e Luna,2019-01-11,55,70,principale,23701.0,sigla o nome,SM9a: Night Unison,,proposta
-ja,SM9b,フルメタルウォール,SM,Sole e Luna,2019-02-01,54,69,principale,23702.0,sigla o nome,SM9b: Full Metal Wall,,proposta
-ja,SM10,ダブルブレイズ,SM,Sole e Luna,2019-03-01,95,116,principale,23689.0,sigla o nome,SM10: Double Blaze,,proposta
-ja,SM10a,ジージーエンド,SM,Sole e Luna,2019-04-05,54,69,principale,23703.0,sigla o nome,SM10a: GG End,,proposta
-ja,SM10b,スカイレジェンド,SM,Sole e Luna,2019-04-26,56,69,principale,23704.0,sigla o nome,SM10b: Sky Legend,,proposta
-ja,SMP2,名探偵ピカチュウ,SM,Sole e Luna,2019-04-26,24,0,speciale,23869.0,sigla o nome,smP2: Great Detective Pikachu,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,SM11,ミラクルツイン,SM,Sole e Luna,2019-05-31,94,115,principale,23690.0,sigla o nome,SM11: Miracle Twin,,proposta
-ja,SM11a,リミックスバウト,SM,Sole e Luna,2019-07-05,64,80,principale,23705.0,sigla o nome,SM11a: Remix Bout,,proposta
-ja,SM11b,ドリームリーグ,SM,Sole e Luna,2019-08-02,49,75,principale,23706.0,sigla o nome,SM11b: Dream League,,proposta
-ja,SM12,オルタージェネシス,SM,Sole e Luna,2019-09-06,95,117,principale,23691.0,sigla o nome,SM12: Alter Genesis,,proposta
-ja,SM12a,TAG TEAM GX タッグオールスターズ,SM,Sole e Luna,2019-10-04,173,226,speciale,23709.0,sigla o nome,SM12a: TAG TEAM GX: Tag All Stars,,proposta
-ja,S1H,シールド,S,Spada e Scudo,2019-12-06,60,0,principale,23617.0,sigla o nome,S1H: Shield,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,S1W,ソード,S,Spada e Scudo,2019-12-06,60,0,principale,23616.0,sigla o nome,S1W: Sword,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,S1a,VMAXライジング,S,Spada e Scudo,2020-02-07,70,0,principale,23633.0,sigla o nome,S1a: VMAX Rising,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,S2,反逆クラッシュ,S,Spada e Scudo,2020-03-06,96,0,principale,23618.0,sigla o nome,S2: Rebellion Crash,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,S2a,爆炎ウォーカー,S,Spada e Scudo,2020-04-24,70,0,principale,23634.0,sigla o nome,S2a: Explosive Walker,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,S3,ムゲンゾーン,S,Spada e Scudo,2020-06-05,100,0,principale,23619.0,sigla o nome,S3: Infinity Zone,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,S3a,伝説の鼓動,S,Spada e Scudo,2020-07-10,76,0,principale,23635.0,sigla o nome,S3a: Legendary Heartbeat,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,S4,仰天のボルテッカー,S,Spada e Scudo,2020-09-18,100,0,principale,23620.0,sigla o nome,S4: Amazing Volt Tackle,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,S4a,シャイニースターV,S,Spada e Scudo,2020-11-20,190,0,speciale,23643.0,sigla o nome,S4a: Shiny Star V,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,S5I,一撃マスター,S,Spada e Scudo,2021-01-22,70,91,principale,23621.0,sigla o nome,S5I: Single Strike Master,,proposta
-ja,S5R,連撃マスター,S,Spada e Scudo,2021-01-22,70,0,principale,23622.0,sigla o nome,S5R: Rapid Strike Master,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,S5a,双璧のファイター,S,Spada e Scudo,2021-03-19,70,0,principale,23636.0,sigla o nome,S5a: Peerless Fighters,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,S6H,白銀のランス,S,Spada e Scudo,2021-04-23,70,95,principale,23623.0,sigla o nome,S6H: Silver Lance,,proposta
-ja,S6K,漆黒のガイスト,S,Spada e Scudo,2021-04-23,70,95,principale,23624.0,sigla o nome,S6K: Jet-Black Spirit,,proposta
-ja,S6a,イーブイヒーローズ,S,Spada e Scudo,2021-05-28,69,0,speciale,23637.0,sigla o nome,S6a: Eevee Heroes,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,S7D,摩天パーフェクト,S,Spada e Scudo,2021-07-09,67,90,principale,23625.0,sigla o nome,S7D: Skyscraping Perfection,,proposta
-ja,S7R,蒼空ストリーム,S,Spada e Scudo,2021-07-09,67,0,principale,23626.0,sigla o nome,S7R: Blue Sky Stream,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,S8,フュージョンアーツ,S,Spada e Scudo,2021-09-24,100,129,principale,23627.0,sigla o nome,S8: Fusion Arts,,proposta
-ja,S8a,25th アニバーサリーコレクション,S,Spada e Scudo,2021-10-22,28,0,speciale,23638.0,sigla o nome,S8a: 25th Anniversary Collection,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,S8b,VMAXクライマックス,S,Spada e Scudo,2021-12-03,184,285,speciale,23644.0,sigla o nome,S8b: VMAX Climax,,proposta
-ja,S9,スターバース,S,Spada e Scudo,2022-01-14,100,127,principale,23628.0,sigla o nome,S9: Star Birth,,proposta
-ja,S9a,バトルリージョン,S,Spada e Scudo,2022-02-25,67,93,principale,23639.0,sigla o nome,S9a: Battle Region,,proposta
-ja,S10D,タイムゲイザー,S,Spada e Scudo,2022-04-08,67,0,principale,23629.0,sigla o nome,S10D: Time Gazer,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,S10P,スペースジャグラー,S,Spada e Scudo,2022-04-08,67,88,principale,23630.0,sigla o nome,S10P: Space Juggler,,proposta
-ja,S10a,ダークファンタズマ,S,Spada e Scudo,2022-05-13,71,99,principale,23640.0,sigla o nome,S10a: Dark Phantasma,,proposta
-ja,S10b,Pokémon GO,S,Spada e Scudo,2022-06-17,71,0,speciale,23641.0,sigla o nome,S10b: Pokemon GO,set vuoto su TCGdex: carte dal catalogo TCGCSV,proposta
-ja,S11,ロストアビス,S,Spada e Scudo,2022-07-15,100,127,principale,23631.0,sigla o nome,S11: Lost Abyss,,proposta
-ja,S11a,白熱のアルカナ,S,Spada e Scudo,2022-09-02,68,94,principale,23642.0,sigla o nome,S11a: Incandescent Arcana,,proposta
-ja,S12,パラダイムトリガー,S,Spada e Scudo,2022-10-21,98,125,principale,23632.0,sigla o nome,S12: Paradigm Trigger,,proposta
-ja,SV-P,スカーレット&バイオレット プロモカード,SV,Scarlatto e Violetto,2022-11-29,0,288,promo,23779.0,sigla o nome,SV-P Promotional Cards,,proposta
-ja,S12a,VSTARユニバース,S,Spada e Scudo,2022-12-02,172,258,speciale,23645.0,sigla o nome,S12a: VSTAR Universe,,proposta
-ja,SV1S,スカーレットex,SV,Scarlatto e Violetto,2023-01-20,78,108,principale,23605.0,sigla o nome,SV1S: Scarlet ex,,proposta
-ja,SV1V,バイオレットex,SV,Scarlatto e Violetto,2023-01-20,78,108,principale,23606.0,sigla o nome,SV1V: Violet ex,,proposta
-ja,SV1a,トリプレットビート,SV,Scarlatto e Violetto,2023-03-10,73,103,principale,23598.0,sigla o nome,SV1a: Triplet Beat,,proposta
-ja,SV2D,クレイバースト,SV,Scarlatto e Violetto,2023-04-14,71,99,principale,23608.0,sigla o nome,SV2D: Clay Burst,,proposta
-ja,SV2P,スノーハザード,SV,Scarlatto e Violetto,2023-04-14,71,99,principale,23607.0,sigla o nome,SV2P: Snow Hazard,,proposta
-ja,SV2a,ポケモンカード151,SV,Scarlatto e Violetto,2023-06-16,165,210,speciale,23599.0,sigla o nome,SV2a: Pokemon Card 151,,proposta
-ja,SV3,黒炎の支配者,SV,Scarlatto e Violetto,2023-07-28,108,141,principale,23609.0,sigla o nome,SV3: Ruler of the Black Flame,,proposta
-ja,SV3a,レイジングサーフ,SV,Scarlatto e Violetto,2023-09-22,62,92,principale,23600.0,sigla o nome,SV3a: Raging Surf,,proposta
-ja,SV4K,古代の咆哮,SV,Scarlatto e Violetto,2023-10-27,66,95,principale,23610.0,sigla o nome,SV4K: Ancient Roar,,proposta
-ja,SV4M,未来の一閃,SV,Scarlatto e Violetto,2023-10-27,66,95,principale,23611.0,sigla o nome,SV4M: Future Flash,,proposta
-ja,SV4a,レイジングサーフ,SV,Scarlatto e Violetto,2023-12-01,190,320,speciale,23601.0,sigla o nome,SV4a: Shiny Treasure ex,,proposta
-ja,SV5K,ワイルドフォース,SV,Scarlatto e Violetto,2024-01-26,71,100,principale,23612.0,sigla o nome,SV5K: Wild Force,,proposta
-ja,SV5M,サイバージャッジ,SV,Scarlatto e Violetto,2024-01-26,71,100,principale,23613.0,sigla o nome,SV5M: Cyber Judge,,proposta
-ja,SV5a,クリムゾンヘイズ,SV,Scarlatto e Violetto,2024-03-22,66,96,principale,23602.0,sigla o nome,SV5a: Crimson Haze,,proposta
-ja,SV6,変幻の仮面,SV,Scarlatto e Violetto,2024-04-26,101,133,principale,23614.0,sigla o nome,SV6: Transformation Mask,,proposta
-ja,SV6a,ナイトワンダラー,SV,Scarlatto e Violetto,2024-06-07,64,94,principale,23603.0,sigla o nome,SV6a: Night Wanderer,,proposta
-ja,SV7,ステラミラクル,SV,Scarlatto e Violetto,2024-07-19,102,135,principale,23615.0,sigla o nome,SV7: Stellar Miracle,,proposta
-ja,SVK,デッキビルドBOX ステラミラクル,SV,Scarlatto e Violetto,2024-07-19,44,44,speciale,23794.0,sigla o nome,SV: Stellar Miracle Deck Build Box,,proposta
-ja,SVLN,スターターセット テラスタイプ：ステラ ニンフィアex,SV,Scarlatto e Violetto,2024-08-30,22,22,speciale,23798.0,sigla o nome,SV: Sylveon ex Stellar Tera Type Starter Set,,proposta
-ja,SVLS,スターターセット テラスタイプ：ステラ ソウブレイズex,SV,Scarlatto e Violetto,2024-08-30,22,22,speciale,23793.0,manuale,SV: Ceruledge ex Stellar Tera Type Starter Set,,proposta
-ja,SV7a,楽園ドラゴーナ,SV,Scarlatto e Violetto,2024-09-13,64,94,principale,23604.0,sigla o nome,SV7a: Paradise Dragona,,proposta
-ja,SV8,超電ブレイカー,SV,Scarlatto e Violetto,2024-10-18,106,138,principale,23777.0,sigla o nome,SV8: Super Electric Breaker,,proposta
-ja,SV8a,テラスタルフェスex,SV,Scarlatto e Violetto,2024-12-06,187,237,speciale,23909.0,sigla o nome,SV8a: Terastal Fest ex,,proposta
-ja,SV9,バトルパートナーズ,SV,Scarlatto e Violetto,2025-01-24,100,132,principale,24173.0,sigla o nome,SV9: Battle Partners,,proposta
-ja,SV9a,熱風のアリーナ,SV,Scarlatto e Violetto,2025-03-14,63,92,principale,24260.0,sigla o nome,SV9a: Heat Wave Arena,,proposta
-ja,SV10,ロケット団の栄光,SV,Scarlatto e Violetto,2025-04-18,98,132,principale,24310.0,sigla o nome,SV10: The Glory of Team Rocket,,proposta
-ja,SV11B,ブラックボルト,SV,Scarlatto e Violetto,2025-06-06,174,174,principale,24349.0,sigla o nome,SV11B: Black Bolt,,proposta
-ja,SV11W,ホワイトフレア,SV,Scarlatto e Violetto,2025-06-06,86,174,principale,24350.0,sigla o nome,SV11W: White Flare,,proposta
-ja,M-P,メガ プロモカード,M,Mega,2025-07-28,0,132,promo,24423.0,sigla o nome,M-P Promotional Cards,,proposta
-ja,M1L,メガブレイブ,M,Mega,2025-08-01,63,92,principale,24399.0,sigla o nome,m1L: Mega Brave,,proposta
-ja,M1S,メガシンフォニア,M,Mega,2025-08-01,63,92,principale,24400.0,sigla o nome,m1S: Mega Symphonia,,proposta
-ja,M2,インフェルノX,M,Mega,2025-09-26,80,116,principale,24459.0,sigla o nome,M2: Inferno X,,proposta
-ja,M2a,MEGAドリームex,M,Mega,2025-11-28,193,250,speciale,24499.0,sigla o nome,M2a: High Class Pack: MEGA Dream ex,,proposta
-ja,MC,スタートデッキ100 バトルコレクション,M,Mega,2025-12-19,742,774,speciale,24567.0,manuale,Start Deck 100 Battle Collection,,proposta
-ja,M3,ムニキスゼロ,M,Mega,2026-01-23,80,117,principale,24600.0,sigla o nome,M3: Nihil Zero,,proposta
-ja,M4,ニンジャスピナー,M,Mega,2026-03-13,83,120,principale,24653.0,sigla o nome,M4: Ninja Spinner,,proposta
-ja,M5,アビスアイ,M,Mega,2026-05-22,81,118,principale,24711.0,sigla o nome,M5: Abyss Eye,,proposta
-ja,M6,ストームエメラルダ,M,Mega,2026-07-31,76,113,principale,24791.0,sigla o nome,M6: Storm Emeralda,,proposta
-ja,M6a,30th CELEBRATION,M,Mega,2026-09-16,103,176,speciale,24721.0,sigla o nome,M6a: MEGA Expansion 30th Celebration,,proposta
-ja,MF,30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー,M,Mega,2026-09-16,40,49,speciale,24856.0,sigla o nome,MF: 30th CELEBRATION Premium Deck Set Espeon & Umbreon,,proposta
+en,sm1,Sun & Moon,sm,Sole e Luna,2017-02-03,149,172,principale,1863.0,manuale,SM Base Set,,approvata (10/10/2026)
+en,smp,SM Black Star Promos,sm,Sole e Luna,2017-02-03,248,248,promo,1861.0,manuale,SM Promos,,approvata (10/10/2026)
+en,tk-sm-l,SM trainer Kit (Lycanroc),tk,Sole e Luna,2017-04-21,30,18,speciale,2069.0,manuale,SM Trainer Kit: Lycanroc & Alolan Raichu,,approvata (10/10/2026)
+en,tk-sm-r,SM trainer Kit (Alolan Raichu),tk,Sole e Luna,2017-04-21,30,30,speciale,2069.0,manuale,SM Trainer Kit: Lycanroc & Alolan Raichu,,approvata (10/10/2026)
+en,sm2,Guardians Rising,sm,Sole e Luna,2017-05-05,145,169,principale,1919.0,manuale,SM - Guardians Rising,,approvata (10/10/2026)
+en,2017sm,McDonald's Collection 2017,mc,Sole e Luna,2017-08-03,12,12,speciale,2148.0,manuale,McDonald's Promos 2017,,approvata (10/10/2026)
+en,sm3,Burning Shadows,sm,Sole e Luna,2017-08-04,147,169,principale,1957.0,manuale,SM - Burning Shadows,,approvata (10/10/2026)
+en,sm3.5,Shining Legends,sm,Sole e Luna,2017-10-06,73,78,speciale,2054.0,sigla o nome,Shining Legends,,approvata (10/10/2026)
+en,sm4,Crimson Invasion,sm,Sole e Luna,2017-11-03,111,125,principale,2071.0,manuale,SM - Crimson Invasion,,approvata (10/10/2026)
+en,sm5,Ultra Prism,sm,Sole e Luna,2018-02-02,156,173,principale,2178.0,manuale,SM - Ultra Prism,,approvata (10/10/2026)
+en,sm6,Forbidden Light,sm,Sole e Luna,2018-05-04,131,146,principale,2209.0,manuale,SM - Forbidden Light,,approvata (10/10/2026)
+en,sm7,Celestial Storm,sm,Sole e Luna,2018-08-03,168,183,principale,2278.0,sigla o nome,SM - Celestial Storm,,approvata (10/10/2026)
+en,sm7.5,Dragon Majesty,sm,Sole e Luna,2018-09-07,70,78,speciale,2295.0,sigla o nome,Dragon Majesty,,approvata (10/10/2026)
+en,2018sm,McDonald's Collection 2018,mc,Sole e Luna,2018-10-19,12,12,speciale,2364.0,manuale,McDonald's Promos 2018,,approvata (10/10/2026)
+en,sm8,Lost Thunder,sm,Sole e Luna,2018-11-02,214,236,principale,2328.0,manuale,SM - Lost Thunder,,approvata (10/10/2026)
+en,sm9,Team Up,sm,Sole e Luna,2019-01-31,181,196,principale,2377.0,manuale,SM - Team Up,,approvata (10/10/2026)
+en,det1,Detective Pikachu,sm,Sole e Luna,2019-03-29,18,18,speciale,2409.0,sigla o nome,Detective Pikachu,,approvata (10/10/2026)
+en,sm10,Unbroken Bonds,sm,Sole e Luna,2019-05-03,214,234,principale,2420.0,manuale,SM - Unbroken Bonds,,approvata (10/10/2026)
+en,sm11,Unified Minds,sm,Sole e Luna,2019-08-02,236,258,principale,2464.0,manuale,SM - Unified Minds,,approvata (10/10/2026)
+en,sm115,Hidden Fates,sm,Sole e Luna,2019-08-23,68,69,speciale,2480.0,sigla o nome,Hidden Fates,,approvata (10/10/2026)
+en,sma,Hidden Fates Shiny Vault,sm,Sole e Luna,2019-08-23,94,94,sottoset,2594.0,manuale,Hidden Fates: Shiny Vault,,approvata (10/10/2026)
+en,2019sm,McDonald's Collection 2019,mc,Sole e Luna,2019-10-15,12,12,speciale,2555.0,manuale,McDonald's Promos 2019,,approvata (10/10/2026)
+en,sm12,Cosmic Eclipse,sm,Sole e Luna,2019-11-01,236,271,principale,2534.0,manuale,SM - Cosmic Eclipse,,approvata (10/10/2026)
+en,swshp,SWSH Black Star Promos,swsh,Spada e Scudo,2019-11-15,307,307,promo,2545.0,manuale,SWSH: Sword & Shield Promo Cards,,approvata (10/10/2026)
+en,swsh1,Sword & Shield,swsh,Spada e Scudo,2020-02-07,202,216,principale,2585.0,manuale,SWSH01: Sword & Shield Base Set,,approvata (10/10/2026)
+en,swsh2,Rebel Clash,swsh,Spada e Scudo,2020-05-01,192,209,principale,2626.0,sigla o nome,SWSH02: Rebel Clash,,approvata (10/10/2026)
+en,swsh3,Darkness Ablaze,swsh,Spada e Scudo,2020-08-14,189,201,principale,2675.0,sigla o nome,SWSH03: Darkness Ablaze,,approvata (10/10/2026)
+en,fut2020,Pokémon Futsal 2020,swsh,Spada e Scudo,2020-09-11,5,5,speciale,,nessuno,,,approvata (10/10/2026)
+en,swsh3.5,Champion's Path,swsh,Spada e Scudo,2020-09-25,73,80,speciale,2685.0,sigla o nome,Champion's Path,,approvata (10/10/2026)
+en,swsh4,Vivid Voltage,swsh,Spada e Scudo,2020-11-13,185,203,principale,2701.0,sigla o nome,SWSH04: Vivid Voltage,,approvata (10/10/2026)
+en,2021swsh,McDonald's Collection 2021,mc,Spada e Scudo,2021-02-09,25,25,speciale,2782.0,manuale,McDonald's 25th Anniversary Promos,,approvata (10/10/2026)
+en,swsh4.5,Shining Fates,swsh,Spada e Scudo,2021-02-19,72,73,speciale,2754.0,sigla o nome,Shining Fates,,approvata (10/10/2026)
+en,swsh4.5sv,Shining Fates Shiny Vault,swsh,Spada e Scudo,2021-02-19,122,122,sottoset,2781.0,manuale,Shining Fates: Shiny Vault,,approvata (10/10/2026)
+en,swsh5,Battle Styles,swsh,Spada e Scudo,2021-03-19,163,183,principale,2765.0,sigla o nome,SWSH05: Battle Styles,,approvata (10/10/2026)
+en,swsh6,Chilling Reign,swsh,Spada e Scudo,2021-06-18,198,233,principale,2807.0,sigla o nome,SWSH06: Chilling Reign,,approvata (10/10/2026)
+en,swsh7,Evolving Skies,swsh,Spada e Scudo,2021-08-27,203,237,principale,2848.0,sigla o nome,SWSH07: Evolving Skies,,approvata (10/10/2026)
+en,cel25,Celebrations,swsh,Spada e Scudo,2021-10-08,25,25,speciale,2867.0,sigla o nome,Celebrations,,approvata (10/10/2026)
+en,cel25cc,Celebrations Classic Collection,swsh,Spada e Scudo,2021-10-08,25,25,sottoset,2931.0,manuale,Celebrations: Classic Collection,,approvata (10/10/2026)
+en,swsh8,Fusion Strike,swsh,Spada e Scudo,2021-11-12,264,284,principale,2906.0,sigla o nome,SWSH08: Fusion Strike,,approvata (10/10/2026)
+en,swsh9,Brilliant Stars,swsh,Spada e Scudo,2022-02-25,172,186,principale,2948.0,sigla o nome,SWSH09: Brilliant Stars,,approvata (10/10/2026)
+en,swsh9tg,Brilliant Stars Trainer Gallery,swsh,Spada e Scudo,2022-02-25,30,30,sottoset,3020.0,sigla o nome,SWSH09: Brilliant Stars Trainer Gallery,,approvata (10/10/2026)
+en,swsh10,Astral Radiance,swsh,Spada e Scudo,2022-05-27,189,216,principale,3040.0,sigla o nome,SWSH10: Astral Radiance,,approvata (10/10/2026)
+en,swsh10tg,Astral Radiance Trainer Gallery,swsh,Spada e Scudo,2022-05-27,30,30,sottoset,3068.0,sigla o nome,SWSH10: Astral Radiance Trainer Gallery,,approvata (10/10/2026)
+en,swsh10.5,Pokémon GO,swsh,Spada e Scudo,2022-07-01,78,88,speciale,3064.0,sigla o nome,Pokemon GO,,approvata (10/10/2026)
+en,2022swsh,McDonald's Collection 2022,mc,Spada e Scudo,2022-08-03,15,15,speciale,3150.0,manuale,McDonald's Promos 2022,,approvata (10/10/2026)
+en,swsh11,Lost Origin,swsh,Spada e Scudo,2022-09-09,196,217,principale,3118.0,sigla o nome,SWSH11: Lost Origin,,approvata (10/10/2026)
+en,swsh11tg,Lost Origin Trainer Gallery,swsh,Spada e Scudo,2022-09-09,30,30,sottoset,3172.0,sigla o nome,SWSH11: Lost Origin Trainer Gallery,,approvata (10/10/2026)
+en,swsh12,Silver Tempest,swsh,Spada e Scudo,2022-11-11,195,215,principale,3170.0,sigla o nome,SWSH12: Silver Tempest,,approvata (10/10/2026)
+en,swsh12tg,Silver Tempest Trainer Gallery,swsh,Spada e Scudo,2022-11-11,30,30,sottoset,17674.0,sigla o nome,SWSH12: Silver Tempest Trainer Gallery,,approvata (10/10/2026)
+en,swsh12.5,Crown Zenith,swsh,Spada e Scudo,2023-01-20,159,160,speciale,17688.0,sigla o nome,SWSH: Crown Zenith,,approvata (10/10/2026)
+en,swsh12.5gg,Crown Zenith Galarian Gallery,swsh,Spada e Scudo,2023-01-20,70,70,sottoset,17689.0,sigla o nome,SWSH: Crown Zenith: Galarian Gallery,,approvata (10/10/2026)
+en,sv01,Scarlet & Violet,sv,Scarlatto e Violetto,2023-03-31,198,258,principale,22873.0,sigla o nome,SV01: Scarlet & Violet Base Set,,approvata (10/10/2026)
+en,sve,Scarlet & Violet Energy,sv,Scarlatto e Violetto,2023-03-31,24,24,speciale,24382.0,sigla o nome,SVE: Scarlet & Violet Energies,,approvata (10/10/2026)
+en,svp,SVP Black Star Promos,sv,Scarlatto e Violetto,2023-03-31,225,226,promo,22872.0,sigla o nome,SV: Scarlet & Violet Promo Cards,,approvata (10/10/2026)
+en,sv02,Paldea Evolved,sv,Scarlatto e Violetto,2023-06-09,193,279,principale,23120.0,sigla o nome,SV02: Paldea Evolved,,approvata (10/10/2026)
+en,2023sv,McDonald's Collection 2023,mc,Scarlatto e Violetto,2023-08-01,15,15,speciale,23306.0,manuale,McDonald's Promos 2023,,approvata (10/10/2026)
+en,sv03,Obsidian Flames,sv,Scarlatto e Violetto,2023-08-11,197,230,principale,23228.0,sigla o nome,SV03: Obsidian Flames,,approvata (10/10/2026)
+en,sv03.5,151,sv,Scarlatto e Violetto,2023-09-22,165,207,speciale,23237.0,sigla o nome,SV: Scarlet & Violet 151,,approvata (10/10/2026)
+en,mfb,My First Battle,sv,Scarlatto e Violetto,2023-09-29,48,34,speciale,23330.0,sigla o nome,My First Battle,,approvata (10/10/2026)
+en,sv04,Paradox Rift,sv,Scarlatto e Violetto,2023-11-03,182,266,principale,23286.0,sigla o nome,SV04: Paradox Rift,,approvata (10/10/2026)
+en,sv04.5,Paldean Fates,sv,Scarlatto e Violetto,2024-01-26,91,245,speciale,23353.0,sigla o nome,SV: Paldean Fates,,approvata (10/10/2026)
+en,sv05,Temporal Forces,sv,Scarlatto e Violetto,2024-03-22,162,218,principale,23381.0,sigla o nome,SV05: Temporal Forces,,approvata (10/10/2026)
+en,sv06,Twilight Masquerade,sv,Scarlatto e Violetto,2024-05-24,167,226,principale,23473.0,sigla o nome,SV06: Twilight Masquerade,,approvata (10/10/2026)
+en,sv06.5,Shrouded Fable,sv,Scarlatto e Violetto,2024-08-02,64,99,speciale,23529.0,sigla o nome,SV: Shrouded Fable,,approvata (10/10/2026)
+en,sv07,Stellar Crown,sv,Scarlatto e Violetto,2024-09-13,142,175,principale,23537.0,sigla o nome,SV07: Stellar Crown,,approvata (10/10/2026)
+en,sv08,Surging Sparks,sv,Scarlatto e Violetto,2024-11-08,191,252,principale,23651.0,sigla o nome,SV08: Surging Sparks,,approvata (10/10/2026)
+en,2024sv,McDonald's Collection 2024,mc,Scarlatto e Violetto,2024-12-04,15,15,speciale,24163.0,manuale,McDonald's Promos 2024,,approvata (10/10/2026)
+en,sv08.5,Prismatic Evolutions,sv,Scarlatto e Violetto,2025-01-17,131,180,speciale,23821.0,sigla o nome,SV: Prismatic Evolutions,,approvata (10/10/2026)
+en,sv09,Journey Together,sv,Scarlatto e Violetto,2025-03-28,159,190,principale,24073.0,sigla o nome,SV09: Journey Together,,approvata (10/10/2026)
+en,sv10,Destined Rivals,sv,Scarlatto e Violetto,2025-05-30,182,244,principale,24269.0,sigla o nome,SV10: Destined Rivals,,approvata (10/10/2026)
+en,sv10.5b,Black Bolt,sv,Scarlatto e Violetto,2025-07-17,86,172,speciale,24325.0,sigla o nome,SV: Black Bolt,,approvata (10/10/2026)
+en,sv10.5w,White Flare,sv,Scarlatto e Violetto,2025-07-17,86,173,speciale,24326.0,sigla o nome,SV: White Flare,,approvata (10/10/2026)
+en,mee,Mega Evolution Energy,me,Mega,2025-09-25,16,16,speciale,24461.0,sigla o nome,MEE: Mega Evolution Energies,,approvata (10/10/2026)
+en,me01,Mega Evolution,me,Mega,2025-09-26,132,188,principale,24380.0,sigla o nome,ME01: Mega Evolution,,approvata (10/10/2026)
+en,mep,MEP Black Star Promos,me,Mega,2025-09-26,0,112,promo,24451.0,sigla o nome,ME: Mega Evolution Promo,,approvata (10/10/2026)
+en,me02,Phantasmal Flames,me,Mega,2025-11-14,94,130,principale,24448.0,sigla o nome,ME02: Phantasmal Flames,,approvata (10/10/2026)
+en,me02.5,Ascended Heroes,me,Mega,2026-01-30,217,295,speciale,24541.0,sigla o nome,ME: Ascended Heroes,,approvata (10/10/2026)
+en,me03,Perfect Order,me,Mega,2026-03-27,88,124,principale,24587.0,sigla o nome,ME03: Perfect Order,,approvata (10/10/2026)
+en,me04,Chaos Rising,me,Mega,2026-05-22,86,122,principale,24655.0,sigla o nome,ME04: Chaos Rising,,approvata (10/10/2026)
+en,me05,Pitch Black,me,Mega,2026-07-17,84,120,principale,24688.0,sigla o nome,ME05: Pitch Black,,approvata (10/10/2026)
+en,30th,30th Celebration,me,Mega,2026-09-16,128,161,speciale,24722.0,sigla o nome,ME: 30th Celebration,,approvata (10/10/2026)
+en,30th-c,30th Classic Collection,me,Mega,2026-09-16,30,30,sottoset,24837.0,manuale,ME: 30th Celebration Classic Collection,,approvata (10/10/2026)
+ja,SM0,ピカチュウと新しい仲間たち,SM,Sole e Luna,2016-11-18,4,0,speciale,23674.0,sigla o nome,SM0: Pikachu's New Friends,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,SM1M,コレクションムーン,SM,Sole e Luna,2016-12-09,60,73,principale,23676.0,sigla o nome,SM1M: Collection Moon,,approvata (10/10/2026)
+ja,SM1S,コレクションサン,SM,Sole e Luna,2016-12-09,60,73,principale,23675.0,sigla o nome,SM1S: Collection Sun,,approvata (10/10/2026)
+ja,SM1+,サン＆ムーン,SM,Sole e Luna,2017-01-27,51,0,principale,,nessuno,,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,SM1p,サン＆ムーン,SM,Sole e Luna,2017-01-27,51,68,principale,23692.0,manuale,SM1+: Sun & Moon,,approvata (10/10/2026)
+ja,SM2K,キミを待つ島々,SM,Sole e Luna,2017-03-17,50,61,principale,23677.0,sigla o nome,SM2K: Islands Await You,,approvata (10/10/2026)
+ja,SM2L,アローラの月光,SM,Sole e Luna,2017-03-17,50,62,principale,23678.0,sigla o nome,SM2L: Alolan Moonlight,,approvata (10/10/2026)
+ja,SM2p,新たなる試練の向こう,SM,Sole e Luna,2017-04-21,49,65,principale,23693.0,manuale,SM2+: Facing a New Trial,,approvata (10/10/2026)
+ja,sm2+,新たなる試練の向こう,SM,Sole e Luna,2017-04-21,49,0,principale,23693.0,sigla o nome,SM2+: Facing a New Trial,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,SM3H,闘う虹を見たか,SM,Sole e Luna,2017-06-16,51,64,principale,23679.0,sigla o nome,SM3H: To Have Seen the Battle Rainbow,,approvata (10/10/2026)
+ja,SM3N,光を喰らう闇,SM,Sole e Luna,2017-06-16,51,64,principale,23680.0,sigla o nome,SM3N: Darkness that Consumes Light,,approvata (10/10/2026)
+ja,SM3+,ひかる伝説,SM,Sole e Luna,2017-07-15,72,0,principale,23694.0,sigla o nome,SM3+: Shining Legends,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,SM3p,ひかる伝説,SM,Sole e Luna,2017-07-15,72,82,principale,23694.0,manuale,SM3+: Shining Legends,,approvata (10/10/2026)
+ja,SM4A,超次元の暴獣,SM,Sole e Luna,2017-09-15,50,61,principale,23682.0,sigla o nome,SM4A: Ultradimensional Beasts,,approvata (10/10/2026)
+ja,SM4S,覚醒の勇者,SM,Sole e Luna,2017-09-15,50,62,principale,23681.0,sigla o nome,SM4S: Awakened Heroes,,approvata (10/10/2026)
+ja,SM4+,GXバトルブースト,SM,Sole e Luna,2017-10-20,114,0,principale,23707.0,sigla o nome,SM4+: GX Battle Boost,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,SM4p,GXバトルブースト,SM,Sole e Luna,2017-10-20,114,125,principale,23707.0,manuale,SM4+: GX Battle Boost,,approvata (10/10/2026)
+ja,SM5M,ウルトラムーン,SM,Sole e Luna,2017-12-08,66,78,principale,23684.0,sigla o nome,SM5M: Ultra Moon,,approvata (10/10/2026)
+ja,SM5S,ウルトラサン,SM,Sole e Luna,2017-12-08,66,78,principale,23683.0,sigla o nome,SM5S: Ultra Sun,,approvata (10/10/2026)
+ja,SM5+,ウルトラフォース,SM,Sole e Luna,2018-01-19,50,0,principale,23695.0,sigla o nome,SM5+: Ultra Force,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,SM5p,ウルトラフォース,SM,Sole e Luna,2018-01-19,50,63,principale,23695.0,manuale,SM5+: Ultra Force,,approvata (10/10/2026)
+ja,SM6,禁断の光,SM,Sole e Luna,2018-03-02,94,110,principale,23685.0,sigla o nome,SM6: Forbidden Light,,approvata (10/10/2026)
+ja,SM6a,ドラゴンストーム,SM,Sole e Luna,2018-04-06,53,66,principale,23696.0,sigla o nome,SM6a: Dragon Storm,,approvata (10/10/2026)
+ja,SM6b,チャンピオンロード,SM,Sole e Luna,2018-05-30,66,86,principale,23697.0,sigla o nome,SM6b: Champion Road,,approvata (10/10/2026)
+ja,SM7,裂空のカリスマ,SM,Sole e Luna,2018-06-01,96,112,principale,23686.0,sigla o nome,SM7: Sky-Splitting Charisma,,approvata (10/10/2026)
+ja,SM7a,迅雷スパーク,SM,Sole e Luna,2018-08-03,50,73,principale,23698.0,sigla o nome,SM7a: Thunderclap Spark,,approvata (10/10/2026)
+ja,SM7b,フェアリーライズ,SM,Sole e Luna,2018-08-03,50,63,principale,23699.0,sigla o nome,SM7b: Fairy Rise,,approvata (10/10/2026)
+ja,SM8,超爆インパクト,SM,Sole e Luna,2018-09-07,95,111,principale,23687.0,sigla o nome,SM8: Super-Burst Impact,,approvata (10/10/2026)
+ja,SM8a,ダークオーダー,SM,Sole e Luna,2018-10-05,52,65,principale,23700.0,sigla o nome,SM8a: Dark Order,,approvata (10/10/2026)
+ja,SM8b,GXウルトラシャイニー,SM,Sole e Luna,2018-10-05,150,250,speciale,23708.0,sigla o nome,SM8b: GX Ultra Shiny,,approvata (10/10/2026)
+ja,SM9,タッグボルト,SM,Sole e Luna,2018-12-07,95,118,principale,23688.0,sigla o nome,SM9: Tag Bolt,,approvata (10/10/2026)
+ja,SM9a,ナイトユニゾン,SM,Sole e Luna,2019-01-11,55,70,principale,23701.0,sigla o nome,SM9a: Night Unison,,approvata (10/10/2026)
+ja,SM9b,フルメタルウォール,SM,Sole e Luna,2019-02-01,54,69,principale,23702.0,sigla o nome,SM9b: Full Metal Wall,,approvata (10/10/2026)
+ja,SM10,ダブルブレイズ,SM,Sole e Luna,2019-03-01,95,116,principale,23689.0,sigla o nome,SM10: Double Blaze,,approvata (10/10/2026)
+ja,SM10a,ジージーエンド,SM,Sole e Luna,2019-04-05,54,69,principale,23703.0,sigla o nome,SM10a: GG End,,approvata (10/10/2026)
+ja,SM10b,スカイレジェンド,SM,Sole e Luna,2019-04-26,56,69,principale,23704.0,sigla o nome,SM10b: Sky Legend,,approvata (10/10/2026)
+ja,SMP2,名探偵ピカチュウ,SM,Sole e Luna,2019-04-26,24,0,speciale,23869.0,sigla o nome,smP2: Great Detective Pikachu,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,SM11,ミラクルツイン,SM,Sole e Luna,2019-05-31,94,115,principale,23690.0,sigla o nome,SM11: Miracle Twin,,approvata (10/10/2026)
+ja,SM11a,リミックスバウト,SM,Sole e Luna,2019-07-05,64,80,principale,23705.0,sigla o nome,SM11a: Remix Bout,,approvata (10/10/2026)
+ja,SM11b,ドリームリーグ,SM,Sole e Luna,2019-08-02,49,75,principale,23706.0,sigla o nome,SM11b: Dream League,,approvata (10/10/2026)
+ja,SM12,オルタージェネシス,SM,Sole e Luna,2019-09-06,95,117,principale,23691.0,sigla o nome,SM12: Alter Genesis,,approvata (10/10/2026)
+ja,SM12a,TAG TEAM GX タッグオールスターズ,SM,Sole e Luna,2019-10-04,173,226,speciale,23709.0,sigla o nome,SM12a: TAG TEAM GX: Tag All Stars,,approvata (10/10/2026)
+ja,S1H,シールド,S,Spada e Scudo,2019-12-06,60,0,principale,23617.0,sigla o nome,S1H: Shield,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,S1W,ソード,S,Spada e Scudo,2019-12-06,60,0,principale,23616.0,sigla o nome,S1W: Sword,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,S1a,VMAXライジング,S,Spada e Scudo,2020-02-07,70,0,principale,23633.0,sigla o nome,S1a: VMAX Rising,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,S2,反逆クラッシュ,S,Spada e Scudo,2020-03-06,96,0,principale,23618.0,sigla o nome,S2: Rebellion Crash,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,S2a,爆炎ウォーカー,S,Spada e Scudo,2020-04-24,70,0,principale,23634.0,sigla o nome,S2a: Explosive Walker,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,S3,ムゲンゾーン,S,Spada e Scudo,2020-06-05,100,0,principale,23619.0,sigla o nome,S3: Infinity Zone,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,S3a,伝説の鼓動,S,Spada e Scudo,2020-07-10,76,0,principale,23635.0,sigla o nome,S3a: Legendary Heartbeat,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,S4,仰天のボルテッカー,S,Spada e Scudo,2020-09-18,100,0,principale,23620.0,sigla o nome,S4: Amazing Volt Tackle,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,S4a,シャイニースターV,S,Spada e Scudo,2020-11-20,190,0,speciale,23643.0,sigla o nome,S4a: Shiny Star V,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,S5I,一撃マスター,S,Spada e Scudo,2021-01-22,70,91,principale,23621.0,sigla o nome,S5I: Single Strike Master,,approvata (10/10/2026)
+ja,S5R,連撃マスター,S,Spada e Scudo,2021-01-22,70,0,principale,23622.0,sigla o nome,S5R: Rapid Strike Master,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,S5a,双璧のファイター,S,Spada e Scudo,2021-03-19,70,0,principale,23636.0,sigla o nome,S5a: Peerless Fighters,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,S6H,白銀のランス,S,Spada e Scudo,2021-04-23,70,95,principale,23623.0,sigla o nome,S6H: Silver Lance,,approvata (10/10/2026)
+ja,S6K,漆黒のガイスト,S,Spada e Scudo,2021-04-23,70,95,principale,23624.0,sigla o nome,S6K: Jet-Black Spirit,,approvata (10/10/2026)
+ja,S6a,イーブイヒーローズ,S,Spada e Scudo,2021-05-28,69,0,speciale,23637.0,sigla o nome,S6a: Eevee Heroes,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,S7D,摩天パーフェクト,S,Spada e Scudo,2021-07-09,67,90,principale,23625.0,sigla o nome,S7D: Skyscraping Perfection,,approvata (10/10/2026)
+ja,S7R,蒼空ストリーム,S,Spada e Scudo,2021-07-09,67,0,principale,23626.0,sigla o nome,S7R: Blue Sky Stream,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,S8,フュージョンアーツ,S,Spada e Scudo,2021-09-24,100,129,principale,23627.0,sigla o nome,S8: Fusion Arts,,approvata (10/10/2026)
+ja,S8a,25th アニバーサリーコレクション,S,Spada e Scudo,2021-10-22,28,0,speciale,23638.0,sigla o nome,S8a: 25th Anniversary Collection,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,S8b,VMAXクライマックス,S,Spada e Scudo,2021-12-03,184,285,speciale,23644.0,sigla o nome,S8b: VMAX Climax,,approvata (10/10/2026)
+ja,S9,スターバース,S,Spada e Scudo,2022-01-14,100,127,principale,23628.0,sigla o nome,S9: Star Birth,,approvata (10/10/2026)
+ja,S9a,バトルリージョン,S,Spada e Scudo,2022-02-25,67,93,principale,23639.0,sigla o nome,S9a: Battle Region,,approvata (10/10/2026)
+ja,S10D,タイムゲイザー,S,Spada e Scudo,2022-04-08,67,0,principale,23629.0,sigla o nome,S10D: Time Gazer,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,S10P,スペースジャグラー,S,Spada e Scudo,2022-04-08,67,88,principale,23630.0,sigla o nome,S10P: Space Juggler,,approvata (10/10/2026)
+ja,S10a,ダークファンタズマ,S,Spada e Scudo,2022-05-13,71,99,principale,23640.0,sigla o nome,S10a: Dark Phantasma,,approvata (10/10/2026)
+ja,S10b,Pokémon GO,S,Spada e Scudo,2022-06-17,71,0,speciale,23641.0,sigla o nome,S10b: Pokemon GO,set vuoto su TCGdex: carte dal catalogo TCGCSV,approvata (10/10/2026)
+ja,S11,ロストアビス,S,Spada e Scudo,2022-07-15,100,127,principale,23631.0,sigla o nome,S11: Lost Abyss,,approvata (10/10/2026)
+ja,S11a,白熱のアルカナ,S,Spada e Scudo,2022-09-02,68,94,principale,23642.0,sigla o nome,S11a: Incandescent Arcana,,approvata (10/10/2026)
+ja,S12,パラダイムトリガー,S,Spada e Scudo,2022-10-21,98,125,principale,23632.0,sigla o nome,S12: Paradigm Trigger,,approvata (10/10/2026)
+ja,SV-P,スカーレット&バイオレット プロモカード,SV,Scarlatto e Violetto,2022-11-29,0,288,promo,23779.0,sigla o nome,SV-P Promotional Cards,,approvata (10/10/2026)
+ja,S12a,VSTARユニバース,S,Spada e Scudo,2022-12-02,172,258,speciale,23645.0,sigla o nome,S12a: VSTAR Universe,,approvata (10/10/2026)
+ja,SV1S,スカーレットex,SV,Scarlatto e Violetto,2023-01-20,78,108,principale,23605.0,sigla o nome,SV1S: Scarlet ex,,approvata (10/10/2026)
+ja,SV1V,バイオレットex,SV,Scarlatto e Violetto,2023-01-20,78,108,principale,23606.0,sigla o nome,SV1V: Violet ex,,approvata (10/10/2026)
+ja,SV1a,トリプレットビート,SV,Scarlatto e Violetto,2023-03-10,73,103,principale,23598.0,sigla o nome,SV1a: Triplet Beat,,approvata (10/10/2026)
+ja,SV2D,クレイバースト,SV,Scarlatto e Violetto,2023-04-14,71,99,principale,23608.0,sigla o nome,SV2D: Clay Burst,,approvata (10/10/2026)
+ja,SV2P,スノーハザード,SV,Scarlatto e Violetto,2023-04-14,71,99,principale,23607.0,sigla o nome,SV2P: Snow Hazard,,approvata (10/10/2026)
+ja,SV2a,ポケモンカード151,SV,Scarlatto e Violetto,2023-06-16,165,210,speciale,23599.0,sigla o nome,SV2a: Pokemon Card 151,,approvata (10/10/2026)
+ja,SV3,黒炎の支配者,SV,Scarlatto e Violetto,2023-07-28,108,141,principale,23609.0,sigla o nome,SV3: Ruler of the Black Flame,,approvata (10/10/2026)
+ja,SV3a,レイジングサーフ,SV,Scarlatto e Violetto,2023-09-22,62,92,principale,23600.0,sigla o nome,SV3a: Raging Surf,,approvata (10/10/2026)
+ja,SV4K,古代の咆哮,SV,Scarlatto e Violetto,2023-10-27,66,95,principale,23610.0,sigla o nome,SV4K: Ancient Roar,,approvata (10/10/2026)
+ja,SV4M,未来の一閃,SV,Scarlatto e Violetto,2023-10-27,66,95,principale,23611.0,sigla o nome,SV4M: Future Flash,,approvata (10/10/2026)
+ja,SV4a,レイジングサーフ,SV,Scarlatto e Violetto,2023-12-01,190,320,speciale,23601.0,sigla o nome,SV4a: Shiny Treasure ex,,approvata (10/10/2026)
+ja,SV5K,ワイルドフォース,SV,Scarlatto e Violetto,2024-01-26,71,100,principale,23612.0,sigla o nome,SV5K: Wild Force,,approvata (10/10/2026)
+ja,SV5M,サイバージャッジ,SV,Scarlatto e Violetto,2024-01-26,71,100,principale,23613.0,sigla o nome,SV5M: Cyber Judge,,approvata (10/10/2026)
+ja,SV5a,クリムゾンヘイズ,SV,Scarlatto e Violetto,2024-03-22,66,96,principale,23602.0,sigla o nome,SV5a: Crimson Haze,,approvata (10/10/2026)
+ja,SV6,変幻の仮面,SV,Scarlatto e Violetto,2024-04-26,101,133,principale,23614.0,sigla o nome,SV6: Transformation Mask,,approvata (10/10/2026)
+ja,SV6a,ナイトワンダラー,SV,Scarlatto e Violetto,2024-06-07,64,94,principale,23603.0,sigla o nome,SV6a: Night Wanderer,,approvata (10/10/2026)
+ja,SV7,ステラミラクル,SV,Scarlatto e Violetto,2024-07-19,102,135,principale,23615.0,sigla o nome,SV7: Stellar Miracle,,approvata (10/10/2026)
+ja,SVK,デッキビルドBOX ステラミラクル,SV,Scarlatto e Violetto,2024-07-19,44,44,speciale,23794.0,sigla o nome,SV: Stellar Miracle Deck Build Box,,approvata (10/10/2026)
+ja,SVLN,スターターセット テラスタイプ：ステラ ニンフィアex,SV,Scarlatto e Violetto,2024-08-30,22,22,speciale,23798.0,sigla o nome,SV: Sylveon ex Stellar Tera Type Starter Set,,approvata (10/10/2026)
+ja,SVLS,スターターセット テラスタイプ：ステラ ソウブレイズex,SV,Scarlatto e Violetto,2024-08-30,22,22,speciale,23793.0,manuale,SV: Ceruledge ex Stellar Tera Type Starter Set,,approvata (10/10/2026)
+ja,SV7a,楽園ドラゴーナ,SV,Scarlatto e Violetto,2024-09-13,64,94,principale,23604.0,sigla o nome,SV7a: Paradise Dragona,,approvata (10/10/2026)
+ja,SV8,超電ブレイカー,SV,Scarlatto e Violetto,2024-10-18,106,138,principale,23777.0,sigla o nome,SV8: Super Electric Breaker,,approvata (10/10/2026)
+ja,SV8a,テラスタルフェスex,SV,Scarlatto e Violetto,2024-12-06,187,237,speciale,23909.0,sigla o nome,SV8a: Terastal Fest ex,,approvata (10/10/2026)
+ja,SV9,バトルパートナーズ,SV,Scarlatto e Violetto,2025-01-24,100,132,principale,24173.0,sigla o nome,SV9: Battle Partners,,approvata (10/10/2026)
+ja,SV9a,熱風のアリーナ,SV,Scarlatto e Violetto,2025-03-14,63,92,principale,24260.0,sigla o nome,SV9a: Heat Wave Arena,,approvata (10/10/2026)
+ja,SV10,ロケット団の栄光,SV,Scarlatto e Violetto,2025-04-18,98,132,principale,24310.0,sigla o nome,SV10: The Glory of Team Rocket,,approvata (10/10/2026)
+ja,SV11B,ブラックボルト,SV,Scarlatto e Violetto,2025-06-06,174,174,principale,24349.0,sigla o nome,SV11B: Black Bolt,,approvata (10/10/2026)
+ja,SV11W,ホワイトフレア,SV,Scarlatto e Violetto,2025-06-06,86,174,principale,24350.0,sigla o nome,SV11W: White Flare,,approvata (10/10/2026)
+ja,M-P,メガ プロモカード,M,Mega,2025-07-28,0,132,promo,24423.0,sigla o nome,M-P Promotional Cards,,approvata (10/10/2026)
+ja,M1L,メガブレイブ,M,Mega,2025-08-01,63,92,principale,24399.0,sigla o nome,m1L: Mega Brave,,approvata (10/10/2026)
+ja,M1S,メガシンフォニア,M,Mega,2025-08-01,63,92,principale,24400.0,sigla o nome,m1S: Mega Symphonia,,approvata (10/10/2026)
+ja,M2,インフェルノX,M,Mega,2025-09-26,80,116,principale,24459.0,sigla o nome,M2: Inferno X,,approvata (10/10/2026)
+ja,M2a,MEGAドリームex,M,Mega,2025-11-28,193,250,speciale,24499.0,sigla o nome,M2a: High Class Pack: MEGA Dream ex,,approvata (10/10/2026)
+ja,MC,スタートデッキ100 バトルコレクション,M,Mega,2025-12-19,742,774,speciale,24567.0,manuale,Start Deck 100 Battle Collection,,approvata (10/10/2026)
+ja,M3,ムニキスゼロ,M,Mega,2026-01-23,80,117,principale,24600.0,sigla o nome,M3: Nihil Zero,,approvata (10/10/2026)
+ja,M4,ニンジャスピナー,M,Mega,2026-03-13,83,120,principale,24653.0,sigla o nome,M4: Ninja Spinner,,approvata (10/10/2026)
+ja,M5,アビスアイ,M,Mega,2026-05-22,81,118,principale,24711.0,sigla o nome,M5: Abyss Eye,,approvata (10/10/2026)
+ja,M6,ストームエメラルダ,M,Mega,2026-07-31,76,113,principale,24791.0,sigla o nome,M6: Storm Emeralda,,approvata (10/10/2026)
+ja,M6a,30th CELEBRATION,M,Mega,2026-09-16,103,176,speciale,24721.0,sigla o nome,M6a: MEGA Expansion 30th Celebration,,approvata (10/10/2026)
+ja,MF,30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー,M,Mega,2026-09-16,40,49,speciale,24856.0,sigla o nome,MF: 30th CELEBRATION Premium Deck Set Espeon & Umbreon,,approvata (10/10/2026)

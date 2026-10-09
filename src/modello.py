@@ -50,7 +50,7 @@ CATEGORICHE = {
     "lingua": "en",
 }
 BINARIE = ["gen1", "leggendario", "stamped", "standard", "alternate_art", "promo_fam"]
-NUMERICHE = ["diluizione_log"]
+NUMERICHE = []  # diluizione tolta il 10/10/2026: contro le attese e senza beneficio in validazione
 INTERAZIONI = [
     ("iconicita", "famiglia", "esclusiva"),  # la combinazione chiave: si tiene comunque se >= 15 carte
     ("famiglia", "rarita_armonizzata"),
@@ -254,7 +254,10 @@ def main():
         print(risultati[-1], flush=True)
     risultati = pd.DataFrame(risultati)
     lineari = risultati[~risultati.modello.str.startswith("flessibile")]
-    scelto = lineari.sort_values("errore_tipico_%").iloc[0].modello
+    # spareggio (10/10/2026): tra i lineari entro 1 punto dal migliore vince chi sbaglia meno sulle
+    # combinazioni chiave (Pokemon iconici in promo, CLAUDE.md 5.5), che per Giacomo sono centrali
+    vicini = lineari[lineari["errore_tipico_%"] <= lineari["errore_tipico_%"].min() + 1]
+    scelto = vicini.sort_values("errore_combinazioni_chiave_%").iloc[0].modello
     pred_cv = previsioni[scelto]
 
     # --- selezione delle variabili: quanto peggiora l'errore togliendo ciascuna (validazione incrociata)
@@ -355,7 +358,7 @@ def scrivi_riepilogo(settimana, d, y, pred, risultati, scelto, alpha, pesi, seg,
            f"Prezzo: `log(trend)`; errore tipico = mediana di |stima / prezzo − 1| su carte **non viste** "
            f"(validazione incrociata a {K} gruppi). Regolarizzazione ridge alpha = {alpha}.\n",
            "## 1. Confronto dei modelli\n", tab_md(risultati), "",
-           f"**Modello scelto (lineare con l'errore più basso, spiegabile): {scelto}.** "
+           f"**Modello scelto: {scelto}** (tra i lineari entro 1 punto dall'errore più basso, quello che sbaglia meno sulle combinazioni chiave). "
            "Il modello flessibile serve da confronto: se sbaglia molto meno, vuol dire che mancano combinazioni.\n",
            f"Intervallo del prezzo equo (10°–90° percentile dell'errore): da {np.exp(q10) * 100 - 100:+.0f}% a {np.exp(q90) * 100 - 100:+.0f}%.\n",
            "## 2. Soglia ±15% per segmento (CLAUDE.md 6)\n", tab_md(seg), "",
