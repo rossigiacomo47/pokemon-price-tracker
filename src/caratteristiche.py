@@ -384,7 +384,7 @@ def tab_md(t):
 
 VARIABILI = [
     ("pokemon_cat", "1. Pokémon raffigurato (30 più frequenti, altri = altro)"),
-    ("iconicita", "2. Livello di iconicità (provvisorio: iconici.csv)"),
+    ("iconicita", "2. Livello di iconicità (iconici.csv, dai dati, approvato il 10/10/2026)"),
     ("generazione", "3. Generazione"),
     ("leggendario", "4. Leggendario o misterioso"),
     ("rarita_armonizzata", "5. Rarità armonizzata"),

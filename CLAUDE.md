@@ -220,7 +220,7 @@ Perimetro: **carte Pokémon moderne (dal 2017), singole, non gradate, internazio
 2. Dividiamo i Pokémon in tre livelli (alto / medio / basso) in base a quel sovrapprezzo.
 3. Confrontiamo il risultato con la **mia lista** (`iconici.csv`). Mostrami le differenze e decido io i casi dubbi. **Fino alla conferma (9/10/2026)** si usa `iconici.csv` così com'è, in via provvisoria (gli 8 "da confermare" = alto).
 4. Attenzione a non contare due volte lo stesso effetto: "Pokémon raffigurato" e "iconicità" sono collegate. Prova le due versioni (solo Pokémon, solo iconicità) e tieni quella che sbaglia meno.
-5. **Decisione del 10 ottobre 2026:** nella regressione resta solo il **Pokémon raffigurato** (l'iconicità contava due volte lo stesso effetto). L'iconicità si usa **solo come filtro dei comparabili** (7.2) e nel giudizio d'investimento. I livelli si ricalcolano dai dati con `src/iconicita_dati.py` (sovrapprezzo del Pokémon rispetto al Pokémon medio: **alto ≥ +200%**, **medio da +75% a +200%**, almeno 8 carte) e li confermo io in `iconici.csv`.
+5. **Decisione del 10 ottobre 2026:** nella regressione resta solo il **Pokémon raffigurato** (l'iconicità contava due volte lo stesso effetto). L'iconicità si usa **solo come filtro dei comparabili** (7.2) e nel giudizio d'investimento. I livelli si ricalcolano dai dati con `src/iconicita_dati.py` (sovrapprezzo del Pokémon rispetto al Pokémon medio: **alto ≥ +200%**, **medio da +75% a +200%**, almeno 8 carte) e li confermo io in `iconici.csv`. **Approvati il 10/10/2026**: 21 alto, 23 medio (Ditto passa a basso; la mia lista dell'8/10 è salvata in `riepiloghi/iconici_lista_giacomo_2026-10-08.csv`).
 
 ### 5.5 Interazioni (combinazioni): sono fondamentali
 Per me le **combinazioni** contano quanto le singole variabili: un **Pikachu promo esclusiva giapponese** vale più della somma di "Pikachu" + "promo" + "esclusiva". Un'interazione è un peso in più che si attiva solo quando due o tre caratteristiche sono presenti **insieme**.
@@ -372,7 +372,7 @@ Il prezzo di riferimento automatico non distingue condizione e lingua (4.5b). Pe
    - **Gemella nell'altra lingua:** se la stessa illustrazione esiste nell'altra lingua, la scheda mostra il suo prezzo e lo confronta con lo spread tipico (indizio di potenziale).
    - **Finitura holo (decisione del 9/10/2026):** holo / non holo conta nel punteggio di somiglianza con un peso alto, ma **non è un filtro obbligatorio**.
 3. Si confronta con **tutte** le carte che passano i filtri e si mostrano le **5–8 più simili** (sono io a inserirne i prezzi, quindi non troppe).
-4. **Se i filtri lasciano meno di 3 comparabili** sopra il 70% di somiglianza:
+4. **Se i filtri lasciano meno di 3 comparabili** (dal 10/10/2026: meno di 3 carte diverse con lo stesso livello di iconicità; la vecchia soglia del 70% di somiglianza non era quasi mai raggiunta e il filtro non lavorava):
    - allenta **solo il livello di iconicità**. La famiglia non cambia mai, e restano fissi la rarità per le carte da busta e la modalità di rilascio per le promo;
    - **scrivi chiaramente** nella scheda quale filtro è stato allentato;
    - se non basta, il giudizio è "❔ Dati insufficienti".

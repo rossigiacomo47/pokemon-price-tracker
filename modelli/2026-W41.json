@@ -23,21 +23,21 @@
  "confronto": [
   {
    "modello": "ridge senza interazioni, Pokémon + iconicità",
-   "errore_tipico_%": 51.2,
-   "entro_±15%_quota": 14.9,
-   "errore_combinazioni_chiave_%": 74.3
+   "errore_tipico_%": 48.0,
+   "entro_±15%_quota": 16.3,
+   "errore_combinazioni_chiave_%": 73.2
   },
   {
    "modello": "ridge senza interazioni, solo Pokémon",
    "errore_tipico_%": 51.2,
    "entro_±15%_quota": 14.9,
-   "errore_combinazioni_chiave_%": 74.3
+   "errore_combinazioni_chiave_%": 74.5
   },
   {
    "modello": "ridge senza interazioni, solo iconicità",
    "errore_tipico_%": 57.8,
    "entro_±15%_quota": 12.6,
-   "errore_combinazioni_chiave_%": 64.1
+   "errore_combinazioni_chiave_%": 66.7
   },
   {
    "modello": "ridge con interazioni",
@@ -49,19 +49,19 @@
    "modello": "robusto (Huber) con interazioni",
    "errore_tipico_%": 47.8,
    "entro_±15%_quota": 16.4,
-   "errore_combinazioni_chiave_%": 72.6
+   "errore_combinazioni_chiave_%": 73.2
   },
   {
    "modello": "due modelli per famiglia (ridge con interazioni)",
    "errore_tipico_%": 48.1,
    "entro_±15%_quota": 16.1,
-   "errore_combinazioni_chiave_%": 59.8
+   "errore_combinazioni_chiave_%": 63.0
   },
   {
    "modello": "flessibile (gradient boosting)",
-   "errore_tipico_%": 44.1,
-   "entro_±15%_quota": 16.6,
-   "errore_combinazioni_chiave_%": 56.5
+   "errore_tipico_%": 41.2,
+   "entro_±15%_quota": 18.9,
+   "errore_combinazioni_chiave_%": 54.7
   }
  ],
  "intervallo_log": [

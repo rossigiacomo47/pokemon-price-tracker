@@ -5,7 +5,7 @@ Per ogni carta del perimetro:
      stesso livello di iconicita'; promo = stessa modalita' di rilascio e stessa iconicita';
   2. somiglianza 0-100% (distanza di Gower) sulle altre variabili, pesate con l'importanza
      stimata dal modello (era ed eta' con peso basso);
-  3. se meno di 3 comparabili sopra il 70%: si allenta SOLO l'iconicita' e lo si scrive;
+  3. se con lo stesso livello di iconicita' restano meno di 3 carte: si allenta SOLO l'iconicita' e lo si scrive;
   4. rettifica = exp(predittore lineare della carta - predittore del comparabile), cioe'
      i pesi del modello con le interazioni (7.3).
 Scrive in docs/data/ i file letti dalla dashboard:
@@ -33,7 +33,6 @@ from riepilogo import CONTROLLO_ID
 RADICE = Path(__file__).resolve().parent.parent
 DOCS = RADICE / "docs" / "data"
 N_COMP = 8
-SOGLIA_SIM = 70
 # avviso "poco affidabile": le simili sono troppo diverse se la correzione tipica supera x2 (o /2)
 SOGLIA_CORREZIONE = 2.0
 
@@ -212,7 +211,9 @@ def main():
         for v in nums:
             sim += w[v] * (1 - np.abs(nums[v] - nums[v][i]) / rng[v])
         sim = sim / wtot * 100
-        if (sim[cand] >= SOGLIA_SIM).sum() < 3:
+        # 10/10/2026: si allenta solo se con lo stesso livello restano meno di 3 carte diverse
+        # (la soglia del 70% di somiglianza non era quasi mai raggiunta e il filtro non lavorava)
+        if len(set(ids[cand])) < 3:
             cand = filtro & (ids != ids[i])
             allentato = True
         if cand.sum() < 3:
