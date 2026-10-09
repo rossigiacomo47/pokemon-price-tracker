@@ -28,6 +28,8 @@ from urllib.parse import quote_plus
 import numpy as np
 import pandas as pd
 
+from riepilogo import CONTROLLO_ID
+
 RADICE = Path(__file__).resolve().parent.parent
 DOCS = RADICE / "docs" / "data"
 N_COMP = 8
@@ -243,6 +245,26 @@ def main():
         }
 
     carte = {r.k: info(r) for r in per.itertuples()}
+
+    # --- minimi NM delle carte di controllo -> rapporto NM/trend (CLAUDE.md, riquadro sezione 6)
+    cfg = json.loads((RADICE / "config.json").read_text(encoding="utf-8"))
+    da, a = cfg["fascia_nm_da_pct"] / 100, cfg["fascia_nm_a_pct"] / 100
+    cc = pd.read_csv(RADICE / "carte_controllo.csv")
+    rapporti = []
+    for r in cc.itertuples():
+        lid = CONTROLLO_ID.get((r.nome, r.set))
+        if not lid:
+            continue
+        k = f"{lid[0]}|{lid[1]}|0|"
+        if k in carte and carte[k]["trend"]:
+            carte[k]["nm_salvato"] = {"min": float(r.nm_offerta_min_eur), "trend": carte[k]["trend"],
+                                      "data": str(r.data), "fonte": "carte di controllo"}
+            rapporti.append(float(r.nm_offerta_min_eur) * (1 + (da + a) / 2) / carte[k]["trend"])
+    rapporto = {"tipico": float(np.median(rapporti)), "p10": float(np.percentile(rapporti, 10)),
+                "p90": float(np.percentile(rapporti, 90)), "n": len(rapporti),
+                "errore_tipico": float(np.median(np.abs(np.array(rapporti) / np.median(rapporti) - 1))),
+                "fonte": "carte di controllo (centro della fascia NM / trend)"}
+    print("rapporto NM/trend:", {k: round(v, 3) if isinstance(v, float) else v for k, v in rapporto.items()})
     for k, s in schede.items():
         carte[k].update(s)
     # ogni comparabile porta con se' i dati essenziali: una scheda si legge da un solo file
@@ -277,6 +299,7 @@ def main():
         "riferimenti": mod["riferimenti"], "intervallo_log": mod["intervallo_log"],
         "controllo": cc[["nome", "set", "lingua", "nm_offerta_min_eur"]].to_dict("records"),
         "fascia_nm": [0, 5],
+        "rapporto_nm": rapporto,
     }
 
     DOCS.mkdir(parents=True, exist_ok=True)

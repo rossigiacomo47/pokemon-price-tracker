@@ -1,6 +1,6 @@
 # Pokémon Price Tracker (valutatore di carte) — istruzioni del progetto per Claude Code
 
-> Versione 2.3 (8 ottobre 2026, dopo il blocco 1: soglia bulk 3 €, prezzi ambigui divisi normale/foil, stamped nel perimetro, modello unico en+ja, verifica del trend). Versione 2.2: promo di ogni finitura, regola del prezzo di riferimento per variante, era Sole e Luna da dicembre 2016. Versione 2.1: fascia Near Mint, carte di controllo, perimetro ampliato. Sostituisce l'impostazione precedente basata sull'archivio storico TCGCSV, che non è più scaricabile (i file d'archivio rispondono "403").
+> Versione 2.4 (9 ottobre 2026: prezzo equo NM dal prezzo della carta stessa, modello e comparabili per il valore relativo). Versione 2.3 (8 ottobre 2026, dopo il blocco 1: soglia bulk 3 €, prezzi ambigui divisi normale/foil, stamped nel perimetro, modello unico en+ja, verifica del trend). Versione 2.2: promo di ogni finitura, regola del prezzo di riferimento per variante, era Sole e Luna da dicembre 2016. Versione 2.1: fascia Near Mint, carte di controllo, perimetro ampliato. Sostituisce l'impostazione precedente basata sull'archivio storico TCGCSV, che non è più scaricabile (i file d'archivio rispondono "403").
 
 ## 1. Chi sono e come devi lavorare con me
 
@@ -265,6 +265,16 @@ Non sono pesi: sono le **direzioni che mi aspetto**. Se il modello trova il cont
 
 ## 6. Modello del prezzo equo
 
+> **Due domande, due metri (decisione del 9 ottobre 2026, dopo le prove del blocco 4).** Né il modello né i comparabili scendono sotto circa ±45% sul prezzo di riferimento: due carte con le stesse caratteristiche possono valere una il doppio dell'altra, per l'illustrazione. Il prezzo di riferimento **della carta stessa** invece dista circa ±17% dai prezzi NM di Giacomo (13 carte di controllo). Quindi:
+> 1. **Prezzo equo NM di una carta** = prezzo di riferimento Cardmarket **della carta stessa** × **rapporto NM/trend**. Il rapporto è quello della carta, se Giacomo ne ha inserito un minimo NM in passato (carte di controllo, o carte inserite come comparabili; massimo 90 giorni). Altrimenti è il **rapporto tipico** (oggi: mediana delle carte di controllo; poi per famiglia, lingua e fascia, come in 7.0.6). L'intervallo viene dalla dispersione dei rapporti oppure dalla fascia +5% (4.5c). Il prezzo dell'offerta che si sta valutando non entra nel calcolo.
+> 2. **La soglia ±15% si applica a questo prezzo equo NM.** Al 9/10/2026 è circa ±17%: la scheda lo dichiara.
+> 3. **Modello e comparabili misurano il valore relativo**: quanto la carta costa in più o in meno del valore delle sue caratteristiche (es. "+41% rispetto alle simili"). Non hanno soglia ±15%. Diventano la componente "valutazione relativa" del giudizio d'investimento (8.1).
+> 4. **I comparabili restano nella scheda** (foto, somiglianza, link, rettifica, casella NM) come **controllo**: se la loro mediana rettificata differisce dal prezzo equo di oltre il 30%, avviso.
+> 5. Le carte **senza prezzo Cardmarket** (promo SM-P e S-P, catalogo giapponese) usano il flusso 7.0 con i comparabili.
+>
+> Le regole qui sotto restano valide per il modello, ma la sua soglia e il suo ruolo sono quelli di questo riquadro.
+
+
 1. **Dati di addestramento**:
    - carte singole con prezzo Cardmarket valido;
    - escludi le carte "bulk": **soglia decisa l'8/10/2026: 3 €** (decisione D3; con 15 € restavano solo ~900 varianti, sotto il minimo di 1.500–2.500) sul prezzo di riferimento (`soglia_bulk_eur` in `config.json`). Le carte sotto soglia restano nella fotografia ma non entrano nell'addestramento; la scheda di una carta sotto soglia deve dirlo ("sotto la soglia del modello");
@@ -325,7 +335,7 @@ Il prezzo di riferimento automatico non distingue condizione e lingua (4.5b). Pe
 3. Inserisco anche il **prezzo Near Mint della carta da valutare** (l'offerta che sto guardando).
 4. **Calcolo:**
    - ogni comparabile viene **rettificato** verso la carta valutata con i pesi del modello, **interazioni comprese**. Esempio: "Pikachu promo" a 40 € → + esclusiva giapponese → + full art → + peso della combinazione = stima per la mia carta;
-   - la **mediana** dei comparabili rettificati è il **prezzo equo Near Mint**; la dispersione tra i comparabili dà l'**intervallo**;
+   - la **mediana** dei comparabili rettificati è il **prezzo equo Near Mint solo per le carte senza prezzo Cardmarket**; per le altre è un controllo (vedi il riquadro all'inizio della sezione 6); la dispersione tra i comparabili dà l'**intervallo**;
    - il prezzo equo del modello (sul prezzo di riferimento, calibrato con 4.5b) si mostra come **seconda opinione**. Se le due stime differiscono di oltre il 30%: avviso;
    - **giudizio di prezzo** (sottovalutata / in linea / sopravvalutata) confrontando il mio prezzo NM con il prezzo equo NM;
    - **giudizio d'investimento** (sezione 8).
