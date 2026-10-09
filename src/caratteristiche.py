@@ -140,6 +140,14 @@ ORDINE_TIMBRI = [
 ]
 
 
+INDIZI_TCGPLAYER = [
+    ("Pokemon Center", "Pokemon Center"), ("Pokémon Center", "Pokemon Center"),
+    ("In-Store Event", "evento o torneo"), ("Championship", "evento o torneo"), ("Winner", "evento o torneo"),
+    ("Staff", "evento o torneo"), ("Prerelease", "evento o torneo"),
+    ("Cosmos Holo", "prodotto speciale"), ("Let's Play", "prodotto speciale"),
+]
+
+
 def rilascio(riga):
     if riga.famiglia == "carta da busta":
         return "busta"
@@ -153,6 +161,13 @@ def rilascio(riga):
             if chiave in str(timbro):
                 return valore
         return "altro"
+    # indizio dai nomi TCGplayer: vale solo se TUTTI i prodotti con quel numero lo riportano
+    # (se lo riporta uno solo, e' una versione diversa della carta, es. timbrata "Prerelease")
+    nomi = [n for n in str(riga.nomi_tcgp).split(" | ") if n and n != "nan"] if not mancante(riga.nomi_tcgp) else []
+    if nomi:
+        for indizio, valore in INDIZI_TCGPLAYER:
+            if all(indizio.lower() in n.lower() for n in nomi):
+                return valore
     return "da classificare"
 
 
@@ -208,8 +223,17 @@ def costruisci(settimana):
     per = np.where(df.variante_formato == "jumbo", "fuori", per)
     df["perimetro"] = per
 
-    # --- rilascio, tipo di set
+    # --- rilascio, tipo di set (le correzioni a mano di Giacomo vincono sulle regole automatiche)
     df["rilascio"] = df.apply(rilascio, axis=1)
+    manuali = TAB / "rilasci_manuali.csv"
+    if manuali.exists():
+        m = pd.read_csv(manuali, dtype=str).fillna("")
+        m = m[m.rilascio.str.strip() != ""]
+        corr = dict(zip(m.lingua + "|" + m.id, m.rilascio.str.strip()))
+        chiavi = df.lingua.astype(str) + "|" + df.id.astype(str)
+        trovate = chiavi.isin(corr) & (df.famiglia != "carta da busta") & ~df.stamped
+        df.loc[trovate, "rilascio"] = chiavi[trovate].map(corr)
+        print(f"Rilasci corretti a mano: {int(trovate.sum())} varianti")
 
     # --- soggetto
     sp = tabella_specie()
