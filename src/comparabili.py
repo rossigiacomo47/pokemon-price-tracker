@@ -46,7 +46,7 @@ SOMIGLIANZA = {
     "lingua": ("lingua", "cat"),
     "iconicita": ("iconicita", "cat"),
     "finitura_holo": (None, "cat"),
-    "rilascio": ("rilascio", "cat"),
+    "rilascio_scheda": ("rilascio", "cat"),
     "tipo_set": ("tipo_set", "cat"),
     "set_id": ("set_cat", "cat"),
     "stamped": ("stamped", "cat"),
@@ -67,7 +67,7 @@ ETICHETTE = {
     "leggendario": lambda v: "leggendario" if v else "non leggendario",
     "illustratore": lambda v: f"illustratore {v}", "lingua": lambda v: "giapponese" if v == "ja" else "internazionale",
     "iconicita": lambda v: "iconicità " + {"alto": "alta", "medio": "media", "basso": "bassa"}.get(v, str(v)), "finitura_holo": lambda v: "holo" if v else "non holo",
-    "rilascio": lambda v: f"rilascio {v}", "tipo_set": lambda v: f"set {v}", "stamped": lambda v: "stamped" if v else "non stamped",
+    "rilascio_scheda": lambda v: f"rilascio {v}", "tipo_set": lambda v: f"set {v}", "stamped": lambda v: "stamped" if v else "non stamped",
     "esclusiva": lambda v: {"entrambe": "presente in inglese e giapponese", "solo giapponese": "solo in giapponese",
                             "solo internazionale": "solo in inglese", "incerta": "esclusiva da verificare"}.get(v, str(v)),
     "set_id": lambda v: f"set {v}", "standard": lambda v: "in Standard" if v else "fuori Standard",
@@ -192,7 +192,7 @@ def main():
     vals = {v: per[v].astype(str).values for v, (_, t) in SOMIGLIANZA.items() if t == "cat"}
     nums = {v: per[v].astype(float).fillna(per[v].astype(float).median()).values for v, (_, t) in SOMIGLIANZA.items() if t == "num"}
     rng = {v: (np.nanmax(a) - np.nanmin(a)) or 1.0 for v, a in nums.items()}
-    fam, rar, ico, ril, lng = (per[c].astype(str).values for c in ("famiglia", "rarita_armonizzata", "iconicita", "rilascio", "lingua"))
+    fam, rar, ico, ril, lng = (per[c].astype(str).values for c in ("famiglia", "rarita_armonizzata", "iconicita", "rilascio_scheda", "lingua"))
     lin = per.lineare_log.values
     ids = per.id.values
 
@@ -230,7 +230,7 @@ def main():
         comps = []
         for j in scelti:
             uguali, diverse = [], []
-            for v in ("pokemon", "set_id", "rarita_armonizzata", "rilascio", "iconicita", "lingua", "esclusiva", "finitura_holo",
+            for v in ("pokemon", "set_id", "rarita_armonizzata", "rilascio_scheda", "iconicita", "lingua", "esclusiva", "finitura_holo",
                       "stamped", "meccanica", "alternate_art", "era"):
                 a, b = per.at[i, v], per.at[j, v]
                 if pd.isna(a) and pd.isna(b):
@@ -266,7 +266,7 @@ def main():
             "anno": anno, "img": lo, "fonte": r.fonte_riga, "k": r.k,
             "perimetro": r.perimetro, "famiglia": r.famiglia, "rarita": r.rarita_armonizzata,
             "pokemon": None if pd.isna(r.pokemon) else r.pokemon, "iconicita": r.iconicita,
-            "rilascio": r.rilascio, "esclusiva": r.esclusiva, "meccanica": r.meccanica, "variante": r.variante,
+            "rilascio": r.rilascio_scheda, "esclusiva": r.esclusiva, "meccanica": r.meccanica, "variante": r.variante,
             "stamped": bool(r.stamped), "timbro": None if pd.isna(r.variante_timbro) else str(r.variante_timbro),
             "alternate_art": bool(r.alternate_art) if not pd.isna(r.alternate_art) else False,
             "era": r.era, "generazione": None if pd.isna(r.generazione) else int(r.generazione),

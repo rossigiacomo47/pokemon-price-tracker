@@ -223,8 +223,12 @@ def costruisci(settimana):
     per = np.where(df.variante_formato == "jumbo", "fuori", per)
     df["perimetro"] = per
 
-    # --- rilascio, tipo di set (le correzioni a mano di Giacomo vincono sulle regole automatiche)
+    # --- rilascio. Due colonne (decisione del 9/10/2026):
+    #   rilascio         solo regole automatiche -> usata dal MODELLO (le classificazioni a mano riguardano
+    #                    solo le promo sopra 20 euro: nel modello diventerebbero un indizio di prezzo, vietato)
+    #   rilascio_scheda  regole + correzioni a mano -> usata da scheda e scelta dei comparabili
     df["rilascio"] = df.apply(rilascio, axis=1)
+    df["rilascio_scheda"] = df.rilascio
     manuali = TAB / "rilasci_manuali.csv"
     if manuali.exists():
         m = pd.read_csv(manuali, dtype=str).fillna("")
@@ -232,7 +236,7 @@ def costruisci(settimana):
         corr = dict(zip(m.lingua + "|" + m.id, m.rilascio.str.strip()))
         chiavi = df.lingua.astype(str) + "|" + df.id.astype(str)
         trovate = chiavi.isin(corr) & (df.famiglia != "carta da busta") & ~df.stamped
-        df.loc[trovate, "rilascio"] = chiavi[trovate].map(corr)
+        df.loc[trovate, "rilascio_scheda"] = chiavi[trovate].map(corr)
         print(f"Rilasci corretti a mano: {int(trovate.sum())} varianti")
 
     # --- soggetto
