@@ -140,7 +140,7 @@ MAPPA_RARITA = {
     "Special Illustration Rare": (SIR, "dentro", ""),
     "Special Art Rare": (SIR, "dentro", "SAR giapponese"),
     "Character Rare": (CHR, "dentro", "CHR giapponese"),
-    "Character Super Rare": (CHR, "dentro", "CSR giapponese"),
+    "Character Super Rare": ("character super rare", "dentro", "CSR giapponese (separata dalla CHR il 9/10/2026)"),
     "Hyper rare": (GOLD, "dentro", "SV: carte dorate"),
     "Hyper Rare": (GOLD, "dentro", "HR giapponese (arcobaleno) o hyper SV"),
     "Mega Hyper Rare": (GOLD, "dentro", ""),

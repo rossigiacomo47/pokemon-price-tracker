@@ -10,22 +10,22 @@ Prezzo di un mese fa = media a 30 giorni Cardmarket; oggi = trend. Carte: 3457. 
 
 | gruppo | carte | crescita_media_pct | crescita_mediana_pct | quota_salite_pct |
 |---|---|---|---|---|
-| 1 · più sottovalutate | 642 | 6.2 | 0.1 | 50.0 |
-| 2 | 642 | 1.2 | 0.0 | 47.5 |
-| 3 | 642 | 0.5 | -1.3 | 43.5 |
-| 4 | 642 | 0.4 | -1.3 | 43.8 |
-| 5 · più sopravvalutate | 642 | -0.3 | -1.4 | 45.2 |
+| 1 · più sottovalutate | 641 | 5.7 | 0.0 | 47.9 |
+| 2 | 641 | 2.5 | 0.0 | 49.1 |
+| 3 | 640 | -0.3 | -1.4 | 43.1 |
+| 4 | 641 | 1.0 | -0.1 | 46.3 |
+| 5 · più sopravvalutate | 641 | -0.3 | -1.4 | 45.2 |
 
-Correlazione di Spearman tra sottovalutazione e crescita: -0.073 (p = 3.38e-05). Negativa = le carte più sottovalutate sono salite di più.
+Correlazione di Spearman tra sottovalutazione e crescita: -0.070 (p = 7.56e-05). Negativa = le carte più sottovalutate sono salite di più.
 
 ## B. Rispetto al modello (valore delle caratteristiche)
 
 | gruppo | carte | crescita_media_pct | crescita_mediana_pct | quota_salite_pct |
 |---|---|---|---|---|
-| 1 · più sottovalutate | 692 | 6.2 | 0.3 | 50.6 |
-| 2 | 691 | 0.9 | -0.8 | 45.9 |
-| 3 | 691 | -0.2 | -1.5 | 43.6 |
-| 4 | 691 | -0.8 | -1.4 | 43.8 |
-| 5 · più sopravvalutate | 692 | 2.2 | 0.0 | 48.8 |
+| 1 · più sottovalutate | 692 | 6.3 | 0.5 | 50.9 |
+| 2 | 691 | 0.9 | -0.7 | 46.2 |
+| 3 | 691 | 0.0 | -0.9 | 43.7 |
+| 4 | 691 | -1.2 | -1.6 | 43.4 |
+| 5 · più sopravvalutate | 692 | 2.3 | 0.0 | 48.6 |
 
-Correlazione di Spearman tra sottovalutazione e crescita: -0.047 (p = 0.00587). Negativa = le carte più sottovalutate sono salite di più.
+Correlazione di Spearman tra sottovalutazione e crescita: -0.048 (p = 0.0045). Negativa = le carte più sottovalutate sono salite di più.

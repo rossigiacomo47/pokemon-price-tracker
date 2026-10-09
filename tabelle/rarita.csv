@@ -41,7 +41,7 @@ TCGdex,ja,Special illustration rare,115,special illustration rare,dentro,,propos
 TCGdex,ja,Triple Rare,65,fuori,fuori,,proposta
 TCGdex,ja,Character Rare,52,character rare,dentro,CHR giapponese,proposta
 TCGdex,ja,Mega Hyper Rare,48,gold-hyper-rainbow,dentro,,proposta
-TCGdex,ja,Character Super Rare,46,character rare,dentro,CSR giapponese,proposta
+TCGdex,ja,Character Super Rare,46,character super rare,dentro,CSR giapponese (separata dalla CHR il 9/10/2026),proposta
 TCGdex,ja,Secret Rare,46,da verificare,da verificare,Secret Rare giapponese su TCGdex: controllare caso per caso,proposta
 TCGdex,ja,Classic Collection,28,promo,dentro,ristampe Classic Collection,proposta
 TCGdex,ja,Rare Holo,28,fuori,fuori,,proposta
@@ -97,7 +97,7 @@ TCGplayer,ja,Triple Rare,134,fuori,fuori,,proposta
 TCGplayer,ja,Shiny Secret Rare,79,shiny,dentro,SSR giapponese,proposta
 TCGplayer,ja,Character Rare,58,character rare,dentro,CHR giapponese,proposta
 TCGplayer,ja,Prism Rare,49,fuori,fuori,,proposta
-TCGplayer,ja,Character Super Rare,48,character rare,dentro,CSR giapponese,proposta
+TCGplayer,ja,Character Super Rare,48,character super rare,dentro,CSR giapponese (separata dalla CHR il 9/10/2026),proposta
 TCGplayer,ja,Trainer Rare,36,fuori,fuori,,proposta
 TCGplayer,ja,ACE Rare,33,fuori,fuori,,proposta
 TCGplayer,ja,Pikachu Rare,30,fuori,fuori,,proposta

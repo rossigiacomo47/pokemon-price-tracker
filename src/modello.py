@@ -78,7 +78,12 @@ def prepara(df):
     return d
 
 
-def colonne_design(tr, usa_pokemon=True, usa_iconicita=True, interazioni=True):
+# CLAUDE.md 5.4.4: "solo Pokemon" sbaglia quanto "Pokemon + iconicita'" (9/10/2026), quindi l'iconicita' non entra
+# nel modello: sommata al peso del singolo Pokemon gonfiava le rettifiche (es. Mewtwo x5 rispetto ad Arceus).
+USA_ICONICITA = False
+
+
+def colonne_design(tr, usa_pokemon=True, usa_iconicita=USA_ICONICITA, interazioni=True):
     """Elenco delle colonne (nome, funzione) da costruire, deciso sui dati di addestramento."""
     spec = []
     for var, ref in CATEGORICHE.items():
@@ -230,7 +235,7 @@ def main():
     print("alpha:", alpha_err, "->", alpha)
 
     candidati = {
-        "ridge senza interazioni, Pokémon + iconicità": lambda: Lineare("ridge", alpha, interazioni=False),
+        "ridge senza interazioni, Pokémon + iconicità": lambda: Lineare("ridge", alpha, interazioni=False, usa_iconicita=True),
         "ridge senza interazioni, solo Pokémon": lambda: Lineare("ridge", alpha, interazioni=False, usa_iconicita=False),
         "ridge senza interazioni, solo iconicità": lambda: Lineare("ridge", alpha, interazioni=False, usa_pokemon=False),
         "ridge con interazioni": lambda: Lineare("ridge", alpha),

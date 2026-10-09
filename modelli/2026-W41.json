@@ -3,7 +3,7 @@
  "stato": "BOZZA - da rivedere insieme (CLAUDE.md 6.7)",
  "carte": 3457,
  "soglia_bulk_eur": 3.0,
- "modello_scelto": "robusto (Huber) con interazioni",
+ "modello_scelto": "due modelli per famiglia (ridge con interazioni)",
  "alpha": 1,
  "riferimenti": {
   "pokemon_cat": "altro",
@@ -23,1630 +23,1510 @@
  "confronto": [
   {
    "modello": "ridge senza interazioni, Pokémon + iconicità",
-   "errore_tipico_%": 51.1,
-   "entro_±15%_quota": 15.1,
-   "errore_combinazioni_chiave_%": 73.3
+   "errore_tipico_%": 51.2,
+   "entro_±15%_quota": 14.8,
+   "errore_combinazioni_chiave_%": 74.3
   },
   {
    "modello": "ridge senza interazioni, solo Pokémon",
-   "errore_tipico_%": 51.1,
-   "entro_±15%_quota": 15.1,
-   "errore_combinazioni_chiave_%": 73.3
+   "errore_tipico_%": 51.2,
+   "entro_±15%_quota": 14.9,
+   "errore_combinazioni_chiave_%": 74.3
   },
   {
    "modello": "ridge senza interazioni, solo iconicità",
-   "errore_tipico_%": 54.6,
-   "entro_±15%_quota": 13.9,
-   "errore_combinazioni_chiave_%": 81.8
+   "errore_tipico_%": 57.9,
+   "entro_±15%_quota": 12.5,
+   "errore_combinazioni_chiave_%": 65.0
   },
   {
    "modello": "ridge con interazioni",
-   "errore_tipico_%": 49.4,
-   "entro_±15%_quota": 15.4,
-   "errore_combinazioni_chiave_%": 71.7
+   "errore_tipico_%": 49.5,
+   "entro_±15%_quota": 16.3,
+   "errore_combinazioni_chiave_%": 73.6
   },
   {
    "modello": "robusto (Huber) con interazioni",
-   "errore_tipico_%": 48.2,
-   "entro_±15%_quota": 16.4,
-   "errore_combinazioni_chiave_%": 67.8
+   "errore_tipico_%": 48.1,
+   "entro_±15%_quota": 16.6,
+   "errore_combinazioni_chiave_%": 72.9
   },
   {
    "modello": "due modelli per famiglia (ridge con interazioni)",
-   "errore_tipico_%": 48.6,
-   "entro_±15%_quota": 15.7,
-   "errore_combinazioni_chiave_%": 59.3
+   "errore_tipico_%": 47.9,
+   "entro_±15%_quota": 16.3,
+   "errore_combinazioni_chiave_%": 59.4
   },
   {
    "modello": "flessibile (gradient boosting)",
-   "errore_tipico_%": 44.0,
-   "entro_±15%_quota": 18.2,
-   "errore_combinazioni_chiave_%": 57.8
+   "errore_tipico_%": 43.1,
+   "entro_±15%_quota": 17.4,
+   "errore_combinazioni_chiave_%": 56.4
   }
  ],
  "intervallo_log": [
-  -0.862735970950275,
-  1.098793910599781
+  -0.9247106168171445,
+  1.0676771268102656
  ],
  "segmenti": [
   {
    "gruppo": "famiglia",
    "segmento": "promo e rilascio speciale",
    "carte": 1108,
-   "errore_tipico": 49.3,
+   "errore_tipico": 51.0,
    "entro_15": false
   },
   {
    "gruppo": "famiglia",
    "segmento": "carta da busta",
    "carte": 2349,
-   "errore_tipico": 47.6,
+   "errore_tipico": 47.4,
    "entro_15": false
   },
   {
    "gruppo": "lingua",
    "segmento": "en",
    "carte": 2212,
-   "errore_tipico": 45.2,
+   "errore_tipico": 44.5,
    "entro_15": false
   },
   {
    "gruppo": "lingua",
    "segmento": "ja",
    "carte": 1245,
-   "errore_tipico": 53.6,
+   "errore_tipico": 55.1,
    "entro_15": false
   },
   {
    "gruppo": "fascia di prezzo",
    "segmento": "< 10 €",
    "carte": 1591,
-   "errore_tipico": 47.7,
+   "errore_tipico": 51.6,
    "entro_15": false
   },
   {
    "gruppo": "fascia di prezzo",
    "segmento": "10–50 €",
    "carte": 1340,
-   "errore_tipico": 40.9,
+   "errore_tipico": 39.8,
    "entro_15": false
   },
   {
    "gruppo": "fascia di prezzo",
    "segmento": "50–200 €",
    "carte": 416,
-   "errore_tipico": 64.4,
+   "errore_tipico": 61.7,
    "entro_15": false
   },
   {
    "gruppo": "fascia di prezzo",
    "segmento": "> 200 €",
    "carte": 110,
-   "errore_tipico": 79.2,
+   "errore_tipico": 76.7,
    "entro_15": false
   },
   {
    "gruppo": "famiglia × lingua",
    "segmento": "promo e rilascio speciale · en",
    "carte": 1016,
-   "errore_tipico": 48.4,
+   "errore_tipico": 48.9,
    "entro_15": false
   },
   {
    "gruppo": "famiglia × lingua",
    "segmento": "carta da busta · en",
    "carte": 1196,
-   "errore_tipico": 41.3,
+   "errore_tipico": 43.0,
    "entro_15": false
   },
   {
    "gruppo": "famiglia × lingua",
    "segmento": "carta da busta · ja",
    "carte": 1153,
-   "errore_tipico": 52.3,
+   "errore_tipico": 53.3,
    "entro_15": false
   },
   {
    "gruppo": "famiglia × lingua",
    "segmento": "promo e rilascio speciale · ja",
    "carte": 92,
-   "errore_tipico": 66.6,
+   "errore_tipico": 75.7,
    "entro_15": false
   }
  ],
  "importanza_variabili_punti_%": {
-  "pokemon_cat": 3.87,
-  "iconicita": 0.02,
-  "rarita_armonizzata": 2.89,
-  "meccanica": 1.63,
-  "variante": 0.9,
-  "era": 1.5,
-  "fascia_eta": 0.02,
-  "tipo_set": -0.03,
-  "set_cat": 1.52,
-  "rilascio": 1.29,
-  "esclusiva": 0.06,
-  "illustratore_cat": 0.21,
-  "lingua": 0.12,
-  "gen1": 1.34,
-  "leggendario": 0.75,
-  "stamped": 0.79,
-  "standard": 0.03,
-  "alternate_art": 0.08,
-  "promo_fam": -0.0,
-  "diluizione_log": -0.14
+  "pokemon_cat": 7.18,
+  "iconicita": 0.0,
+  "rarita_armonizzata": 2.7,
+  "meccanica": 1.03,
+  "variante": 0.64,
+  "era": 1.69,
+  "fascia_eta": 0.37,
+  "tipo_set": 0.07,
+  "set_cat": 2.12,
+  "rilascio": 1.22,
+  "esclusiva": -0.06,
+  "illustratore_cat": 0.4,
+  "lingua": 0.06,
+  "gen1": 0.99,
+  "leggendario": 0.85,
+  "stamped": 0.36,
+  "standard": 0.13,
+  "alternate_art": 0.01,
+  "promo_fam": 0.0,
+  "diluizione_log": -0.02
  },
  "pesi": [
   {
    "caratteristica": "pokemon_cat=Bulbasaur",
    "peso_log": 0.2,
-   "sovrapprezzo_%": 18.8,
-   "ic_basso_%": -19.5,
-   "ic_alto_%": 77.2,
+   "sovrapprezzo_%": 21.8,
+   "ic_basso_%": -16.9,
+   "ic_alto_%": 81.8,
    "carte_con_la_caratteristica": 18
   },
   {
    "caratteristica": "pokemon_cat=Calyrex",
    "peso_log": -0.3,
-   "sovrapprezzo_%": -23.2,
-   "ic_basso_%": -40.7,
-   "ic_alto_%": -7.2,
+   "sovrapprezzo_%": -25.3,
+   "ic_basso_%": -42.8,
+   "ic_alto_%": -9.3,
    "carte_con_la_caratteristica": 20
   },
   {
    "caratteristica": "pokemon_cat=Charizard",
-   "peso_log": 1.0,
-   "sovrapprezzo_%": 169.4,
-   "ic_basso_%": 116.1,
-   "ic_alto_%": 259.6,
+   "peso_log": 1.5,
+   "sovrapprezzo_%": 335.2,
+   "ic_basso_%": 251.3,
+   "ic_alto_%": 465.0,
    "carte_con_la_caratteristica": 65
   },
   {
    "caratteristica": "pokemon_cat=Charmander",
    "peso_log": 0.7,
-   "sovrapprezzo_%": 102.4,
-   "ic_basso_%": 35.2,
-   "ic_alto_%": 174.4,
+   "sovrapprezzo_%": 106.9,
+   "ic_basso_%": 38.2,
+   "ic_alto_%": 177.0,
    "carte_con_la_caratteristica": 18
   },
   {
    "caratteristica": "pokemon_cat=Dragonite",
    "peso_log": 0.9,
-   "sovrapprezzo_%": 156.7,
-   "ic_basso_%": 67.1,
-   "ic_alto_%": 285.4,
+   "sovrapprezzo_%": 153.5,
+   "ic_basso_%": 67.8,
+   "ic_alto_%": 282.4,
    "carte_con_la_caratteristica": 20
   },
   {
    "caratteristica": "pokemon_cat=Eevee",
-   "peso_log": 0.9,
-   "sovrapprezzo_%": 153.1,
-   "ic_basso_%": 38.8,
-   "ic_alto_%": 334.5,
+   "peso_log": 0.4,
+   "sovrapprezzo_%": 50.2,
+   "ic_basso_%": 17.6,
+   "ic_alto_%": 83.1,
    "carte_con_la_caratteristica": 55
   },
   {
    "caratteristica": "pokemon_cat=Espeon",
    "peso_log": 1.8,
-   "sovrapprezzo_%": 489.8,
-   "ic_basso_%": 364.4,
-   "ic_alto_%": 656.8,
+   "sovrapprezzo_%": 504.7,
+   "ic_basso_%": 389.7,
+   "ic_alto_%": 667.1,
    "carte_con_la_caratteristica": 22
   },
   {
    "caratteristica": "pokemon_cat=Gardevoir",
-   "peso_log": 1.0,
-   "sovrapprezzo_%": 182.7,
-   "ic_basso_%": 90.7,
-   "ic_alto_%": 341.4,
+   "peso_log": 1.1,
+   "sovrapprezzo_%": 188.4,
+   "ic_basso_%": 95.1,
+   "ic_alto_%": 343.6,
    "carte_con_la_caratteristica": 25
   },
   {
    "caratteristica": "pokemon_cat=Gengar",
-   "peso_log": 1.0,
-   "sovrapprezzo_%": 163.5,
-   "ic_basso_%": 87.0,
-   "ic_alto_%": 277.2,
+   "peso_log": 1.5,
+   "sovrapprezzo_%": 353.0,
+   "ic_basso_%": 225.2,
+   "ic_alto_%": 508.7,
    "carte_con_la_caratteristica": 18
   },
   {
    "caratteristica": "pokemon_cat=Glaceon",
-   "peso_log": 0.9,
-   "sovrapprezzo_%": 158.6,
-   "ic_basso_%": 73.9,
-   "ic_alto_%": 242.7,
+   "peso_log": 1.0,
+   "sovrapprezzo_%": 161.7,
+   "ic_basso_%": 79.8,
+   "ic_alto_%": 242.5,
    "carte_con_la_caratteristica": 18
   },
   {
    "caratteristica": "pokemon_cat=Greninja",
    "peso_log": 1.1,
-   "sovrapprezzo_%": 204.4,
-   "ic_basso_%": 127.1,
-   "ic_alto_%": 327.2,
+   "sovrapprezzo_%": 209.2,
+   "ic_basso_%": 133.6,
+   "ic_alto_%": 332.5,
    "carte_con_la_caratteristica": 27
   },
   {
    "caratteristica": "pokemon_cat=Leafeon",
    "peso_log": 1.1,
-   "sovrapprezzo_%": 190.3,
-   "ic_basso_%": 125.1,
-   "ic_alto_%": 269.6,
+   "sovrapprezzo_%": 194.5,
+   "ic_basso_%": 123.9,
+   "ic_alto_%": 268.4,
    "carte_con_la_caratteristica": 20
   },
   {
    "caratteristica": "pokemon_cat=Lucario",
-   "peso_log": 0.5,
-   "sovrapprezzo_%": 72.3,
-   "ic_basso_%": 36.7,
-   "ic_alto_%": 128.1,
+   "peso_log": 0.6,
+   "sovrapprezzo_%": 74.6,
+   "ic_basso_%": 38.8,
+   "ic_alto_%": 130.6,
    "carte_con_la_caratteristica": 30
   },
   {
    "caratteristica": "pokemon_cat=Lugia",
-   "peso_log": 1.3,
-   "sovrapprezzo_%": 271.3,
-   "ic_basso_%": 143.8,
-   "ic_alto_%": 559.6,
+   "peso_log": 1.8,
+   "sovrapprezzo_%": 497.6,
+   "ic_basso_%": 328.9,
+   "ic_alto_%": 818.5,
    "carte_con_la_caratteristica": 18
   },
   {
    "caratteristica": "pokemon_cat=Meowth",
    "peso_log": 0.3,
-   "sovrapprezzo_%": 30.7,
-   "ic_basso_%": -3.7,
-   "ic_alto_%": 64.1,
+   "sovrapprezzo_%": 31.2,
+   "ic_basso_%": -1.2,
+   "ic_alto_%": 65.5,
    "carte_con_la_caratteristica": 19
   },
   {
    "caratteristica": "pokemon_cat=Mew",
-   "peso_log": 0.2,
-   "sovrapprezzo_%": 27.7,
-   "ic_basso_%": -0.9,
-   "ic_alto_%": 71.6,
+   "peso_log": 0.9,
+   "sovrapprezzo_%": 143.5,
+   "ic_basso_%": 84.7,
+   "ic_alto_%": 220.9,
    "carte_con_la_caratteristica": 31
   },
   {
    "caratteristica": "pokemon_cat=Mewtwo",
-   "peso_log": 0.3,
-   "sovrapprezzo_%": 39.5,
-   "ic_basso_%": 4.3,
-   "ic_alto_%": 91.4,
+   "peso_log": 0.8,
+   "sovrapprezzo_%": 127.6,
+   "ic_basso_%": 68.9,
+   "ic_alto_%": 204.6,
    "carte_con_la_caratteristica": 43
   },
   {
    "caratteristica": "pokemon_cat=Mimikyu",
-   "peso_log": 1.1,
-   "sovrapprezzo_%": 211.8,
-   "ic_basso_%": 136.3,
-   "ic_alto_%": 333.7,
+   "peso_log": 1.2,
+   "sovrapprezzo_%": 216.9,
+   "ic_basso_%": 142.6,
+   "ic_alto_%": 340.2,
    "carte_con_la_caratteristica": 28
   },
   {
    "caratteristica": "pokemon_cat=Moltres",
    "peso_log": 0.2,
-   "sovrapprezzo_%": 18.3,
-   "ic_basso_%": -9.7,
-   "ic_alto_%": 65.3,
+   "sovrapprezzo_%": 17.5,
+   "ic_basso_%": -9.2,
+   "ic_alto_%": 64.7,
    "carte_con_la_caratteristica": 25
   },
   {
    "caratteristica": "pokemon_cat=Morpeko",
    "peso_log": 0.4,
-   "sovrapprezzo_%": 55.1,
-   "ic_basso_%": 17.7,
-   "ic_alto_%": 99.0,
+   "sovrapprezzo_%": 49.4,
+   "ic_basso_%": 13.3,
+   "ic_alto_%": 93.8,
    "carte_con_la_caratteristica": 19
   },
   {
    "caratteristica": "pokemon_cat=Ogerpon",
    "peso_log": -0.5,
-   "sovrapprezzo_%": -40.4,
-   "ic_basso_%": -53.4,
-   "ic_alto_%": -23.9,
+   "sovrapprezzo_%": -41.0,
+   "ic_basso_%": -54.7,
+   "ic_alto_%": -24.2,
    "carte_con_la_caratteristica": 28
   },
   {
    "caratteristica": "pokemon_cat=Pikachu",
-   "peso_log": 0.6,
-   "sovrapprezzo_%": 82.4,
-   "ic_basso_%": 59.5,
-   "ic_alto_%": 128.8,
+   "peso_log": 1.0,
+   "sovrapprezzo_%": 165.7,
+   "ic_basso_%": 127.2,
+   "ic_alto_%": 224.3,
    "carte_con_la_caratteristica": 149
   },
   {
    "caratteristica": "pokemon_cat=Rayquaza",
-   "peso_log": 1.2,
-   "sovrapprezzo_%": 229.2,
-   "ic_basso_%": 137.7,
-   "ic_alto_%": 369.8,
+   "peso_log": 1.9,
+   "sovrapprezzo_%": 548.6,
+   "ic_basso_%": 368.0,
+   "ic_alto_%": 867.5,
    "carte_con_la_caratteristica": 18
   },
   {
    "caratteristica": "pokemon_cat=Snorlax",
    "peso_log": 0.4,
-   "sovrapprezzo_%": 42.0,
-   "ic_basso_%": 4.9,
-   "ic_alto_%": 90.1,
+   "sovrapprezzo_%": 47.2,
+   "ic_basso_%": 9.6,
+   "ic_alto_%": 98.0,
    "carte_con_la_caratteristica": 21
   },
   {
    "caratteristica": "pokemon_cat=Sylveon",
    "peso_log": 1.4,
-   "sovrapprezzo_%": 314.1,
-   "ic_basso_%": 193.9,
-   "ic_alto_%": 513.7,
+   "sovrapprezzo_%": 305.2,
+   "ic_basso_%": 185.3,
+   "ic_alto_%": 478.3,
    "carte_con_la_caratteristica": 19
   },
   {
    "caratteristica": "pokemon_cat=Umbreon",
-   "peso_log": 1.7,
-   "sovrapprezzo_%": 446.7,
-   "ic_basso_%": 290.8,
-   "ic_alto_%": 720.8,
+   "peso_log": 2.2,
+   "sovrapprezzo_%": 844.9,
+   "ic_basso_%": 543.5,
+   "ic_alto_%": 1169.2,
    "carte_con_la_caratteristica": 32
   },
   {
    "caratteristica": "pokemon_cat=Urshifu",
-   "peso_log": -0.6,
-   "sovrapprezzo_%": -47.0,
-   "ic_basso_%": -59.3,
-   "ic_alto_%": -28.6,
+   "peso_log": -0.7,
+   "sovrapprezzo_%": -49.5,
+   "ic_basso_%": -61.2,
+   "ic_alto_%": -33.1,
    "carte_con_la_caratteristica": 28
   },
   {
    "caratteristica": "pokemon_cat=Venusaur",
    "peso_log": 0.3,
-   "sovrapprezzo_%": 29.9,
-   "ic_basso_%": -16.0,
-   "ic_alto_%": 90.6,
+   "sovrapprezzo_%": 29.4,
+   "ic_basso_%": -17.5,
+   "ic_alto_%": 86.3,
    "carte_con_la_caratteristica": 20
   },
   {
    "caratteristica": "pokemon_cat=Zacian",
-   "peso_log": 0.0,
-   "sovrapprezzo_%": 4.0,
-   "ic_basso_%": -19.1,
-   "ic_alto_%": 38.3,
+   "peso_log": 0.1,
+   "sovrapprezzo_%": 9.7,
+   "ic_basso_%": -16.1,
+   "ic_alto_%": 41.5,
    "carte_con_la_caratteristica": 19
   },
   {
    "caratteristica": "pokemon_cat=Zapdos",
    "peso_log": -0.1,
-   "sovrapprezzo_%": -6.7,
-   "ic_basso_%": -31.5,
-   "ic_alto_%": 35.6,
+   "sovrapprezzo_%": -5.9,
+   "ic_basso_%": -30.9,
+   "ic_alto_%": 36.3,
    "carte_con_la_caratteristica": 18
   },
   {
-   "caratteristica": "iconicita=alto",
-   "peso_log": 0.9,
-   "sovrapprezzo_%": 136.1,
-   "ic_basso_%": 115.6,
-   "ic_alto_%": 183.1,
-   "carte_con_la_caratteristica": 374
-  },
-  {
-   "caratteristica": "iconicita=medio",
-   "peso_log": -0.1,
-   "sovrapprezzo_%": -7.7,
-   "ic_basso_%": -39.7,
-   "ic_alto_%": 41.0,
-   "carte_con_la_caratteristica": 63
-  },
-  {
    "caratteristica": "rarita_armonizzata=character rare",
-   "peso_log": -0.3,
-   "sovrapprezzo_%": -27.2,
-   "ic_basso_%": -46.9,
-   "ic_alto_%": -8.4,
-   "carte_con_la_caratteristica": 92
+   "peso_log": -0.5,
+   "sovrapprezzo_%": -42.0,
+   "ic_basso_%": -57.0,
+   "ic_alto_%": -24.9,
+   "carte_con_la_caratteristica": 44
+  },
+  {
+   "caratteristica": "rarita_armonizzata=character super rare",
+   "peso_log": 0.1,
+   "sovrapprezzo_%": 6.0,
+   "ic_basso_%": -22.7,
+   "ic_alto_%": 42.6,
+   "carte_con_la_caratteristica": 48
   },
   {
    "caratteristica": "rarita_armonizzata=galleria",
    "peso_log": 0.1,
-   "sovrapprezzo_%": 7.0,
-   "ic_basso_%": -3.3,
-   "ic_alto_%": 18.9,
+   "sovrapprezzo_%": 9.9,
+   "ic_basso_%": -1.3,
+   "ic_alto_%": 20.5,
    "carte_con_la_caratteristica": 136
   },
   {
    "caratteristica": "rarita_armonizzata=gold-hyper-rainbow",
    "peso_log": 0.2,
-   "sovrapprezzo_%": 19.9,
-   "ic_basso_%": -8.3,
-   "ic_alto_%": 64.2,
+   "sovrapprezzo_%": 20.3,
+   "ic_basso_%": -8.6,
+   "ic_alto_%": 62.0,
    "carte_con_la_caratteristica": 864
   },
   {
    "caratteristica": "rarita_armonizzata=promo",
-   "peso_log": -0.2,
-   "sovrapprezzo_%": -19.9,
-   "ic_basso_%": -52.9,
-   "ic_alto_%": 37.4,
+   "peso_log": -0.3,
+   "sovrapprezzo_%": -26.0,
+   "ic_basso_%": -58.4,
+   "ic_alto_%": 29.1,
    "carte_con_la_caratteristica": 1112
   },
   {
    "caratteristica": "rarita_armonizzata=shiny",
    "peso_log": -0.6,
-   "sovrapprezzo_%": -46.4,
-   "ic_basso_%": -64.9,
-   "ic_alto_%": -31.7,
+   "sovrapprezzo_%": -42.7,
+   "ic_basso_%": -62.6,
+   "ic_alto_%": -28.2,
    "carte_con_la_caratteristica": 273
   },
   {
    "caratteristica": "rarita_armonizzata=special illustration rare",
    "peso_log": 1.2,
-   "sovrapprezzo_%": 234.0,
-   "ic_basso_%": 157.8,
-   "ic_alto_%": 342.7,
+   "sovrapprezzo_%": 246.3,
+   "ic_basso_%": 162.1,
+   "ic_alto_%": 352.2,
    "carte_con_la_caratteristica": 394
   },
   {
    "caratteristica": "meccanica=EX",
-   "peso_log": -0.4,
-   "sovrapprezzo_%": -32.2,
-   "ic_basso_%": -64.5,
-   "ic_alto_%": 19.3,
+   "peso_log": -0.5,
+   "sovrapprezzo_%": -37.7,
+   "ic_basso_%": -67.3,
+   "ic_alto_%": 10.2,
    "carte_con_la_caratteristica": 4
   },
   {
    "caratteristica": "meccanica=GX",
    "peso_log": 0.8,
-   "sovrapprezzo_%": 115.4,
-   "ic_basso_%": 83.3,
-   "ic_alto_%": 161.9,
+   "sovrapprezzo_%": 120.1,
+   "ic_basso_%": 83.9,
+   "ic_alto_%": 163.4,
    "carte_con_la_caratteristica": 570
   },
   {
    "caratteristica": "meccanica=Mega",
-   "peso_log": 0.3,
-   "sovrapprezzo_%": 31.5,
-   "ic_basso_%": 0.6,
-   "ic_alto_%": 61.9,
+   "peso_log": 0.2,
+   "sovrapprezzo_%": 19.4,
+   "ic_basso_%": -11.6,
+   "ic_alto_%": 49.9,
    "carte_con_la_caratteristica": 85
   },
   {
    "caratteristica": "meccanica=V",
-   "peso_log": 0.3,
-   "sovrapprezzo_%": 38.9,
-   "ic_basso_%": 20.7,
-   "ic_alto_%": 61.4,
+   "peso_log": 0.2,
+   "sovrapprezzo_%": 28.0,
+   "ic_basso_%": 11.4,
+   "ic_alto_%": 49.3,
    "carte_con_la_caratteristica": 284
   },
   {
    "caratteristica": "meccanica=VMAX",
    "peso_log": 0.5,
-   "sovrapprezzo_%": 68.6,
-   "ic_basso_%": 42.8,
-   "ic_alto_%": 95.4,
+   "sovrapprezzo_%": 59.5,
+   "ic_basso_%": 36.3,
+   "ic_alto_%": 84.6,
    "carte_con_la_caratteristica": 193
   },
   {
    "caratteristica": "meccanica=VSTAR",
    "peso_log": 0.7,
-   "sovrapprezzo_%": 103.1,
-   "ic_basso_%": 62.8,
-   "ic_alto_%": 151.1,
+   "sovrapprezzo_%": 98.6,
+   "ic_basso_%": 59.2,
+   "ic_alto_%": 144.6,
    "carte_con_la_caratteristica": 86
   },
   {
    "caratteristica": "meccanica=ex",
-   "peso_log": -0.0,
-   "sovrapprezzo_%": -3.7,
-   "ic_basso_%": -20.6,
-   "ic_alto_%": 23.4,
+   "peso_log": -0.1,
+   "sovrapprezzo_%": -7.8,
+   "ic_basso_%": -24.0,
+   "ic_alto_%": 17.5,
    "carte_con_la_caratteristica": 448
   },
   {
    "caratteristica": "variante=holo",
-   "peso_log": -0.4,
-   "sovrapprezzo_%": -31.2,
-   "ic_basso_%": -39.9,
-   "ic_alto_%": -20.1,
+   "peso_log": -0.3,
+   "sovrapprezzo_%": -28.2,
+   "ic_basso_%": -37.3,
+   "ic_alto_%": -16.4,
    "carte_con_la_caratteristica": 3141
   },
   {
    "caratteristica": "variante=reverse",
    "peso_log": -0.3,
-   "sovrapprezzo_%": -26.9,
-   "ic_basso_%": -62.2,
-   "ic_alto_%": 72.3,
+   "sovrapprezzo_%": -27.0,
+   "ic_basso_%": -61.9,
+   "ic_alto_%": 59.0,
    "carte_con_la_caratteristica": 10
   },
   {
    "caratteristica": "era=Mega",
-   "peso_log": -0.3,
-   "sovrapprezzo_%": -22.2,
-   "ic_basso_%": -61.3,
-   "ic_alto_%": 111.7,
+   "peso_log": -0.4,
+   "sovrapprezzo_%": -32.5,
+   "ic_basso_%": -66.2,
+   "ic_alto_%": 86.9,
    "carte_con_la_caratteristica": 399
   },
   {
    "caratteristica": "era=Sole e Luna",
-   "peso_log": 0.6,
-   "sovrapprezzo_%": 86.3,
-   "ic_basso_%": -27.0,
-   "ic_alto_%": 330.8,
+   "peso_log": 0.7,
+   "sovrapprezzo_%": 92.0,
+   "ic_basso_%": -22.5,
+   "ic_alto_%": 347.2,
    "carte_con_la_caratteristica": 854
   },
   {
    "caratteristica": "era=Spada e Scudo",
-   "peso_log": -0.2,
-   "sovrapprezzo_%": -18.3,
-   "ic_basso_%": -38.9,
-   "ic_alto_%": 8.6,
+   "peso_log": -0.1,
+   "sovrapprezzo_%": -11.5,
+   "ic_basso_%": -35.2,
+   "ic_alto_%": 23.8,
    "carte_con_la_caratteristica": 1023
   },
   {
    "caratteristica": "fascia_eta=0-3",
-   "peso_log": 0.6,
-   "sovrapprezzo_%": 75.0,
-   "ic_basso_%": -46.8,
-   "ic_alto_%": 288.0,
+   "peso_log": 0.5,
+   "sovrapprezzo_%": 71.5,
+   "ic_basso_%": -46.7,
+   "ic_alto_%": 265.8,
    "carte_con_la_caratteristica": 117
   },
   {
    "caratteristica": "fascia_eta=24-48",
    "peso_log": -0.1,
-   "sovrapprezzo_%": -9.0,
-   "ic_basso_%": -26.3,
-   "ic_alto_%": 18.5,
+   "sovrapprezzo_%": -13.9,
+   "ic_basso_%": -34.0,
+   "ic_alto_%": 12.6,
    "carte_con_la_caratteristica": 966
   },
   {
    "caratteristica": "fascia_eta=3-6",
    "peso_log": -0.6,
-   "sovrapprezzo_%": -47.0,
-   "ic_basso_%": -83.5,
-   "ic_alto_%": 29.9,
+   "sovrapprezzo_%": -44.1,
+   "ic_basso_%": -82.6,
+   "ic_alto_%": 35.8,
    "carte_con_la_caratteristica": 28
   },
   {
    "caratteristica": "fascia_eta=48+",
-   "peso_log": 0.6,
-   "sovrapprezzo_%": 85.2,
-   "ic_basso_%": 9.2,
-   "ic_alto_%": 239.3,
+   "peso_log": 0.5,
+   "sovrapprezzo_%": 59.2,
+   "ic_basso_%": -16.9,
+   "ic_alto_%": 207.6,
    "carte_con_la_caratteristica": 1726
   },
   {
    "caratteristica": "fascia_eta=6-12",
    "peso_log": -0.2,
-   "sovrapprezzo_%": -20.8,
-   "ic_basso_%": -72.3,
-   "ic_alto_%": 68.5,
+   "sovrapprezzo_%": -14.5,
+   "ic_basso_%": -70.8,
+   "ic_alto_%": 83.8,
    "carte_con_la_caratteristica": 117
   },
   {
    "caratteristica": "tipo_set=promo",
-   "peso_log": 0.2,
-   "sovrapprezzo_%": 18.0,
-   "ic_basso_%": -18.0,
-   "ic_alto_%": 57.0,
+   "peso_log": 0.3,
+   "sovrapprezzo_%": 34.1,
+   "ic_basso_%": -9.0,
+   "ic_alto_%": 75.0,
    "carte_con_la_caratteristica": 868
   },
   {
    "caratteristica": "tipo_set=sottoset",
    "peso_log": 0.1,
-   "sovrapprezzo_%": 12.3,
-   "ic_basso_%": -6.5,
-   "ic_alto_%": 43.9,
+   "sovrapprezzo_%": 9.6,
+   "ic_basso_%": -9.5,
+   "ic_alto_%": 40.6,
    "carte_con_la_caratteristica": 355
   },
   {
    "caratteristica": "tipo_set=speciale",
    "peso_log": -0.6,
-   "sovrapprezzo_%": -47.6,
-   "ic_basso_%": -63.3,
-   "ic_alto_%": -25.5,
+   "sovrapprezzo_%": -47.4,
+   "ic_basso_%": -62.0,
+   "ic_alto_%": -25.7,
    "carte_con_la_caratteristica": 881
   },
   {
    "caratteristica": "set_cat=2021swsh",
    "peso_log": 0.2,
-   "sovrapprezzo_%": 22.4,
-   "ic_basso_%": -44.2,
-   "ic_alto_%": 147.4,
+   "sovrapprezzo_%": 17.9,
+   "ic_basso_%": -45.7,
+   "ic_alto_%": 143.3,
    "carte_con_la_caratteristica": 27
   },
   {
    "caratteristica": "set_cat=30th",
-   "peso_log": -0.9,
-   "sovrapprezzo_%": -60.4,
-   "ic_basso_%": -83.1,
-   "ic_alto_%": -12.1,
+   "peso_log": -1.2,
+   "sovrapprezzo_%": -70.7,
+   "ic_basso_%": -88.1,
+   "ic_alto_%": -37.5,
    "carte_con_la_caratteristica": 22
   },
   {
    "caratteristica": "set_cat=30th-c",
-   "peso_log": -1.5,
-   "sovrapprezzo_%": -78.0,
-   "ic_basso_%": -89.0,
-   "ic_alto_%": -56.5,
+   "peso_log": -1.4,
+   "sovrapprezzo_%": -75.3,
+   "ic_basso_%": -88.1,
+   "ic_alto_%": -53.2,
    "carte_con_la_caratteristica": 28
   },
   {
    "caratteristica": "set_cat=M-P",
-   "peso_log": -1.1,
-   "sovrapprezzo_%": -66.6,
-   "ic_basso_%": -90.0,
-   "ic_alto_%": -23.1,
+   "peso_log": -0.8,
+   "sovrapprezzo_%": -55.8,
+   "ic_basso_%": -87.7,
+   "ic_alto_%": -2.7,
    "carte_con_la_caratteristica": 20
   },
   {
    "caratteristica": "set_cat=M2a",
    "peso_log": 0.1,
-   "sovrapprezzo_%": 7.9,
-   "ic_basso_%": -50.0,
-   "ic_alto_%": 96.4,
+   "sovrapprezzo_%": 14.5,
+   "ic_basso_%": -43.5,
+   "ic_alto_%": 104.2,
    "carte_con_la_caratteristica": 24
   },
   {
    "caratteristica": "set_cat=M6",
-   "peso_log": -1.7,
-   "sovrapprezzo_%": -80.8,
-   "ic_basso_%": -92.1,
-   "ic_alto_%": -57.2,
+   "peso_log": -1.5,
+   "sovrapprezzo_%": -78.0,
+   "ic_basso_%": -91.5,
+   "ic_alto_%": -51.9,
    "carte_con_la_caratteristica": 15
   },
   {
    "caratteristica": "set_cat=M6a",
-   "peso_log": -1.2,
-   "sovrapprezzo_%": -70.0,
-   "ic_basso_%": -86.8,
-   "ic_alto_%": -34.0,
+   "peso_log": -1.0,
+   "sovrapprezzo_%": -64.0,
+   "ic_basso_%": -84.9,
+   "ic_alto_%": -21.9,
    "carte_con_la_caratteristica": 45
   },
   {
    "caratteristica": "set_cat=S12a",
-   "peso_log": 1.0,
-   "sovrapprezzo_%": 160.7,
-   "ic_basso_%": 56.4,
-   "ic_alto_%": 333.1,
+   "peso_log": 0.9,
+   "sovrapprezzo_%": 155.9,
+   "ic_basso_%": 53.8,
+   "ic_alto_%": 322.5,
    "carte_con_la_caratteristica": 50
   },
   {
    "caratteristica": "set_cat=S5I",
-   "peso_log": 0.2,
-   "sovrapprezzo_%": 25.8,
-   "ic_basso_%": -27.3,
-   "ic_alto_%": 125.6,
+   "peso_log": 0.3,
+   "sovrapprezzo_%": 30.4,
+   "ic_basso_%": -24.8,
+   "ic_alto_%": 128.6,
    "carte_con_la_caratteristica": 16
   },
   {
    "caratteristica": "set_cat=S8",
-   "peso_log": -0.2,
-   "sovrapprezzo_%": -16.8,
-   "ic_basso_%": -44.0,
-   "ic_alto_%": 9.0,
+   "peso_log": -0.1,
+   "sovrapprezzo_%": -11.6,
+   "ic_basso_%": -41.4,
+   "ic_alto_%": 15.9,
    "carte_con_la_caratteristica": 19
   },
   {
    "caratteristica": "set_cat=S8b",
-   "peso_log": 0.4,
-   "sovrapprezzo_%": 43.9,
-   "ic_basso_%": -27.1,
-   "ic_alto_%": 138.4,
+   "peso_log": 0.3,
+   "sovrapprezzo_%": 31.7,
+   "ic_basso_%": -32.3,
+   "ic_alto_%": 119.1,
    "carte_con_la_caratteristica": 54
   },
   {
    "caratteristica": "set_cat=SM10",
    "peso_log": 0.0,
-   "sovrapprezzo_%": 3.0,
-   "ic_basso_%": -34.3,
-   "ic_alto_%": 69.6,
+   "sovrapprezzo_%": 4.0,
+   "ic_basso_%": -34.4,
+   "ic_alto_%": 72.0,
    "carte_con_la_caratteristica": 19
   },
   {
    "caratteristica": "set_cat=SM11",
-   "peso_log": 0.2,
-   "sovrapprezzo_%": 21.2,
-   "ic_basso_%": -24.9,
-   "ic_alto_%": 93.4,
+   "peso_log": 0.3,
+   "sovrapprezzo_%": 29.5,
+   "ic_basso_%": -21.0,
+   "ic_alto_%": 105.9,
    "carte_con_la_caratteristica": 20
   },
   {
    "caratteristica": "set_cat=SM11a",
    "peso_log": 0.1,
-   "sovrapprezzo_%": 6.3,
-   "ic_basso_%": -42.2,
-   "ic_alto_%": 87.6,
+   "sovrapprezzo_%": 14.5,
+   "ic_basso_%": -30.7,
+   "ic_alto_%": 97.3,
    "carte_con_la_caratteristica": 16
   },
   {
    "caratteristica": "set_cat=SM11b",
    "peso_log": 1.3,
-   "sovrapprezzo_%": 261.8,
-   "ic_basso_%": 145.9,
-   "ic_alto_%": 431.5,
+   "sovrapprezzo_%": 261.0,
+   "ic_basso_%": 146.1,
+   "ic_alto_%": 434.6,
    "carte_con_la_caratteristica": 34
   },
   {
    "caratteristica": "set_cat=SM12",
    "peso_log": 0.4,
-   "sovrapprezzo_%": 52.4,
-   "ic_basso_%": -9.7,
-   "ic_alto_%": 146.1,
+   "sovrapprezzo_%": 55.4,
+   "ic_basso_%": -7.8,
+   "ic_alto_%": 152.2,
    "carte_con_la_caratteristica": 17
   },
   {
    "caratteristica": "set_cat=SM12a",
-   "peso_log": 1.0,
-   "sovrapprezzo_%": 171.4,
-   "ic_basso_%": 55.1,
-   "ic_alto_%": 352.7,
+   "peso_log": 1.1,
+   "sovrapprezzo_%": 211.5,
+   "ic_basso_%": 78.3,
+   "ic_alto_%": 391.7,
    "carte_con_la_caratteristica": 38
   },
   {
    "caratteristica": "set_cat=SM3p",
-   "peso_log": 0.6,
-   "sovrapprezzo_%": 90.5,
-   "ic_basso_%": 18.9,
-   "ic_alto_%": 238.7,
+   "peso_log": 0.7,
+   "sovrapprezzo_%": 102.8,
+   "ic_basso_%": 26.5,
+   "ic_alto_%": 261.3,
    "carte_con_la_caratteristica": 15
   },
   {
    "caratteristica": "set_cat=SM8b",
-   "peso_log": 0.7,
-   "sovrapprezzo_%": 103.4,
-   "ic_basso_%": 18.3,
-   "ic_alto_%": 219.1,
+   "peso_log": 0.8,
+   "sovrapprezzo_%": 126.3,
+   "ic_basso_%": 32.6,
+   "ic_alto_%": 246.1,
    "carte_con_la_caratteristica": 103
   },
   {
    "caratteristica": "set_cat=SM9",
-   "peso_log": 1.3,
-   "sovrapprezzo_%": 280.2,
-   "ic_basso_%": 122.9,
-   "ic_alto_%": 593.7,
+   "peso_log": 1.5,
+   "sovrapprezzo_%": 348.9,
+   "ic_basso_%": 169.4,
+   "ic_alto_%": 687.7,
    "carte_con_la_caratteristica": 19
   },
   {
    "caratteristica": "set_cat=SV-P",
-   "peso_log": 0.8,
-   "sovrapprezzo_%": 123.6,
-   "ic_basso_%": 19.4,
-   "ic_alto_%": 274.8,
+   "peso_log": 1.0,
+   "sovrapprezzo_%": 182.6,
+   "ic_basso_%": 55.5,
+   "ic_alto_%": 356.5,
    "carte_con_la_caratteristica": 72
   },
   {
    "caratteristica": "set_cat=SV10",
    "peso_log": -0.2,
-   "sovrapprezzo_%": -15.5,
-   "ic_basso_%": -39.8,
-   "ic_alto_%": 14.9,
+   "sovrapprezzo_%": -16.0,
+   "ic_basso_%": -43.5,
+   "ic_alto_%": 14.0,
    "carte_con_la_caratteristica": 16
   },
   {
    "caratteristica": "set_cat=SV2a",
-   "peso_log": 0.6,
-   "sovrapprezzo_%": 84.3,
-   "ic_basso_%": 17.7,
-   "ic_alto_%": 170.4,
+   "peso_log": 0.7,
+   "sovrapprezzo_%": 97.7,
+   "ic_basso_%": 24.7,
+   "ic_alto_%": 187.1,
    "carte_con_la_caratteristica": 35
   },
   {
    "caratteristica": "set_cat=SV4a",
    "peso_log": 0.8,
-   "sovrapprezzo_%": 117.3,
-   "ic_basso_%": 44.5,
-   "ic_alto_%": 220.0,
+   "sovrapprezzo_%": 130.5,
+   "ic_basso_%": 51.2,
+   "ic_alto_%": 237.3,
    "carte_con_la_caratteristica": 32
   },
   {
    "caratteristica": "set_cat=SV8a",
-   "peso_log": -0.2,
-   "sovrapprezzo_%": -16.9,
-   "ic_basso_%": -53.6,
-   "ic_alto_%": 44.3,
+   "peso_log": -0.1,
+   "sovrapprezzo_%": -11.2,
+   "ic_basso_%": -52.1,
+   "ic_alto_%": 55.2,
    "carte_con_la_caratteristica": 31
   },
   {
    "caratteristica": "set_cat=cel25cc",
-   "peso_log": 1.3,
-   "sovrapprezzo_%": 250.9,
-   "ic_basso_%": 76.5,
-   "ic_alto_%": 580.5,
+   "peso_log": 1.4,
+   "sovrapprezzo_%": 297.4,
+   "ic_basso_%": 96.8,
+   "ic_alto_%": 613.9,
    "carte_con_la_caratteristica": 17
   },
   {
    "caratteristica": "set_cat=me01",
    "peso_log": 0.4,
-   "sovrapprezzo_%": 49.8,
-   "ic_basso_%": -60.4,
-   "ic_alto_%": 201.4,
+   "sovrapprezzo_%": 56.2,
+   "ic_basso_%": -57.6,
+   "ic_alto_%": 212.2,
    "carte_con_la_caratteristica": 24
   },
   {
    "caratteristica": "set_cat=me02.5",
    "peso_log": 1.3,
-   "sovrapprezzo_%": 265.0,
-   "ic_basso_%": 110.0,
-   "ic_alto_%": 457.9,
+   "sovrapprezzo_%": 268.9,
+   "ic_basso_%": 118.5,
+   "ic_alto_%": 458.2,
    "carte_con_la_caratteristica": 50
   },
   {
    "caratteristica": "set_cat=me03",
-   "peso_log": 0.5,
-   "sovrapprezzo_%": 63.3,
-   "ic_basso_%": 6.8,
-   "ic_alto_%": 147.1,
+   "peso_log": 0.3,
+   "sovrapprezzo_%": 41.6,
+   "ic_basso_%": -5.0,
+   "ic_alto_%": 118.4,
    "carte_con_la_caratteristica": 15
   },
   {
    "caratteristica": "set_cat=me04",
    "peso_log": 0.9,
-   "sovrapprezzo_%": 156.0,
-   "ic_basso_%": 38.5,
-   "ic_alto_%": 402.5,
+   "sovrapprezzo_%": 155.5,
+   "ic_basso_%": 37.2,
+   "ic_alto_%": 397.6,
    "carte_con_la_caratteristica": 15
   },
   {
    "caratteristica": "set_cat=mep",
-   "peso_log": -0.5,
-   "sovrapprezzo_%": -38.8,
-   "ic_basso_%": -77.4,
-   "ic_alto_%": 22.6,
+   "peso_log": -0.3,
+   "sovrapprezzo_%": -23.9,
+   "ic_basso_%": -73.4,
+   "ic_alto_%": 44.3,
    "carte_con_la_caratteristica": 88
   },
   {
    "caratteristica": "set_cat=smp",
-   "peso_log": -0.3,
-   "sovrapprezzo_%": -23.1,
-   "ic_basso_%": -57.4,
-   "ic_alto_%": 25.2,
+   "peso_log": -0.2,
+   "sovrapprezzo_%": -21.7,
+   "ic_basso_%": -52.2,
+   "ic_alto_%": 38.4,
    "carte_con_la_caratteristica": 328
   },
   {
    "caratteristica": "set_cat=sv02",
    "peso_log": 0.7,
-   "sovrapprezzo_%": 95.8,
-   "ic_basso_%": 41.9,
-   "ic_alto_%": 166.9,
+   "sovrapprezzo_%": 94.8,
+   "ic_basso_%": 41.2,
+   "ic_alto_%": 169.1,
    "carte_con_la_caratteristica": 53
   },
   {
    "caratteristica": "set_cat=sv03",
-   "peso_log": 0.4,
-   "sovrapprezzo_%": 54.7,
-   "ic_basso_%": -3.7,
-   "ic_alto_%": 169.0,
+   "peso_log": 0.3,
+   "sovrapprezzo_%": 37.7,
+   "ic_basso_%": -13.1,
+   "ic_alto_%": 131.1,
    "carte_con_la_caratteristica": 28
   },
   {
    "caratteristica": "set_cat=sv03.5",
    "peso_log": 1.6,
-   "sovrapprezzo_%": 417.2,
-   "ic_basso_%": 242.2,
-   "ic_alto_%": 704.8,
+   "sovrapprezzo_%": 398.2,
+   "ic_basso_%": 225.4,
+   "ic_alto_%": 660.8,
    "carte_con_la_caratteristica": 32
   },
   {
    "caratteristica": "set_cat=sv04",
    "peso_log": 0.5,
-   "sovrapprezzo_%": 70.5,
+   "sovrapprezzo_%": 73.0,
    "ic_basso_%": 23.6,
-   "ic_alto_%": 119.4,
+   "ic_alto_%": 122.2,
    "carte_con_la_caratteristica": 49
   },
   {
    "caratteristica": "set_cat=sv04.5",
    "peso_log": 1.2,
-   "sovrapprezzo_%": 236.4,
-   "ic_basso_%": 138.8,
-   "ic_alto_%": 398.8,
+   "sovrapprezzo_%": 237.9,
+   "ic_basso_%": 136.8,
+   "ic_alto_%": 381.6,
    "carte_con_la_caratteristica": 83
   },
   {
    "caratteristica": "set_cat=sv05",
    "peso_log": 0.9,
-   "sovrapprezzo_%": 143.6,
-   "ic_basso_%": 73.7,
-   "ic_alto_%": 248.8,
+   "sovrapprezzo_%": 141.8,
+   "ic_basso_%": 73.6,
+   "ic_alto_%": 250.7,
    "carte_con_la_caratteristica": 39
   },
   {
    "caratteristica": "set_cat=sv06",
    "peso_log": 0.6,
-   "sovrapprezzo_%": 77.7,
-   "ic_basso_%": 18.0,
-   "ic_alto_%": 153.3,
+   "sovrapprezzo_%": 78.2,
+   "ic_basso_%": 16.0,
+   "ic_alto_%": 160.1,
    "carte_con_la_caratteristica": 35
   },
   {
    "caratteristica": "set_cat=sv06.5",
    "peso_log": 1.5,
-   "sovrapprezzo_%": 369.0,
-   "ic_basso_%": 215.0,
-   "ic_alto_%": 600.8,
+   "sovrapprezzo_%": 345.7,
+   "ic_basso_%": 189.2,
+   "ic_alto_%": 545.9,
    "carte_con_la_caratteristica": 20
   },
   {
    "caratteristica": "set_cat=sv07",
    "peso_log": 0.6,
-   "sovrapprezzo_%": 77.4,
-   "ic_basso_%": 25.3,
-   "ic_alto_%": 202.3,
+   "sovrapprezzo_%": 74.9,
+   "ic_basso_%": 24.1,
+   "ic_alto_%": 199.1,
    "carte_con_la_caratteristica": 20
   },
   {
    "caratteristica": "set_cat=sv08",
    "peso_log": 0.4,
-   "sovrapprezzo_%": 49.0,
-   "ic_basso_%": -1.7,
-   "ic_alto_%": 118.9,
+   "sovrapprezzo_%": 43.2,
+   "ic_basso_%": -4.7,
+   "ic_alto_%": 116.0,
    "carte_con_la_caratteristica": 30
   },
   {
    "caratteristica": "set_cat=sv08.5",
-   "peso_log": 1.4,
-   "sovrapprezzo_%": 292.9,
-   "ic_basso_%": 145.7,
-   "ic_alto_%": 510.8,
+   "peso_log": 1.3,
+   "sovrapprezzo_%": 274.9,
+   "ic_basso_%": 120.0,
+   "ic_alto_%": 520.3,
    "carte_con_la_caratteristica": 45
   },
   {
    "caratteristica": "set_cat=sv09",
-   "peso_log": 0.7,
-   "sovrapprezzo_%": 94.2,
-   "ic_basso_%": 35.0,
-   "ic_alto_%": 181.1,
+   "peso_log": 0.6,
+   "sovrapprezzo_%": 78.0,
+   "ic_basso_%": 22.9,
+   "ic_alto_%": 166.0,
    "carte_con_la_caratteristica": 23
   },
   {
    "caratteristica": "set_cat=sv10",
    "peso_log": 0.8,
-   "sovrapprezzo_%": 132.8,
-   "ic_basso_%": 50.0,
-   "ic_alto_%": 234.4,
+   "sovrapprezzo_%": 122.3,
+   "ic_basso_%": 42.2,
+   "ic_alto_%": 219.2,
    "carte_con_la_caratteristica": 42
   },
   {
    "caratteristica": "set_cat=sv10.5b",
    "peso_log": 1.7,
-   "sovrapprezzo_%": 441.2,
-   "ic_basso_%": 244.3,
-   "ic_alto_%": 742.1,
+   "sovrapprezzo_%": 422.6,
+   "ic_basso_%": 221.3,
+   "ic_alto_%": 737.2,
    "carte_con_la_caratteristica": 77
   },
   {
    "caratteristica": "set_cat=sv10.5w",
-   "peso_log": 1.8,
-   "sovrapprezzo_%": 494.4,
-   "ic_basso_%": 277.9,
-   "ic_alto_%": 868.6,
+   "peso_log": 1.7,
+   "sovrapprezzo_%": 474.4,
+   "ic_basso_%": 260.3,
+   "ic_alto_%": 845.2,
    "carte_con_la_caratteristica": 77
   },
   {
    "caratteristica": "set_cat=svp",
-   "peso_log": 0.9,
-   "sovrapprezzo_%": 137.0,
-   "ic_basso_%": 52.5,
-   "ic_alto_%": 250.4,
+   "peso_log": 1.0,
+   "sovrapprezzo_%": 168.2,
+   "ic_basso_%": 69.5,
+   "ic_alto_%": 293.0,
    "carte_con_la_caratteristica": 139
   },
   {
    "caratteristica": "set_cat=swsh10",
-   "peso_log": 0.1,
-   "sovrapprezzo_%": 9.3,
-   "ic_basso_%": -18.8,
-   "ic_alto_%": 51.1,
+   "peso_log": 0.0,
+   "sovrapprezzo_%": 2.1,
+   "ic_basso_%": -24.6,
+   "ic_alto_%": 42.1,
    "carte_con_la_caratteristica": 18
   },
   {
    "caratteristica": "set_cat=swsh10tg",
    "peso_log": -0.5,
-   "sovrapprezzo_%": -39.2,
-   "ic_basso_%": -60.7,
-   "ic_alto_%": -6.1,
+   "sovrapprezzo_%": -37.0,
+   "ic_basso_%": -60.8,
+   "ic_alto_%": 0.5,
    "carte_con_la_caratteristica": 18
   },
   {
    "caratteristica": "set_cat=swsh11",
    "peso_log": 0.3,
-   "sovrapprezzo_%": 40.6,
-   "ic_basso_%": -19.6,
-   "ic_alto_%": 158.6,
+   "sovrapprezzo_%": 34.0,
+   "ic_basso_%": -22.8,
+   "ic_alto_%": 154.8,
    "carte_con_la_caratteristica": 15
   },
   {
    "caratteristica": "set_cat=swsh11tg",
-   "peso_log": -0.9,
-   "sovrapprezzo_%": -60.0,
-   "ic_basso_%": -70.5,
-   "ic_alto_%": -41.0,
+   "peso_log": -0.8,
+   "sovrapprezzo_%": -53.0,
+   "ic_basso_%": -67.1,
+   "ic_alto_%": -32.6,
    "carte_con_la_caratteristica": 21
   },
   {
    "caratteristica": "set_cat=swsh12",
-   "peso_log": 0.5,
-   "sovrapprezzo_%": 60.9,
-   "ic_basso_%": -13.9,
-   "ic_alto_%": 223.0,
+   "peso_log": 0.4,
+   "sovrapprezzo_%": 47.7,
+   "ic_basso_%": -18.3,
+   "ic_alto_%": 205.3,
    "carte_con_la_caratteristica": 17
   },
   {
    "caratteristica": "set_cat=swsh12.5gg",
    "peso_log": 0.7,
-   "sovrapprezzo_%": 108.6,
-   "ic_basso_%": 53.9,
-   "ic_alto_%": 182.4,
+   "sovrapprezzo_%": 102.2,
+   "ic_basso_%": 46.0,
+   "ic_alto_%": 175.3,
    "carte_con_la_caratteristica": 57
   },
   {
    "caratteristica": "set_cat=swsh12tg",
-   "peso_log": 0.2,
-   "sovrapprezzo_%": 21.1,
-   "ic_basso_%": -15.0,
-   "ic_alto_%": 77.4,
+   "peso_log": 0.1,
+   "sovrapprezzo_%": 16.0,
+   "ic_basso_%": -20.0,
+   "ic_alto_%": 76.0,
    "carte_con_la_caratteristica": 21
   },
   {
    "caratteristica": "set_cat=swsh2",
-   "peso_log": 0.9,
-   "sovrapprezzo_%": 136.1,
-   "ic_basso_%": 71.2,
-   "ic_alto_%": 234.1,
+   "peso_log": 0.8,
+   "sovrapprezzo_%": 125.1,
+   "ic_basso_%": 61.5,
+   "ic_alto_%": 213.6,
    "carte_con_la_caratteristica": 21
   },
   {
    "caratteristica": "set_cat=swsh3",
    "peso_log": 0.7,
-   "sovrapprezzo_%": 108.9,
-   "ic_basso_%": 45.4,
-   "ic_alto_%": 219.4,
+   "sovrapprezzo_%": 95.4,
+   "ic_basso_%": 39.5,
+   "ic_alto_%": 193.5,
    "carte_con_la_caratteristica": 16
   },
   {
    "caratteristica": "set_cat=swsh4",
    "peso_log": 0.8,
-   "sovrapprezzo_%": 120.3,
-   "ic_basso_%": 51.3,
-   "ic_alto_%": 235.0,
+   "sovrapprezzo_%": 116.5,
+   "ic_basso_%": 47.3,
+   "ic_alto_%": 235.3,
    "carte_con_la_caratteristica": 17
   },
   {
    "caratteristica": "set_cat=swsh4.5sv",
-   "peso_log": 0.3,
-   "sovrapprezzo_%": 34.3,
-   "ic_basso_%": -7.6,
-   "ic_alto_%": 141.0,
+   "peso_log": 0.2,
+   "sovrapprezzo_%": 21.6,
+   "ic_basso_%": -15.5,
+   "ic_alto_%": 115.2,
    "carte_con_la_caratteristica": 174
   },
   {
    "caratteristica": "set_cat=swsh5",
    "peso_log": 1.0,
-   "sovrapprezzo_%": 170.1,
-   "ic_basso_%": 89.1,
-   "ic_alto_%": 281.7,
+   "sovrapprezzo_%": 159.4,
+   "ic_basso_%": 83.8,
+   "ic_alto_%": 273.4,
    "carte_con_la_caratteristica": 30
   },
   {
    "caratteristica": "set_cat=swsh6",
-   "peso_log": 0.5,
-   "sovrapprezzo_%": 56.9,
-   "ic_basso_%": 18.1,
-   "ic_alto_%": 114.5,
+   "peso_log": 0.4,
+   "sovrapprezzo_%": 50.5,
+   "ic_basso_%": 7.5,
+   "ic_alto_%": 112.1,
    "carte_con_la_caratteristica": 24
   },
   {
    "caratteristica": "set_cat=swsh7",
-   "peso_log": 0.1,
-   "sovrapprezzo_%": 15.8,
-   "ic_basso_%": -19.3,
-   "ic_alto_%": 56.5,
+   "peso_log": 0.2,
+   "sovrapprezzo_%": 18.2,
+   "ic_basso_%": -20.3,
+   "ic_alto_%": 64.8,
    "carte_con_la_caratteristica": 33
   },
   {
    "caratteristica": "set_cat=swsh9tg",
-   "peso_log": -0.4,
-   "sovrapprezzo_%": -35.5,
-   "ic_basso_%": -58.6,
-   "ic_alto_%": -9.2,
+   "peso_log": -0.3,
+   "sovrapprezzo_%": -28.1,
+   "ic_basso_%": -53.3,
+   "ic_alto_%": 1.4,
    "carte_con_la_caratteristica": 19
   },
   {
    "caratteristica": "set_cat=swshp",
-   "peso_log": 0.4,
-   "sovrapprezzo_%": 45.4,
-   "ic_basso_%": -24.6,
-   "ic_alto_%": 159.8,
+   "peso_log": 0.5,
+   "sovrapprezzo_%": 60.6,
+   "ic_basso_%": -16.2,
+   "ic_alto_%": 182.5,
    "carte_con_la_caratteristica": 221
   },
   {
    "caratteristica": "rilascio=Pokemon Center",
-   "peso_log": 1.5,
-   "sovrapprezzo_%": 336.2,
-   "ic_basso_%": 207.3,
-   "ic_alto_%": 671.7,
+   "peso_log": 1.6,
+   "sovrapprezzo_%": 411.8,
+   "ic_basso_%": 258.7,
+   "ic_alto_%": 725.0,
    "carte_con_la_caratteristica": 35
   },
   {
    "caratteristica": "rilascio=altro",
-   "peso_log": -0.1,
-   "sovrapprezzo_%": -12.2,
-   "ic_basso_%": -42.2,
-   "ic_alto_%": 54.7,
+   "peso_log": 0.1,
+   "sovrapprezzo_%": 5.3,
+   "ic_basso_%": -32.3,
+   "ic_alto_%": 81.4,
    "carte_con_la_caratteristica": 74
   },
   {
    "caratteristica": "rilascio=campagna d'acquisto",
    "peso_log": -0.2,
-   "sovrapprezzo_%": -16.4,
-   "ic_basso_%": -64.4,
-   "ic_alto_%": 56.6,
+   "sovrapprezzo_%": -18.8,
+   "ic_basso_%": -46.7,
+   "ic_alto_%": 44.0,
    "carte_con_la_caratteristica": 15
   },
   {
    "caratteristica": "rilascio=evento o torneo",
-   "peso_log": 0.2,
-   "sovrapprezzo_%": 25.5,
-   "ic_basso_%": -5.5,
-   "ic_alto_%": 75.3,
+   "peso_log": 0.4,
+   "sovrapprezzo_%": 43.4,
+   "ic_basso_%": 12.1,
+   "ic_alto_%": 88.6,
    "carte_con_la_caratteristica": 243
   },
   {
    "caratteristica": "rilascio=prodotto speciale",
-   "peso_log": -0.2,
-   "sovrapprezzo_%": -16.3,
-   "ic_basso_%": -33.2,
-   "ic_alto_%": 14.5,
+   "peso_log": -0.1,
+   "sovrapprezzo_%": -8.7,
+   "ic_basso_%": -24.5,
+   "ic_alto_%": 15.6,
    "carte_con_la_caratteristica": 741
   },
   {
    "caratteristica": "esclusiva=incerta",
    "peso_log": 0.2,
-   "sovrapprezzo_%": 21.5,
-   "ic_basso_%": 6.5,
-   "ic_alto_%": 38.4,
+   "sovrapprezzo_%": 22.0,
+   "ic_basso_%": 8.1,
+   "ic_alto_%": 38.8,
    "carte_con_la_caratteristica": 589
   },
   {
    "caratteristica": "esclusiva=solo giapponese",
    "peso_log": 0.4,
-   "sovrapprezzo_%": 46.6,
-   "ic_basso_%": 14.8,
-   "ic_alto_%": 88.3,
+   "sovrapprezzo_%": 44.3,
+   "ic_basso_%": 10.8,
+   "ic_alto_%": 83.8,
    "carte_con_la_caratteristica": 99
   },
   {
    "caratteristica": "esclusiva=solo internazionale",
    "peso_log": 0.1,
-   "sovrapprezzo_%": 10.4,
+   "sovrapprezzo_%": 12.7,
    "ic_basso_%": -1.0,
-   "ic_alto_%": 25.4,
+   "ic_alto_%": 26.4,
    "carte_con_la_caratteristica": 497
   },
   {
    "caratteristica": "illustratore_cat=5ban Graphics",
    "peso_log": -0.5,
-   "sovrapprezzo_%": -38.2,
-   "ic_basso_%": -46.0,
-   "ic_alto_%": -30.3,
+   "sovrapprezzo_%": -36.6,
+   "ic_basso_%": -44.4,
+   "ic_alto_%": -28.6,
    "carte_con_la_caratteristica": 484
   },
   {
    "caratteristica": "illustratore_cat=AKIRA EGAWA",
    "peso_log": 0.1,
-   "sovrapprezzo_%": 14.0,
-   "ic_basso_%": -4.6,
-   "ic_alto_%": 39.1,
+   "sovrapprezzo_%": 15.5,
+   "ic_basso_%": -3.5,
+   "ic_alto_%": 42.2,
    "carte_con_la_caratteristica": 47
   },
   {
    "caratteristica": "illustratore_cat=Akira Komayama",
    "peso_log": 0.2,
-   "sovrapprezzo_%": 25.4,
-   "ic_basso_%": 5.6,
-   "ic_alto_%": 53.4,
+   "sovrapprezzo_%": 24.2,
+   "ic_basso_%": 5.2,
+   "ic_alto_%": 51.4,
    "carte_con_la_caratteristica": 47
   },
   {
    "caratteristica": "illustratore_cat=Hitoshi Ariga",
    "peso_log": 0.0,
-   "sovrapprezzo_%": 0.2,
-   "ic_basso_%": -19.2,
-   "ic_alto_%": 26.1,
+   "sovrapprezzo_%": 3.3,
+   "ic_basso_%": -15.3,
+   "ic_alto_%": 33.4,
    "carte_con_la_caratteristica": 35
   },
   {
    "caratteristica": "illustratore_cat=Kagemaru Himeno",
    "peso_log": -0.3,
-   "sovrapprezzo_%": -26.8,
-   "ic_basso_%": -39.1,
-   "ic_alto_%": -10.2,
+   "sovrapprezzo_%": -26.7,
+   "ic_basso_%": -39.7,
+   "ic_alto_%": -8.5,
    "carte_con_la_caratteristica": 35
   },
   {
    "caratteristica": "illustratore_cat=Kouki Saitou",
-   "peso_log": 0.1,
-   "sovrapprezzo_%": 15.7,
-   "ic_basso_%": -0.1,
-   "ic_alto_%": 36.2,
+   "peso_log": 0.2,
+   "sovrapprezzo_%": 18.0,
+   "ic_basso_%": 1.3,
+   "ic_alto_%": 38.1,
    "carte_con_la_caratteristica": 78
   },
   {
    "caratteristica": "illustratore_cat=Mitsuhiro Arita",
    "peso_log": 0.1,
-   "sovrapprezzo_%": 6.5,
-   "ic_basso_%": -6.6,
-   "ic_alto_%": 26.9,
+   "sovrapprezzo_%": 8.2,
+   "ic_basso_%": -7.0,
+   "ic_alto_%": 30.6,
    "carte_con_la_caratteristica": 61
   },
   {
    "caratteristica": "illustratore_cat=Mizue",
-   "peso_log": -0.2,
-   "sovrapprezzo_%": -14.8,
-   "ic_basso_%": -29.5,
-   "ic_alto_%": 10.2,
+   "peso_log": -0.1,
+   "sovrapprezzo_%": -11.3,
+   "ic_basso_%": -28.2,
+   "ic_alto_%": 13.2,
    "carte_con_la_caratteristica": 32
   },
   {
    "caratteristica": "illustratore_cat=PLANETA Mochizuki",
-   "peso_log": -0.8,
-   "sovrapprezzo_%": -52.8,
-   "ic_basso_%": -62.7,
-   "ic_alto_%": -40.8,
+   "peso_log": -0.7,
+   "sovrapprezzo_%": -52.1,
+   "ic_basso_%": -62.0,
+   "ic_alto_%": -40.6,
    "carte_con_la_caratteristica": 46
   },
   {
    "caratteristica": "illustratore_cat=PLANETA Tsuji",
    "peso_log": -0.5,
-   "sovrapprezzo_%": -41.3,
-   "ic_basso_%": -52.4,
-   "ic_alto_%": -29.2,
+   "sovrapprezzo_%": -40.6,
+   "ic_basso_%": -51.2,
+   "ic_alto_%": -29.4,
    "carte_con_la_caratteristica": 57
   },
   {
    "caratteristica": "illustratore_cat=Saboteri",
    "peso_log": 0.0,
-   "sovrapprezzo_%": 2.5,
-   "ic_basso_%": -16.2,
-   "ic_alto_%": 25.7,
+   "sovrapprezzo_%": 3.8,
+   "ic_basso_%": -15.2,
+   "ic_alto_%": 25.5,
    "carte_con_la_caratteristica": 46
   },
   {
    "caratteristica": "illustratore_cat=Saya Tsuruta",
    "peso_log": 0.1,
-   "sovrapprezzo_%": 7.8,
-   "ic_basso_%": -10.7,
-   "ic_alto_%": 34.6,
+   "sovrapprezzo_%": 5.7,
+   "ic_basso_%": -11.5,
+   "ic_alto_%": 30.7,
    "carte_con_la_caratteristica": 34
   },
   {
    "caratteristica": "illustratore_cat=Shin Nagasawa",
    "peso_log": -0.1,
-   "sovrapprezzo_%": -11.0,
-   "ic_basso_%": -28.1,
-   "ic_alto_%": 5.2,
+   "sovrapprezzo_%": -6.7,
+   "ic_basso_%": -23.2,
+   "ic_alto_%": 10.5,
    "carte_con_la_caratteristica": 40
   },
   {
    "caratteristica": "illustratore_cat=Souichirou Gunjima",
    "peso_log": -0.2,
-   "sovrapprezzo_%": -21.4,
-   "ic_basso_%": -35.4,
-   "ic_alto_%": -3.5,
+   "sovrapprezzo_%": -20.1,
+   "ic_basso_%": -36.2,
+   "ic_alto_%": -1.6,
    "carte_con_la_caratteristica": 31
   },
   {
    "caratteristica": "illustratore_cat=Teeziro",
    "peso_log": -0.0,
-   "sovrapprezzo_%": -1.7,
-   "ic_basso_%": -18.5,
-   "ic_alto_%": 17.8,
+   "sovrapprezzo_%": -2.2,
+   "ic_basso_%": -17.6,
+   "ic_alto_%": 17.4,
    "carte_con_la_caratteristica": 35
   },
   {
    "caratteristica": "illustratore_cat=aky CG Works",
-   "peso_log": -0.4,
-   "sovrapprezzo_%": -32.8,
-   "ic_basso_%": -45.4,
-   "ic_alto_%": -17.1,
+   "peso_log": -0.3,
+   "sovrapprezzo_%": -29.0,
+   "ic_basso_%": -40.5,
+   "ic_alto_%": -13.4,
    "carte_con_la_caratteristica": 103
   },
   {
    "caratteristica": "illustratore_cat=nagimiso",
    "peso_log": 0.0,
-   "sovrapprezzo_%": 1.5,
-   "ic_basso_%": -12.3,
-   "ic_alto_%": 18.0,
+   "sovrapprezzo_%": 1.0,
+   "ic_basso_%": -13.3,
+   "ic_alto_%": 19.0,
    "carte_con_la_caratteristica": 47
   },
   {
    "caratteristica": "illustratore_cat=sconosciuto",
    "peso_log": -0.3,
-   "sovrapprezzo_%": -24.2,
-   "ic_basso_%": -38.2,
-   "ic_alto_%": -9.9,
+   "sovrapprezzo_%": -24.0,
+   "ic_basso_%": -35.1,
+   "ic_alto_%": -9.1,
    "carte_con_la_caratteristica": 210
   },
   {
    "caratteristica": "lingua=ja",
-   "peso_log": 0.2,
-   "sovrapprezzo_%": 16.7,
-   "ic_basso_%": -7.8,
-   "ic_alto_%": 52.0,
+   "peso_log": 0.1,
+   "sovrapprezzo_%": 13.1,
+   "ic_basso_%": -12.2,
+   "ic_alto_%": 47.4,
    "carte_con_la_caratteristica": 1245
   },
   {
    "caratteristica": "gen1",
    "peso_log": 0.6,
-   "sovrapprezzo_%": 78.3,
-   "ic_basso_%": 64.1,
-   "ic_alto_%": 93.9,
+   "sovrapprezzo_%": 80.4,
+   "ic_basso_%": 65.8,
+   "ic_alto_%": 96.3,
    "carte_con_la_caratteristica": 945
   },
   {
    "caratteristica": "leggendario",
    "peso_log": 0.3,
-   "sovrapprezzo_%": 41.0,
-   "ic_basso_%": 30.7,
-   "ic_alto_%": 53.3,
+   "sovrapprezzo_%": 41.8,
+   "ic_basso_%": 31.4,
+   "ic_alto_%": 53.5,
    "carte_con_la_caratteristica": 775
   },
   {
    "caratteristica": "stamped",
    "peso_log": 0.6,
-   "sovrapprezzo_%": 91.5,
-   "ic_basso_%": 60.4,
-   "ic_alto_%": 124.7,
+   "sovrapprezzo_%": 86.4,
+   "ic_basso_%": 60.5,
+   "ic_alto_%": 114.5,
    "carte_con_la_caratteristica": 420
   },
   {
    "caratteristica": "standard",
    "peso_log": -0.1,
-   "sovrapprezzo_%": -8.0,
-   "ic_basso_%": -18.9,
-   "ic_alto_%": 2.5,
+   "sovrapprezzo_%": -6.8,
+   "ic_basso_%": -18.5,
+   "ic_alto_%": 4.7,
    "carte_con_la_caratteristica": 958
   },
   {
    "caratteristica": "alternate_art",
-   "peso_log": 0.5,
-   "sovrapprezzo_%": 71.8,
-   "ic_basso_%": 6.4,
-   "ic_alto_%": 179.5,
+   "peso_log": 0.6,
+   "sovrapprezzo_%": 77.7,
+   "ic_basso_%": 7.9,
+   "ic_alto_%": 205.8,
    "carte_con_la_caratteristica": 71
   },
   {
    "caratteristica": "promo_fam",
-   "peso_log": -0.0,
-   "sovrapprezzo_%": -1.8,
-   "ic_basso_%": -27.4,
-   "ic_alto_%": 46.0,
+   "peso_log": 0.1,
+   "sovrapprezzo_%": 12.0,
+   "ic_basso_%": -11.3,
+   "ic_alto_%": 51.3,
    "carte_con_la_caratteristica": 1108
   },
   {
    "caratteristica": "diluizione_log",
-   "peso_log": -0.0,
-   "sovrapprezzo_%": -2.5,
-   "ic_basso_%": -10.0,
-   "ic_alto_%": 11.3,
-   "carte_con_la_caratteristica": 12215
-  },
-  {
-   "caratteristica": "iconicita=alto × famiglia=promo e rilascio speciale × esclusiva=incerta",
-   "peso_log": -0.0,
-   "sovrapprezzo_%": -1.0,
-   "ic_basso_%": -33.1,
-   "ic_alto_%": 36.6,
-   "carte_con_la_caratteristica": 45
-  },
-  {
-   "caratteristica": "iconicita=alto × famiglia=promo e rilascio speciale × esclusiva=solo internazionale",
-   "peso_log": -0.3,
-   "sovrapprezzo_%": -25.8,
-   "ic_basso_%": -47.9,
-   "ic_alto_%": 0.7,
-   "carte_con_la_caratteristica": 72
-  },
-  {
-   "caratteristica": "iconicita=medio × famiglia=promo e rilascio speciale × esclusiva=solo internazionale",
-   "peso_log": 0.5,
-   "sovrapprezzo_%": 72.5,
-   "ic_basso_%": 0.0,
-   "ic_alto_%": 162.7,
-   "carte_con_la_caratteristica": 16
+   "peso_log": -0.1,
+   "sovrapprezzo_%": -6.5,
+   "ic_basso_%": -13.2,
+   "ic_alto_%": 6.6,
+   "carte_con_la_caratteristica": 12172
   },
   {
    "caratteristica": "famiglia=promo e rilascio speciale × rarita_armonizzata=promo",
-   "peso_log": -0.4,
-   "sovrapprezzo_%": -35.7,
-   "ic_basso_%": -70.8,
-   "ic_alto_%": 28.8,
+   "peso_log": -0.8,
+   "sovrapprezzo_%": -55.3,
+   "ic_basso_%": -75.7,
+   "ic_alto_%": -15.5,
    "carte_con_la_caratteristica": 1085
   },
   {
-   "caratteristica": "famiglia=promo e rilascio speciale × iconicita=alto",
-   "peso_log": 0.2,
-   "sovrapprezzo_%": 24.3,
-   "ic_basso_%": -53.1,
-   "ic_alto_%": 213.4,
-   "carte_con_la_caratteristica": 209
-  },
-  {
-   "caratteristica": "famiglia=promo e rilascio speciale × iconicita=medio",
-   "peso_log": -0.6,
-   "sovrapprezzo_%": -45.5,
-   "ic_basso_%": -58.2,
-   "ic_alto_%": -15.8,
-   "carte_con_la_caratteristica": 39
-  },
-  {
-   "caratteristica": "iconicita=alto × rarita_armonizzata=gold-hyper-rainbow",
-   "peso_log": -0.1,
-   "sovrapprezzo_%": -5.8,
-   "ic_basso_%": -40.5,
-   "ic_alto_%": 22.5,
-   "carte_con_la_caratteristica": 78
-  },
-  {
-   "caratteristica": "iconicita=alto × rarita_armonizzata=promo",
-   "peso_log": -0.5,
-   "sovrapprezzo_%": -40.7,
-   "ic_basso_%": -68.4,
-   "ic_alto_%": -3.4,
-   "carte_con_la_caratteristica": 211
-  },
-  {
-   "caratteristica": "iconicita=alto × rarita_armonizzata=special illustration rare",
-   "peso_log": 0.1,
-   "sovrapprezzo_%": 11.7,
-   "ic_basso_%": -24.7,
-   "ic_alto_%": 47.6,
-   "carte_con_la_caratteristica": 46
-  },
-  {
-   "caratteristica": "iconicita=medio × rarita_armonizzata=promo",
-   "peso_log": -0.6,
-   "sovrapprezzo_%": -45.5,
-   "ic_basso_%": -58.2,
-   "ic_alto_%": -15.8,
-   "carte_con_la_caratteristica": 39
-  },
-  {
-   "caratteristica": "iconicita=alto × stamped=1.0",
-   "peso_log": -0.3,
-   "sovrapprezzo_%": -28.4,
-   "ic_basso_%": -48.3,
-   "ic_alto_%": -0.1,
-   "carte_con_la_caratteristica": 54
-  },
-  {
-   "caratteristica": "iconicita=alto × rilascio=altro",
-   "peso_log": 0.2,
-   "sovrapprezzo_%": 22.2,
-   "ic_basso_%": -34.4,
-   "ic_alto_%": 206.9,
-   "carte_con_la_caratteristica": 19
-  },
-  {
-   "caratteristica": "iconicita=alto × rilascio=campagna d'acquisto",
-   "peso_log": -0.2,
-   "sovrapprezzo_%": -16.4,
-   "ic_basso_%": -33.5,
-   "ic_alto_%": 25.9,
-   "carte_con_la_caratteristica": 15
-  },
-  {
-   "caratteristica": "iconicita=alto × rilascio=evento o torneo",
-   "peso_log": -0.4,
-   "sovrapprezzo_%": -35.9,
-   "ic_basso_%": -67.6,
-   "ic_alto_%": 44.5,
-   "carte_con_la_caratteristica": 17
-  },
-  {
-   "caratteristica": "iconicita=alto × rilascio=prodotto speciale",
-   "peso_log": -0.3,
-   "sovrapprezzo_%": -23.9,
-   "ic_basso_%": -62.6,
-   "ic_alto_%": 63.5,
-   "carte_con_la_caratteristica": 150
-  },
-  {
-   "caratteristica": "iconicita=medio × rilascio=prodotto speciale",
-   "peso_log": 0.4,
-   "sovrapprezzo_%": 47.8,
-   "ic_basso_%": -25.2,
-   "ic_alto_%": 154.2,
-   "carte_con_la_caratteristica": 33
-  },
-  {
    "caratteristica": "era=Mega × rarita_armonizzata=gold-hyper-rainbow",
-   "peso_log": 1.0,
-   "sovrapprezzo_%": 179.6,
-   "ic_basso_%": 66.1,
-   "ic_alto_%": 376.8,
+   "peso_log": 1.1,
+   "sovrapprezzo_%": 203.6,
+   "ic_basso_%": 78.2,
+   "ic_alto_%": 420.7,
    "carte_con_la_caratteristica": 44
   },
   {
    "caratteristica": "era=Mega × rarita_armonizzata=promo",
    "peso_log": 1.7,
-   "sovrapprezzo_%": 430.5,
-   "ic_basso_%": 229.7,
-   "ic_alto_%": 771.5,
+   "sovrapprezzo_%": 424.0,
+   "ic_basso_%": 245.2,
+   "ic_alto_%": 731.5,
    "carte_con_la_caratteristica": 182
   },
   {
    "caratteristica": "era=Mega × rarita_armonizzata=special illustration rare",
-   "peso_log": 0.6,
-   "sovrapprezzo_%": 84.1,
-   "ic_basso_%": 53.4,
-   "ic_alto_%": 155.2,
+   "peso_log": 0.7,
+   "sovrapprezzo_%": 102.1,
+   "ic_basso_%": 64.6,
+   "ic_alto_%": 179.4,
    "carte_con_la_caratteristica": 86
   },
   {
    "caratteristica": "era=Sole e Luna × rarita_armonizzata=character rare",
-   "peso_log": -1.6,
-   "sovrapprezzo_%": -78.8,
-   "ic_basso_%": -89.4,
-   "ic_alto_%": -48.7,
+   "peso_log": -1.2,
+   "sovrapprezzo_%": -70.5,
+   "ic_basso_%": -84.5,
+   "ic_alto_%": -43.9,
    "carte_con_la_caratteristica": 22
   },
   {
    "caratteristica": "era=Sole e Luna × rarita_armonizzata=gold-hyper-rainbow",
    "peso_log": -1.2,
-   "sovrapprezzo_%": -70.9,
+   "sovrapprezzo_%": -70.0,
    "ic_basso_%": -85.3,
-   "ic_alto_%": -41.6,
+   "ic_alto_%": -43.7,
    "carte_con_la_caratteristica": 479
   },
   {
    "caratteristica": "era=Sole e Luna × rarita_armonizzata=promo",
-   "peso_log": -0.5,
-   "sovrapprezzo_%": -41.3,
-   "ic_basso_%": -76.8,
-   "ic_alto_%": 26.7,
+   "peso_log": -0.4,
+   "sovrapprezzo_%": -33.6,
+   "ic_basso_%": -74.5,
+   "ic_alto_%": 33.0,
    "carte_con_la_caratteristica": 345
   },
   {
    "caratteristica": "era=Spada e Scudo × rarita_armonizzata=character rare",
    "peso_log": 0.1,
-   "sovrapprezzo_%": 8.4,
+   "sovrapprezzo_%": 14.9,
    "ic_basso_%": -25.2,
-   "ic_alto_%": 64.7,
-   "carte_con_la_caratteristica": 70
+   "ic_alto_%": 93.1,
+   "carte_con_la_caratteristica": 22
+  },
+  {
+   "caratteristica": "era=Spada e Scudo × rarita_armonizzata=character super rare",
+   "peso_log": 0.1,
+   "sovrapprezzo_%": 6.0,
+   "ic_basso_%": -22.7,
+   "ic_alto_%": 42.6,
+   "carte_con_la_caratteristica": 48
   },
   {
    "caratteristica": "era=Spada e Scudo × rarita_armonizzata=galleria",
    "peso_log": 0.1,
-   "sovrapprezzo_%": 7.0,
-   "ic_basso_%": -3.3,
-   "ic_alto_%": 18.9,
+   "sovrapprezzo_%": 9.9,
+   "ic_basso_%": -1.3,
+   "ic_alto_%": 20.5,
    "carte_con_la_caratteristica": 136
   },
   {
    "caratteristica": "era=Spada e Scudo × rarita_armonizzata=gold-hyper-rainbow",
-   "peso_log": -0.4,
-   "sovrapprezzo_%": -33.5,
-   "ic_basso_%": -55.9,
-   "ic_alto_%": -0.4,
+   "peso_log": -0.3,
+   "sovrapprezzo_%": -28.5,
+   "ic_basso_%": -52.5,
+   "ic_alto_%": 10.7,
    "carte_con_la_caratteristica": 242
   },
   {
    "caratteristica": "era=Spada e Scudo × rarita_armonizzata=promo",
-   "peso_log": -0.5,
-   "sovrapprezzo_%": -36.3,
+   "peso_log": -0.4,
+   "sovrapprezzo_%": -33.0,
    "ic_basso_%": -59.7,
-   "ic_alto_%": 4.2,
+   "ic_alto_%": 17.2,
    "carte_con_la_caratteristica": 284
   },
   {
    "caratteristica": "era=Spada e Scudo × rarita_armonizzata=shiny",
-   "peso_log": -0.2,
-   "sovrapprezzo_%": -19.5,
-   "ic_basso_%": -61.6,
-   "ic_alto_%": 38.7,
+   "peso_log": -0.1,
+   "sovrapprezzo_%": -7.6,
+   "ic_basso_%": -58.1,
+   "ic_alto_%": 53.5,
    "carte_con_la_caratteristica": 170
   },
   {
    "caratteristica": "era=Spada e Scudo × rarita_armonizzata=special illustration rare",
    "peso_log": -0.9,
-   "sovrapprezzo_%": -61.2,
-   "ic_basso_%": -74.4,
-   "ic_alto_%": -36.4,
+   "sovrapprezzo_%": -59.2,
+   "ic_basso_%": -74.0,
+   "ic_alto_%": -31.4,
    "carte_con_la_caratteristica": 96
   }
  ],
@@ -1892,27 +1772,19 @@
    ]
   ],
   [
-   "iconicita=alto",
-   [
-    "cat",
-    "iconicita",
-    "alto"
-   ]
-  ],
-  [
-   "iconicita=medio",
-   [
-    "cat",
-    "iconicita",
-    "medio"
-   ]
-  ],
-  [
    "rarita_armonizzata=character rare",
    [
     "cat",
     "rarita_armonizzata",
     "character rare"
+   ]
+  ],
+  [
+   "rarita_armonizzata=character super rare",
+   [
+    "cat",
+    "rarita_armonizzata",
+    "character super rare"
    ]
   ],
   [
@@ -2893,131 +2765,11 @@
    ]
   ],
   [
-   "iconicita=alto × famiglia=promo e rilascio speciale × esclusiva=incerta",
-   [
-    "int",
-    "('iconicita', 'famiglia', 'esclusiva')",
-    "('alto', 'promo e rilascio speciale', 'incerta')"
-   ]
-  ],
-  [
-   "iconicita=alto × famiglia=promo e rilascio speciale × esclusiva=solo internazionale",
-   [
-    "int",
-    "('iconicita', 'famiglia', 'esclusiva')",
-    "('alto', 'promo e rilascio speciale', 'solo internazionale')"
-   ]
-  ],
-  [
-   "iconicita=medio × famiglia=promo e rilascio speciale × esclusiva=solo internazionale",
-   [
-    "int",
-    "('iconicita', 'famiglia', 'esclusiva')",
-    "('medio', 'promo e rilascio speciale', 'solo internazionale')"
-   ]
-  ],
-  [
    "famiglia=promo e rilascio speciale × rarita_armonizzata=promo",
    [
     "int",
     "('famiglia', 'rarita_armonizzata')",
     "('promo e rilascio speciale', 'promo')"
-   ]
-  ],
-  [
-   "famiglia=promo e rilascio speciale × iconicita=alto",
-   [
-    "int",
-    "('famiglia', 'iconicita')",
-    "('promo e rilascio speciale', 'alto')"
-   ]
-  ],
-  [
-   "famiglia=promo e rilascio speciale × iconicita=medio",
-   [
-    "int",
-    "('famiglia', 'iconicita')",
-    "('promo e rilascio speciale', 'medio')"
-   ]
-  ],
-  [
-   "iconicita=alto × rarita_armonizzata=gold-hyper-rainbow",
-   [
-    "int",
-    "('iconicita', 'rarita_armonizzata')",
-    "('alto', 'gold-hyper-rainbow')"
-   ]
-  ],
-  [
-   "iconicita=alto × rarita_armonizzata=promo",
-   [
-    "int",
-    "('iconicita', 'rarita_armonizzata')",
-    "('alto', 'promo')"
-   ]
-  ],
-  [
-   "iconicita=alto × rarita_armonizzata=special illustration rare",
-   [
-    "int",
-    "('iconicita', 'rarita_armonizzata')",
-    "('alto', 'special illustration rare')"
-   ]
-  ],
-  [
-   "iconicita=medio × rarita_armonizzata=promo",
-   [
-    "int",
-    "('iconicita', 'rarita_armonizzata')",
-    "('medio', 'promo')"
-   ]
-  ],
-  [
-   "iconicita=alto × stamped=1.0",
-   [
-    "int",
-    "('iconicita', 'stamped')",
-    "('alto', '1.0')"
-   ]
-  ],
-  [
-   "iconicita=alto × rilascio=altro",
-   [
-    "int",
-    "('iconicita', 'rilascio')",
-    "('alto', 'altro')"
-   ]
-  ],
-  [
-   "iconicita=alto × rilascio=campagna d'acquisto",
-   [
-    "int",
-    "('iconicita', 'rilascio')",
-    "('alto', \"campagna d'acquisto\")"
-   ]
-  ],
-  [
-   "iconicita=alto × rilascio=evento o torneo",
-   [
-    "int",
-    "('iconicita', 'rilascio')",
-    "('alto', 'evento o torneo')"
-   ]
-  ],
-  [
-   "iconicita=alto × rilascio=prodotto speciale",
-   [
-    "int",
-    "('iconicita', 'rilascio')",
-    "('alto', 'prodotto speciale')"
-   ]
-  ],
-  [
-   "iconicita=medio × rilascio=prodotto speciale",
-   [
-    "int",
-    "('iconicita', 'rilascio')",
-    "('medio', 'prodotto speciale')"
    ]
   ],
   [
@@ -3074,6 +2826,14 @@
     "int",
     "('era', 'rarita_armonizzata')",
     "('Spada e Scudo', 'character rare')"
+   ]
+  ],
+  [
+   "era=Spada e Scudo × rarita_armonizzata=character super rare",
+   [
+    "int",
+    "('era', 'rarita_armonizzata')",
+    "('Spada e Scudo', 'character super rare')"
    ]
   ],
   [
@@ -3148,9 +2908,8 @@
   0.005785363031530229,
   0.0054960948799537175,
   0.005206826728377205,
-  0.10818628868961527,
-  0.01822389354932022,
-  0.026612669945039052,
+  0.012727798669366503,
+  0.013884871275672549,
   0.03934046861440555,
   0.24992768296210588,
   0.3216661845530807,
@@ -3273,30 +3032,16 @@
   0.2771188892102979,
   0.02053803876193231,
   0.32050911194677467,
-  3.5335994656062693,
-  0.013017066820943014,
-  0.02082730691350882,
-  0.0046282904252241824,
+  3.520974428906281,
   0.3138559444605149,
-  0.06045704367949089,
-  0.011281457911483946,
-  0.02256291582296789,
-  0.06103557998264391,
-  0.013306334972519526,
-  0.011281457911483946,
-  0.015620480185131617,
-  0.0054960948799537175,
-  0.004339022273647671,
-  0.004917558576800694,
-  0.04339022273647671,
-  0.009545849002024877,
   0.012727798669366503,
   0.05264680358692508,
   0.024877061035579982,
   0.006363899334683252,
   0.13855944460514896,
   0.09979751229389644,
-  0.0202487706103558,
+  0.006363899334683252,
+  0.013884871275672549,
   0.03934046861440555,
   0.07000289268151577,
   0.08215215504772924,
@@ -3334,9 +3079,8 @@
   0.07584123388900109,
   0.07393164389412296,
   0.07197024265443554,
-  0.3106155441223439,
-  0.13376017165338824,
-  0.16094855098861705,
+  0.11209728825709117,
+  0.11701316959794221,
   0.1944036947498937,
   0.4329709425784067,
   0.46711567218663785,
@@ -3459,35 +3203,21 @@
   0.4475757046001228,
   0.14183168901696894,
   0.4666722854843653,
-  1.5349571877360755,
-  0.11334735558899219,
-  0.14280591894543787,
-  0.06787392348105327,
+  1.536746693826415,
   0.46405860784543623,
-  0.23833168070084346,
-  0.10561338376409453,
-  0.14850532296703942,
-  0.23939556895986,
-  0.11458305569011722,
-  0.10561338376409453,
-  0.12400193962967258,
-  0.07393164389412488,
-  0.06572819251137832,
-  0.0699526721030003,
-  0.20373392381933178,
-  0.09723541517022355,
   0.11209728825709449,
   0.2233273787641291,
   0.15575041952211435,
   0.07951981060704931,
   0.34548621623278314,
   0.29972982740012094,
-  0.14085012666243524,
+  0.07951981060704565,
+  0.11701316959794221,
   0.1944036947498937,
   0.2551518924249618,
   0.2745963929441519,
   0.21623447450591568,
   0.1643124592920486
  ],
- "intercetta": 2.674077164634639
+ "intercetta": 2.674077164634641
 }

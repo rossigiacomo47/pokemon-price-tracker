@@ -34,7 +34,7 @@ TAB = RADICE / "tabelle"
 RIF = RADICE / "data" / "riferimento"
 SOGLIA = CONFIG["soglia_bulk_eur"]
 
-RARITA_ALTE = {"illustration rare", "special illustration rare", "character rare",
+RARITA_ALTE = {"illustration rare", "special illustration rare", "character rare", "character super rare",
                "gold-hyper-rainbow", "shiny", "galleria"}
 GRUPPI_PROMO_JA = {23881: "SM-P", 23876: "S-P", 23847: "s8a-P"}  # assenti su TCGdex
 
