@@ -267,6 +267,19 @@ def main():
     print("rapporto NM/trend:", {k: round(v, 3) if isinstance(v, float) else v for k, v in rapporto.items()})
     for k, s in schede.items():
         carte[k].update(s)
+    # --- scarto reale tra le carte e le loro simili (fascia "in linea", CLAUDE.md riquadro sezione 6)
+    scarti = []
+    for k, c in carte.items():
+        if not c["nel_modello"] or not c["trend"]:
+            continue
+        vals = [carte[x["k"]]["trend"] * x["fattore"] for x in c["comps"] if carte[x["k"]]["trend"] and x["fattore"]]
+        if len(vals) >= 3:
+            scarti.append(math.log(c["trend"] / float(np.median(vals))))
+    q = np.percentile(scarti, [10, 25, 50, 75, 90])
+    gap_relativo = dict(zip(["q10", "q25", "q50", "q75", "q90"], [float(x) for x in q]))
+    gap_relativo["n"] = len(scarti)
+    print("scarto carta / simili (log):", {k: round(v, 3) for k, v in gap_relativo.items()})
+
     # ogni comparabile porta con se' i dati essenziali: una scheda si legge da un solo file
     for k, c in carte.items():
         for comp in c["comps"]:
@@ -300,7 +313,11 @@ def main():
         "controllo": cc[["nome", "set", "lingua", "nm_offerta_min_eur"]].to_dict("records"),
         "fascia_nm": [0, 5],
         "rapporto_nm": rapporto,
+        "gap_relativo": gap_relativo,
     }
+    test = RADICE / "docs" / "data" / "test30.json"
+    if test.exists():
+        modello["test30"] = json.loads(test.read_text(encoding="utf-8"))
 
     DOCS.mkdir(parents=True, exist_ok=True)
     cartella = DOCS / "schede"

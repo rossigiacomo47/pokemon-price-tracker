@@ -88,6 +88,13 @@ def main():
         out += [f"## {titolo}\n", tab_md(t), "",
                 f"Correlazione di Spearman tra sottovalutazione e crescita: {rho:+.3f} (p = {p:.3g}). "
                 "Negativa = le carte più sottovalutate sono salite di più.\n"]
+    s = d[d.gap_simili.notna()]
+    q = pd.qcut(s.gap_simili, 5, labels=False)
+    riassunto = {"carte": int(len(s)), "mercato_media_pct": round((np.exp(d.crescita.mean()) - 1) * 100, 1),
+                 "sottovalutate_media_pct": round((np.exp(s.crescita[q == 0].mean()) - 1) * 100, 1),
+                 "sottovalutate_mediana_pct": round((np.exp(s.crescita[q == 0].median()) - 1) * 100, 1),
+                 "spearman": round(float(spearmanr(s.gap_simili, s.crescita)[0]), 3), "settimana": settimana}
+    (RADICE / "docs" / "data" / "test30.json").write_text(json.dumps(riassunto), encoding="utf-8")
     testo = "\n".join(out)
     (RADICE / "riepiloghi" / f"test_30giorni_{settimana}.md").write_text(testo, encoding="utf-8")
     print(testo)

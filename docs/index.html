@@ -168,12 +168,12 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
       <div class="card" style="display:flex;flex-direction:column;gap:18px" id="box-prezzo">
         <div style="display:flex;flex-wrap:wrap;gap:16px 40px;align-items:flex-end;justify-content:space-between">
           <div style="display:flex;flex-direction:column;gap:4px">
-            <span class="label">Prezzo equo Near Mint</span>
+            <span class="label">Valore secondo le carte simili (NM)</span>
             <span class="big num" id="fair">—</span>
             <span class="muted" style="font-size:14px" id="npriced"></span>
           </div>
           <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start">
-            <span class="label">Giudizio di prezzo</span>
+            <span class="label">Il minimo NM di oggi è…</span>
             <span class="verdict neutral" id="pv">—</span>
             <span class="num" style="font-size:14px" id="pdiff"></span>
           </div>
@@ -181,7 +181,7 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
         <div style="display:flex;flex-direction:column;gap:6px">
           <div class="rangebar" role="img" id="rangebar" aria-label=""><div class="track"></div><div class="band" id="band"></div><div class="tick" id="tick"></div><div class="you" id="you"></div></div>
           <div class="muted num" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;font-size:13px">
-            <span id="range"></span><span><b style="color:#000">●</b> La tua offerta: <span id="yourtxt"></span></span><span id="seconda"></span>
+            <span id="range"></span><span><b style="color:#000">●</b> Minimo NM di oggi: <span id="yourtxt"></span></span><span id="seconda"></span>
           </div>
         </div>
         <p class="notice" id="avviso-modello" hidden></p>
@@ -206,16 +206,16 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
     <div class="nmhead">
       <div style="display:flex;flex-direction:column;gap:6px;max-width:64ch">
         <h2 id="t-nm" class="display" style="font-size:26px">Prezzi Near Mint</h2>
-        <span class="lead">Le carte simili servono da controllo. Su Cardmarket filtra per Near Mint e lingua, poi scrivi l'offerta più bassa: il prezzo resta salvato e, quando valuterai quella carta, la sua stima sarà più precisa. La fascia va dal minimo al minimo +5% (ipotesi), perché il minimo spesso non è davvero Near Mint.</span>
+        <span class="lead">Scrivi il minimo NM di oggi della carta: la pagina lo confronta con il valore delle carte simili. Le carte simili sono già stimate dal loro trend; se scrivi il loro minimo NM vero, il confronto diventa più preciso e il prezzo resta salvato. Il minimo diventa una fascia +5% (ipotesi), perché spesso non è davvero Near Mint.</span>
       </div>
       <div class="field"><label for="tipo" style="font-size:13px">Tipo di prezzo</label>
         <select id="tipo" class="select"><option value="cm">Minimo NM Cardmarket (+5%)</option><option value="ebay">Mediana ultime 3 vendite NM (eBay)</option></select></div>
     </div>
     <div class="yours">
-      <label for="tuo">La tua offerta: prezzo della copia che stai guardando</label>
+      <label for="tuo">Minimo NM di oggi di questa carta (Cardmarket, filtri Near Mint + lingua)<span class="muted" id="nota-tuo" style="display:block;font-weight:400;font-size:13px"></span></label>
       <span class="row" style="gap:8px"><input id="tuo" class="input num" type="number" min="0" step="0.01" style="width:130px;min-height:48px;font-size:18px;font-weight:700"> <b>€</b></span>
     </div>
-    <p class="note" id="spiega-simili">Ogni riga è una <b>carta simile</b>, non la tua. Nella sua casella scrivi il minimo NM <b>di quella carta</b>: la pagina lo converte nel valore equivalente per la tua carta con la rettifica (es. 210 € × 1,55 ≈ 325 €). Il prezzo della tua carta va nella casella gialla qui sopra.</p>
+    <p class="note" id="spiega-simili">Ogni riga è una <b>carta simile</b>, non la tua. La casella contiene il minimo NM <b>di quella carta</b> (in grigio la stima dal trend, se non l'hai scritto tu). La rettifica lo converte nel valore equivalente per la tua carta (es. 210 € × 1,55 ≈ 325 €). La mediana di questi valori è il "valore secondo le carte simili".</p>
     <p class="note" id="nota-allentato" hidden></p>
     <div id="comps"></div>
     <p class="alert" id="warn" role="status" hidden></p>
@@ -434,27 +434,32 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
     var n = $("nota-allentato");
     n.hidden = !c.allentato;
     n.textContent = c.allentato ? "Poche carte simili con lo stesso livello di iconicità: il filtro sull'iconicità è stato allentato. Famiglia e " + (c.famiglia === "carta da busta" ? "rarità" : "modalità di rilascio") + " restano uguali." : "";
-    var tuo = leggi(c.k);
-    $("tuo").value = tuo && tuo.proprio ? tuo.min : "";
+    var tuo = leggi(c.k) || c.nm_salvato || null;
+    var a = tuo ? aggiornaSalvato(tuo, c.trend) : null;
+    $("tuo").value = a ? a.v : "";
+    $("nota-tuo").textContent = a ? a.nota + ". Controlla il minimo di oggi su Cardmarket e correggilo se è cambiato." : "";
     disegnaComps(c);
     recalc();
     $("scheda").scrollIntoView({ behavior: "smooth", block: "start" });
   }
   function segno(x) { return (x >= 0 ? "+" : "−") + Math.abs(Math.round(x)) + "%"; }
 
-  function precompila(comp) {
+  function aggiornaSalvato(sv, trendOggi) {
     /* prezzo NM salvato: si aggiorna con il trend di oggi tramite il rapporto NM / trend (CLAUDE.md 7.0.6) */
-    var s = leggi(comp.k);
-    if (!s) return { v: "", nota: "" };
-    var g = giorni(s.data), nota = "";
-    var v = s.min;
-    if (s.trend && comp.c.trend && Math.abs(comp.c.trend - s.trend) > 0.005) {
-      v = Math.round(s.min / s.trend * comp.c.trend * 100) / 100;
-      nota = "Aggiornato con il trend (originale " + eur(s.min) + " del " + new Date(s.data).toLocaleDateString("it-IT") + ")";
-    } else { nota = "Inserito il " + new Date(s.data).toLocaleDateString("it-IT"); }
-    if (g > 90) nota += ". Più vecchio di 90 giorni: reinseriscilo";
-    else if (g > 30 && !(s.trend && comp.c.trend)) nota += ". Più vecchio di 30 giorni: controllalo";
-    return { v: v, nota: nota, tipo: s.tipo };
+    var v = sv.min, nota;
+    if (sv.trend && trendOggi && Math.abs(trendOggi - sv.trend) > 0.005) {
+      v = Math.round(sv.min / sv.trend * trendOggi * 100) / 100;
+      nota = "Il tuo prezzo, aggiornato con il trend (originale " + eur(sv.min) + " del " + new Date(sv.data).toLocaleDateString("it-IT") + ")";
+    } else { nota = "Il tuo prezzo del " + new Date(sv.data).toLocaleDateString("it-IT"); }
+    if (giorni(sv.data) > 90) nota += ". Più vecchio di 90 giorni: reinseriscilo";
+    return { v: v, nota: nota };
+  }
+  function precompila(comp) {
+    var s = leggi(comp.k), R = modello && modello.rapporto_nm;
+    var stima = comp.c.trend && R ? Math.round(comp.c.trend * R.tipico * 100) / 100 : null;
+    if (!s) return { v: "", nota: stima ? "Stimato dal trend (" + eur(comp.c.trend) + " " + segno((R.tipico - 1) * 100) + "): scrivi il minimo NM vero per più precisione" : "Nessun prezzo Cardmarket: scrivi il minimo NM", stima: stima };
+    var a = aggiornaSalvato(s, comp.c.trend);
+    return { v: a.v, nota: a.nota, tipo: s.tipo, stima: stima };
   }
 
   function disegnaComps(c) {
@@ -470,18 +475,19 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
         '<div class="row" style="gap:4px 16px;font-size:13.5px"><a href="' + linkCM(cc) + '" target="_blank" rel="noopener">Cerca su Cardmarket</a><a href="' + linkEbay(cc) + '" target="_blank" rel="noopener">Vendite concluse su eBay</a>' +
         (cc.trend ? '<span class="muted num">Riferimento ' + eur(cc.trend) + '</span>' : '') + '<span class="muted" id="n-' + i + '">' + esc(p.nota) + '</span></div></div>' +
         '<div class="nums">' +
-          '<div class="field"><label for="p-' + i + '">Minimo NM di questa carta (€)</label><input id="p-' + i + '" class="input num" type="number" min="0" step="0.01" placeholder="—" value="' + p.v + '"><span class="muted num" style="font-size:12.5px" id="f-' + i + '"></span></div>' +
+          '<div class="field"><label for="p-' + i + '">Minimo NM di questa carta (€)</label><input id="p-' + i + '" class="input num" type="number" min="0" step="0.01" placeholder="' + (p.stima ? String(p.stima).replace(".", ",") : "—") + '" value="' + p.v + '"><span class="muted num" style="font-size:12.5px" id="f-' + i + '"></span></div>' +
           '<div class="field"><span class="lab" title="Quanto vale la tua carta rispetto a questa, secondo il modello">Rettifica</span><span class="out num" style="font-size:15px">' + (comp.fattore ? "× " + comp.fattore.toFixed(2).replace(".", ",") : "—") + '</span></div>' +
           '<div class="field" style="text-align:right"><span class="lab">Equivale per la tua carta</span><b class="out adj num" id="a-' + i + '">—</b><span class="muted num" style="font-size:12.5px" id="b-' + i + '"></span></div>' +
         '</div>';
       box.appendChild(d);
       var inp = d.querySelector("input");
       inp.dataset.tipo = p.tipo || "";
+      inp.dataset.stima = p.stima || "";
       inp.addEventListener("change", function () {
         var v = parseFloat(inp.value);
         scrivi(comp.k, !isNaN(v) && v > 0 ? { min: v, trend: cc.trend, data: new Date().toISOString(), tipo: $("tipo").value } : null);
         inp.dataset.tipo = $("tipo").value;
-        $("n-" + i).textContent = !isNaN(v) && v > 0 ? "Salvato su questo dispositivo" : "";
+        $("n-" + i).textContent = !isNaN(v) && v > 0 ? "Salvato su questo dispositivo" : (p.stima ? "Stimato dal trend: scrivi il minimo NM vero per più precisione" : "");
       });
       inp.addEventListener("input", recalc);
     });
@@ -490,88 +496,84 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
   $("tuo").addEventListener("change", function () {
     if (!attuale) return;
     var v = parseFloat($("tuo").value);
-    scrivi(attuale.k, !isNaN(v) && v > 0 ? { min: v, trend: attuale.trend, data: new Date().toISOString(), tipo: $("tipo").value, proprio: true } : null);
+    scrivi(attuale.k, !isNaN(v) && v > 0 ? { min: v, trend: attuale.trend, data: new Date().toISOString(), tipo: $("tipo").value } : null);
+    $("nota-tuo").textContent = !isNaN(v) && v > 0 ? "Salvato su questo dispositivo" : "";
   });
   $("tipo").addEventListener("change", recalc);
 
   function mediana(a) { var s = a.slice().sort(function (x, y) { return x - y; }), n = s.length; return n ? (n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2) : null; }
 
+  function percentile(g, G) {
+    /* posizione approssimata dello scarto g tra tutte le carte del pool (10°, 25°, 50°, 75°, 90° percentile) */
+    var xs = [G.q10, G.q25, G.q50, G.q75, G.q90], ps = [10, 25, 50, 75, 90];
+    if (g <= xs[0]) return 5; if (g >= xs[4]) return 95;
+    for (var i = 0; i < 4; i++) if (g <= xs[i + 1]) return ps[i] + (g - xs[i]) / (xs[i + 1] - xs[i]) * (ps[i + 1] - ps[i]);
+    return 50;
+  }
+
   function recalc() {
     var c = attuale; if (!c) return;
     var banda = $("tipo").value === "cm" ? BAND : 0;   /* le vendite eBay concluse non ricevono la fascia (4.5c) */
-    var mids = [], lows = [], highs = [], tipi = {};
+    var G = modello && modello.gap_relativo;
+    var adj = [], nStime = 0, tipi = {};
     c.comps.forEach(function (comp, i) {
-      var inp = $("p-" + i), v = parseFloat(inp.value);
+      var inp = $("p-" + i), v = parseFloat(inp.value), stimato = false;
+      if ((isNaN(v) || v <= 0) && inp.dataset.stima) { v = parseFloat(inp.dataset.stima); stimato = true; }
       if (!isNaN(v) && v > 0 && comp.fattore) {
-        var lo = v * comp.fattore, hi = v * (1 + banda) * comp.fattore, m = (lo + hi) / 2;
-        mids.push(m); lows.push(lo); highs.push(hi);
-        if (inp.dataset.tipo) tipi[inp.dataset.tipo] = 1;
-        $("f-" + i).textContent = banda ? "Fascia " + eur(v) + "–" + eur(v * (1 + banda)) : "";
+        var centro = stimato ? v : v * (1 + banda / 2);   /* la stima dal trend e' gia' un punto centrale */
+        var m = centro * comp.fattore;
+        adj.push(m); if (stimato) nStime++;
+        if (!stimato && inp.dataset.tipo) tipi[inp.dataset.tipo] = 1;
+        $("f-" + i).textContent = stimato ? "stima" : (banda ? "Fascia " + eur(v) + "–" + eur(v * (1 + banda)) : "");
         $("a-" + i).textContent = eur(m);
-        $("b-" + i).textContent = eur(lo) + "–" + eur(hi);
+        $("b-" + i).textContent = "";
       } else { $("f-" + i).textContent = ""; $("a-" + i).textContent = "—"; $("b-" + i).textContent = ""; }
     });
-    /* carte simili: controllo (o prezzo equo per le carte senza prezzo Cardmarket) */
-    var n = mids.length, medC = mediana(mids);
-    var spreadC = n ? Math.max(Math.max.apply(null, mids) / medC - 1, 1 - Math.min.apply(null, mids) / medC) : 1;
-    var loC = n ? Math.min.apply(null, lows) : null, hiC = n ? Math.max.apply(null, highs) : null;
-    var simOk = n >= 3 && spreadC <= 0.15;
+    var n = adj.length, grezzo = mediana(adj);
+    var ok = n >= 3 && G;
+    var valore = ok ? grezzo * Math.exp(G.q50) : null;            /* calibrato: nel pool una carta vale in media exp(q50) volte la mediana grezza delle simili */
+    var lo = ok ? grezzo * Math.exp(G.q25) : null, hi = ok ? grezzo * Math.exp(G.q75) : null;
+    var tuo = parseFloat($("tuo").value), hasTuo = !isNaN(tuo) && tuo > 0;
+    var centroTuo = hasTuo ? tuo * (1 + banda / 2) : null;
+    var diff = ok && hasTuo ? (centroTuo / valore - 1) * 100 : null;
 
-    /* prezzo equo NM (CLAUDE.md, riquadro della sezione 6): trend della carta x rapporto NM/trend */
-    var R = modello && modello.rapporto_nm, fair = null, lo = null, hi = null, fonte = "", modo = "";
-    if (c.trend && R) {
-      var s = c.nm_salvato || null, loc = leggi(c.k);
-      if (loc && !loc.proprio && loc.trend && (!s || new Date(loc.data) > new Date(s.data))) s = loc;
-      if (s && s.trend && giorni(s.data) <= 90) {
-        var f = c.trend / s.trend;
-        lo = s.min * f; hi = s.min * (1 + BAND) * f; fair = (lo + hi) / 2; modo = "proprio";
-        fonte = "Dal trend della carta (" + eur(c.trend) + ") e dal tuo minimo NM del " + new Date(s.data).toLocaleDateString("it-IT") + " (" + eur(s.min) + ")";
-      } else {
-        fair = c.trend * R.tipico; lo = c.trend * R.p10; hi = c.trend * R.p90; modo = "tipico";
-        fonte = "Dal trend della carta (" + eur(c.trend) + "), corretto con il rapporto tipico NM/trend delle tue carte (" + segno((R.tipico - 1) * 100) + ", margine circa ±" + Math.round(R.errore_tipico * 100) + "%)";
-      }
-    } else if (simOk) {
-      fair = medC; lo = loC; hi = hiC; modo = "simili";
-      fonte = "Carta senza prezzo Cardmarket: mediana di " + n + " carte simili con i tuoi prezzi NM, rettificate";
-    }
-    var ok = fair !== null;
-    var your = parseFloat($("tuo").value), hasYour = !isNaN(your) && your > 0;
-    var diff = ok && hasYour ? (your / fair - 1) * 100 : null;
-
-    $("fair").textContent = ok ? eur(fair) : "—";
-    $("npriced").textContent = ok ? fonte : (c.trend ? "" : "Carta senza prezzo Cardmarket: servono almeno 3 carte simili con il tuo prezzo NM");
-    $("range").textContent = ok ? "Intervallo " + eur(lo) + " – " + eur(hi) : "Intervallo non disponibile";
-    $("yourtxt").textContent = hasYour ? eur(your) : "—";
+    $("fair").textContent = ok ? eur(valore) : "—";
+    $("npriced").textContent = ok ? "Mediana di " + n + " carte simili rettificate" + (nStime ? " (" + nStime + " stimate dal trend)" : "") : "Servono almeno 3 carte simili con un prezzo NM";
+    $("range").textContent = ok ? "Fascia \"in linea\" " + eur(lo) + " – " + eur(hi) : "Fascia non disponibile";
+    $("yourtxt").textContent = hasTuo ? eur(centroTuo) : "—";
     var pv = $("pv");
-    if (!ok || !hasYour) { pv.textContent = ok ? "Inserisci la tua offerta" : "Dati insufficienti"; pv.className = "verdict neutral"; }
-    else if (your < lo) { pv.textContent = "↓ Sottovalutata"; pv.className = "verdict ok"; }
-    else if (your > hi) { pv.textContent = "↑ Sopravvalutata"; pv.className = "verdict no"; }
+    if (!ok || !hasTuo) { pv.textContent = ok ? "Scrivi il minimo NM" : "Dati insufficienti"; pv.className = "verdict neutral"; }
+    else if (centroTuo < lo) { pv.textContent = "↓ Sottovalutata"; pv.className = "verdict ok"; }
+    else if (centroTuo > hi) { pv.textContent = "↑ Sopravvalutata"; pv.className = "verdict no"; }
     else { pv.textContent = "= In linea"; pv.className = "verdict neutral"; }
-    $("pdiff").textContent = diff === null ? "" : "La tua offerta è il " + Math.abs(Math.round(diff)) + "% " + (diff < 0 ? "sotto" : "sopra") + " il prezzo equo";
+    var pc = ok && hasTuo ? percentile(Math.log(centroTuo / grezzo), G) : null;
+    $("pdiff").textContent = diff === null ? "" : "Costa il " + Math.abs(Math.round(diff)) + "% " + (diff < 0 ? "in meno" : "in più") + " del valore delle simili. " +
+      (pc < 50 ? "È più economica, rispetto alle sue simili, di circa il " + Math.round(100 - pc) + "% delle carte." : "È più cara, rispetto alle sue simili, di circa il " + Math.round(pc) + "% delle carte.");
 
-    /* barra dell'intervallo: fascia, tacca del prezzo equo, pallino della tua offerta */
-    var pts = [lo, hi, hasYour ? your : null].filter(function (v) { return v !== null && !isNaN(v); });
-    var sMin = pts.length ? Math.min.apply(null, pts) * 0.85 : 0, sMax = pts.length ? Math.max.apply(null, pts) * 1.1 : 1;
+    /* barra: fascia "in linea", tacca del valore, pallino del tuo minimo NM */
+    var pts = [lo, hi, hasTuo ? centroTuo : null].filter(function (v) { return v !== null && !isNaN(v); });
+    var sMin = pts.length ? Math.min.apply(null, pts) * 0.8 : 0, sMax = pts.length ? Math.max.apply(null, pts) * 1.15 : 1;
     var pos = function (v) { return Math.max(0, Math.min(100, (v - sMin) / (sMax - sMin) * 100)); };
     $("band").style.display = $("tick").style.display = ok ? "" : "none";
-    $("you").style.display = ok && hasYour ? "" : "none";
-    if (ok) { $("band").style.left = pos(lo) + "%"; $("band").style.width = (pos(hi) - pos(lo)) + "%"; $("tick").style.left = pos(fair) + "%"; if (hasYour) $("you").style.left = pos(your) + "%"; }
-    $("rangebar").setAttribute("aria-label", ok ? "Intervallo da " + eur(lo) + " a " + eur(hi) + ", prezzo equo " + eur(fair) + (hasYour ? ", la tua offerta " + eur(your) : "") : "Intervallo non disponibile");
+    $("you").style.display = ok && hasTuo ? "" : "none";
+    if (ok) { $("band").style.left = pos(lo) + "%"; $("band").style.width = (pos(hi) - pos(lo)) + "%"; $("tick").style.left = pos(valore) + "%"; if (hasTuo) $("you").style.left = pos(centroTuo) + "%"; }
+    $("rangebar").setAttribute("aria-label", ok ? "Fascia in linea da " + eur(lo) + " a " + eur(hi) + ", valore " + eur(valore) + (hasTuo ? ", il tuo minimo NM " + eur(centroTuo) : "") : "Fascia non disponibile");
 
-    /* valore relativo: quanto costa rispetto al valore delle sue caratteristiche (modello) */
-    $("seconda").textContent = c.trend && c.stima ? "Rispetto alle carte simili: " + segno((c.trend / c.stima - 1) * 100) + " (valore delle caratteristiche " + eur(c.stima) + ")" : "";
+    /* seconda opinione: il modello (valore delle caratteristiche), portato in NM con il rapporto tipico */
+    var R = modello && modello.rapporto_nm;
+    $("seconda").textContent = c.stima && R ? "Seconda opinione del modello: " + eur(c.stima * R.tipico) + (hasTuo ? " (" + segno((centroTuo / (c.stima * R.tipico) - 1) * 100) + ")" : "") : "";
 
-    var avv = [];
-    if (modo === "tipico") avv.push("Margine ampio perché non hai ancora inserito un minimo NM per questa carta: quando compare tra le carte simili di un'altra valutazione, il suo prezzo NM resta salvato e la stima diventa più precisa.");
-    if (modo !== "simili" && ok && n >= 3 && Math.abs(medC / fair - 1) > 0.30) avv.push("Le carte simili (mediana rettificata " + eur(medC) + ") differiscono di oltre il 30% dal prezzo equo: controlla i prezzi o le caratteristiche.");
-    if (!c.nel_modello && c.trend && c.trend < 3) avv.push("Carta sotto la soglia del modello (3 €): il valore relativo è meno affidabile.");
+    var avv = [], T = modello && modello.test30;
+    if (T) avv.push("Validazione (test a 30 giorni, " + T.carte.toLocaleString("it-IT") + " carte): le carte più sottovalutate rispetto alle simili sono salite in media del " + segno(T.sottovalutate_media_pct) + " contro " + segno(T.mercato_media_pct) + " del mercato, ma la crescita tipica è stata " + segno(T.sottovalutate_mediana_pct) + ". Segnale debole e non validato: un indizio, non una previsione.");
+    if (nStime >= Math.max(3, n - 1) && ok) avv.push("Quasi tutte le carte simili sono stime dal trend: scrivi il minimo NM vero di 2–3 di loro per un confronto più preciso.");
     if (Object.keys(tipi).length > 1) avv.push("Stai mescolando tipi di prezzo diversi (Cardmarket ed eBay) nella stessa valutazione.");
+    if (!c.nel_modello && c.trend && c.trend < 3) avv.push("Carta sotto la soglia del modello (3 €): rettifiche meno affidabili.");
     $("avviso-modello").hidden = !avv.length;
     $("avviso-modello").textContent = avv.join(" ");
 
     var w = $("warn");
-    w.hidden = modo !== "" || !!c.trend;
-    w.textContent = n < 3 ? "Carta senza prezzo Cardmarket: servono almeno 3 carte simili con prezzo NM. Inserisci altri prezzi qui sopra." : "Le carte simili danno prezzi troppo diversi tra loro (oltre ±15% dalla mediana). Controlla i prezzi inseriti o aggiungi altre carte.";
+    w.hidden = ok;
+    w.textContent = "Servono almeno 3 carte simili con un prezzo NM (tuo o stimato dal trend). Scrivi il minimo NM di altre carte simili qui sopra.";
   }
 
   /* ---------- pagina "Il modello" ---------- */
