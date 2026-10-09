@@ -148,6 +148,19 @@ INDIZI_TCGPLAYER = [
 ]
 
 
+BULBAPEDIA = None
+
+
+def rilascio_bulbapedia(riga):
+    """Categoria dalla lista di Bulbapedia (tutte le promo, qualunque prezzo): None se assente."""
+    global BULBAPEDIA
+    if BULBAPEDIA is None:
+        f = TAB / "rilasci_bulbapedia.csv"
+        t = pd.read_csv(f, dtype=str) if f.exists() else pd.DataFrame(columns=["set_id", "num", "rilascio"])
+        BULBAPEDIA = dict(zip(zip(t.set_id, t.num), t.rilascio))
+    return BULBAPEDIA.get((str(riga.set_id), norm_numero(riga.numero)))
+
+
 def rilascio(riga):
     if riga.famiglia == "carta da busta":
         return "busta"
@@ -156,6 +169,10 @@ def rilascio(riga):
     if "McDonald" in str(riga.set_nome):
         return "altro"
     timbro = riga.variante_timbro
+    if mancante(timbro):
+        da_bulba = rilascio_bulbapedia(riga)
+        if da_bulba and da_bulba != "da classificare":
+            return da_bulba
     if not mancante(timbro):
         for chiave, valore in ORDINE_TIMBRI:
             if chiave in str(timbro):
@@ -235,7 +252,8 @@ def costruisci(settimana):
         m = m[m.rilascio.str.strip() != ""]
         corr = dict(zip(m.lingua + "|" + m.id, m.rilascio.str.strip()))
         chiavi = df.lingua.astype(str) + "|" + df.id.astype(str)
-        trovate = chiavi.isin(corr) & (df.famiglia != "carta da busta") & ~df.stamped
+        # le classificazioni a mano valgono solo dove Bulbapedia non ha la carta
+        trovate = chiavi.isin(corr) & (df.famiglia != "carta da busta") & ~df.stamped & (df.rilascio == "da classificare")
         df.loc[trovate, "rilascio_scheda"] = chiavi[trovate].map(corr)
         print(f"Rilasci corretti a mano: {int(trovate.sum())} varianti")
 
