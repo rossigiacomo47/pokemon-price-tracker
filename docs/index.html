@@ -274,7 +274,7 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
   var $ = function (id) { return document.getElementById(id); };
   var eur = function (n) { return (n >= 100 ? Math.round(n).toLocaleString("it-IT") : n.toLocaleString("it-IT", { maximumFractionDigits: 2, minimumFractionDigits: n < 10 ? 2 : 0 })) + " €"; };
   var esc = function (s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;"); };
-  var norm = function (s) { return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); };
+  var norm = function (s) { return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/['’]/g, ""); };
   var oggi = new Date();
   var indice = [], cache = {}, attuale = null, modello = null;
 
