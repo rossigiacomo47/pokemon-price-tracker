@@ -333,13 +333,16 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
     var i = pezzi.findIndex(function (t) { return /\d/.test(t); });
     var nome = i >= 0 ? pezzi.slice(0, i) : pezzi;
     while (nome.length > 1 && /^(SV|SM|SWSH|S|M)$/.test(nome[nome.length - 1])) nome.pop();   /* prefissi dei codici promo, es. SV-P062 */
-    var num = i >= 0 ? numeroCarta(pezzi[pezzi.length - 1]) : null;
-    return { set: m[1].replace(/-/g, " "), nome: nome.join(" ").replace(/\bGold Star\b/i, "☆"), num: num };
+    var codice = i >= 0 ? pezzi[pezzi.length - 1].replace(/\D/g, "") : "";   /* es. "sv8132" -> "8132": set + numero */
+    return { set: m[1].replace(/-/g, " "), nome: nome.join(" ").replace(/\bGold Star\b/i, "☆"), codice: codice };
   }
   function cercaDaLink(l) {
     var parole = norm(l.nome).split(/\s+/).filter(Boolean);
     var stessoNome = indice.filter(function (r) { return parole.every(function (p) { return r.testo.indexOf(p) >= 0; }); });
-    var esatte = l.num === null ? [] : stessoNome.filter(function (r) { return numeroCarta(r.numero) === l.num; });
+    /* la carta giusta e' quella il cui numero chiude il codice del link (vince la corrispondenza piu' lunga) */
+    var lung = function (r) { var n = numeroCarta(r.numero); return n !== null && l.codice && l.codice.replace(/^0+/, "").slice(-String(n).length) === String(n) && l.codice.length >= String(n).length ? String(n).length : 0; };
+    var best = Math.max.apply(null, [0].concat(stessoNome.map(lung)));
+    var esatte = best ? stessoNome.filter(function (r) { return lung(r) === best; }) : [];
     var ordina = function (x) { return x.sort(function (a, b) { return (a.perimetro === "dentro" ? 0 : 1) - (b.perimetro === "dentro" ? 0 : 1) || (b.trend || 0) - (a.trend || 0); }); };
     return { esatte: ordina(esatte).slice(0, 12), simili: ordina(stessoNome).slice(0, 12) };
   }
@@ -369,7 +372,9 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
       if (!l) { mostraCandidati([], q); return; }
       var r = cercaDaLink(l);
       if (r.esatte.length) { mostraCandidati(r.esatte, l.nome); if (r.esatte.length === 1) apri(r.esatte[0]); return; }
-      mostraCandidati(r.simili, l.nome, "Questa carta non è nella fotografia del mercato: probabilmente è fuori dal perimetro del modello (per esempio carte prima del 2017, Allenatori o set non coperti)." + (r.simili.length ? " Carte con lo stesso nome:" : ""));
+      mostraCandidati(r.simili, l.nome, r.simili.length
+        ? "Non trovo una carta con lo stesso nome e numero del link. Può essere numerata in modo diverso, oppure essere fuori dal perimetro del modello (per esempio carte prima del 2017). Carte con lo stesso nome:"
+        : "Questa carta non è nella fotografia del mercato: probabilmente è fuori dal perimetro del modello (per esempio carte prima del 2017, Allenatori o set non coperti).");
       return;
     }
     mostraCandidati(cerca(q), q);
