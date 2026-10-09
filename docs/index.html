@@ -547,8 +547,9 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
     else if (centroTuo > hi) { pv.textContent = "↑ Sopravvalutata"; pv.className = "verdict no"; }
     else { pv.textContent = "= In linea"; pv.className = "verdict neutral"; }
     var pc = ok && hasTuo ? percentile(Math.log(centroTuo / grezzo), G) : null;
-    $("pdiff").textContent = diff === null ? "" : "Costa il " + Math.abs(Math.round(diff)) + "% " + (diff < 0 ? "in meno" : "in più") + " del valore delle simili. " +
-      (pc < 50 ? "È più economica, rispetto alle sue simili, di circa il " + Math.round(100 - pc) + "% delle carte." : "È più cara, rispetto alle sue simili, di circa il " + Math.round(pc) + "% delle carte.");
+    var art = function (x) { var t = String(Math.abs(Math.round(x))); return (t === "1" || t === "11" || t.charAt(0) === "8" ? "l'" : "il ") + t; };
+    $("pdiff").textContent = diff === null ? "" : "Costa " + art(diff) + "% " + (diff < 0 ? "in meno" : "in più") + " del valore delle simili. " +
+      (pc < 50 ? "Rispetto alle loro simili, è più economica di circa " + art(100 - pc) + "% delle carte." : "Rispetto alle loro simili, è più cara di circa " + art(pc) + "% delle carte.");
 
     /* barra: fascia "in linea", tacca del valore, pallino del tuo minimo NM */
     var pts = [lo, hi, hasTuo ? centroTuo : null].filter(function (v) { return v !== null && !isNaN(v); });

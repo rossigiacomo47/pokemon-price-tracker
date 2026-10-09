@@ -14,8 +14,8 @@ Pagina: https://rossigiacomo47.github.io/pokemon-price-tracker/ (provvisoria, no
 | 1 · Fotografia del mercato | Prima fotografia salvata l'8/10/2026 (`data/mercato/2026-W41.parquet`). Decisioni D3–D6 prese: soglia 3 €, prezzi ambigui divisi normale/foil, stamped dentro, modello unico en+ja. Perimetro provvisorio: 3.173 varianti con prezzo ≥ 3 € |
 | 2 · Online e raccolta automatica | Repository pubblico, pagina su GitHub Pages, workflow settimanale (lunedì 11:00 UTC) provato a mano l'8/10/2026. Da verificare: prima esecuzione automatica lunedì 12/10 (2026-W42) |
 | 3 · Caratteristiche | **Bozza** (notte del 9/10): 18 variabili, tabelle in `tabelle/`, catalogo giapponese da TCGCSV. Da approvare |
-| 4 · Modello del prezzo equo | **Bozza**: misura il valore relativo ("+41% rispetto alle simili"); prezzo equo NM dal trend della carta x rapporto NM/trend (decisione del 9/10, CLAUDE.md 2.4) |
-| 5 · Comparabili e scheda | **Bozza online** su Pages: ricerca, scheda, comparabili rettificati, prezzi NM. Da rifinire |
+| 4 · Modello del prezzo equo | **Bozza**: seconda opinione del valore relativo. Test a 30 giorni: segnale debole ma nella direzione giusta (`riepiloghi/test_30giorni_2026-W41.md`) |
+| 5 · Comparabili e scheda | **Bozza online**: inserisci il minimo NM di oggi, la scheda dice se la carta è sottovalutata, in linea o sopravvalutata rispetto alle simili (CLAUDE.md 2.5) |
 | 6–9 | Da iniziare |
 
 Riepilogo del blocco 1: [riepiloghi/blocco1_2026-W41.md](riepiloghi/blocco1_2026-W41.md)
