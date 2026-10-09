@@ -43,6 +43,7 @@ CATEGORICHE = {
     "era": "Scarlatto e Violetto",
     "fascia_eta": "12-24",
     "tipo_set": "principale",
+    "set_cat": "altro",
     "rilascio": "busta",
     "esclusiva": "entrambe",
     "illustratore_cat": "altro",

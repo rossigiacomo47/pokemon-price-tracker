@@ -260,6 +260,10 @@ def costruisci(settimana):
     df["illustratore_cat"] = np.where(df.illustratore.isin(ill[ill >= 30].index), df.illustratore,
                                       np.where(df.illustratore.map(mancante), "sconosciuto", "altro"))
 
+    # espansione (decisione del 9/10/2026): i set con almeno 15 carte nel modello come categorie proprie
+    n_set = tr.groupby("set_id").size()
+    df["set_cat"] = np.where(df.set_id.isin(n_set[n_set >= 15].index), df.set_id, "altro")
+
     df["esclusiva"] = esclusiva_linguistica(df, sets)
     return df
 
@@ -344,6 +348,7 @@ VARIABILI = [
     ("era", "8. Era"),
     ("fascia_eta", "9. Età del set (mesi)"),
     ("tipo_set", "10. Tipo di set"),
+    ("set_cat", "10b. Espansione (set con almeno 15 carte nel modello, altri = altro)"),
     ("rilascio", "11. Modalità di rilascio"),
     ("n_stessa_rarita_set", "12. Diluizione (carte della stessa rarità nel set; nel modello in logaritmo)"),
     ("stamped", "13. Stamped"),

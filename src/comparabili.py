@@ -48,6 +48,7 @@ SOMIGLIANZA = {
     "finitura_holo": (None, "cat"),
     "rilascio": ("rilascio", "cat"),
     "tipo_set": ("tipo_set", "cat"),
+    "set_id": ("set_cat", "cat"),
     "stamped": ("stamped", "cat"),
     "esclusiva": ("esclusiva", "cat"),
     "standard": ("standard", "cat"),
@@ -67,7 +68,9 @@ ETICHETTE = {
     "illustratore": lambda v: f"illustratore {v}", "lingua": lambda v: "giapponese" if v == "ja" else "internazionale",
     "iconicita": lambda v: "iconicità " + {"alto": "alta", "medio": "media", "basso": "bassa"}.get(v, str(v)), "finitura_holo": lambda v: "holo" if v else "non holo",
     "rilascio": lambda v: f"rilascio {v}", "tipo_set": lambda v: f"set {v}", "stamped": lambda v: "stamped" if v else "non stamped",
-    "esclusiva": lambda v: f"esclusiva: {v}", "standard": lambda v: "in Standard" if v else "fuori Standard",
+    "esclusiva": lambda v: {"entrambe": "presente in inglese e giapponese", "solo giapponese": "solo in giapponese",
+                            "solo internazionale": "solo in inglese", "incerta": "esclusiva da verificare"}.get(v, str(v)),
+    "set_id": lambda v: f"set {v}", "standard": lambda v: "in Standard" if v else "fuori Standard",
     "alternate_art": lambda v: "alternate art" if v else "non alternate art", "era": lambda v: f"era {v}",
 }
 LINGUA_CM = {"en": 1, "ja": 7}
@@ -167,20 +170,39 @@ def main():
     per = per[(per.variante_n == 0) | per.stamped | per.versione.notna()].reset_index(drop=True)
     print("carte del perimetro (schede):", len(per))
 
+    # --- spread tra lingue (decisione del 9/10/2026): coppie stessa specie + illustratore + rarita'
+    ill = per.illustratore.astype(str).str.lower().str.replace(r"[^a-z0-9]", "", regex=True)
+    per["chiave_gemella"] = per.specie_id.astype("Int64").astype(str) + "|" + ill + "|" + per.rarita_armonizzata.astype(str)
+    validi = per[per.prezzo_rif_eur.notna() & ~per.stamped & per.illustratore.notna() & per.specie_id.notna() & per.versione.isna()]
+    g = validi.groupby(["chiave_gemella", "lingua"]).prezzo_rif_eur.median().unstack().dropna()
+    g["rap"] = g.ja / g.en
+    g["rar"] = g.index.str.split("|").str[2]
+    spread = {"tutte": float(g.rap.median()), "coppie": int(len(g))}
+    for rar_, sotto in g.groupby("rar"):
+        if len(sotto) >= 8:
+            spread[rar_] = float(sotto.rap.median())
+    print("spread giapponese/inglese:", {k: round(v, 2) for k, v in spread.items()})
+    b_ja = next((p["peso_log"] for p in mod["pesi"] if p["caratteristica"] == "lingua=ja"), 0.0)
+    gemelle = {}
+    for r in validi.itertuples():
+        gemelle.setdefault(r.chiave_gemella, {}).setdefault(r.lingua, []).append(r)
+
     w = pesi_somiglianza(mod["importanza_variabili_punti_%"])
     wtot = sum(w.values())
     vals = {v: per[v].astype(str).values for v, (_, t) in SOMIGLIANZA.items() if t == "cat"}
     nums = {v: per[v].astype(float).fillna(per[v].astype(float).median()).values for v, (_, t) in SOMIGLIANZA.items() if t == "num"}
     rng = {v: (np.nanmax(a) - np.nanmin(a)) or 1.0 for v, a in nums.items()}
-    fam, rar, ico, ril = (per[c].astype(str).values for c in ("famiglia", "rarita_armonizzata", "iconicita", "rilascio"))
+    fam, rar, ico, ril, lng = (per[c].astype(str).values for c in ("famiglia", "rarita_armonizzata", "iconicita", "rilascio", "lingua"))
     lin = per.lineare_log.values
     ids = per.id.values
 
     schede = {}
     for i in range(len(per)):
         base_mask = fam == fam[i]
-        filtro = base_mask & ((rar == rar[i]) if fam[i] == "carta da busta" else (ril == ril[i]))
+        filtro_tutte = base_mask & ((rar == rar[i]) if fam[i] == "carta da busta" else (ril == ril[i]))
+        filtro = filtro_tutte & (lng == lng[i])          # stessa lingua: obbligatoria
         allentato = False
+        altra_lingua = False
         cand = filtro & (ico == ico[i]) & (ids != ids[i])
         sim = np.zeros(len(per))
         for v in vals:
@@ -191,6 +213,10 @@ def main():
         if (sim[cand] >= SOGLIA_SIM).sum() < 3:
             cand = filtro & (ids != ids[i])
             allentato = True
+        if cand.sum() < 3:
+            # pochi comparabili nella stessa lingua: anche l'altra lingua, convertita con lo spread misurato
+            cand = filtro_tutte & (ids != ids[i])
+            altra_lingua = True
         idx = np.where(cand)[0]
         idx = idx[np.argsort(-sim[idx])]
         scelti, visti = [], set()
@@ -204,17 +230,30 @@ def main():
         comps = []
         for j in scelti:
             uguali, diverse = [], []
-            for v in ("pokemon", "rarita_armonizzata", "rilascio", "iconicita", "lingua", "esclusiva", "finitura_holo",
+            for v in ("pokemon", "set_id", "rarita_armonizzata", "rilascio", "iconicita", "lingua", "esclusiva", "finitura_holo",
                       "stamped", "meccanica", "alternate_art", "era"):
                 a, b = per.at[i, v], per.at[j, v]
                 if pd.isna(a) and pd.isna(b):
                     continue
                 (uguali if str(a) == str(b) else diverse).append(ETICHETTE[v](per.at[j, v]))
             fattore = float(np.exp(lin[i] - lin[j])) if not (np.isnan(lin[i]) or np.isnan(lin[j])) else None
+            convertita = lng[j] != lng[i]
+            if fattore and convertita:
+                # il modello converte la lingua con un coefficiente medio: lo sostituisco con lo spread misurato
+                s_rar = spread.get(rar[i], spread["tutte"])
+                fattore = fattore * (np.exp(b_ja) / s_rar if lng[i] == "en" else s_rar / np.exp(b_ja))
             comps.append({"k": per.at[j, "k"], "sim": int(round(sim[j])),
-                          "fattore": round(fattore, 3) if fattore else None,
+                          "fattore": round(fattore, 3) if fattore else None, "convertita": bool(convertita),
                           "uguali": uguali[:5], "diverse": diverse[:4]})
-        schede[per.at[i, "k"]] = {"comps": comps, "allentato": allentato}
+        gem = None
+        altra = "ja" if lng[i] == "en" else "en"
+        cand_g = gemelle.get(per.at[i, "chiave_gemella"], {}).get(altra, [])
+        if cand_g and not per.at[i, "stamped"]:
+            gr = cand_g[0]
+            gem = {"nome": str(gr.nome), "set": str(gr.set_nome), "numero": str(gr.numero), "lingua": altra,
+                   "trend": round(float(gr.prezzo_rif_eur), 2), "k": gr.k,
+                   "spread_tipico": round(spread.get(rar[i], spread["tutte"]), 3)}
+        schede[per.at[i, "k"]] = {"comps": comps, "allentato": allentato, "altra_lingua": altra_lingua, "gemella": gem}
 
     # --- dati di ogni carta
     def info(r):
@@ -313,6 +352,7 @@ def main():
         "controllo": cc[["nome", "set", "lingua", "nm_offerta_min_eur"]].to_dict("records"),
         "fascia_nm": [0, 5],
         "rapporto_nm": rapporto,
+        "spread_lingue": spread,
         "gap_relativo": gap_relativo,
     }
     test = RADICE / "docs" / "data" / "test30.json"

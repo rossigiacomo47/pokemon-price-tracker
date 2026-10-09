@@ -217,6 +217,7 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
     </div>
     <p class="note" id="spiega-simili">Ogni riga è una <b>carta simile</b>, non la tua. La casella contiene il minimo NM <b>di quella carta</b> (in grigio la stima dal trend, se non l'hai scritto tu). La rettifica lo converte nel valore equivalente per la tua carta (es. 210 € × 1,55 ≈ 325 €). La mediana di questi valori è il "valore secondo le carte simili".</p>
     <p class="note" id="nota-allentato" hidden></p>
+    <p class="note" id="gemella" hidden></p>
     <div id="comps"></div>
     <p class="alert" id="warn" role="status" hidden></p>
     <div class="row" style="justify-content:space-between;gap:16px;padding-top:8px">
@@ -423,7 +424,7 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
     if (c.rilascio && c.rilascio !== "busta") t.push("<li>" + esc(c.rilascio === "da classificare" ? "Rilascio da classificare" : c.rilascio) + "</li>");
     t.push("<li>" + esc(c.rarita) + "</li>");
     t.push("<li>Iconicità " + esc({ alto: "alta", medio: "media", basso: "bassa" }[c.iconicita] || c.iconicita) + "</li>");
-    if (c.esclusiva && c.esclusiva !== "entrambe") t.push("<li>" + esc(c.esclusiva === "incerta" ? "Esclusiva da verificare" : c.esclusiva.charAt(0).toUpperCase() + c.esclusiva.slice(1)) + "</li>");
+    t.push("<li>" + esc({ "entrambe": "In inglese e giapponese", "solo giapponese": "Solo in giapponese", "solo internazionale": "Solo in inglese", "incerta": "Esclusiva da verificare" }[c.esclusiva] || c.esclusiva) + "</li>");
     if (c.stamped) t.push("<li>Stamped" + (c.timbro ? " (" + esc(c.timbro) + ")" : "") + "</li>");
     if (c.alternate_art) t.push("<li>Alternate art</li>");
     if (c.meccanica && c.meccanica !== "nessuna") t.push("<li>" + esc(c.meccanica) + "</li>");
@@ -431,9 +432,22 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
     $("tags").innerHTML = t.join("");
     $("rif").textContent = c.trend ? "Prezzo di riferimento Cardmarket: " + eur(c.trend) + " (condizione e lingua non filtrate)" : (c.fonte === "catalogo TCGCSV" ? "Nessun prezzo Cardmarket disponibile: carta dal catalogo TCGplayer." : "Nessun prezzo Cardmarket disponibile.");
     $("andamento").textContent = c.trend && c.avg30 ? "Ultimo mese: trend " + eur(c.trend) + " contro media a 30 giorni " + eur(c.avg30) + " (" + segno((c.trend / c.avg30 - 1) * 100) + ")." : "";
-    var n = $("nota-allentato");
-    n.hidden = !c.allentato;
-    n.textContent = c.allentato ? "Poche carte simili con lo stesso livello di iconicità: il filtro sull'iconicità è stato allentato. Famiglia e " + (c.famiglia === "carta da busta" ? "rarità" : "modalità di rilascio") + " restano uguali." : "";
+    var n = $("nota-allentato"), note = [];
+    if (c.allentato) note.push("Poche carte simili con lo stesso livello di iconicità: il filtro sull'iconicità è stato allentato. Famiglia e " + (c.famiglia === "carta da busta" ? "rarità" : "modalità di rilascio") + " restano uguali.");
+    if (c.altra_lingua) note.push("Meno di 3 carte simili nella stessa lingua: sono state aggiunte carte dell'altra lingua, convertite con lo spread misurato tra inglese e giapponese.");
+    n.hidden = !note.length;
+    n.textContent = note.join(" ");
+    var gm = c.gemella, R = modello && modello.rapporto_nm;
+    if (gm && c.trend) {
+      var rap = c.lingua === "ja" ? c.trend / gm.trend : gm.trend / c.trend;   /* giapponese / inglese */
+      var tip = gm.spread_tipico;
+      $("gemella").hidden = false;
+      $("gemella").innerHTML = "<b>Stessa illustrazione in " + (gm.lingua === "ja" ? "giapponese" : "inglese") + ":</b> " + esc(gm.set) + ", " + esc(gm.numero) + ", riferimento " + eur(gm.trend) + ". " +
+        "Qui la giapponese costa il " + Math.round(rap * 100) + "% dell'inglese; di solito, per questa rarità, il " + Math.round(tip * 100) + "%. " +
+        (c.lingua === "ja"
+          ? (rap < tip * 0.85 ? "La versione giapponese è <b>relativamente economica</b> rispetto all'inglese." : rap > tip * 1.15 ? "La versione giapponese è <b>relativamente cara</b> rispetto all'inglese." : "Rapporto nella norma.")
+          : (rap > tip * 1.15 ? "La versione inglese è <b>relativamente economica</b> rispetto alla giapponese." : rap < tip * 0.85 ? "La versione inglese è <b>relativamente cara</b> rispetto alla giapponese." : "Rapporto nella norma."));
+    } else { $("gemella").hidden = true; }
     var tuo = leggi(c.k) || c.nm_salvato || null;
     var a = tuo ? aggiornaSalvato(tuo, c.trend) : null;
     $("tuo").value = a ? a.v : "";
@@ -470,7 +484,7 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
       d.className = "comp";
       d.innerHTML =
         (cc.img ? '<img class="ph" src="' + esc(cc.img) + '" alt="" width="48" height="67" loading="lazy">' : '<span class="ph" style="width:48px;height:67px"></span>') +
-        '<div class="info"><div class="row" style="gap:2px 12px;align-items:baseline"><b style="font-size:15.5px">' + esc(cc.nome) + (cc.nome_en && cc.nome_en !== cc.nome ? ' · ' + esc(cc.nome_en) : '') + '</b><span class="muted" style="font-size:13px">' + esc([cc.set, cc.numero, cc.lingua === "ja" ? "giapponese" : "internazionale", cc.anno].filter(Boolean).join(", ")) + '</span><span class="num" style="font-size:13px;font-weight:700">Simile al ' + comp.sim + '%</span></div>' +
+        '<div class="info"><div class="row" style="gap:2px 12px;align-items:baseline"><b style="font-size:15.5px">' + esc(cc.nome) + (cc.nome_en && cc.nome_en !== cc.nome ? ' · ' + esc(cc.nome_en) : '') + '</b><span class="muted" style="font-size:13px">' + esc([cc.set, cc.numero, cc.lingua === "ja" ? "giapponese" : "internazionale", cc.anno].filter(Boolean).join(", ")) + '</span><span class="num" style="font-size:13px;font-weight:700">Simile al ' + comp.sim + '%</span>' + (comp.convertita ? '<span class="chip warn">Altra lingua, convertita</span>' : '') + '</div>' +
         '<ul class="cmp" aria-label="Confronto con la tua carta">' + comp.uguali.map(function (s) { return '<li class="s">✓ ' + esc(s) + '</li>'; }).join("") + comp.diverse.map(function (s) { return '<li class="d">✗ ' + esc(s) + '</li>'; }).join("") + '</ul>' +
         '<div class="row" style="gap:4px 16px;font-size:13.5px"><a href="' + linkCM(cc) + '" target="_blank" rel="noopener">Cerca su Cardmarket</a><a href="' + linkEbay(cc) + '" target="_blank" rel="noopener">Vendite concluse su eBay</a>' +
         (cc.trend ? '<span class="muted num">Riferimento ' + eur(cc.trend) + '</span>' : '') + '<span class="muted" id="n-' + i + '">' + esc(p.nota) + '</span></div></div>' +
