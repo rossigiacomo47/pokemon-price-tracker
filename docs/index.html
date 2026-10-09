@@ -342,8 +342,13 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
              lingua: lingua, promo: /promo/i.test(m[1]) };
   }
   function cercaDaLink(l) {
+    /* il nome del link si confronta solo con il NOME della carta (non con il set), a parole intere:
+       es. "Pikachu V" non deve trovare "Lickitung" del set "Detective Pikachu" */
     var parole = norm(l.nome).split(/\s+/).filter(Boolean);
-    var stessoNome = indice.filter(function (r) { return parole.every(function (p) { return r.testo.indexOf(p) >= 0; }); });
+    var stessoNome = indice.filter(function (r) {
+      var nomi = " " + norm(r.nome + " " + r.nome_en).replace(/[^a-z0-9☆]+/g, " ") + " ";
+      return parole.every(function (p) { return nomi.indexOf(" " + p.replace(/[^a-z0-9☆]+/g, "") + " ") >= 0; });
+    });
     /* la carta giusta e' quella il cui numero chiude il codice del link (vince la corrispondenza piu' lunga) */
     var lung = function (r) { var n = numeroCarta(r.numero); return n !== null && l.codice && l.codice.replace(/^0+/, "").slice(-String(n).length) === String(n) && l.codice.length >= String(n).length ? String(n).length : 0; };
     var best = Math.max.apply(null, [0].concat(stessoNome.map(lung)));
