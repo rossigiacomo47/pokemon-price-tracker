@@ -333,8 +333,12 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
     var i = pezzi.findIndex(function (t) { return /\d/.test(t); });
     var nome = i >= 0 ? pezzi.slice(0, i) : pezzi;
     while (nome.length > 1 && /^(SV|SM|SWSH|S|M)$/.test(nome[nome.length - 1])) nome.pop();   /* prefissi dei codici promo, es. SV-P062 */
-    var codice = i >= 0 ? pezzi[pezzi.length - 1].replace(/\D/g, "") : "";   /* es. "sv8132" -> "8132": set + numero */
-    return { set: m[1].replace(/-/g, " "), nome: nome.join(" ").replace(/\bGold Star\b/i, "☆"), codice: codice };
+    var ultimo = i >= 0 ? pezzi[pezzi.length - 1] : "";
+    var codice = ultimo.replace(/\D/g, "");   /* es. "sv8132" -> "8132": set + numero */
+    /* su Cardmarket i codici giapponesi sono minuscoli (sv8a217), quelli internazionali maiuscoli (MEW199) */
+    var lingua = /^[a-z]+\d/.test(ultimo) ? "ja" : /^[A-Z]+\d/.test(ultimo) ? "en" : null;
+    return { set: m[1].replace(/-/g, " "), nome: nome.join(" ").replace(/\bGold Star\b/i, "☆"), codice: codice,
+             lingua: lingua, promo: /promo/i.test(m[1]) };
   }
   function cercaDaLink(l) {
     var parole = norm(l.nome).split(/\s+/).filter(Boolean);
@@ -343,6 +347,10 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
     var lung = function (r) { var n = numeroCarta(r.numero); return n !== null && l.codice && l.codice.replace(/^0+/, "").slice(-String(n).length) === String(n) && l.codice.length >= String(n).length ? String(n).length : 0; };
     var best = Math.max.apply(null, [0].concat(stessoNome.map(lung)));
     var esatte = best ? stessoNome.filter(function (r) { return lung(r) === best; }) : [];
+    var restringi = function (lista, prova) { var x = lista.filter(prova); return x.length ? x : lista; };
+    if (l.lingua) esatte = restringi(esatte, function (r) { return r.lingua === l.lingua; });
+    var ePromo = function (r) { return /promo|プロモ|-P\b|\/SM-P|\/S-P/i.test(r.set + " " + r.numero); };
+    esatte = restringi(esatte, function (r) { return ePromo(r) === l.promo; });
     var ordina = function (x) { return x.sort(function (a, b) { return (a.perimetro === "dentro" ? 0 : 1) - (b.perimetro === "dentro" ? 0 : 1) || (b.trend || 0) - (a.trend || 0); }); };
     return { esatte: ordina(esatte).slice(0, 12), simili: ordina(stessoNome).slice(0, 12) };
   }
