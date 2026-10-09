@@ -91,7 +91,7 @@ main.wrap{padding-top:32px;padding-bottom:96px;display:flex;flex-direction:colum
 .yours label{font-weight:700;flex:1 1 260px}
 .comp{border-bottom:1px solid var(--line);padding:16px 0;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
 .comp .info{flex:999 1 300px;min-width:0;display:flex;flex-direction:column;gap:6px}
-.comp .nums{flex:1 1 320px;min-width:0;display:grid;grid-template-columns:112px 70px minmax(96px,1fr);gap:12px;align-items:start}
+.comp .nums{flex:1 1 340px;min-width:0;display:grid;grid-template-columns:128px 70px minmax(110px,1fr);gap:12px;align-items:start}
 .comp .nums .input{width:100%;font-weight:700}
 .cmp{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px}
 .cmp .s{color:var(--green-ink)}.cmp .d{color:var(--red-ink)}
@@ -215,6 +215,7 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
       <label for="tuo">La tua offerta: prezzo della copia che stai guardando</label>
       <span class="row" style="gap:8px"><input id="tuo" class="input num" type="number" min="0" step="0.01" style="width:130px;min-height:48px;font-size:18px;font-weight:700"> <b>€</b></span>
     </div>
+    <p class="note" id="spiega-simili">Ogni riga è una <b>carta simile</b>, non la tua. Nella sua casella scrivi il minimo NM <b>di quella carta</b>: la pagina lo converte nel valore equivalente per la tua carta con la rettifica (es. 210 € × 1,55 ≈ 325 €). Il prezzo della tua carta va nella casella gialla qui sopra.</p>
     <p class="note" id="nota-allentato" hidden></p>
     <div id="comps"></div>
     <p class="alert" id="warn" role="status" hidden></p>
@@ -308,7 +309,7 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
 
   carica("data/indice.json").then(function (d) {
     indice = d.map(function (r) { return { k: r[0], nome: r[1], nome_en: r[2], set: r[3], numero: r[4], lingua: r[5], img: r[6], perimetro: r[7], extra: r[8], trend: r[9],
-      testo: norm([r[1], r[2], r[3], r[4], r[5] === "ja" ? "giapponese japanese jp" : "inglese english en", r[8]].join(" ")) }; });
+      testo: norm([r[1], r[2], r[3], r[4], /☆/.test(r[1]) ? "gold star" : "", r[5] === "ja" ? "giapponese japanese jp" : "inglese english en", r[8]].join(" ")) }; });
     $("stato-indice").textContent = indice.length.toLocaleString("it-IT") + " carte disponibili. Cerca per nome, set o numero.";
   }).catch(function () { $("stato-indice").textContent = "Non riesco a caricare l'elenco delle carte. Riprova più tardi."; });
 
@@ -322,19 +323,30 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
     ris.sort(function (a, b) { return (a.perimetro === "dentro" ? 0 : 1) - (b.perimetro === "dentro" ? 0 : 1) || (b.trend || 0) - (a.trend || 0); });
     return ris.slice(0, 12);
   }
+  function numeroCarta(x) { var m = String(x || "").split("/")[0].match(/(\d+)\D*$/); return m ? parseInt(m[1], 10) : null; }
   function daLink(url) {
-    /* ricava set e nome DAL TESTO del link, senza aprire la pagina */
+    /* ricava nome e numero DAL TESTO del link, senza aprire la pagina.
+       Es. ".../Singles/Terastal-Festival-ex/Umbreon-ex-V2-sv8a217" -> nome "Umbreon ex", numero 217 */
     var m = String(url).match(/Products\/Singles\/([^/?#]+)\/([^/?#]+)/i);
     if (!m) return null;
-    var nome = m[2].replace(/-V\d+(?=-|$)/i, "").replace(/-/g, " ");
-    var num = (nome.match(/[A-Za-z]*(\d+)\s*$/) || [])[1];
-    nome = nome.replace(/\s+[A-Za-z]*\d+\s*$/, "");
-    return { set: m[1].replace(/-/g, " "), q: nome + (num ? " " + String(parseInt(num, 10)) : "") };
+    var pezzi = decodeURIComponent(m[2]).split("-").filter(function (t) { return !/^V\d+$/.test(t); });
+    var i = pezzi.findIndex(function (t) { return /\d/.test(t); });
+    var nome = i >= 0 ? pezzi.slice(0, i) : pezzi;
+    while (nome.length > 1 && /^(SV|SM|SWSH|S|M)$/.test(nome[nome.length - 1])) nome.pop();   /* prefissi dei codici promo, es. SV-P062 */
+    var num = i >= 0 ? numeroCarta(pezzi[pezzi.length - 1]) : null;
+    return { set: m[1].replace(/-/g, " "), nome: nome.join(" ").replace(/\bGold Star\b/i, "☆"), num: num };
   }
-  function mostraCandidati(ris, q) {
+  function cercaDaLink(l) {
+    var parole = norm(l.nome).split(/\s+/).filter(Boolean);
+    var stessoNome = indice.filter(function (r) { return parole.every(function (p) { return r.testo.indexOf(p) >= 0; }); });
+    var esatte = l.num === null ? [] : stessoNome.filter(function (r) { return numeroCarta(r.numero) === l.num; });
+    var ordina = function (x) { return x.sort(function (a, b) { return (a.perimetro === "dentro" ? 0 : 1) - (b.perimetro === "dentro" ? 0 : 1) || (b.trend || 0) - (a.trend || 0); }); };
+    return { esatte: ordina(esatte).slice(0, 12), simili: ordina(stessoNome).slice(0, 12) };
+  }
+  function mostraCandidati(ris, q, messaggio) {
     var w = $("cands"); w.innerHTML = "";
     var s = document.createElement("span"); s.className = "muted"; s.style.fontSize = "14px"; s.style.marginRight = "4px";
-    s.textContent = !ris.length ? "Nessuna carta trovata per «" + q + "»." : ris.length === 1 ? "1 risultato:" : ris.length + (ris.length === 12 ? "+" : "") + " risultati. Scegli la carta giusta:";
+    s.textContent = messaggio ? messaggio : !ris.length ? "Nessuna carta trovata per «" + q + "»." : ris.length === 1 ? "1 risultato:" : ris.length + (ris.length === 12 ? "+" : "") + " risultati. Scegli la carta giusta:";
     w.appendChild(s);
     ris.forEach(function (r, i) {
       var b = document.createElement("button");
@@ -352,7 +364,14 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
   $("form-cerca").addEventListener("submit", function (e) {
     e.preventDefault();
     var q = $("cerca").value.trim();
-    if (/cardmarket\.com/i.test(q)) { var l = daLink(q); if (l) q = l.q; }
+    if (/cardmarket\.com/i.test(q)) {
+      var l = daLink(q);
+      if (!l) { mostraCandidati([], q); return; }
+      var r = cercaDaLink(l);
+      if (r.esatte.length) { mostraCandidati(r.esatte, l.nome); if (r.esatte.length === 1) apri(r.esatte[0]); return; }
+      mostraCandidati(r.simili, l.nome, "Questa carta non è nella fotografia del mercato: probabilmente è fuori dal perimetro del modello (per esempio carte prima del 2017, Allenatori o set non coperti)." + (r.simili.length ? " Carte con lo stesso nome:" : ""));
+      return;
+    }
     mostraCandidati(cerca(q), q);
   });
   $("incolla").addEventListener("click", function () {
@@ -438,9 +457,9 @@ td{padding:9px 8px;border-top:1px solid #EDEDED}
         '<div class="row" style="gap:4px 16px;font-size:13.5px"><a href="' + linkCM(cc) + '" target="_blank" rel="noopener">Cerca su Cardmarket</a><a href="' + linkEbay(cc) + '" target="_blank" rel="noopener">Vendite concluse su eBay</a>' +
         (cc.trend ? '<span class="muted num">Riferimento ' + eur(cc.trend) + '</span>' : '') + '<span class="muted" id="n-' + i + '">' + esc(p.nota) + '</span></div></div>' +
         '<div class="nums">' +
-          '<div class="field"><label for="p-' + i + '">Minimo NM (€)</label><input id="p-' + i + '" class="input num" type="number" min="0" step="0.01" placeholder="—" value="' + p.v + '"><span class="muted num" style="font-size:12.5px" id="f-' + i + '"></span></div>' +
-          '<div class="field"><span class="lab">Rettifica</span><span class="out num" style="font-size:15px">' + (comp.fattore ? "× " + comp.fattore.toFixed(2).replace(".", ",") : "—") + '</span></div>' +
-          '<div class="field" style="text-align:right"><span class="lab">Per la tua carta</span><b class="out adj num" id="a-' + i + '">—</b><span class="muted num" style="font-size:12.5px" id="b-' + i + '"></span></div>' +
+          '<div class="field"><label for="p-' + i + '">Minimo NM di questa carta (€)</label><input id="p-' + i + '" class="input num" type="number" min="0" step="0.01" placeholder="—" value="' + p.v + '"><span class="muted num" style="font-size:12.5px" id="f-' + i + '"></span></div>' +
+          '<div class="field"><span class="lab" title="Quanto vale la tua carta rispetto a questa, secondo il modello">Rettifica</span><span class="out num" style="font-size:15px">' + (comp.fattore ? "× " + comp.fattore.toFixed(2).replace(".", ",") : "—") + '</span></div>' +
+          '<div class="field" style="text-align:right"><span class="lab">Equivale per la tua carta</span><b class="out adj num" id="a-' + i + '">—</b><span class="muted num" style="font-size:12.5px" id="b-' + i + '"></span></div>' +
         '</div>';
       box.appendChild(d);
       var inp = d.querySelector("input");
