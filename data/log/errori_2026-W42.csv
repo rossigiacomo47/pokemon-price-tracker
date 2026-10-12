@@ -1,0 +1,5 @@
+data,url,errore
+2026-10-12,https://api.tcgdex.net/v2/en/sets/ecard2,HTTP 503
+2026-10-12,https://api.tcgdex.net/v2/en/sets/pop3,HTTP 503
+2026-10-12,https://api.tcgdex.net/v2/en/cards/sv10.5w-019,HTTP 503
+2026-10-12,https://api.tcgdex.net/v2/en/cards/sv10.5w-020,HTTP 503
